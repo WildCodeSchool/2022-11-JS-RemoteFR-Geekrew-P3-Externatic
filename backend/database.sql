@@ -54,6 +54,7 @@ CREATE TABLE IF NOT EXISTS `p3`.`CANDIDATE` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `cv` VARCHAR(255) NOT NULL,
   `age` INT NOT NULL,
+  `gender` VARCHAR(25)
   `github` VARCHAR(255) NOT NULL,
   `active` TINYINT(1) NOT NULL,
   `soft_skills` TEXT NOT NULL,
@@ -212,6 +213,7 @@ DROP TABLE IF EXISTS `p3`.`CONSULTANT` ;
 
 CREATE TABLE IF NOT EXISTS `p3`.`CONSULTANT` (
   `id` INT NOT NULL AUTO_INCREMENT,
+  `gender` VARCHAR(25),
   `user_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_CONSULTANT_user_id` (`user_id` ASC) VISIBLE,
@@ -341,6 +343,7 @@ CREATE TABLE IF NOT EXISTS `p3`.`JOB_OFFER` (
   `location` VARCHAR(150) NOT NULL,
   `contract_id` INT NOT NULL,
   `debut_date` DATE NOT NULL,
+  `mission` TEXT NOT NULL,
   `profile_needed` TEXT NOT NULL,
   `interview_run` TEXT NOT NULL,
   `remote` TINYINT(1) NOT NULL,
@@ -448,3 +451,5 @@ COLLATE = utf8mb4_0900_ai_ci;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+INSERT INTO item (title) VALUES ('Stuff'), ('Doodads');
