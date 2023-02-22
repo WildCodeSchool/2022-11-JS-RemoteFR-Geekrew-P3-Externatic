@@ -1,63 +1,47 @@
 import React, { useState } from "react";
-import iconeBurger from "../assets/menu_burger_icon_191633.png";
+import iconeBurger from "../assets/Icons/menu.svg";
 
-function getUserRole() {
-  const userRole = localStorage.getItem("userRole");
-  return userRole;
-}
-
-function Sidenav() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleNav = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const userRole = getUserRole();
-
-  const modifyNavbar = () => {
-    const navBarItems = document.querySelector(".navbar_items");
-    const navBarLinks = navBarItems.querySelectorAll(".navbar_link");
-    if (userRole === "candidate") {
-      navBarLinks[1].textContent = "Mes Candidatures";
-      navBarLinks[1].href = "/candidate";
-    } else if (userRole === "consultant") {
-      navBarLinks[1].textContent = "Modifier une offre";
-      navBarLinks[1].href = "/consultant";
-    } else if (userRole === "company") {
-      navBarLinks[1].textContent = "Créer une offre";
-      navBarLinks[1].href = "/company";
-    }
-  };
-
-  modifyNavbar();
+function MenuBurger() {
+  const [isOpen, setOpen] = useState(false);
 
   return (
-    <nav className={`sidenav ${isOpen ? "show-nav" : "hide-nav"}`}>
-      <div className="navbar_logo">Logo</div>
-      <img src={iconeBurger} alt="icone burger" />
-      <ul className="navbar_links">
-        <li className="navbar_item">
-          <a href="/" className="navbar_link">
+    <div className="flex justify-between items-center">
+      <button
+        className="block p-4 m-4 w-14 border border-gray-400 hover:border-gray-500 rounded md:hidden"
+        onClick={() => setOpen(!isOpen)}
+        type="button"
+      >
+        <img src={iconeBurger} alt="iconeBurger" className="h-6 w-6" />
+      </button>
+
+      <div
+        className={`${
+          isOpen ? "block" : "hidden"
+        } md:block bg-white rounded shadow-md py-2`}
+      >
+        <nav className="text-base font-semibold">
+          <a
+            className="block px-4 py-2 text-gray-900 hover:bg-gray-400"
+            href="/"
+          >
             Offres d'emploi
           </a>
-        </li>
-        <li className="navbar_item">
-          <a href="/about" className="navbar_link">
+          <a
+            className="block px-4 py-2 text-gray-900 hover:bg-gray-400"
+            href="/"
+          >
             Mes Candidatures
           </a>
-        </li>
-        <li className="navbar_item">
-          <a href="/contact" className="navbar_link" alt="Contact">
-            Contact
+          <a
+            className="block px-4 py-2 text-gray-900 hover:bg-gray-400"
+            href="/"
+          >
+            Notifications
           </a>
-        </li>
-      </ul>
-      <button className="navbar_toggle" onClick={toggleNav} type="button">
-        <span className="burger-bar" />
-      </button>
-    </nav>
+        </nav>
+      </div>
+    </div>
   );
 }
 
-export default Sidenav;
+export default MenuBurger;
