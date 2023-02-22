@@ -8,7 +8,7 @@ function Home() {
         Nous cassons les codes du recrutement
         <span className="italic text-main"> informatique</span>
       </h1>
-      <div className="flex justify-between items-end font-extrabold h-32">
+      <div className="flex justify-between items-center font-extrabold h-32">
         <LeftCallButton />
         <RightCallButton />
       </div>

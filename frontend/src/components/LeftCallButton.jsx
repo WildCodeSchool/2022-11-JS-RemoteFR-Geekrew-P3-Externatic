@@ -4,15 +4,15 @@ import candidateButton from "../assets/images/candidate-button.png";
 function LeftCallButton() {
   const navigate = useNavigate();
   return (
-    <div>
+    <div className="relative">
+      <img src={candidateButton} alt="candidate button" className="w-full" />
       <button
         onClick={() => navigate("/SignInCandidate")}
         type="button"
-        className="flex justify-start font-jost font-xs"
+        className="absolute font-jost font-xs text-white hover:text-main bottom-5 left-5 pt-10 pr-10 hover:shadow-md"
       >
-        Je suis un candidat
+        Candidat
       </button>
-      <img src={candidateButton} alt="backcloud" className="" />
     </div>
   );
 }

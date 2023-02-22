@@ -4,15 +4,15 @@ import companyButton from "../assets/images/company-button.png";
 function RightCallButton() {
   const navigate = useNavigate();
   return (
-    <div>
+    <div className="relative">
+      <img src={companyButton} alt="company button" className="w-full" />
       <button
         onClick={() => navigate("/SignInCompany")}
         type="button"
-        className="flex justify-end font-jost font-xs"
+        className="absolute font-jost font-xs text-white hover:text-main bottom-5 right-5 pt-10 pl-10"
       >
-        Je suis une entreprise
+        Entreprise
       </button>
-      <img src={companyButton} alt="backcloud" className="" />
     </div>
   );
 }
