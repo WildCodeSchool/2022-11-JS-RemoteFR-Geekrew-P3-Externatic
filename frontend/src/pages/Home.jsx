@@ -1,10 +1,18 @@
-import React from "react";
+import LeftCallButton from "../components/LeftCallButton";
+import RightCallButton from "../components/RightCallButton";
 
-export default function Home() {
+function Home() {
   return (
-    <>
-      <div>Home</div>
-      <p>Coucou</p>
-    </>
+    <div>
+      <h1 className="font-jost">
+        Nous cassons les codes du recrutement <span>informatique</span>
+      </h1>
+      <div>
+        <LeftCallButton />
+        <RightCallButton />
+      </div>
+    </div>
   );
 }
+
+export default Home;
