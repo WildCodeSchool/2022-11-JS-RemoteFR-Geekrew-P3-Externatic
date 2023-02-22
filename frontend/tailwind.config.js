@@ -37,7 +37,10 @@ module.exports = {
           "4xl": "2rem",
         },
       },
-      backgroundImage: {},
+      backgroundImage: {
+        "candidate-button": "url('./src/assets/images/candidate-button.png')",
+        "company-button": "url('./src/assets/images/company-button.png')",
+      },
     },
   },
   plugins: [],
