@@ -18,4 +18,12 @@ router.put("/users/:id", userControllers.edit);
 router.post("/users", userControllers.add);
 router.delete("/users/:id", userControllers.destroy);
 
+const jobOfferControllers = require("./controllers/jobOfferControllers");
+
+router.get("/job_offers", jobOfferControllers.browse);
+router.get("/job_offers/:id", jobOfferControllers.read);
+router.put("/job_offers/:id", jobOfferControllers.edit);
+router.post("/job_offers", jobOfferControllers.add);
+router.delete("/job_offers/:id", jobOfferControllers.destroy);
+
 module.exports = router;

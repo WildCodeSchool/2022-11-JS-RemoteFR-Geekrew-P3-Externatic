@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `p3`.`CANDIDACY` (
   `candidacy_date` DATE NOT NULL,
   `received_by_company` TINYINT(1) NOT NULL,
   `read_by_company` TINYINT(1) NOT NULL,
-  `company_responsed` TINYINT(1) NOT NULL,
+  `company_responded` TINYINT(1) NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_CANDIDACY_candidate_id` (`candidate_id` ASC) VISIBLE,
   INDEX `fk_CANDIDACY_job_offer_id` (`job_offer_id` ASC) VISIBLE,
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `p3`.`CANDIDATE` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `cv` VARCHAR(255) NOT NULL,
   `age` INT NOT NULL,
-  `gender` VARCHAR(25)
+  `gender` VARCHAR(25),
   `github` VARCHAR(255) NOT NULL,
   `active` TINYINT(1) NOT NULL,
   `soft_skills` TEXT NOT NULL,
