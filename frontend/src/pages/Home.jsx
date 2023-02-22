@@ -1,9 +1,10 @@
+import AllSteps from "../components/AllSteps";
 import LeftCallButton from "../components/LeftCallButton";
 import RightCallButton from "../components/RightCallButton";
 
 function Home() {
   return (
-    <div>
+    <div className="flex flex-col">
       <h1 className="font-jost font-extrabold text-2xl text-left">
         Nous cassons les codes du recrutement
         <span className="italic text-main">
@@ -16,6 +17,7 @@ function Home() {
         <LeftCallButton />
         <RightCallButton />
       </div>
+      <AllSteps />
     </div>
   );
 }
