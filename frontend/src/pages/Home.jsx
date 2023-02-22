@@ -4,7 +4,7 @@ import RightCallButton from "../components/RightCallButton";
 function Home() {
   return (
     <div>
-      <h1>
+      <h1 className="font-jost">
         Nous cassons les codes du recrutement <span>informatique</span>
       </h1>
       <div>
