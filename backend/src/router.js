@@ -18,4 +18,12 @@ router.put("/users/:id", userControllers.edit);
 router.post("/users", userControllers.add);
 router.delete("/users/:id", userControllers.destroy);
 
+const companyControllers = require("./controllers/companyControllers");
+
+router.get("/companies", companyControllers.browse);
+router.get("/companies/:id", companyControllers.read);
+router.put("/companies/:id", companyControllers.edit);
+router.post("/companies", companyControllers.add);
+router.delete("/companies/:id", companyControllers.destroy);
+
 module.exports = router;
