@@ -40,6 +40,7 @@ module.exports = {
       backgroundImage: {
         "candidate-button": "url('./src/assets/images/candidate-button.png')",
         "company-button": "url('./src/assets/images/company-button.png')",
+        underline: "url('./src/assets/images/underline.png')",
       },
     },
   },

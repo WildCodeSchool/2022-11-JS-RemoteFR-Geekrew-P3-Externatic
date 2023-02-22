@@ -6,7 +6,11 @@ function Home() {
     <div>
       <h1 className="font-jost font-extrabold text-2xl text-left">
         Nous cassons les codes du recrutement
-        <span className="italic text-main"> informatique</span>
+        <span className="italic text-main">
+          {" "}
+          infor
+          <span className="bg-underline bg-no-repeat bg-bottom">matique </span>
+        </span>
       </h1>
       <div className="flex justify-between items-center font-extrabold h-32">
         <LeftCallButton />
