@@ -26,4 +26,12 @@ router.put("/companies/:id", companyControllers.edit);
 router.post("/companies", companyControllers.add);
 router.delete("/companies/:id", companyControllers.destroy);
 
+const jobOfferControllers = require("./controllers/jobOfferControllers");
+
+router.get("/job_offers", jobOfferControllers.browse);
+router.get("/job_offers/:id", jobOfferControllers.read);
+router.put("/job_offers/:id", jobOfferControllers.edit);
+router.post("/job_offers", jobOfferControllers.add);
+router.delete("/job_offers/:id", jobOfferControllers.destroy);
+
 module.exports = router;
