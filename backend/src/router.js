@@ -34,6 +34,14 @@ router.put("/candidates/:id", candidateControllers.edit);
 router.post("/candidates", candidateControllers.add);
 router.delete("/candidates/:id", candidateControllers.destroy);
 
+const candidacyControllers = require("./controllers/candidacyControllers");
+
+router.get("/candidacies", candidacyControllers.browse);
+router.get("/candidacies/:id", candidacyControllers.read);
+router.put("/candidacies/:id", candidacyControllers.edit);
+router.post("/candidacies", candidacyControllers.add);
+router.delete("/candidacies/:id", candidacyControllers.destroy);
+
 const jobOfferControllers = require("./controllers/jobOfferControllers");
 
 router.get("/job_offers", jobOfferControllers.browse);

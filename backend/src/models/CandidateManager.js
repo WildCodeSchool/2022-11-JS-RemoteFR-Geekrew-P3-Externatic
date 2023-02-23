@@ -31,6 +31,7 @@ class CandidateManager extends AbstractManager {
         candidate.softSkills,
         candidate.consultantId,
         candidate.userId,
+        candidate.id,
       ]
     );
   }
