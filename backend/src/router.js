@@ -2,14 +2,6 @@ const express = require("express");
 
 const router = express.Router();
 
-// const itemControllers = require("./controllers/itemControllers");
-
-// router.get("/items", itemControllers.browse);
-// router.get("/items/:id", itemControllers.read);
-// router.put("/items/:id", itemControllers.edit);
-// router.post("/items", itemControllers.add);
-// router.delete("/items/:id", itemControllers.destroy);
-
 const userControllers = require("./controllers/userControllers");
 
 router.get("/users", userControllers.browse);
@@ -49,5 +41,13 @@ router.get("/job_offers/:id", jobOfferControllers.read);
 router.put("/job_offers/:id", jobOfferControllers.edit);
 router.post("/job_offers", jobOfferControllers.add);
 router.delete("/job_offers/:id", jobOfferControllers.destroy);
+
+const contractControllers = require("./controllers/contractControllers");
+
+router.get("/contracts", contractControllers.browse);
+router.get("/contracts/:id", contractControllers.read);
+router.put("/contracts/:id", contractControllers.edit);
+router.post("/contracts", contractControllers.add);
+router.delete("/contracts/:id", contractControllers.destroy);
 
 module.exports = router;
