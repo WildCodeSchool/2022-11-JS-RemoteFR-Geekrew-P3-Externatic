@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `p3`.`candidacy` (
     REFERENCES `p3`.`job_offer` (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 
 
 -- -----------------------------------------------------
@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `p3`.`candidate` (
     REFERENCES `p3`.`user` (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 
 
 -- -----------------------------------------------------
@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `p3`.`candidate_has_notification` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 
 
 -- -----------------------------------------------------
@@ -124,7 +124,7 @@ CREATE TABLE IF NOT EXISTS `p3`.`candidate_has_technology` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 
 
 -- -----------------------------------------------------
@@ -149,7 +149,7 @@ CREATE TABLE IF NOT EXISTS `p3`.`company` (
     REFERENCES `p3`.`user` (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 
 
 -- -----------------------------------------------------
@@ -175,7 +175,7 @@ CREATE TABLE IF NOT EXISTS `p3`.`company_has_field` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 
 
 -- -----------------------------------------------------
@@ -201,7 +201,7 @@ CREATE TABLE IF NOT EXISTS `p3`.`company_has_notification` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 
 
 -- -----------------------------------------------------
@@ -219,7 +219,7 @@ CREATE TABLE IF NOT EXISTS `p3`.`consultant` (
     REFERENCES `p3`.`user` (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 
 
 -- -----------------------------------------------------
@@ -245,7 +245,7 @@ CREATE TABLE IF NOT EXISTS `p3`.`consultant_has_notification` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 
 
 -- -----------------------------------------------------
@@ -259,7 +259,7 @@ CREATE TABLE IF NOT EXISTS `p3`.`contract` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 
 
 -- -----------------------------------------------------
@@ -285,7 +285,7 @@ CREATE TABLE IF NOT EXISTS `p3`.`favorite` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 
 
 -- -----------------------------------------------------
@@ -321,7 +321,7 @@ CREATE TABLE IF NOT EXISTS `p3`.`handled_offer` (
     REFERENCES `p3`.`job_offer` (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 
 
 -- -----------------------------------------------------
@@ -356,7 +356,7 @@ CREATE TABLE `job_offer` (
   CONSTRAINT `fk_job_offer_contract_id` FOREIGN KEY (`contract_id`) REFERENCES `contract` (`id`)) 
   ENGINE=InnoDB
   DEFAULT CHARSET=utf8mb4 
-  COLLATE=utf8mb4_0900_ai_ci;
+  COLLATE=utf8mb4_general_ci;
 
 LOCK TABLES `job_offer` WRITE;
 /*!40000 ALTER TABLE `job_offer` DISABLE KEYS */;
@@ -407,7 +407,7 @@ CREATE TABLE IF NOT EXISTS `p3`.`job_offer_has_technology` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 
 
 -- -----------------------------------------------------
@@ -442,7 +442,7 @@ CREATE TABLE IF NOT EXISTS `p3`.`technology` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 
 
 -- -----------------------------------------------------
@@ -463,7 +463,7 @@ CREATE TABLE IF NOT EXISTS `p3`.`user` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
