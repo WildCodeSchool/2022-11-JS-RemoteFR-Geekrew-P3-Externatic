@@ -46,6 +46,9 @@ module.exports = {
         step3: "url('./src/assets/images/step3.png')",
         step4: "url('./src/assets/images/step4.png')",
       },
+      boxShadow: {
+        image: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+      },
     },
   },
   plugins: [],

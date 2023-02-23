@@ -1,3 +1,4 @@
+import Achievement from "../components/Achievement";
 import AllSteps from "../components/AllSteps";
 import LeftCallButton from "../components/LeftCallButton";
 import RightCallButton from "../components/RightCallButton";
@@ -18,6 +19,7 @@ function Home() {
         <RightCallButton />
       </div>
       <AllSteps />
+      <Achievement />
     </div>
   );
 }
