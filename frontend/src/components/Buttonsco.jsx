@@ -4,13 +4,17 @@ import logout from "../assets/Icons/log-out.svg";
 
 function Buttonsco() {
   return (
-    <div className="flex mr-4">
-      <a href="/SignInCandidate" className="mr-3">
-        <img src={login} alt="log-in" className="h-6 w-6" />
-      </a>
-      <a href="/SignInCandidate">
-        <img src={logout} alt="log-out" className="h-6 w-6" />
-      </a>
+    <div className="flex w-32">
+      <div className="mx-2 bg-main rounded-full">
+        <a href="/SignInCandidate">
+          <img src={login} alt="log-in" className="w-12 h-12 p-2" />
+        </a>
+      </div>
+      <div className="mx-2 bg-main rounded-full">
+        <a href="/SignInCandidate">
+          <img src={logout} alt="log-out" className="w-12 h-12 p-2" />
+        </a>
+      </div>
     </div>
   );
 }

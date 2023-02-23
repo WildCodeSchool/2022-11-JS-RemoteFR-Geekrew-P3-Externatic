@@ -5,14 +5,12 @@ import Buttonsco from "../components/Buttonsco";
 
 function Header() {
   return (
-    <div className="flex justify-between items-center px-4">
-      <div className="flex mr-4">
+    <div className="font-jost flex justify-between items-center px-4">
+      <div className="flex justify-start items-center">
         <Sidenav />
-      </div>
-      <div className="flex mr-4">
         <Logo />
       </div>
-      <div className="flex mr-4">
+      <div className="flex">
         <Buttonsco />
       </div>
     </div>
