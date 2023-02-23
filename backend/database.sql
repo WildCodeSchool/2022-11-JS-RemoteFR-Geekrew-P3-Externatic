@@ -142,7 +142,6 @@ CREATE TABLE IF NOT EXISTS `p3`.`COMPANY` (
   `company_type` VARCHAR(150) NOT NULL,
   `picture` VARCHAR(255) NOT NULL,
   `user_id` INT NOT NULL,
-  `COMPANY_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_COMPANY_user_id` (`user_id` ASC) VISIBLE,
   CONSTRAINT `fk_COMPANY_user_id`
