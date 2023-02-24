@@ -1,36 +1,27 @@
-import Counter from "../components/Counter";
-import logo from "../assets/logo.svg";
+import Achievement from "../components/Achievement";
+import AllSteps from "../components/AllSteps";
+import LeftCallButton from "../components/LeftCallButton";
+import RightCallButton from "../components/RightCallButton";
 
-export default function Home() {
+function Home() {
   return (
-    <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <p>Hello Vite + React !</p>
-
-      <Counter />
-
-      <p>
-        Edit <code>App.jsx</code> and save to test HMR updates.
-      </p>
-      <p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        {" | "}
-        <a
-          className="App-link"
-          href="https://vitejs.dev/guide/features.html"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Vite Docs
-        </a>
-      </p>
-    </header>
+    <div className="flex flex-col">
+      <h1 className="font-jost font-extrabold text-2xl text-left">
+        Nous cassons les codes du recrutement
+        <span className="italic text-main">
+          {" "}
+          infor
+          <span className="bg-underline bg-no-repeat bg-bottom">matique </span>
+        </span>
+      </h1>
+      <div className="flex justify-between items-center font-extrabold h-32">
+        <LeftCallButton />
+        <RightCallButton />
+      </div>
+      <AllSteps />
+      <Achievement />
+    </div>
   );
 }
+
+export default Home;
