@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `p3`.`candidacy` (
   `candidacy_date` DATE NOT NULL,
   `received_by_company` TINYINT(1) NOT NULL,
   `read_by_company` TINYINT(1) NOT NULL,
-  `company_responsed` TINYINT(1) NOT NULL,
+  `company_responded` TINYINT(1) NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_candidacy_candidate_id` (`candidate_id` ASC) VISIBLE,
   INDEX `fk_candidacy_job_offer_id` (`job_offer_id` ASC) VISIBLE,
@@ -44,7 +44,10 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_general_ci;
 
+INSERT INTO `candidacy` VALUES
+(1, 1, 1, '2023-02-27', 1, 0, 0), (2, 2, 2, '2023-02-27', 0, 0, 0);
 
+UNLOCK TABLES;
 -- -----------------------------------------------------
 -- Table `p3`.`candidate`
 -- -----------------------------------------------------
@@ -54,6 +57,7 @@ CREATE TABLE IF NOT EXISTS `p3`.`candidate` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `cv` VARCHAR(255) NOT NULL,
   `age` INT NOT NULL,
+  `gender` VARCHAR(25) NOT NULL,
   `github` VARCHAR(255) NOT NULL,
   `active` TINYINT(1) NOT NULL,
   `soft_skills` TEXT NOT NULL,
@@ -74,7 +78,27 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_general_ci;
 
+INSERT INTO `candidate` VALUES
+(1,
+"https://urlduCV",
+33,
+'Female',
+'https://github.com/adore-maribeth',
+1,
+"Esprit d'équipe, Soif de connaissances, Fiabilité",
+1,
+3),
+(2,
+"https://urlduCV",
+36,
+'Female',
+'https://github.com/tracey-middleton',
+1,
+"Sens de l'initiative, Capacité à travailler en équipe, Envie d'apprendre",
+1,
+4);
 
+UNLOCK TABLES;
 -- -----------------------------------------------------
 -- Table `p3`.`candidate_has_notification`
 -- -----------------------------------------------------
@@ -152,6 +176,18 @@ DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_general_ci;
 
 
+INSERT INTO `company` VALUES 
+(1,
+'Braka-C',
+150,
+"Braka-C, c'est une sart up en plein essort spécialisée dans une nouvelle technologie de réduction de fracture et de plâtre ! Rejoignez-nous et cassez vous joyeusement le bras afin de constater notre expertise !",
+'Orthopédie',
+'01234567891011',
+'Start Up',
+'https//:urldelimageonverraplustard',
+2);
+
+UNLOCK TABLES;
 -- -----------------------------------------------------
 -- Table `p3`.`COMPANY_has_FIELD`
 -- -----------------------------------------------------
@@ -211,6 +247,7 @@ DROP TABLE IF EXISTS `p3`.`consultant` ;
 
 CREATE TABLE IF NOT EXISTS `p3`.`consultant` (
   `id` INT NOT NULL AUTO_INCREMENT,
+  `gender` VARCHAR(25) NOT NULL,
   `user_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_consultant_user_id` (`user_id` ASC) VISIBLE,
@@ -220,6 +257,9 @@ CREATE TABLE IF NOT EXISTS `p3`.`consultant` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_general_ci;
+
+INSERT INTO `consultant` VALUES 
+(1, 'Male', 1);
 
 
 -- -----------------------------------------------------
@@ -261,7 +301,10 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_general_ci;
 
+INSERT INTO `contract` VALUES
+(1, 'CDD'), (2, 'CDI'), (3, 'Freelance'), (4, 'Stage'), (5, 'Alternance');
 
+UNLOCK TABLES;
 -- -----------------------------------------------------
 -- Table `p3`.`FAVORITE`
 -- -----------------------------------------------------
@@ -366,10 +409,10 @@ INSERT INTO `job_offer` VALUES
 'Developpeur Fullstack JS'
 ,55000,
 70000,
-"Nous accompagnons un éditeur de logiciel SaaS qui compte 150 collaborateurs, la société évolue dans le domaine du BTP, et développe depuis 2017 une solution SaaS pour faciliter le quotidien des acteurs du milieu. La stratégie à long terme de la société est de s\étendre à l'international, les premières agences étrangères commencent déjà à voir le jour. Dans ce contexte novateur et dynamique, vous prenez part à cette aventure unique au sein d'une équipe de 15 personnes à Nantes ou en full remote !",
+"Nous accompagnons un éditeur de logiciel SaaS qui compte 150 collaborateurs, la société évolue dans le domaine du BTP, et développe depuis 2017 une solution SaaS pour faciliter le quotidien des acteurs du milieu. La stratégie à long terme de la société est de s'étendre à l'international, les premières agences étrangères commencent déjà à voir le jour. Dans ce contexte novateur et dynamique, vous prenez part à cette aventure unique au sein d'une équipe de 15 personnes à Nantes ou en full remote !",
 '2 à 3 ans',
-'Nantes, Paris'
-,NULL,
+'Nantes, Paris',
+NULL,
 '2023-05-10',
 "Au sein d'une équipe technique de 6 collaborateurs, vos missions seront les suivantes : Migrer du code vers de nouveaux standards; Implémenter des fonctionnalités sur de nouvelles applications; Améliorer l’écosystème de nos outils de développement; Participer à la montée en compétence de toute l’équipe; Répondre aux besoins et aux questions de développeurs avec des problématiques back sous node et front sous react; Apporter une expertise lors de décision technique ou de chiffrages; Maintenir le code; Assurer une collaboration avec les équipes designs et techniques; Optimiser des applications; Concevoir et maintenir de la documentation; Participer à la résolution d’éventuelles pannes ou erreurs de conception;",
 "Développeur autonome sur la stack JS et plus particulièrement sur node.js et react, vous : Avez de bonnes connaissances de Typescript, GraphQL, CSS et de la maintenance de mono-repo; Êtes une personne proactive, dynamique et communicante. Témoignez d'une expérience dans une équipe de plus de 10 personnes, idéalement en environnement start-up/scale-up !",
@@ -379,7 +422,27 @@ INSERT INTO `job_offer` VALUES
 35,
 '2023-02-22',
 5,
-NULL);
+NULL),
+(2,
+4400,
+'Développeur Frontend React',
+52800,
+65000,
+"Nous sommes une start up qui évolue dans le domaine paramédical, et nous proposons une plateforme de collaboration avec les acteurs du secteurs (cliniques, hopitaux). Dans ce contexte, vous assurez l'accès aux professionnels de santé, mais aussi aux patients, à une technologie de pointe de traitement des fractures.",
+'0-2 ans',
+'Tours',
+NULL,
+'2023-03-25',
+"Au sein de notre équipe web comptant 5 collaborateurs, vous aurez pour mission de continuer le déploimement et de notre plateforme web via l'amélioration de l'interface client, implémenter de nouvelles fonctionnalités, assurer la documentation et la formation client, assurer la qualité et la maintenabilité du code, offrir une expérience agréable mais aussi fluide à nos utilisateurs.",
+"Développeur junior, vous avez des bases solides en React, HTML/CSS/JS. Vous êtes dynamique, communicant et curieux.",
+"RDV avec un membre de l'équipe technique, RDV avec l'assistante de direction",
+1,
+'Chèques vacancces',
+35,
+'2023-02-27',
+10,
+1);
+
 /*!40000 ALTER TABLE `job_offer` ENABLE KEYS */;
 UNLOCK TABLES;
 
