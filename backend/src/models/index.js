@@ -54,6 +54,16 @@ const ContractManager = require("./ContractManager");
 models.contract = new ContractManager();
 models.contract.setDatabase(pool);
 
+const ConsultantManager = require("./ConsultantManager");
+
+models.consultant = new ConsultantManager();
+models.consultant.setDatabase(pool);
+
+const FavoriteManager = require("./FavoriteManager");
+
+models.favorite = new FavoriteManager();
+models.favorite.setDatabase(pool);
+
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model
 

@@ -50,4 +50,20 @@ router.put("/contracts/:id", contractControllers.edit);
 router.post("/contracts", contractControllers.add);
 router.delete("/contracts/:id", contractControllers.destroy);
 
+const consultantControllers = require("./controllers/consultantControllers");
+
+router.get("/consultants", consultantControllers.browse);
+router.get("/consultants/:id", consultantControllers.read);
+router.put("/consultants/:id", consultantControllers.edit);
+router.post("/consultants", consultantControllers.add);
+router.delete("/consultants/:id", consultantControllers.destroy);
+
+const favoriteControllers = require("./controllers/favoriteControllers");
+
+router.get("/favorites", favoriteControllers.browse);
+router.get("/favorites/:id", favoriteControllers.read);
+router.put("/favorites/:id", favoriteControllers.edit);
+router.post("/favorites", favoriteControllers.add);
+router.delete("/favorites/:id", favoriteControllers.destroy);
+
 module.exports = router;
