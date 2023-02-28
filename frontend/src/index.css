@@ -11,6 +11,6 @@
   html,
   body,
   #root {
-    @apply h-full;
+    @apply h-full m-2 flex flex-col;
   }
 }
