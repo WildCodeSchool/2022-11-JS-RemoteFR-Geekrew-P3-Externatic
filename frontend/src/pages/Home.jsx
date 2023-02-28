@@ -18,8 +18,8 @@ function Home() {
       <div className="flex justify-between items-center font-extrabold h-32">
         <LeftCallButton />
         <RightCallButton />
-        <ContainerSlider />
       </div>
+      <ContainerSlider />
       <AllSteps />
       <Achievement />
     </div>
