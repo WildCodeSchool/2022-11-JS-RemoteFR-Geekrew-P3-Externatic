@@ -2,13 +2,15 @@ const express = require("express");
 
 const router = express.Router();
 
+const { hashPassword } = require("./auth");
+
 const userControllers = require("./controllers/userControllers");
 
 router.get("/users", userControllers.browse);
 router.get("/users/:id", userControllers.read);
-router.put("/users/:id", userControllers.edit);
-router.post("/users", userControllers.add);
-router.delete("/users/:id", userControllers.destroy);
+router.put("/users/:id", hashPassword, userControllers.edit);
+router.post("/users", hashPassword, userControllers.add);
+router.delete("/users/:id", hashPassword, userControllers.destroy);
 
 const companyControllers = require("./controllers/companyControllers");
 

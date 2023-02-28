@@ -520,7 +520,7 @@ CREATE TABLE IF NOT EXISTS `p3`.`user` (
   `mail` VARCHAR(255) NOT NULL,
   `linkedin` VARCHAR(255) NOT NULL,
   `phone` VARCHAR(20) NOT NULL,
-  `password` VARCHAR(32) NOT NULL,
+  `hashed_password` VARCHAR(255) NOT NULL,
   `location` VARCHAR(150) NOT NULL,
   `picture` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`id`))
