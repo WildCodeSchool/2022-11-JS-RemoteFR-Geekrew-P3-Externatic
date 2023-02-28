@@ -5,6 +5,7 @@ import SignInCandidate from "./pages/SignInCandidate";
 import SignInCompany from "./pages/SignInCompany";
 
 import "./App.css";
+import RegistrationCandidate from "./pages/RegistrationCandidate";
 
 function App() {
   return (
@@ -14,6 +15,10 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/SignInCandidate" element={<SignInCandidate />} />
           <Route path="/SignInCompany" element={<SignInCompany />} />
+          <Route
+            path="/RegistrationCandidate"
+            element={<RegistrationCandidate />}
+          />
         </Route>
       </Routes>
     </div>
