@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 
-import SuccessImage from "./SuccessImage";
+import SuccessImage from "./AchievementImage";
 
-function Success({ children, title, src, alt }) {
+function OneAchievement({ children, title, src, alt }) {
   return (
     <div className="font-jost flex flex-col items-center my-6">
       <SuccessImage src={src} alt={alt} />
@@ -12,11 +12,11 @@ function Success({ children, title, src, alt }) {
   );
 }
 
-Success.propTypes = {
+OneAchievement.propTypes = {
   children: PropTypes.node.isRequired,
   title: PropTypes.string.isRequired,
   src: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired,
 };
 
-export default Success;
+export default OneAchievement;
