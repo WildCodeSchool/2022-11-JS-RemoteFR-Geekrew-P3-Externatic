@@ -1,5 +1,6 @@
 import LeftCallButton from "../components/LeftCallButton";
 import RightCallButton from "../components/RightCallButton";
+import ContainerSlider from "../components/ContainerSlider";
 
 function Home() {
   return (
@@ -10,6 +11,7 @@ function Home() {
       <div>
         <LeftCallButton />
         <RightCallButton />
+        <ContainerSlider />
       </div>
     </div>
   );
