@@ -1,7 +1,7 @@
 import React from "react";
 import Sidenav from "../components/MenuBurger";
 import Logo from "../components/Logo";
-import Buttonsco from "../components/Buttonsco";
+import Buttonsco from "../components/ButtonsConnexion";
 
 function Header() {
   return (
