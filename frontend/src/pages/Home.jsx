@@ -2,6 +2,7 @@ import ExternaticAchievement from "../components/ExternaticAchievement";
 import RecruitmentSteps from "../components/RecruitmentSteps";
 import CandidateButton from "../components/CandidateButton";
 import CompanyButton from "../components/CompanyButton";
+import ContainerSlider from "../components/ContainerSlider";
 
 function Home() {
   return (
@@ -18,6 +19,7 @@ function Home() {
         <CandidateButton />
         <CompanyButton />
       </div>
+      <ContainerSlider />
       <RecruitmentSteps />
       <ExternaticAchievement />
     </div>
