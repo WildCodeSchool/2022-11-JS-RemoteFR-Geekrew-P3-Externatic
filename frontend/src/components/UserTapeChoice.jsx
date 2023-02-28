@@ -1,6 +1,6 @@
 import React from "react";
 
-function Choice() {
+function UserTapeChoice() {
   return (
     <div className="bg-gray-200 flex justify-center items-center">
       <h3 className="mr-6">Candidat</h3>
@@ -10,4 +10,4 @@ function Choice() {
   );
 }
 
-export default Choice;
+export default UserTapeChoice;

@@ -1,7 +1,7 @@
 import React from "react";
 import Sidenav from "../components/MenuBurger";
 import Logo from "../components/Logo";
-import Buttonsco from "../components/ButtonsConnexion";
+import ButtonsConnexion from "../components/ButtonsConnexion";
 
 function Header() {
   return (
@@ -11,7 +11,7 @@ function Header() {
         <Logo />
       </div>
       <div className="flex">
-        <Buttonsco />
+        <ButtonsConnexion />
       </div>
     </div>
   );

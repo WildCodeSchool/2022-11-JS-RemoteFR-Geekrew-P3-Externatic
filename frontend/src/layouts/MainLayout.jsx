@@ -3,7 +3,7 @@ import React from "react";
 import Header from "../partials/Header";
 import Footer from "../partials/Footer";
 
-function Layout1() {
+function MainLayout() {
   return (
     <div className="flex display-flex flex-grow-1 direction-column">
       <Header />
@@ -12,4 +12,4 @@ function Layout1() {
   );
 }
 
-export default Layout1;
+export default MainLayout;

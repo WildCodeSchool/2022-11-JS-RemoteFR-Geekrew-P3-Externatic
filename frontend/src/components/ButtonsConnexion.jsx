@@ -2,7 +2,7 @@ import React from "react";
 import login from "../assets/Icons/log-in.svg";
 import logout from "../assets/Icons/log-out.svg";
 
-function Buttonsco() {
+function ButtonsConnexion() {
   return (
     <div className="flex w-32">
       <div className="mx-2 bg-main rounded-full">
@@ -19,4 +19,4 @@ function Buttonsco() {
   );
 }
 
-export default Buttonsco;
+export default ButtonsConnexion;
