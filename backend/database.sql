@@ -19,121 +19,144 @@ CREATE SCHEMA IF NOT EXISTS `p3` DEFAULT CHARACTER SET utf8mb4 ;
 USE `p3` ;
 
 -- -----------------------------------------------------
--- Table `p3`.`CANDIDACY`
+-- Table `p3`.`candidacy`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `p3`.`CANDIDACY` ;
+DROP TABLE IF EXISTS `p3`.`candidacy` ;
 
-CREATE TABLE IF NOT EXISTS `p3`.`CANDIDACY` (
+CREATE TABLE IF NOT EXISTS `p3`.`candidacy` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `candidate_id` INT NOT NULL,
   `job_offer_id` INT NOT NULL,
   `candidacy_date` DATE NOT NULL,
   `received_by_company` TINYINT(1) NOT NULL,
   `read_by_company` TINYINT(1) NOT NULL,
-  `company_responsed` TINYINT(1) NOT NULL,
+  `company_responded` TINYINT(1) NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_CANDIDACY_candidate_id` (`candidate_id` ASC) VISIBLE,
-  INDEX `fk_CANDIDACY_job_offer_id` (`job_offer_id` ASC) VISIBLE,
-  CONSTRAINT `fk_CANDIDACY_candidate_id`
+  INDEX `fk_candidacy_candidate_id` (`candidate_id` ASC) VISIBLE,
+  INDEX `fk_candidacy_job_offer_id` (`job_offer_id` ASC) VISIBLE,
+  CONSTRAINT `fk_candidacy_candidate_id`
     FOREIGN KEY (`candidate_id`)
-    REFERENCES `p3`.`CANDIDATE` (`id`),
-  CONSTRAINT `fk_CANDIDACY_job_offer_id`
+    REFERENCES `p3`.`candidate` (`id`),
+  CONSTRAINT `fk_candidacy_job_offer_id`
     FOREIGN KEY (`job_offer_id`)
-    REFERENCES `p3`.`JOB_OFFER` (`id`))
+    REFERENCES `p3`.`job_offer` (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 
+INSERT INTO `candidacy` VALUES
+(1, 1, 1, '2023-02-27', 1, 0, 0), (2, 2, 2, '2023-02-27', 0, 0, 0);
 
+UNLOCK TABLES;
 -- -----------------------------------------------------
--- Table `p3`.`CANDIDATE`
+-- Table `p3`.`candidate`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `p3`.`CANDIDATE` ;
+DROP TABLE IF EXISTS `p3`.`candidate` ;
 
-CREATE TABLE IF NOT EXISTS `p3`.`CANDIDATE` (
+CREATE TABLE IF NOT EXISTS `p3`.`candidate` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `cv` VARCHAR(255) NOT NULL,
   `age` INT NOT NULL,
-  `gender` VARCHAR(25)
+  `gender` VARCHAR(25) NOT NULL,
   `github` VARCHAR(255) NOT NULL,
   `active` TINYINT(1) NOT NULL,
   `soft_skills` TEXT NOT NULL,
   `consultant_id` INT NOT NULL,
   `user_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_CANDIDATE_consultant_id` (`consultant_id` ASC) VISIBLE,
-  INDEX `fk_CANDIDATE_user_id` (`user_id` ASC) VISIBLE,
-  CONSTRAINT `fk_CANDIDATE_consultant_id`
+  INDEX `fk_candidate_consultant_id` (`consultant_id` ASC) VISIBLE,
+  INDEX `fk_candidate_user_id` (`user_id` ASC) VISIBLE,
+  CONSTRAINT `fk_candidate_consultant_id`
     FOREIGN KEY (`consultant_id`)
-    REFERENCES `p3`.`CONSULTANT` (`id`)
+    REFERENCES `p3`.`consultant` (`id`)
     ON DELETE RESTRICT
     ON UPDATE RESTRICT,
-  CONSTRAINT `fk_CANDIDATE_user_id`
+  CONSTRAINT `fk_candidate_user_id`
     FOREIGN KEY (`user_id`)
-    REFERENCES `p3`.`USER` (`id`))
+    REFERENCES `p3`.`user` (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 
+INSERT INTO `candidate` VALUES
+(1,
+"https://urlduCV",
+33,
+'Female',
+'https://github.com/adore-maribeth',
+1,
+"Esprit d'équipe, Soif de connaissances, Fiabilité",
+1,
+3),
+(2,
+"https://urlduCV",
+36,
+'Female',
+'https://github.com/tracey-middleton',
+1,
+"Sens de l'initiative, Capacité à travailler en équipe, Envie d'apprendre",
+1,
+4);
 
+UNLOCK TABLES;
 -- -----------------------------------------------------
--- Table `p3`.`CANDIDATE_has_NOTIFICATION`
+-- Table `p3`.`candidate_has_notification`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `p3`.`CANDIDATE_has_NOTIFICATION` ;
+DROP TABLE IF EXISTS `p3`.`candidate_has_notification` ;
 
-CREATE TABLE IF NOT EXISTS `p3`.`CANDIDATE_has_NOTIFICATION` (
-  `CANDIDATE_id` INT NOT NULL,
-  `NOTIFICATION_id` INT NOT NULL,
-  PRIMARY KEY (`CANDIDATE_id`, `NOTIFICATION_id`),
-  INDEX `fk_CANDIDATE_has_NOTIFICATION_NOTIFICATION1_idx` (`NOTIFICATION_id` ASC) VISIBLE,
-  INDEX `fk_CANDIDATE_has_NOTIFICATION_CANDIDATE1_idx` (`CANDIDATE_id` ASC) VISIBLE,
-  CONSTRAINT `fk_CANDIDATE_has_NOTIFICATION_CANDIDATE1`
-    FOREIGN KEY (`CANDIDATE_id`)
-    REFERENCES `p3`.`CANDIDATE` (`id`)
+CREATE TABLE IF NOT EXISTS `p3`.`candidate_has_notification` (
+  `candidate_id` INT NOT NULL,
+  `notification_id` INT NOT NULL,
+  PRIMARY KEY (`candidate_id`, `notification_id`),
+  INDEX `fk_candidate_has_notification_notification1_idx` (`notification_id` ASC) VISIBLE,
+  INDEX `fk_candidate_has_notification_candidate1_idx` (`candidate_id` ASC) VISIBLE,
+  CONSTRAINT `fk_candidate_has_notification_candidate1`
+    FOREIGN KEY (`candidate_id`)
+    REFERENCES `p3`.`candidate` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_CANDIDATE_has_NOTIFICATION_NOTIFICATION1`
-    FOREIGN KEY (`NOTIFICATION_id`)
-    REFERENCES `p3`.`NOTIFICATION` (`id`)
+  CONSTRAINT `fk_candidate_has_notification_notification1`
+    FOREIGN KEY (`notification_id`)
+    REFERENCES `p3`.`notification` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 
 
 -- -----------------------------------------------------
 -- Table `p3`.`CANDIDATE_has_TECHNOLOGY`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `p3`.`CANDIDATE_has_TECHNOLOGY` ;
+DROP TABLE IF EXISTS `p3`.`candidate_has_technology` ;
 
-CREATE TABLE IF NOT EXISTS `p3`.`CANDIDATE_has_TECHNOLOGY` (
-  `CANDIDATE_id` INT NOT NULL,
-  `TECHNOLOGY_id` INT NOT NULL,
-  PRIMARY KEY (`CANDIDATE_id`, `TECHNOLOGY_id`),
-  INDEX `fk_CANDIDATE_has_TECHNOLOGY_TECHNOLOGY1_idx` (`TECHNOLOGY_id` ASC) VISIBLE,
-  INDEX `fk_CANDIDATE_has_TECHNOLOGY_CANDIDATE1_idx` (`CANDIDATE_id` ASC) VISIBLE,
-  CONSTRAINT `fk_CANDIDATE_has_TECHNOLOGY_CANDIDATE1`
-    FOREIGN KEY (`CANDIDATE_id`)
-    REFERENCES `p3`.`CANDIDATE` (`id`)
+CREATE TABLE IF NOT EXISTS `p3`.`candidate_has_technology` (
+  `candidate_id` INT NOT NULL,
+  `technology_id` INT NOT NULL,
+  PRIMARY KEY (`candidate_id`, `technology_id`),
+  INDEX `fk_candidate_has_technology_technology1_idx` (`technology_id` ASC) VISIBLE,
+  INDEX `fk_candidate_has_technology_candidate1_idx` (`candidate_id` ASC) VISIBLE,
+  CONSTRAINT `fk_candidate_has_technology_candidate1`
+    FOREIGN KEY (`candidate_id`)
+    REFERENCES `p3`.`candidate` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_CANDIDATE_has_TECHNOLOGY_TECHNOLOGY1`
-    FOREIGN KEY (`TECHNOLOGY_id`)
-    REFERENCES `p3`.`TECHNOLOGY` (`id`)
+  CONSTRAINT `fk_candidate_has_technology_technology1`
+    FOREIGN KEY (`technology_id`)
+    REFERENCES `p3`.`technology` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 
 
 -- -----------------------------------------------------
 -- Table `p3`.`COMPANY`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `p3`.`COMPANY` ;
+DROP TABLE IF EXISTS `p3`.`company` ;
 
-CREATE TABLE IF NOT EXISTS `p3`.`COMPANY` (
+CREATE TABLE IF NOT EXISTS `p3`.`company` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(150) NOT NULL,
   `number_of_employee` INT NOT NULL,
@@ -143,160 +166,177 @@ CREATE TABLE IF NOT EXISTS `p3`.`COMPANY` (
   `company_type` VARCHAR(150) NOT NULL,
   `picture` VARCHAR(255) NOT NULL,
   `user_id` INT NOT NULL,
-  `COMPANY_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_COMPANY_user_id` (`user_id` ASC) VISIBLE,
-  CONSTRAINT `fk_COMPANY_user_id`
+  INDEX `fk_company_user_id` (`user_id` ASC) VISIBLE,
+  CONSTRAINT `fk_company_user_id`
     FOREIGN KEY (`user_id`)
-    REFERENCES `p3`.`USER` (`id`))
+    REFERENCES `p3`.`user` (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 
 
+INSERT INTO `company` VALUES 
+(1,
+'Braka-C',
+150,
+"Braka-C, c'est une sart up en plein essort spécialisée dans une nouvelle technologie de réduction de fracture et de plâtre ! Rejoignez-nous et cassez vous joyeusement le bras afin de constater notre expertise !",
+'Orthopédie',
+'01234567891011',
+'Start Up',
+'https//:urldelimageonverraplustard',
+2);
+
+UNLOCK TABLES;
 -- -----------------------------------------------------
 -- Table `p3`.`COMPANY_has_FIELD`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `p3`.`COMPANY_has_FIELD` ;
+DROP TABLE IF EXISTS `p3`.`company_has_field` ;
 
-CREATE TABLE IF NOT EXISTS `p3`.`COMPANY_has_FIELD` (
-  `COMPANY_id` INT NOT NULL,
-  `FIELD_id` INT NOT NULL,
-  PRIMARY KEY (`COMPANY_id`, `FIELD_id`),
-  INDEX `fk_COMPANY_has_FIELD_FIELD1_idx` (`FIELD_id` ASC) VISIBLE,
-  INDEX `fk_COMPANY_has_FIELD_COMPANY1_idx` (`COMPANY_id` ASC) VISIBLE,
-  CONSTRAINT `fk_COMPANY_has_FIELD_COMPANY1`
-    FOREIGN KEY (`COMPANY_id`)
-    REFERENCES `p3`.`COMPANY` (`id`)
+CREATE TABLE IF NOT EXISTS `p3`.`company_has_field` (
+  `company_id` INT NOT NULL,
+  `field_id` INT NOT NULL,
+  PRIMARY KEY (`company_id`, `field_id`),
+  INDEX `fk_company_has_field_field1_idx` (`field_id` ASC) VISIBLE,
+  INDEX `fk_company_has_field_company1_idx` (`company_id` ASC) VISIBLE,
+  CONSTRAINT `fk_company_has_field_company1`
+    FOREIGN KEY (`company_id`)
+    REFERENCES `p3`.`company` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_COMPANY_has_FIELD_FIELD1`
-    FOREIGN KEY (`FIELD_id`)
-    REFERENCES `p3`.`FIELD` (`id`)
+  CONSTRAINT `fk_company_has_field_field1`
+    FOREIGN KEY (`field_id`)
+    REFERENCES `p3`.`field` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 
 
 -- -----------------------------------------------------
 -- Table `p3`.`COMPANY_has_NOTIFICATION`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `p3`.`COMPANY_has_NOTIFICATION` ;
+DROP TABLE IF EXISTS `p3`.`company_has_notification` ;
 
-CREATE TABLE IF NOT EXISTS `p3`.`COMPANY_has_NOTIFICATION` (
-  `COMPANY_id` INT NOT NULL,
-  `NOTIFICATION_id` INT NOT NULL,
-  PRIMARY KEY (`COMPANY_id`, `NOTIFICATION_id`),
-  INDEX `fk_COMPANY_has_NOTIFICATION_NOTIFICATION1_idx` (`NOTIFICATION_id` ASC) VISIBLE,
-  INDEX `fk_COMPANY_has_NOTIFICATION_COMPANY1_idx` (`COMPANY_id` ASC) VISIBLE,
-  CONSTRAINT `fk_COMPANY_has_NOTIFICATION_COMPANY1`
-    FOREIGN KEY (`COMPANY_id`)
-    REFERENCES `p3`.`COMPANY` (`id`)
+CREATE TABLE IF NOT EXISTS `p3`.`company_has_notification` (
+  `company_id` INT NOT NULL,
+  `notification_id` INT NOT NULL,
+  PRIMARY KEY (`company_id`, `notification_id`),
+  INDEX `fk_company_has_notification_notification1_idx` (`notification_id` ASC) VISIBLE,
+  INDEX `fk_company_has_notification_company1_idx` (`company_id` ASC) VISIBLE,
+  CONSTRAINT `fk_company_has_notification_company1`
+    FOREIGN KEY (`company_id`)
+    REFERENCES `p3`.`company` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_COMPANY_has_NOTIFICATION_NOTIFICATION1`
-    FOREIGN KEY (`NOTIFICATION_id`)
-    REFERENCES `p3`.`NOTIFICATION` (`id`)
+  CONSTRAINT `fk_company_has_notification_notification1`
+    FOREIGN KEY (`notification_id`)
+    REFERENCES `p3`.`notification` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 
 
 -- -----------------------------------------------------
 -- Table `p3`.`CONSULTANT`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `p3`.`CONSULTANT` ;
+DROP TABLE IF EXISTS `p3`.`consultant` ;
 
-CREATE TABLE IF NOT EXISTS `p3`.`CONSULTANT` (
+CREATE TABLE IF NOT EXISTS `p3`.`consultant` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `gender` VARCHAR(25),
+  `gender` VARCHAR(25) NOT NULL,
   `user_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_CONSULTANT_user_id` (`user_id` ASC) VISIBLE,
-  CONSTRAINT `fk_CONSULTANT_user_id`
+  INDEX `fk_consultant_user_id` (`user_id` ASC) VISIBLE,
+  CONSTRAINT `fk_consultant_user_id`
     FOREIGN KEY (`user_id`)
-    REFERENCES `p3`.`USER` (`id`))
+    REFERENCES `p3`.`user` (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
+
+INSERT INTO `consultant` VALUES 
+(1, 'Male', 1);
 
 
 -- -----------------------------------------------------
 -- Table `p3`.`CONSULTANT_has_NOTIFICATION`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `p3`.`CONSULTANT_has_NOTIFICATION` ;
+DROP TABLE IF EXISTS `p3`.`consultant_has_notification` ;
 
-CREATE TABLE IF NOT EXISTS `p3`.`CONSULTANT_has_NOTIFICATION` (
-  `CONSULTANT_id` INT NOT NULL,
-  `NOTIFICATION_id` INT NOT NULL,
-  PRIMARY KEY (`CONSULTANT_id`, `NOTIFICATION_id`),
-  INDEX `fk_CONSULTANT_has_NOTIFICATION_NOTIFICATION1_idx` (`NOTIFICATION_id` ASC) VISIBLE,
-  INDEX `fk_CONSULTANT_has_NOTIFICATION_CONSULTANT1_idx` (`CONSULTANT_id` ASC) VISIBLE,
-  CONSTRAINT `fk_CONSULTANT_has_NOTIFICATION_CONSULTANT1`
-    FOREIGN KEY (`CONSULTANT_id`)
-    REFERENCES `p3`.`CONSULTANT` (`id`)
+CREATE TABLE IF NOT EXISTS `p3`.`consultant_has_notification` (
+  `consultant_id` INT NOT NULL,
+  `notification_id` INT NOT NULL,
+  PRIMARY KEY (`consultant_id`, `notification_id`),
+  INDEX `fk_consultant_has_notification_notification1_idx` (`notification_id` ASC) VISIBLE,
+  INDEX `fk_consultant_has_notification_consultant1_idx` (`consultant_id` ASC) VISIBLE,
+  CONSTRAINT `fk_consultant_has_notification_consultant1`
+    FOREIGN KEY (`consultant_id`)
+    REFERENCES `p3`.`consultant` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_CONSULTANT_has_NOTIFICATION_NOTIFICATION1`
-    FOREIGN KEY (`NOTIFICATION_id`)
-    REFERENCES `p3`.`NOTIFICATION` (`id`)
+  CONSTRAINT `fk_consultant_has_notification_notification1`
+    FOREIGN KEY (`notification_id`)
+    REFERENCES `p3`.`notification` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 
 
 -- -----------------------------------------------------
 -- Table `p3`.`CONTRACT`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `p3`.`CONTRACT` ;
+DROP TABLE IF EXISTS `p3`.`contract` ;
 
-CREATE TABLE IF NOT EXISTS `p3`.`CONTRACT` (
+CREATE TABLE IF NOT EXISTS `p3`.`contract` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `type` VARCHAR(25) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 
+INSERT INTO `contract` VALUES
+(1, 'CDD'), (2, 'CDI'), (3, 'Freelance'), (4, 'Stage'), (5, 'Alternance');
 
+UNLOCK TABLES;
 -- -----------------------------------------------------
 -- Table `p3`.`FAVORITE`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `p3`.`FAVORITE` ;
+DROP TABLE IF EXISTS `p3`.`favorite` ;
 
-CREATE TABLE IF NOT EXISTS `p3`.`FAVORITE` (
-  `CANDIDATE_id` INT NOT NULL,
-  `JOB_OFFER_id` INT NOT NULL,
-  PRIMARY KEY (`CANDIDATE_id`, `JOB_OFFER_id`),
-  INDEX `fk_CANDIDATE_has_JOB_OFFER_JOB_OFFER1_idx` (`JOB_OFFER_id` ASC) VISIBLE,
-  INDEX `fk_CANDIDATE_has_JOB_OFFER_CANDIDATE1_idx` (`CANDIDATE_id` ASC) VISIBLE,
-  CONSTRAINT `fk_CANDIDATE_has_JOB_OFFER_CANDIDATE1`
-    FOREIGN KEY (`CANDIDATE_id`)
-    REFERENCES `p3`.`CANDIDATE` (`id`)
+CREATE TABLE IF NOT EXISTS `p3`.`favorite` (
+  `candidate_id` INT NOT NULL,
+  `job_offer_id` INT NOT NULL,
+  PRIMARY KEY (`candidate_id`, `job_offer_id`),
+  INDEX `fk_candidate_has_job_offer_job_offer1_idx` (`job_offer_id` ASC) VISIBLE,
+  INDEX `fk_candidate_has_job_offer_candidate1_idx` (`candidate_id` ASC) VISIBLE,
+  CONSTRAINT `fk_candidate_has_job_offer_candidate1`
+    FOREIGN KEY (`candidate_id`)
+    REFERENCES `p3`.`candidate` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_CANDIDATE_has_JOB_OFFER_JOB_OFFER1`
-    FOREIGN KEY (`JOB_OFFER_id`)
-    REFERENCES `p3`.`JOB_OFFER` (`id`)
+  CONSTRAINT `fk_candidate_has_job_offer_job_offer1`
+    FOREIGN KEY (`job_offer_id`)
+    REFERENCES `p3`.`job_offer` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 
 
 -- -----------------------------------------------------
 -- Table `p3`.`FIELD`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `p3`.`FIELD` ;
+DROP TABLE IF EXISTS `p3`.`field` ;
 
-CREATE TABLE IF NOT EXISTS `p3`.`FIELD` (
+CREATE TABLE IF NOT EXISTS `p3`.`field` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NULL,
   PRIMARY KEY (`id`))
@@ -306,107 +346,148 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `p3`.`HANDLED_OFFER`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `p3`.`HANDLED_OFFER` ;
+DROP TABLE IF EXISTS `p3`.`handled_offer` ;
 
-CREATE TABLE IF NOT EXISTS `p3`.`HANDLED_OFFER` (
+CREATE TABLE IF NOT EXISTS `p3`.`handled_offer` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `job_offer_id` INT NOT NULL,
   `consultant_id` INT NOT NULL,
   `number_of_candidates` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_HANDLED_OFFER_job_offer_id` (`job_offer_id` ASC) VISIBLE,
-  INDEX `fk_HANDLED_OFFER_consultant_id` (`consultant_id` ASC) VISIBLE,
-  CONSTRAINT `fk_HANDLED_OFFER_consultant_id`
+  INDEX `fk_handled_offer_job_offer_id` (`job_offer_id` ASC) VISIBLE,
+  INDEX `fk_handled_offer_consultant_id` (`consultant_id` ASC) VISIBLE,
+  CONSTRAINT `fk_handled_offer_consultant_id`
     FOREIGN KEY (`consultant_id`)
     REFERENCES `p3`.`CONSULTANT` (`id`),
-  CONSTRAINT `fk_HANDLED_OFFER_job_offer_id`
+  CONSTRAINT `fk_handled_offer_job_offer_id`
     FOREIGN KEY (`job_offer_id`)
-    REFERENCES `p3`.`JOB_OFFER` (`id`))
+    REFERENCES `p3`.`job_offer` (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 
 
 -- -----------------------------------------------------
 -- Table `p3`.`JOB_OFFER`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `p3`.`JOB_OFFER` ;
+DROP TABLE IF EXISTS `p3`.`job_offer` ;
 
-CREATE TABLE IF NOT EXISTS `p3`.`JOB_OFFER` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `salary` INT NOT NULL,
-  `title` VARCHAR(180) NOT NULL,
-  `lower_salary` INT NOT NULL,
-  `higher_salary` INT NOT NULL,
-  `description` TEXT NOT NULL,
-  `experience` VARCHAR(50) NOT NULL,
-  `location` VARCHAR(150) NOT NULL,
-  `contract_id` INT NOT NULL,
-  `debut_date` DATE NOT NULL,
-  `mission` TEXT NOT NULL,
-  `profile_needed` TEXT NOT NULL,
-  `interview_run` TEXT NOT NULL,
-  `remote` TINYINT(1) NOT NULL,
-  `bonuses` TEXT NOT NULL,
-  `work_hours` INT NOT NULL,
-  `date_of_creation` DATE NOT NULL,
-  `number_of_candidates` INT NOT NULL,
-  `company_id` INT NOT NULL,
+CREATE TABLE `job_offer` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `salary` int NOT NULL,
+  `title` varchar(180) NOT NULL,
+  `lower_salary` int NOT NULL,
+  `higher_salary` int NOT NULL,
+  `description` text NOT NULL,
+  `experience` varchar(50) NOT NULL,
+  `location` varchar(150) NOT NULL,
+  `contract_id` int DEFAULT NULL,
+  `debut_date` date NOT NULL,
+  `mission` text NOT NULL,
+  `profile_needed` text NOT NULL,
+  `interview_run` text NOT NULL,
+  `remote` tinyint(1) NOT NULL,
+  `bonuses` text NOT NULL,
+  `work_hours` int NOT NULL,
+  `date_of_creation` date NOT NULL,
+  `number_of_candidates` int NOT NULL,
+  `company_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_JOB_OFFER_contract_id` (`contract_id` ASC) VISIBLE,
-  INDEX `fk_JOB_OFFER_company_id` (`company_id` ASC) VISIBLE,
-  CONSTRAINT `fk_JOB_OFFER_company_id`
-    FOREIGN KEY (`company_id`)
-    REFERENCES `p3`.`COMPANY` (`id`),
-  CONSTRAINT `fk_JOB_OFFER_contract_id`
-    FOREIGN KEY (`contract_id`)
-    REFERENCES `p3`.`CONTRACT` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+  KEY `fk_job_offer_contract_id` (`contract_id`),
+  KEY `fk_job_offer_company_id` (`company_id`),
+  CONSTRAINT `fk_job_offer_company_id` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`),
+  CONSTRAINT `fk_job_offer_contract_id` FOREIGN KEY (`contract_id`) REFERENCES `contract` (`id`)) 
+  ENGINE=InnoDB
+  DEFAULT CHARSET=utf8mb4 
+  COLLATE=utf8mb4_general_ci;
+
+LOCK TABLES `job_offer` WRITE;
+/*!40000 ALTER TABLE `job_offer` DISABLE KEYS */;
+INSERT INTO `job_offer` VALUES 
+(1,
+4600,
+'Developpeur Fullstack JS'
+,55000,
+70000,
+"Nous accompagnons un éditeur de logiciel SaaS qui compte 150 collaborateurs, la société évolue dans le domaine du BTP, et développe depuis 2017 une solution SaaS pour faciliter le quotidien des acteurs du milieu. La stratégie à long terme de la société est de s'étendre à l'international, les premières agences étrangères commencent déjà à voir le jour. Dans ce contexte novateur et dynamique, vous prenez part à cette aventure unique au sein d'une équipe de 15 personnes à Nantes ou en full remote !",
+'2 à 3 ans',
+'Nantes, Paris',
+NULL,
+'2023-05-10',
+"Au sein d'une équipe technique de 6 collaborateurs, vos missions seront les suivantes : Migrer du code vers de nouveaux standards; Implémenter des fonctionnalités sur de nouvelles applications; Améliorer l’écosystème de nos outils de développement; Participer à la montée en compétence de toute l’équipe; Répondre aux besoins et aux questions de développeurs avec des problématiques back sous node et front sous react; Apporter une expertise lors de décision technique ou de chiffrages; Maintenir le code; Assurer une collaboration avec les équipes designs et techniques; Optimiser des applications; Concevoir et maintenir de la documentation; Participer à la résolution d’éventuelles pannes ou erreurs de conception;",
+"Développeur autonome sur la stack JS et plus particulièrement sur node.js et react, vous : Avez de bonnes connaissances de Typescript, GraphQL, CSS et de la maintenance de mono-repo; Êtes une personne proactive, dynamique et communicante. Témoignez d'une expérience dans une équipe de plus de 10 personnes, idéalement en environnement start-up/scale-up !",
+'RDV avec le responsable produit; Test technique (1h max); RDV avec le CTO',
+1,
+'Mutuelle familiale à 100%; Tickets restaurants pris en charge à 60%',
+35,
+'2023-02-22',
+5,
+NULL),
+(2,
+4400,
+'Développeur Frontend React',
+52800,
+65000,
+"Nous sommes une start up qui évolue dans le domaine paramédical, et nous proposons une plateforme de collaboration avec les acteurs du secteurs (cliniques, hopitaux). Dans ce contexte, vous assurez l'accès aux professionnels de santé, mais aussi aux patients, à une technologie de pointe de traitement des fractures.",
+'0-2 ans',
+'Tours',
+NULL,
+'2023-03-25',
+"Au sein de notre équipe web comptant 5 collaborateurs, vous aurez pour mission de continuer le déploimement et de notre plateforme web via l'amélioration de l'interface client, implémenter de nouvelles fonctionnalités, assurer la documentation et la formation client, assurer la qualité et la maintenabilité du code, offrir une expérience agréable mais aussi fluide à nos utilisateurs.",
+"Développeur junior, vous avez des bases solides en React, HTML/CSS/JS. Vous êtes dynamique, communicant et curieux.",
+"RDV avec un membre de l'équipe technique, RDV avec l'assistante de direction",
+1,
+'Chèques vacancces',
+35,
+'2023-02-27',
+10,
+1);
+
+/*!40000 ALTER TABLE `job_offer` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 -- -----------------------------------------------------
--- Table `p3`.`JOB_OFFER_has_TECHNOLOGY`
+-- Table `p3`.`job_offer_has_TECHNOLOGY`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `p3`.`JOB_OFFER_has_TECHNOLOGY` ;
+DROP TABLE IF EXISTS `p3`.`job_offer_has_technology` ;
 
-CREATE TABLE IF NOT EXISTS `p3`.`JOB_OFFER_has_TECHNOLOGY` (
-  `JOB_OFFER_id` INT NOT NULL,
-  `TECHNOLOGY_id` INT NOT NULL,
-  PRIMARY KEY (`JOB_OFFER_id`, `TECHNOLOGY_id`),
-  INDEX `fk_JOB_OFFER_has_TECHNOLOGY_TECHNOLOGY1_idx` (`TECHNOLOGY_id` ASC) VISIBLE,
-  INDEX `fk_JOB_OFFER_has_TECHNOLOGY_JOB_OFFER1_idx` (`JOB_OFFER_id` ASC) VISIBLE,
-  CONSTRAINT `fk_JOB_OFFER_has_TECHNOLOGY_JOB_OFFER1`
-    FOREIGN KEY (`JOB_OFFER_id`)
-    REFERENCES `p3`.`JOB_OFFER` (`id`)
+CREATE TABLE IF NOT EXISTS `p3`.`job_offer_has_technology` (
+  `job_offer_id` INT NOT NULL,
+  `technology_id` INT NOT NULL,
+  PRIMARY KEY (`job_offer_id`, `technology_id`),
+  INDEX `fk_job_offer_has_technology_technology1_idx` (`technology_id` ASC) VISIBLE,
+  INDEX `fk_job_offer_has_technology_job_offer1_idx` (`job_offer_id` ASC) VISIBLE,
+  CONSTRAINT `fk_job_offer_has_technology_job_offer1`
+    FOREIGN KEY (`job_offer_id`)
+    REFERENCES `p3`.`job_offer` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_JOB_OFFER_has_TECHNOLOGY_TECHNOLOGY1`
-    FOREIGN KEY (`TECHNOLOGY_id`)
-    REFERENCES `p3`.`TECHNOLOGY` (`id`)
+  CONSTRAINT `fk_job_offer_has_technology_technology1`
+    FOREIGN KEY (`technology_id`)
+    REFERENCES `p3`.`technology` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 
 
 -- -----------------------------------------------------
 -- Table `p3`.`NOTIFICATION`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `p3`.`NOTIFICATION` ;
+DROP TABLE IF EXISTS `p3`.`notification` ;
 
-CREATE TABLE IF NOT EXISTS `p3`.`NOTIFICATION` (
+CREATE TABLE IF NOT EXISTS `p3`.`notification` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `job_offer_id` INT NOT NULL,
   `date` DATETIME NOT NULL,
   `message` VARCHAR(150) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci' NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_NOTIFICATION_job_offer_id` (`job_offer_id` ASC) VISIBLE,
-  CONSTRAINT `fk_NOTIFICATION_job_offer_id`
+  INDEX `fk_notification_job_offer_id` (`job_offer_id` ASC) VISIBLE,
+  CONSTRAINT `fk_notification_job_offer_id`
     FOREIGN KEY (`job_offer_id`)
-    REFERENCES `p3`.`JOB_OFFER` (`id`)
+    REFERENCES `p3`.`job_offer` (`id`)
     ON DELETE RESTRICT
     ON UPDATE RESTRICT)
 ENGINE = InnoDB
@@ -416,23 +497,23 @@ DEFAULT CHARACTER SET = utf8mb4;
 -- -----------------------------------------------------
 -- Table `p3`.`TECHNOLOGY`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `p3`.`TECHNOLOGY` ;
+DROP TABLE IF EXISTS `p3`.`technology` ;
 
-CREATE TABLE IF NOT EXISTS `p3`.`TECHNOLOGY` (
+CREATE TABLE IF NOT EXISTS `p3`.`technology` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(25) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 
 
 -- -----------------------------------------------------
 -- Table `p3`.`USER`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `p3`.`USER` ;
+DROP TABLE IF EXISTS `p3`.`user` ;
 
-CREATE TABLE IF NOT EXISTS `p3`.`USER` (
+CREATE TABLE IF NOT EXISTS `p3`.`user` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `firstname` VARCHAR(100) NOT NULL,
   `lastname` VARCHAR(100) NOT NULL,
@@ -445,10 +526,15 @@ CREATE TABLE IF NOT EXISTS `p3`.`USER` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,'Gusty','Amethist','Gusty.Amethist@yopmail.com','https://www.linkedin.com/in/Gusty-Amethist/','xx.xx.xx.xx.xx','aupifserahash','Chengdu','urldelimage'),(2,'Courtnay','Rona','Courtnay.Rona@yopmail.com','https://www.linkedin.com/in/Courtnay-Rona/','xx.xx.xx.xx.xx','aupifserahash','Mashhad','urldelimage'),(3,'Adore','Maribeth','Adore.Maribeth@yopmail.com','https://www.linkedin.com/in/Adore-Maribeth/','xx.xx.xx.xx.xx','aupifserahash','Semarang','urldelimage'),(4,'Tracey','Middleton','Tracey.Middleton@yopmail.com','https://www.linkedin.com/in/Tracey-Middleton/','xx.xx.xx.xx.xx','aupifserahash','Kigali','urldelimage'),(5,'Kate','Rheingold','Kate.Rheingold@yopmail.com','https://www.linkedin.com/in/Kate-Rheingold/','xx.xx.xx.xx.xx','aupifserahash','Dammam','urldelimage');
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-
