@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import candidateButton from "../assets/images/candidate-button.png";
 
-function LeftCallButton() {
+function CandidateButton() {
   const navigate = useNavigate();
   return (
     <div className="relative">
@@ -17,4 +17,4 @@ function LeftCallButton() {
   );
 }
 
-export default LeftCallButton;
+export default CandidateButton;

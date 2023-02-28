@@ -1,9 +1,9 @@
-import Success from "./Success";
+import Success from "./OneAchievement";
 import hello from "../assets/images/externatic-hello.png";
 import rocket from "../assets/images/externatic-fusee.png";
 import hourglass from "../assets/images/externatic-sablier.png";
 
-function Achievement() {
+function ExternaticAchievement() {
   return (
     <div className="font-jost">
       <h1 className="font-semibold text-xl text-left">
@@ -34,4 +34,4 @@ function Achievement() {
   );
 }
 
-export default Achievement;
+export default ExternaticAchievement;

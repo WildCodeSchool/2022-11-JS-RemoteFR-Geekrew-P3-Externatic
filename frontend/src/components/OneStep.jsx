@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-function Step({ children, tailwindClasses }) {
+function OneStep({ children, tailwindClasses }) {
   return (
     <div>
       <p className={`bg-no-repeat px-4 ${tailwindClasses}`}>{children}</p>
@@ -8,9 +8,9 @@ function Step({ children, tailwindClasses }) {
   );
 }
 
-Step.propTypes = {
+OneStep.propTypes = {
   children: PropTypes.node.isRequired,
   tailwindClasses: PropTypes.string.isRequired,
 };
 
-export default Step;
+export default OneStep;
