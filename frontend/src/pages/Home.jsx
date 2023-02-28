@@ -7,7 +7,7 @@ import ContainerSlider from "../components/ContainerSlider";
 function Home() {
   return (
     <div className="flex flex-col">
-      <h1 className="font-jost font-extrabold text-2xl text-left">
+      <h1 className="font-jost font-extrabold text-2xl text-left mx-8 my-5">
         Nous cassons les codes du recrutement
         <span className="italic text-main">
           {" "}
@@ -15,7 +15,7 @@ function Home() {
           <span className="bg-underline bg-no-repeat bg-bottom">matique </span>
         </span>
       </h1>
-      <div className="flex justify-between items-center font-extrabold h-32">
+      <div className="flex justify-between items-center font-extrabold h-32 mb-5">
         <CandidateButton />
         <CompanyButton />
       </div>

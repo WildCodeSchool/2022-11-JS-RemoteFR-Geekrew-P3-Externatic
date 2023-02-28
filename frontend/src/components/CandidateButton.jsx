@@ -4,7 +4,7 @@ import candidateButton from "../assets/images/candidate-button.png";
 function CandidateButton() {
   const navigate = useNavigate();
   return (
-    <div className="relative">
+    <div className="relative ml-8">
       <img src={candidateButton} alt="candidate button" className="w-full" />
       <button
         onClick={() => navigate("/SignInCandidate")}

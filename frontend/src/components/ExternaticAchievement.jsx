@@ -5,7 +5,7 @@ import hourglass from "../assets/images/externatic-sablier.png";
 
 function ExternaticAchievement() {
   return (
-    <div className="font-jost">
+    <div className="font-jost mx-8 mb-8">
       <h1 className="font-semibold text-xl text-left">
         <span className="underline decoration-4 decoration-main">
           Notre réussite

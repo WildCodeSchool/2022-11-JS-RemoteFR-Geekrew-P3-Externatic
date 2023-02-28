@@ -4,7 +4,7 @@ import companyButton from "../assets/images/company-button.png";
 function CompanyButton() {
   const navigate = useNavigate();
   return (
-    <div className="relative">
+    <div className="relative mr-8">
       <img src={companyButton} alt="company button" className="w-full" />
       <button
         onClick={() => navigate("/SignInCompany")}

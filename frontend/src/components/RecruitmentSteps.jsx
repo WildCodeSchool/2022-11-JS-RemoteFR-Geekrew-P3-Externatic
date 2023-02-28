@@ -5,7 +5,7 @@ function RecruitmentSteps() {
   const rightStepClasses = "bg-right text-right py-5";
 
   return (
-    <div className="font-jost mb-10">
+    <div className="font-jost mb-10 mx-8">
       <h1 className="font-semibold text-xl text-left">
         <span className="underline decoration-4 decoration-main">
           Les étapes

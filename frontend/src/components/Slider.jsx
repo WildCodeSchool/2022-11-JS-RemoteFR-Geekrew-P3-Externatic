@@ -4,10 +4,10 @@ import Logo from "../assets/Icons/map-pin.svg";
 
 function Container() {
   return (
-    <div className="flex flex-col sm:flex-row overflow-x-auto md:overflow-scroll m-10 gap-4">
-      <section className="flex-shrink-0 max-w-sm mb-3 mx-auto w-full p-6 bg-white border border-gray-150 rounded-lg shadow-2xl">
+    <div className="flex flex-row overflow-x-auto md:no-scrollbar m-8 gap-4 md:flex-wrap">
+      <section className="flex-shrink-0 max-w-sm mb-3 mx-auto w-full p-6 bg-white border border-gray-150 rounded-lg shadow-xl">
         <span>
-          <h5 className="mb-2 text-1xl text-left font-bold tracking-tight text-gray-900 dark:text-white">
+          <h5 className="mb-2 text-1xl text-left font-bold tracking-tight text-gray-900">
             Développeur Ruby / Angular H/F
           </h5>
         </span>
@@ -39,9 +39,9 @@ function Container() {
           Voir plus
         </Link>
       </section>
-      <section className="flex-shrink-0 max-w-sm mb-3 mx-auto w-full p-6 bg-white border border-gray-150 rounded-lg shadow-2xl">
+      <section className="flex-shrink-0 max-w-sm mb-3 mx-auto w-full p-6 bg-white border border-gray-150 rounded-lg shadow-xl">
         <span>
-          <h5 className="mb-2 text-1xl text-left font-bold tracking-tight text-gray-900 dark:text-white">
+          <h5 className="mb-2 text-1xl text-left font-bold tracking-tight text-gray-900">
             Product Owner H/F
           </h5>
         </span>
@@ -74,9 +74,9 @@ function Container() {
           Voir plus
         </Link>
       </section>
-      <section className="flex-shrink-0 max-w-sm mb-3 mx-auto w-full p-6 bg-white border border-gray-150 rounded-lg shadow-2xl">
+      <section className="flex-shrink-0 max-w-sm mb-3 mx-auto w-full p-6 bg-white border border-gray-150 rounded-lg shadow-xl">
         <span>
-          <h5 className="mb-2 text-1xl text-left font-bold tracking-tight text-gray-900 dark:text-white">
+          <h5 className="mb-2 text-1xl text-left font-bold tracking-tight text-gray-900">
             Architecte Systèmes Windows H/F
           </h5>
         </span>
@@ -108,9 +108,9 @@ function Container() {
           Voir plus
         </Link>
       </section>
-      <section className="flex-shrink-0 max-w-sm mb-3 mx-auto w-full p-6 bg-white border border-gray-150 rounded-lg shadow-2xl">
+      <section className="flex-shrink-0 max-w-sm mb-3 mx-auto w-full p-6 bg-white border border-gray-150 rounded-lg shadow-xl">
         <span>
-          <h5 className="mb-2 text-1xl text-left font-bold tracking-tight text-gray-900 dark:text-white">
+          <h5 className="mb-2 text-1xl text-left font-bold tracking-tight text-gray-900">
             Architecte Systèmes Windows H/F
           </h5>
         </span>
@@ -123,6 +123,7 @@ function Container() {
           divertissement mobile. Vous serez dans une société multiculturelle et
           internationale.
         </p>
+        <br />
         <span className="flex items-center">
           <img
             src={Logo}
