@@ -37,6 +37,13 @@ class UserManager extends AbstractManager {
       ]
     );
   }
+
+  login(mail) {
+    return this.database.query(
+      `select mail, hashed_password from ${this.table} where mail = ?`,
+      [mail]
+    );
+  }
 }
 
 module.exports = UserManager;

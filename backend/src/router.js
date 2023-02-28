@@ -12,6 +12,8 @@ router.put("/users/:id", hashPassword, userControllers.edit);
 router.post("/users", hashPassword, userControllers.add);
 router.delete("/users/:id", hashPassword, userControllers.destroy);
 
+router.post("/login", userControllers.getUserByEmailAndPasswordAndNext);
+
 const companyControllers = require("./controllers/companyControllers");
 
 router.get("/companies", companyControllers.browse);
