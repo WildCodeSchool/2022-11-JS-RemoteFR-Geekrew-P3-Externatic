@@ -84,10 +84,10 @@ function Container() {
           Entreprise
         </h2>
         <p className="mb-3 font-normal text-sm text-left w-full text-black">
-          Cette start-up de la FoodTech développe une Intelligence Artificielle
-          qui analyse les préférences alimentaires et suggère des idées-repas
-          personnalisées. Ils viennent de lever des fonds et cherchent donc à
-          agrandir leur équipe technique.
+          Ce groupe en forte croissance (13% par an), présent à l'international,
+          souhaite améliorer sa capacité de production avec le déploiement d’un
+          service IoT dédié afin de répondre aux enjeux du parc de produits
+          connectés. <br />
         </p>
         <span className="flex items-center">
           <img
@@ -118,10 +118,10 @@ function Container() {
           Entreprise
         </h2>
         <p className="mb-3 font-normal text-sm text-left w-full text-black">
-          Cette start-up de la FoodTech développe une Intelligence Artificielle
-          qui analyse les préférences alimentaires et suggère des idées-repas
-          personnalisées. Ils viennent de lever des fonds et cherchent donc à
-          agrandir leur équipe technique.
+          L’entreprise est une société sur les paris sportifs dont son siège
+          social est à Bordeaux. Elle développe des applications de
+          divertissement mobile. Vous serez dans une société multiculturelle et
+          internationale.
         </p>
         <span className="flex items-center">
           <img
