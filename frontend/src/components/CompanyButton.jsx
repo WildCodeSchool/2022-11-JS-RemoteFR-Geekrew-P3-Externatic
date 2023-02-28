@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import companyButton from "../assets/images/company-button.png";
 
-function RightCallButton() {
+function CompanyButton() {
   const navigate = useNavigate();
   return (
     <div className="relative">
@@ -17,4 +17,4 @@ function RightCallButton() {
   );
 }
 
-export default RightCallButton;
+export default CompanyButton;

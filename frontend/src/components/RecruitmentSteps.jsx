@@ -1,6 +1,6 @@
-import Step from "./Step";
+import Step from "./OneStep";
 
-function AllSteps() {
+function RecruitmentSteps() {
   const leftStepClasses = "bg-left text-left py-4";
   const rightStepClasses = "bg-right text-right py-5";
 
@@ -33,4 +33,4 @@ function AllSteps() {
   );
 }
 
-export default AllSteps;
+export default RecruitmentSteps;

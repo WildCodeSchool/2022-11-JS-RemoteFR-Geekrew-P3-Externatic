@@ -1,7 +1,7 @@
-import Achievement from "../components/Achievement";
-import AllSteps from "../components/AllSteps";
-import LeftCallButton from "../components/LeftCallButton";
-import RightCallButton from "../components/RightCallButton";
+import ExternaticAchievement from "../components/ExternaticAchievement";
+import RecruitmentSteps from "../components/RecruitmentSteps";
+import CandidateButton from "../components/CandidateButton";
+import CompanyButton from "../components/CompanyButton";
 import ContainerSlider from "../components/ContainerSlider";
 
 function Home() {
@@ -16,12 +16,12 @@ function Home() {
         </span>
       </h1>
       <div className="flex justify-between items-center font-extrabold h-32">
-        <LeftCallButton />
-        <RightCallButton />
+        <CandidateButton />
+        <CompanyButton />
       </div>
       <ContainerSlider />
-      <AllSteps />
-      <Achievement />
+      <RecruitmentSteps />
+      <ExternaticAchievement />
     </div>
   );
 }
