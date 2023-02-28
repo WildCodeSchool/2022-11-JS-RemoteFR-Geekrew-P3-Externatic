@@ -7,7 +7,7 @@ function CompanyButton() {
     <div className="relative mr-8">
       <img src={companyButton} alt="company button" className="w-full" />
       <button
-        onClick={() => navigate("/SignInCompany")}
+        onClick={() => navigate("/Registration")}
         type="button"
         className="absolute font-jost font-xs text-white hover:text-main bottom-5 right-5 pt-10 pl-10"
       >

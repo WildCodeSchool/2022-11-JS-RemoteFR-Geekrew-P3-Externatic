@@ -7,7 +7,7 @@ function CandidateButton() {
     <div className="relative ml-8">
       <img src={candidateButton} alt="candidate button" className="w-full" />
       <button
-        onClick={() => navigate("/SignInCandidate")}
+        onClick={() => navigate("/Registration")}
         type="button"
         className="absolute font-jost font-xs text-white hover:text-main bottom-5 left-5 pt-10 pr-10 hover:shadow-md"
       >
