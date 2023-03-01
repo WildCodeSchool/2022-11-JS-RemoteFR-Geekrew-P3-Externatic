@@ -66,6 +66,23 @@ const add = (req, res) => {
     });
 };
 
+const getUserByEmailAndPasswordAndNext = (req, res, next) => {
+  models.user
+    .login(req.body.mail)
+    .then(([rows]) => {
+      if (rows[0] == null) {
+        res.sendStatus(404);
+      } else {
+        [req.user] = rows;
+      }
+      next();
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 const destroy = (req, res) => {
   models.user
     .delete(req.params.id)
@@ -87,5 +104,6 @@ module.exports = {
   read,
   edit,
   add,
+  getUserByEmailAndPasswordAndNext,
   destroy,
 };
