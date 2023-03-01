@@ -22,8 +22,10 @@ function RegistrationCandidate() {
           </span>
         </h1>
       </div>
-      <ProfilePic />
-      <ToggleCandidate />
+      <div className="flex flex-row justify-between items-center">
+        <ProfilePic />
+        <ToggleCandidate />
+      </div>
       <InfoFormCandidate />
       <SkillsCandidate />
       <CvCandiadte />
