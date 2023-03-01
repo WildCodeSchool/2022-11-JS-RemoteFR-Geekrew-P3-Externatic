@@ -14,7 +14,7 @@ function InfoFormCandidate() {
               id="woman"
               name="woman"
               type="checkbox"
-              className="appearance-none cursor-pointer border-2 border-grey2 w-4 h-4 mt-1 rounded-full checked:bg-main-dark checked:outline checked:outline-1 checked:outline-main-dark checked:border-white checked:ease-in-out checked:duration-75"
+              className="appearance-none cursor-pointer border-2 border-grey2 w-4 h-4 mt-1 rounded-full checked:bg-main checked:outline checked:outline-1 checked:outline-main-dark checked:border-white checked:ease-in-out checked:duration-75"
             />
             <label htmlFor="woman" className="ml-3 text-grey2 mr-2">
               Je suis une femme
@@ -53,7 +53,7 @@ function InfoFormCandidate() {
             Prénom <span className="text-main-dark">*</span>
           </label>
           <input
-            className="bg-gray-50 border border-gray-300 text-grey1 rounded mb-5 leading-9"
+            className="bg-gray-50 border border-gray-300 text-grey1 rounded mb-5 leading-9 focus:ring-main"
             id="firstname"
             name="firstname"
             type="text"
