@@ -23,7 +23,9 @@ function RegistrationCandidate() {
         </h1>
       </div>
       <div className="flex flex-row justify-between items-center">
-        <ProfilePic />
+        <div className="ml-8 mt-4">
+          <ProfilePic />
+        </div>
         <ToggleCandidate />
       </div>
       <InfoFormCandidate />

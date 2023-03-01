@@ -4,7 +4,7 @@ function InfoFormCandidate() {
   const handleSubmit = (e) => e.preventDefault();
 
   return (
-    <div className="grid grid-rows-10 m-8 justify-items-start font-jost">
+    <div className="grid grid-rows-10 m-8 mt-6 justify-items-start font-jost">
       <h2 className="mb-5">Mes informations</h2>
       <div className="flex flex-row">
         <p className="mr-7 text-grey2">Genre</p>

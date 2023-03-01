@@ -1,8 +1,12 @@
 import React from "react";
+import ProfilePic from "./ProfilePic";
 
 function InfosCompany() {
   return (
     <div className="m-8 ">
+      <div className="mb-6">
+        <ProfilePic />
+      </div>
       <h2 className="font-bold text-sm text-black  text-left font-medium mb-4">
         Mes informations
       </h2>
