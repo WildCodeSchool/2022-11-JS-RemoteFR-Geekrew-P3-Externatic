@@ -4,8 +4,8 @@ import Home from "./pages/Home";
 import SignInCandidate from "./pages/SignInCandidate";
 import SignInCompany from "./pages/SignInCompany";
 
-import "./App.css";
 import RegistrationCandidate from "./pages/RegistrationCandidate";
+import RegistrationCompany from "./pages/RegistrationCompany";
 
 function App() {
   return (
@@ -18,6 +18,10 @@ function App() {
           <Route
             path="/RegistrationCandidate"
             element={<RegistrationCandidate />}
+          />
+          <Route
+            path="/RegistrationCompany"
+            element={<RegistrationCompany />}
           />
         </Route>
       </Routes>
