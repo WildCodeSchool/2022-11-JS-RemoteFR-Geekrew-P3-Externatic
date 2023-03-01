@@ -2,8 +2,8 @@ import React from "react";
 
 function ProfilePic() {
   return (
-    <div>
-      <img src="" alt="User Profile" />
+    <div className="float-left">
+      <img src="" alt="User ProfilePic" />
     </div>
   );
 }

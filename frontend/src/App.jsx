@@ -5,8 +5,6 @@ import Home from "./pages/Home";
 import SignInCandidate from "./pages/SignInCandidate";
 import SignInCompany from "./pages/SignInCompany";
 
-import "./App.css";
-
 function App() {
   return (
     <div className="App">
