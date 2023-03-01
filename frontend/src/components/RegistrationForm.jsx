@@ -5,8 +5,10 @@ import GitLogo from "../assets/Icons/mdi_github.svg";
 import GoogleLogo from "../assets/Icons/Google.svg";
 import LinkedinLogo from "../assets/Icons/logos_linkedin-icon.svg";
 import SocialButton from "./SocialButton";
+import { useUserContext } from "../contexts/UserContext";
 
 function RegistrationForm() {
+  const { user } = useUserContext();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -18,7 +20,7 @@ function RegistrationForm() {
       <h1 className="text-xl font-semibold mt-6 mb-12 md:text-3xl">
         Je m'incrit comme{" "}
         <span className=" text-main italic ">
-          Can<span className="bg-underline bg-no-repeat bg-bottom">didat</span>
+          <span className="bg-underline bg-no-repeat bg-bottom">{user}</span>
         </span>
       </h1>
       <div className="w-[80%] md:max-w-[50%] lg:max-w-[30%]">
