@@ -507,6 +507,12 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_general_ci;
 
+LOCK TABLES `technology` WRITE;
+/*!40000 ALTER TABLE `technology` DISABLE KEYS */;
+INSERT INTO `technology` VALUES 
+(1, "JavaScript"), (2, "React"), (3, "NodeJS"), (4, "PHP"), (5, "Angular"), (6, "Java"), (7, "Express"), (8, "MySQL"), (9, "noSQL");
+/*!40000 ALTER TABLE `technology` ENABLE KEYS */;
+UNLOCK TABLES;
 
 -- -----------------------------------------------------
 -- Table `p3`.`USER`
