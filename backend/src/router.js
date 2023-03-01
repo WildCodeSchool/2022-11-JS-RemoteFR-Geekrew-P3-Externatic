@@ -2,17 +2,29 @@ const express = require("express");
 
 const router = express.Router();
 
-const { hashPassword } = require("./auth");
+const { hashPassword, verifyPassword, verifyToken } = require("./auth");
 
 const userControllers = require("./controllers/userControllers");
 
 router.get("/users", userControllers.browse);
 router.get("/users/:id", userControllers.read);
-router.put("/users/:id", hashPassword, userControllers.edit);
-router.post("/users", hashPassword, userControllers.add);
-router.delete("/users/:id", hashPassword, userControllers.destroy);
+router.put("/users/:id", hashPassword, verifyPassword, userControllers.edit);
+router.post("/users", hashPassword, verifyPassword, userControllers.add);
+router.delete(
+  "/users/:id",
+  hashPassword,
+  verifyPassword,
+  userControllers.destroy
+);
 
-router.post("/login", userControllers.getUserByEmailAndPasswordAndNext);
+router.post(
+  "/login",
+  userControllers.getUserByEmailAndPasswordAndNext,
+  verifyPassword
+);
+
+// Protected routes
+router.use(verifyToken);
 
 const companyControllers = require("./controllers/companyControllers");
 
