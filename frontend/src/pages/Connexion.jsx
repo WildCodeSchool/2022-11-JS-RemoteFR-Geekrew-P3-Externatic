@@ -1,5 +1,11 @@
+import ConnexionForm from "../components/ConnexionForm";
+
 function Connexion() {
-  return <div>Connexion</div>;
+  return (
+    <div>
+      <ConnexionForm />
+    </div>
+  );
 }
 
 export default Connexion;

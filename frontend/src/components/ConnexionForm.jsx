@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+import SocialButton from "./SocialButton";
 import GitLogo from "../assets/Icons/mdi_github.svg";
 import GoogleLogo from "../assets/Icons/Google.svg";
 import LinkedinLogo from "../assets/Icons/logos_linkedin-icon.svg";
-import SocialButton from "./SocialButton";
 
-function RegistrationForm() {
+function ConnexionForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -15,21 +15,22 @@ function RegistrationForm() {
 
   return (
     <div className="font-jost flex flex-col items-center">
-      <h1 className="text-xl font-semibold mt-6 mb-12 md:text-3xl">
-        Je m'incrit comme{" "}
+      <h1 className="text-xl text-center font-semibold mx-7 mt-6 mb-12 md:text-3xl">
+        Connectez vous sur votre expace{" "}
         <span className=" text-main italic ">
-          Can<span className="bg-underline bg-no-repeat bg-bottom">didat</span>
-        </span>
+          Exte
+          <span className="bg-underline bg-no-repeat bg-bottom">rnatic</span>
+        </span>{" "}
+        !
       </h1>
       <div className="w-[80%] md:max-w-[50%] lg:max-w-[30%]">
         <div className="flex flex-row text-left">
-          <p className="text-grey1 text-s pr-4">J'ai déjà un compte ?</p>
+          <p className="text-grey1 text-s pr-4">Je n'ai pas de compte ?</p>
           <Link
-            to="/Connexion"
-            type="button"
+            to="/Registration"
             className="text-main font-semibold text-sm underline decoration-2 decoration-main"
           >
-            Me connecter
+            M'inscrire
           </Link>
         </div>
         <form className="flex flex-col text-left mt-5 mb-6">
@@ -62,7 +63,7 @@ function RegistrationForm() {
           type="button"
           className="py-3 w-full rounded-full bg-main text-white font-semibold"
         >
-          Continuer l'inscription
+          Me connecter
         </button>
         <div className="flex items-center my-10 font-bold text-grey1">
           <hr className="border border-grey3 grow" />
@@ -71,13 +72,13 @@ function RegistrationForm() {
         </div>
         <div className="mb-10">
           <SocialButton src={LinkedinLogo} alt="logoLinkedin">
-            S'inscrire avec Linkedin
+            Me connecter avec Linkedin
           </SocialButton>
           <SocialButton src={GoogleLogo} alt="logoGoogle">
-            S'inscrire avec Google
+            Me connecter avec Google
           </SocialButton>
           <SocialButton src={GitLogo} alt="logoGithub">
-            S'inscrire avec GitHub
+            Me connecter avec GitHub
           </SocialButton>
         </div>
       </div>
@@ -85,4 +86,4 @@ function RegistrationForm() {
   );
 }
 
-export default RegistrationForm;
+export default ConnexionForm;

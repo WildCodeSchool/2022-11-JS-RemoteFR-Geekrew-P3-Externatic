@@ -3,8 +3,7 @@ import MainLayout from "./layouts/MainLayout";
 import Home from "./pages/Home";
 import Connexion from "./pages/Connexion";
 import Registration from "./pages/Registration";
-
-import "./App.css";
+import Logout from "./pages/Logout";
 
 function App() {
   return (
@@ -14,6 +13,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/Registration" element={<Registration />} />
           <Route path="/Connexion" element={<Connexion />} />
+          <Route path="/Logout" element={<Logout />} />
         </Route>
       </Routes>
     </div>
