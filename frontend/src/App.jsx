@@ -1,10 +1,10 @@
 import { Routes, Route } from "react-router-dom";
+
 import MainLayout from "./layouts/MainLayout";
 import Home from "./pages/Home";
 import SignInCandidate from "./pages/SignInCandidate";
 import SignInCompany from "./pages/SignInCompany";
-
-import "./App.css";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   return (
@@ -14,6 +14,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/SignInCandidate" element={<SignInCandidate />} />
           <Route path="/SignInCompany" element={<SignInCompany />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Route>
       </Routes>
     </div>
