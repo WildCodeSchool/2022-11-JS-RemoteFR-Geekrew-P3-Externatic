@@ -27,7 +27,11 @@ function RegistrationCandidate() {
         </div>
         <div className="md:bg-white rounded-[10px] p-5">
           <ToggleCandidate />
-          <ProfilePic />
+          <div className="flex flex-row justify-between items-center">
+            <div className="ml-8 mt-4">
+              <ProfilePic />
+            </div>
+          </div>
           <InfoCandidate />
           <SkillsCandidate />
           <div className="flex flex-col justify-start w-full md:grid md:grid-cols-2">

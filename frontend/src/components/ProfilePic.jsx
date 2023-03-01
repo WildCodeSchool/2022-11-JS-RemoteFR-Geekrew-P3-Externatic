@@ -1,9 +1,13 @@
 import React from "react";
+import circle from "../assets/images/circle.png";
+import plusIcon from "../assets/Icons/plus-circle.svg";
 
 function ProfilePic() {
   return (
-    <div className="float-left ">
-      <img className="" src="" alt="User ProfilePic" />
+    <div className="relative flex flex-row justify-center h-28 w-28 items-center">
+      <img src={circle} alt="" className="absolute" />
+      <img src={plusIcon} alt="" className="absolute h-6 invert" />
+      <img src="" alt="" className="absolute" />
     </div>
   );
 }
