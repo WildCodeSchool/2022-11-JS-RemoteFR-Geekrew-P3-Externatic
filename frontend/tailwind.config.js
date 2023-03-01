@@ -24,6 +24,7 @@ module.exports = {
         grey3: "#CCCCCC",
         green: "#54A05C",
         red: "#FF3838",
+        background: "#EBEBEB",
       },
       fontFamily: {
         jost: ["Jost", "sans-serif"],
