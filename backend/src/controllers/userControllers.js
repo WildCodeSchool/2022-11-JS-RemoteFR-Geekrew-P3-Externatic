@@ -1,4 +1,5 @@
 const models = require("../models");
+const validateUser = require("../validator/user.validator");
 
 const browse = (req, res) => {
   models.user
@@ -31,11 +32,17 @@ const read = (req, res) => {
 const edit = (req, res) => {
   const user = req.body;
 
-  // TODO validations (length, format...)
+  // Validation de l'utilisateur
+
+  const validationResult = validateUser(user);
+
+  if (validationResult) {
+    return res.status(400).send(validationResult);
+  }
 
   user.id = parseInt(req.params.id, 10);
 
-  models.user
+  return models.user
     .update(user)
     .then(([result]) => {
       if (result.affectedRows === 0) {
@@ -53,9 +60,14 @@ const edit = (req, res) => {
 const add = (req, res) => {
   const user = req.body;
 
-  // TODO validations (length, format...)
+  // Validation de l'utilisateur
+  const validationResult = validateUser(user);
 
-  models.user
+  if (validationResult.length) {
+    return res.status(400).send(validationResult);
+  }
+
+  return models.user
     .insert(user)
     .then(([result]) => {
       res.location(`/users/${result.insertId}`).sendStatus(201);

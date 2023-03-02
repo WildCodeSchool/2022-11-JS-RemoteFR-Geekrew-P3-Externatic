@@ -29,5 +29,10 @@
     "concurrently": "^7.6.0",
     "cross-env": "^7.0.3",
     "husky": "^8.0.3"
+  },
+  "dependencies": {
+    "argon2": "^0.30.3",
+    "joi": "^17.8.3",
+    "mysql2": "^3.1.2"
   }
 }
