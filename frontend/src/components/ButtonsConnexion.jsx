@@ -1,4 +1,5 @@
-import React from "react";
+import { Link } from "react-router-dom";
+
 import login from "../assets/Icons/log-in.svg";
 import logout from "../assets/Icons/log-out.svg";
 
@@ -6,14 +7,14 @@ function ButtonsConnexion() {
   return (
     <div className="flex w-32">
       <div className="mx-2 bg-main rounded-full">
-        <a href="/SignInCandidate">
+        <Link to="/Connexion">
           <img src={login} alt="log-in" className="w-12 h-12 p-2" />
-        </a>
+        </Link>
       </div>
       <div className="mx-2 bg-main rounded-full">
-        <a href="/SignInCandidate">
+        <Link to="/Logout">
           <img src={logout} alt="log-out" className="w-12 h-12 p-2" />
-        </a>
+        </Link>
       </div>
     </div>
   );
