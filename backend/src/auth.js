@@ -68,17 +68,4 @@ const verifyToken = (req, res, next) => {
   }
 };
 
-const verifyId = (req, res, next) => {
-  try {
-    const id = parseInt(req.params.id, 10);
-    if (id !== req.playload.sub) {
-      res.status(403).send("Forbidden");
-    }
-    next();
-  } catch (err) {
-    console.error(err);
-    res.sendStatus(401);
-  }
-};
-
-module.exports = { hashPassword, verifyPassword, verifyToken, verifyId };
+module.exports = { hashPassword, verifyPassword, verifyToken };

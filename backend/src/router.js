@@ -2,12 +2,7 @@ const express = require("express");
 
 const router = express.Router();
 
-const {
-  hashPassword,
-  verifyPassword,
-  verifyToken,
-  verifyId,
-} = require("./auth");
+const { hashPassword, verifyPassword, verifyToken } = require("./auth");
 
 const userControllers = require("./controllers/userControllers");
 
@@ -16,7 +11,7 @@ router.post(
   userControllers.getUserByEmailAndPasswordAndNext,
   verifyPassword
 );
-router.post("/users", hashPassword, verifyPassword, userControllers.add);
+router.post("/users", hashPassword, userControllers.add);
 
 // Protected routes
 router.use(verifyToken);
@@ -77,7 +72,7 @@ router.get("/consultants", consultantControllers.browse);
 router.get("/consultants/:id", consultantControllers.read);
 router.put("/consultants/:id", consultantControllers.edit);
 router.post("/consultants", consultantControllers.add);
-router.delete("/consultants/:id", verifyId, consultantControllers.destroy);
+router.delete("/consultants/:id", consultantControllers.destroy);
 
 const favoriteControllers = require("./controllers/favoriteControllers");
 
