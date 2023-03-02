@@ -1,5 +1,5 @@
 const models = require("../models");
-const validateJobOffer = require("../validator/jobOffer.Validator");
+const validateJobOffer = require("../validator/jobOfferValidator");
 
 const browse = (req, res) => {
   models.jobOffer
