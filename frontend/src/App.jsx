@@ -1,22 +1,25 @@
 import { Routes, Route } from "react-router-dom";
+import UserContextProvider from "./contexts/UserContext";
 import MainLayout from "./layouts/MainLayout";
 import Home from "./pages/Home";
-import SignInCandidate from "./pages/SignInCandidate";
-import SignInCompany from "./pages/SignInCompany";
-
-import "./App.css";
+import Connexion from "./pages/Connexion";
+import Registration from "./pages/Registration";
+import Logout from "./pages/Logout";
 
 function App() {
   return (
-    <div className="App">
-      <Routes>
-        <Route path="/" element={<MainLayout />}>
-          <Route index element={<Home />} />
-          <Route path="/SignInCandidate" element={<SignInCandidate />} />
-          <Route path="/SignInCompany" element={<SignInCompany />} />
-        </Route>
-      </Routes>
-    </div>
+    <UserContextProvider>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<MainLayout />}>
+            <Route index element={<Home />} />
+            <Route path="/Registration" element={<Registration />} />
+            <Route path="/Connexion" element={<Connexion />} />
+            <Route path="/Logout" element={<Logout />} />
+          </Route>
+        </Routes>
+      </div>
+    </UserContextProvider>
   );
 }
 
