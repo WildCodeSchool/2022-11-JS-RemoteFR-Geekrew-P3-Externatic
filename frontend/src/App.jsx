@@ -5,8 +5,6 @@ import Home from "./pages/Home";
 import Connexion from "./pages/Connexion";
 import Registration from "./pages/Registration";
 import Logout from "./pages/Logout";
-import SignInCandidate from "./pages/SignInCandidate";
-import SignInCompany from "./pages/SignInCompany";
 import Dashboard from "./pages/Dashboard";
 
 function App() {
