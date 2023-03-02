@@ -1,7 +1,8 @@
 const models = require("../models");
+const validateJobOffer = require("../validator/jobOffer.validator");
 
 const browse = (req, res) => {
-  models.job_offer
+  models.jobOffer
     .findAll()
     .then(([rows]) => {
       res.send(rows);
@@ -13,7 +14,7 @@ const browse = (req, res) => {
 };
 
 const read = (req, res) => {
-  models.job_offer
+  models.jobOffer
     .find(req.params.id)
     .then(([rows]) => {
       if (rows[0] == null) {
@@ -31,11 +32,17 @@ const read = (req, res) => {
 const edit = (req, res) => {
   const jobOffer = req.body;
 
-  // TODO validations (length, format...)
+  // Validation de l'offre d'emploi
+
+  const validationResult = validateJobOffer(jobOffer);
+
+  if (validationResult) {
+    return res.status(400).send(validationResult);
+  }
 
   jobOffer.id = parseInt(req.params.id, 10);
 
-  models.job_offer
+  return models.jobOffer
     .update(jobOffer)
     .then(([result]) => {
       if (result.affectedRows === 0) {
@@ -53,9 +60,13 @@ const edit = (req, res) => {
 const add = (req, res) => {
   const jobOffer = req.body;
 
-  // TODO validations (length, format...)
+  const validationResult = validateJobOffer(jobOffer);
 
-  models.job_offer
+  if (validationResult) {
+    return res.status(400).send(validationResult);
+  }
+
+  return models.jobOffer
     .insert(jobOffer)
     .then(([result]) => {
       res.location(`/job_offers/${result.insertId}`).sendStatus(201);
@@ -67,7 +78,7 @@ const add = (req, res) => {
 };
 
 const destroy = (req, res) => {
-  models.job_offer
+  models.jobOffer
     .delete(req.params.id)
     .then(([result]) => {
       if (result.affectedRows === 0) {

@@ -1,4 +1,5 @@
 const models = require("../models");
+const validateCompany = require("../validator/company.validator");
 
 const browse = (req, res) => {
   models.company
@@ -31,11 +32,15 @@ const read = (req, res) => {
 const edit = (req, res) => {
   const company = req.body;
 
-  // TODO validations (length, format...)
+  const validationResult = validateCompany(company);
+
+  if (validationResult) {
+    return res.status(400).send(validationResult);
+  }
 
   company.id = parseInt(req.params.id, 10);
 
-  models.company
+  return models.company
     .update(company)
     .then(([result]) => {
       if (result.affectedRows === 0) {
@@ -53,9 +58,13 @@ const edit = (req, res) => {
 const add = (req, res) => {
   const company = req.body;
 
-  // TODO validations (length, format...)
+  const validationResult = validateCompany(company);
 
-  models.company
+  if (validationResult.length) {
+    return res.status(400).send(validationResult);
+  }
+
+  return models.company
     .insert(company)
     .then(([result]) => {
       res.location(`/companies/${result.insertId}`).sendStatus(201);

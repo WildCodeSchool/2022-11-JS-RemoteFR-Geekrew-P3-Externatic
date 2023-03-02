@@ -1,4 +1,5 @@
 const models = require("../models");
+const validateCandidacy = require("../validator/candidacy.validator");
 
 const browse = (req, res) => {
   models.candidacy
@@ -31,11 +32,15 @@ const read = (req, res) => {
 const edit = (req, res) => {
   const candidacy = req.body;
 
-  // TODO validations (length, format...)
+  const validationResult = validateCandidacy(candidacy);
+
+  if (validationResult) {
+    return res.status(400).send(validationResult);
+  }
 
   candidacy.id = parseInt(req.params.id, 10);
 
-  models.candidacy
+  return models.candidacy
     .update(candidacy)
     .then(([result]) => {
       if (result.affectedRows === 0) {
@@ -53,9 +58,13 @@ const edit = (req, res) => {
 const add = (req, res) => {
   const candidacy = req.body;
 
-  // TODO validations (length, format...)
+  const validationResult = validateCandidacy(candidacy);
 
-  models.candidacy
+  if (validationResult) {
+    return res.status(400).send(validationResult);
+  }
+
+  return models.candidacy
     .insert(candidacy)
     .then(([result]) => {
       res.location(`/candidacies/${result.insertId}`).sendStatus(201);
