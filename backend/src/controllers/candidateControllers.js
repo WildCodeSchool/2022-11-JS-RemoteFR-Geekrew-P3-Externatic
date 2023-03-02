@@ -1,5 +1,5 @@
 const models = require("../models");
-const validateCandidate = require("../validator/candidate.validator");
+const validateCandidate = require("../validator/candidate.Validator");
 
 const browse = (req, res) => {
   models.candidate
