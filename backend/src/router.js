@@ -11,7 +11,7 @@ router.post(
   userControllers.getUserByEmailAndPasswordAndNext,
   verifyPassword
 );
-router.post("/users", hashPassword, verifyPassword, userControllers.add);
+router.post("/users", hashPassword, userControllers.add);
 
 // Protected routes
 router.use(verifyToken);

@@ -507,6 +507,12 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_general_ci;
 
+LOCK TABLES `technology` WRITE;
+/*!40000 ALTER TABLE `technology` DISABLE KEYS */;
+INSERT INTO `technology` VALUES 
+(1, "JavaScript"), (2, "React"), (3, "NodeJS"), (4, "PHP"), (5, "Angular"), (6, "Java"), (7, "Express"), (8, "MySQL"), (9, "noSQL");
+/*!40000 ALTER TABLE `technology` ENABLE KEYS */;
+UNLOCK TABLES;
 
 -- -----------------------------------------------------
 -- Table `p3`.`USER`
@@ -530,7 +536,8 @@ COLLATE = utf8mb4_general_ci;
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'Gusty','Amethist','Gusty.Amethist@yopmail.com','https://www.linkedin.com/in/Gusty-Amethist/','xx.xx.xx.xx.xx','aupifserahash','Chengdu','urldelimage'),(2,'Courtnay','Rona','Courtnay.Rona@yopmail.com','https://www.linkedin.com/in/Courtnay-Rona/','xx.xx.xx.xx.xx','aupifserahash','Mashhad','urldelimage'),(3,'Adore','Maribeth','Adore.Maribeth@yopmail.com','https://www.linkedin.com/in/Adore-Maribeth/','xx.xx.xx.xx.xx','aupifserahash','Semarang','urldelimage'),(4,'Tracey','Middleton','Tracey.Middleton@yopmail.com','https://www.linkedin.com/in/Tracey-Middleton/','xx.xx.xx.xx.xx','aupifserahash','Kigali','urldelimage'),(5,'Kate','Rheingold','Kate.Rheingold@yopmail.com','https://www.linkedin.com/in/Kate-Rheingold/','xx.xx.xx.xx.xx','aupifserahash','Dammam','urldelimage');
+/*MdP aupifserahash*/
+INSERT INTO `user` VALUES (1,'Gusty','Amethist','Gusty.Amethist@yopmail.com','https://www.linkedin.com/in/Gusty-Amethist/','xx.xx.xx.xx.xx','$argon2id$v=19$m=524288,t=5,p=1$L6jZcFQDpynOFGgpGF+EwA$y9GMxbL0/31Tk6R4yOhY8wBYQSGSLfiNk52PNOlbBd0','Chengdu','urldelimage'),(2,'Courtnay','Rona','Courtnay.Rona@yopmail.com','https://www.linkedin.com/in/Courtnay-Rona/','xx.xx.xx.xx.xx','$argon2id$v=19$m=524288,t=5,p=1$L6jZcFQDpynOFGgpGF+EwA$y9GMxbL0/31Tk6R4yOhY8wBYQSGSLfiNk52PNOlbBd0','Mashhad','urldelimage'),(3,'Adore','Maribeth','Adore.Maribeth@yopmail.com','https://www.linkedin.com/in/Adore-Maribeth/','xx.xx.xx.xx.xx','$argon2id$v=19$m=524288,t=5,p=1$L6jZcFQDpynOFGgpGF+EwA$y9GMxbL0/31Tk6R4yOhY8wBYQSGSLfiNk52PNOlbBd0','Semarang','urldelimage'),(4,'Tracey','Middleton','Tracey.Middleton@yopmail.com','https://www.linkedin.com/in/Tracey-Middleton/','xx.xx.xx.xx.xx','$argon2id$v=19$m=524288,t=5,p=1$L6jZcFQDpynOFGgpGF+EwA$y9GMxbL0/31Tk6R4yOhY8wBYQSGSLfiNk52PNOlbBd0','Kigali','urldelimage'),(5,'Kate','Rheingold','Kate.Rheingold@yopmail.com','https://www.linkedin.com/in/Kate-Rheingold/','xx.xx.xx.xx.xx','$argon2id$v=19$m=524288,t=5,p=1$L6jZcFQDpynOFGgpGF+EwA$y9GMxbL0/31Tk6R4yOhY8wBYQSGSLfiNk52PNOlbBd0','Dammam','urldelimage');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
