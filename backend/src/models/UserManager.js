@@ -7,7 +7,7 @@ class UserManager extends AbstractManager {
 
   insert(user) {
     return this.database.query(
-      `insert into ${this.table} (firstname, lastname, mail, linkedin, phone, password, location, picture) values (?, ?, ?, ?, ?, ?, ?, ?)`,
+      `insert into ${this.table} (firstname, lastname, mail, linkedin, phone, hashed_password, location, picture) values (?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         user.firstname,
         user.lastname,
@@ -35,6 +35,13 @@ class UserManager extends AbstractManager {
         user.picture,
         user.id,
       ]
+    );
+  }
+
+  login(mail) {
+    return this.database.query(
+      `select mail, hashed_password from ${this.table} where mail = ?`,
+      [mail]
     );
   }
 }

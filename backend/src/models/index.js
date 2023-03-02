@@ -39,6 +39,11 @@ const CompanyManager = require("./CompanyManager");
 models.company = new CompanyManager();
 models.company.setDatabase(pool);
 
+const JobOfferManager = require("./JobOfferManager");
+
+models.jobOffer = new JobOfferManager();
+models.jobOffer.setDatabase(pool);
+
 const CandidateManager = require("./CandidateManager");
 
 models.candidate = new CandidateManager();
