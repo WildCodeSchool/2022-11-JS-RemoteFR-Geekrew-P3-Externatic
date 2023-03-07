@@ -2,7 +2,7 @@ const express = require("express");
 
 const router = express.Router();
 
-const { hashPassword, verifyPassword, verifyToken } = require("./auth");
+const { hashPassword, verifyPassword, verifyToken, logout } = require("./auth");
 
 const userControllers = require("./controllers/userControllers");
 
@@ -11,6 +11,8 @@ router.post(
   userControllers.getUserByEmailAndPasswordAndNext,
   verifyPassword
 );
+router.get("/logout", logout);
+
 router.post("/users", hashPassword, userControllers.add);
 
 // Protected routes
