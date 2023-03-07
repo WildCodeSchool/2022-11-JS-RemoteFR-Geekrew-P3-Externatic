@@ -11,9 +11,11 @@ function RegistrationForm() {
   const { user } = useUserContext();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
 
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
+  const handleNameChange = (e) => setName(e.target.value);
 
   return (
     <div className="font-jost flex flex-col items-center">
@@ -36,6 +38,16 @@ function RegistrationForm() {
         </div>
         <form className="flex flex-col text-left mt-5 mb-6">
           <div className="mb-5 flex flex-col">
+            <label htmlFor="name" className="text-grey1 font-semibold mb-1">
+              Nom d'utilisateur
+            </label>
+            <input
+              className="border border-grey3 h-10 rounded mb-4"
+              type="text"
+              id="text"
+              value={name}
+              onChange={handleNameChange}
+            />
             <label htmlFor="email" className="text-grey1 font-semibold mb-1">
               Adresse mail
             </label>
