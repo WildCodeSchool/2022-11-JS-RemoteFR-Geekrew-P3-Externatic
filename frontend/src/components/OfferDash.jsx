@@ -11,7 +11,7 @@ function OfferDash() {
           <img src={FakePP} alt="CompanyImage" className="pr-2" />
         </div>
         <div className="ml-4 grow">
-          <h1 className=" text-lg font-semibold">Titre du post</h1>
+          <h1 className=" text-lg font-semibold">Titre du poste</h1>
           <p className="text-grey1">Entreprise</p>
           <div className="flex">
             <img
