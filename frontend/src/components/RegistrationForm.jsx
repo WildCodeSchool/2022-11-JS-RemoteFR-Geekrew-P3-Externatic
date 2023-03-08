@@ -64,20 +64,21 @@ function RegistrationForm() {
               Mot de passe
             </label>
             <input
-              className="border border-grey3 h-10 rounded"
+              className="border border-grey3 h-10 rounded mb-10"
               type="password"
               id="password"
               value={password}
               onChange={handlePasswordChange}
             />
           </div>
+          <button
+            type="button"
+            className="py-3 w-full rounded-full bg-main text-white font-semibold"
+          >
+            Continuer l'inscription
+          </button>
         </form>
-        <button
-          type="button"
-          className="py-3 w-full rounded-full bg-main text-white font-semibold"
-        >
-          Continuer l'inscription
-        </button>
+
         <div className="flex items-center my-10 font-bold text-grey1">
           <hr className="border border-grey3 grow" />
           <p className="grow-0 bg-white px-3">ou</p>

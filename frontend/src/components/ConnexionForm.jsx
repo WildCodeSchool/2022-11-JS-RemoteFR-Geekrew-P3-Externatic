@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useUserContext } from "../contexts/UserContext";
 
 import SocialButton from "./SocialButton";
 import GitLogo from "../assets/Icons/mdi_github.svg";
@@ -10,7 +11,9 @@ import LinkedinLogo from "../assets/Icons/logos_linkedin-icon.svg";
 import expressAPI from "../services/expressAPI";
 
 function ConnexionForm() {
+  const { setUser } = useUserContext();
   const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -18,11 +21,12 @@ function ConnexionForm() {
   const handlePasswordChange = (e) => setPassword(e.target.value);
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (email && password) {
       expressAPI
         .post("/login", { mail: email, password })
-        .then(() => {
+        .then((res) => {
+          setUser(res.data.user.mail);
+          localStorage.setItem("user", JSON.stringify(res.data));
           navigate("/");
         })
         .catch((err) => console.error(err));
