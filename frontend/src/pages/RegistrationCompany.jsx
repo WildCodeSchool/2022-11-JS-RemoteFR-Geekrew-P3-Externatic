@@ -1,4 +1,5 @@
 import React from "react";
+import PasswordCompany from "@components/PasswordCompany";
 import ValidationCompany from "../components/ValidationCompany";
 import InfoCompany from "../components/InfoCompany";
 import NetworksCompany from "../components/NetworksCompany";
@@ -28,6 +29,7 @@ function RegistrationCandidate() {
           </div>
           <InfoCompany />
           <NetworksCompany />
+          <PasswordCompany />
           <ValidationCompany />
           <DisplayCompanyData />
         </div>

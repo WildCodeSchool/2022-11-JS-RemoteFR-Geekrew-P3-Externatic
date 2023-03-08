@@ -16,6 +16,8 @@ const initialCompanyFormState = {
   location: "",
   description: "",
   linkedin: "",
+  password: "",
+  confirmed_password: "",
 };
 
 function CurrentUserContextProvider({ children }) {

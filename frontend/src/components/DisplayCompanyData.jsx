@@ -15,6 +15,8 @@ function DisplayCompanyData() {
       <p>location: {companyFormState.location}</p>
       <p>description: {companyFormState.description}</p>
       <p>linkedin: {companyFormState.linkedin}</p>
+      <p>password: {companyFormState.password}</p>
+      <p>confirmed_password: {companyFormState.confirmed_password}</p>
     </>
   );
 }
