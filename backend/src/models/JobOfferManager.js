@@ -7,24 +7,7 @@ class JobOfferManager extends AbstractManager {
 
   insert(jobOffer) {
     return this.database.query(
-      `insert into ${this.table} (salary,
-        title,
-        lower_salary,
-        higher_salary,
-        description,
-        experience,
-        location,
-        contract_id,
-        debut_date,
-        mission,
-        profile_needed,
-        interview_run,
-        remote,
-        bonuses,
-        work_hours,
-        date_of_creation,
-        number_of_candidates,
-        company_id,) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      `insert into ${this.table} (salary,title,lower_salary,higher_salary,description,experience,location,contract_id,debut_date,mission,profile_needed,interview_run,remote,bonuses,work_hours,date_of_creation,number_of_candidates,company_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         jobOffer.salary,
         jobOffer.title,
