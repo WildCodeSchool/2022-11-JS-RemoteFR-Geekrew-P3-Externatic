@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useUserContext } from "../contexts/UserContext";
+import { useCurrentUserContext } from "../contexts/CurrentUserContext";
 
 import login from "../assets/Icons/log-in.svg";
 import logout from "../assets/Icons/log-out.svg";
@@ -7,7 +7,7 @@ import logout from "../assets/Icons/log-out.svg";
 import expressAPI from "../services/expressAPI";
 
 function ButtonsConnexion() {
-  const { user, setUser } = useUserContext();
+  const { user, setUser } = useCurrentUserContext();
   const navigate = useNavigate();
 
   const handleDisconnection = () => {

@@ -10,10 +10,10 @@ import Logout from "./pages/Logout";
 import Dashboard from "./pages/Dashboard";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 
-import { useUserContext } from "./contexts/UserContext";
+import { useCurrentUserContext } from "./contexts/CurrentUserContext";
 
 function App() {
-  const { user } = useUserContext();
+  const { user } = useCurrentUserContext();
 
   return (
     <div className="App">

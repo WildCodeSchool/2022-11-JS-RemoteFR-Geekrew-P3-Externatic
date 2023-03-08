@@ -1,28 +1,31 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+import { useCurrentUserContext } from "../contexts/CurrentUserContext";
+
 import GitLogo from "../assets/Icons/mdi_github.svg";
 import GoogleLogo from "../assets/Icons/Google.svg";
 import LinkedinLogo from "../assets/Icons/logos_linkedin-icon.svg";
 import SocialButton from "./SocialButton";
-import { useUserContext } from "../contexts/UserContext";
 
 function RegistrationForm() {
-  const { user } = useUserContext();
+  const { userType } = useCurrentUserContext();
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
 
   const handleEmailChange = (e) => setEmail(e.target.value);
-  const handlePasswordChange = (e) => setPassword(e.target.value);
-  const handleNameChange = (e) => setName(e.target.value);
+
+  const handleForm = (e) => {
+    e.preventDefautlt();
+  };
 
   return (
     <div className="font-jost flex flex-col items-center">
       <h1 className="text-xl font-semibold mt-6 mb-12 md:text-3xl">
         Je m'incrit comme{" "}
         <span className=" text-main italic ">
-          <span className="bg-underline bg-no-repeat bg-bottom">{user}</span>
+          <span className="bg-underline bg-no-repeat bg-bottom">
+            {userType}
+          </span>
         </span>
       </h1>
       <div className="w-[80%] md:max-w-[50%] lg:max-w-[30%]">
@@ -36,18 +39,11 @@ function RegistrationForm() {
             Me connecter
           </Link>
         </div>
-        <form className="flex flex-col text-left mt-5 mb-6">
+        <form
+          onSubmit={handleForm}
+          className="flex flex-col text-left mt-5 mb-6"
+        >
           <div className="mb-5 flex flex-col">
-            <label htmlFor="name" className="text-grey1 font-semibold mb-1">
-              Nom d'utilisateur
-            </label>
-            <input
-              className="border border-grey3 h-10 rounded mb-4"
-              type="text"
-              id="text"
-              value={name}
-              onChange={handleNameChange}
-            />
             <label htmlFor="email" className="text-grey1 font-semibold mb-1">
               Adresse mail
             </label>
@@ -57,18 +53,6 @@ function RegistrationForm() {
               id="email"
               value={email}
               onChange={handleEmailChange}
-            />
-          </div>
-          <div className="flex flex-col">
-            <label htmlFor="password" className="text-grey1 font-semibold mb-1">
-              Mot de passe
-            </label>
-            <input
-              className="border border-grey3 h-10 rounded mb-10"
-              type="password"
-              id="password"
-              value={password}
-              onChange={handlePasswordChange}
             />
           </div>
           <button

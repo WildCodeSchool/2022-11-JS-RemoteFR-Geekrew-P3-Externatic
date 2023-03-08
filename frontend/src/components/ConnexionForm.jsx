@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useUserContext } from "../contexts/UserContext";
+import { useCurrentUserContext } from "../contexts/CurrentUserContext";
 
 import SocialButton from "./SocialButton";
 import GitLogo from "../assets/Icons/mdi_github.svg";
@@ -11,7 +11,7 @@ import LinkedinLogo from "../assets/Icons/logos_linkedin-icon.svg";
 import expressAPI from "../services/expressAPI";
 
 function ConnexionForm() {
-  const { setUser } = useUserContext();
+  const { setUser } = useCurrentUserContext();
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
