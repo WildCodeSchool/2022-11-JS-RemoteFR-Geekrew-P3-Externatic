@@ -408,7 +408,7 @@ INSERT INTO `job_offer` VALUES
 "Nous accompagnons un éditeur de logiciel SaaS qui compte 150 collaborateurs, la société évolue dans le domaine du BTP, et développe depuis 2017 une solution SaaS pour faciliter le quotidien des acteurs du milieu. La stratégie à long terme de la société est de s'étendre à l'international, les premières agences étrangères commencent déjà à voir le jour. Dans ce contexte novateur et dynamique, vous prenez part à cette aventure unique au sein d'une équipe de 15 personnes à Nantes ou en full remote !",
 '2 à 3 ans',
 'Nantes, Paris',
-NULL,
+1,
 '2023-05-10',
 "Au sein d'une équipe technique de 6 collaborateurs, vos missions seront les suivantes : Migrer du code vers de nouveaux standards; Implémenter des fonctionnalités sur de nouvelles applications; Améliorer l’écosystème de nos outils de développement; Participer à la montée en compétence de toute l’équipe; Répondre aux besoins et aux questions de développeurs avec des problématiques back sous node et front sous react; Apporter une expertise lors de décision technique ou de chiffrages; Maintenir le code; Assurer une collaboration avec les équipes designs et techniques; Optimiser des applications; Concevoir et maintenir de la documentation; Participer à la résolution d’éventuelles pannes ou erreurs de conception;",
 "Développeur autonome sur la stack JS et plus particulièrement sur node.js et react, vous : Avez de bonnes connaissances de Typescript, GraphQL, CSS et de la maintenance de mono-repo; Êtes une personne proactive, dynamique et communicante. Témoignez d'une expérience dans une équipe de plus de 10 personnes, idéalement en environnement start-up/scale-up !",
@@ -418,7 +418,7 @@ NULL,
 35,
 '2023-02-22',
 5,
-NULL),
+1),
 (2,
 4400,
 'Développeur Frontend React',
@@ -427,7 +427,7 @@ NULL),
 "Nous sommes une start up qui évolue dans le domaine paramédical, et nous proposons une plateforme de collaboration avec les acteurs du secteurs (cliniques, hopitaux). Dans ce contexte, vous assurez l'accès aux professionnels de santé, mais aussi aux patients, à une technologie de pointe de traitement des fractures.",
 '0-2 ans',
 'Tours',
-NULL,
+2,
 '2023-03-25',
 "Au sein de notre équipe web comptant 5 collaborateurs, vous aurez pour mission de continuer le déploimement et de notre plateforme web via l'amélioration de l'interface client, implémenter de nouvelles fonctionnalités, assurer la documentation et la formation client, assurer la qualité et la maintenabilité du code, offrir une expérience agréable mais aussi fluide à nos utilisateurs.",
 "Développeur junior, vous avez des bases solides en React, HTML/CSS/JS. Vous êtes dynamique, communicant et curieux.",
@@ -503,6 +503,12 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_general_ci;
 
+LOCK TABLES `technology` WRITE;
+/*!40000 ALTER TABLE `technology` DISABLE KEYS */;
+INSERT INTO `technology` VALUES 
+(1, "JavaScript"), (2, "React"), (3, "NodeJS"), (4, "PHP"), (5, "Angular"), (6, "Java"), (7, "Express"), (8, "MySQL"), (9, "noSQL");
+/*!40000 ALTER TABLE `technology` ENABLE KEYS */;
+UNLOCK TABLES;
 
 -- -----------------------------------------------------
 -- Table `p3`.`USER`
@@ -516,7 +522,7 @@ CREATE TABLE IF NOT EXISTS `p3`.`user` (
   `mail` VARCHAR(255) NOT NULL,
   `linkedin` VARCHAR(255) NOT NULL,
   `phone` VARCHAR(20) NOT NULL,
-  `password` VARCHAR(32) NOT NULL,
+  `hashed_password` VARCHAR(255) NOT NULL,
   `location` VARCHAR(150) NOT NULL,
   `picture` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`id`))
@@ -526,7 +532,8 @@ COLLATE = utf8mb4_general_ci;
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'Gusty','Amethist','Gusty.Amethist@yopmail.com','https://www.linkedin.com/in/Gusty-Amethist/','xx.xx.xx.xx.xx','aupifserahash','Chengdu','urldelimage'),(2,'Courtnay','Rona','Courtnay.Rona@yopmail.com','https://www.linkedin.com/in/Courtnay-Rona/','xx.xx.xx.xx.xx','aupifserahash','Mashhad','urldelimage'),(3,'Adore','Maribeth','Adore.Maribeth@yopmail.com','https://www.linkedin.com/in/Adore-Maribeth/','xx.xx.xx.xx.xx','aupifserahash','Semarang','urldelimage'),(4,'Tracey','Middleton','Tracey.Middleton@yopmail.com','https://www.linkedin.com/in/Tracey-Middleton/','xx.xx.xx.xx.xx','aupifserahash','Kigali','urldelimage'),(5,'Kate','Rheingold','Kate.Rheingold@yopmail.com','https://www.linkedin.com/in/Kate-Rheingold/','xx.xx.xx.xx.xx','aupifserahash','Dammam','urldelimage');
+/*MdP aupifserahash*/
+INSERT INTO `user` VALUES (1,'Gusty','Amethist','Gusty.Amethist@yopmail.com','https://www.linkedin.com/in/Gusty-Amethist/','xx.xx.xx.xx.xx','$argon2id$v=19$m=524288,t=5,p=1$L6jZcFQDpynOFGgpGF+EwA$y9GMxbL0/31Tk6R4yOhY8wBYQSGSLfiNk52PNOlbBd0','Chengdu','urldelimage'),(2,'Courtnay','Rona','Courtnay.Rona@yopmail.com','https://www.linkedin.com/in/Courtnay-Rona/','xx.xx.xx.xx.xx','$argon2id$v=19$m=524288,t=5,p=1$L6jZcFQDpynOFGgpGF+EwA$y9GMxbL0/31Tk6R4yOhY8wBYQSGSLfiNk52PNOlbBd0','Mashhad','urldelimage'),(3,'Adore','Maribeth','Adore.Maribeth@yopmail.com','https://www.linkedin.com/in/Adore-Maribeth/','xx.xx.xx.xx.xx','$argon2id$v=19$m=524288,t=5,p=1$L6jZcFQDpynOFGgpGF+EwA$y9GMxbL0/31Tk6R4yOhY8wBYQSGSLfiNk52PNOlbBd0','Semarang','urldelimage'),(4,'Tracey','Middleton','Tracey.Middleton@yopmail.com','https://www.linkedin.com/in/Tracey-Middleton/','xx.xx.xx.xx.xx','$argon2id$v=19$m=524288,t=5,p=1$L6jZcFQDpynOFGgpGF+EwA$y9GMxbL0/31Tk6R4yOhY8wBYQSGSLfiNk52PNOlbBd0','Kigali','urldelimage'),(5,'Kate','Rheingold','Kate.Rheingold@yopmail.com','https://www.linkedin.com/in/Kate-Rheingold/','xx.xx.xx.xx.xx','$argon2id$v=19$m=524288,t=5,p=1$L6jZcFQDpynOFGgpGF+EwA$y9GMxbL0/31Tk6R4yOhY8wBYQSGSLfiNk52PNOlbBd0','Dammam','urldelimage');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 

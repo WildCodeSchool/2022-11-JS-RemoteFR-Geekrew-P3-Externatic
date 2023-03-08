@@ -1,4 +1,5 @@
 const models = require("../models");
+const validateContract = require("../validator/contractValidator");
 
 const browse = (req, res) => {
   models.contract
@@ -31,11 +32,15 @@ const read = (req, res) => {
 const edit = (req, res) => {
   const contract = req.body;
 
-  // TODO validations (length, format...)
+  const validationResult = validateContract(contract);
+
+  if (validationResult) {
+    return res.status(400).send(validationResult);
+  }
 
   contract.id = parseInt(req.params.id, 10);
 
-  models.contract
+  return models.user
     .update(contract)
     .then(([result]) => {
       if (result.affectedRows === 0) {
@@ -53,9 +58,13 @@ const edit = (req, res) => {
 const add = (req, res) => {
   const contract = req.body;
 
-  // TODO validations (length, format...)
+  const validationResult = validateContract(contract);
 
-  models.contract
+  if (validationResult) {
+    return res.status(400).send(validationResult);
+  }
+
+  return models.contract
     .insert(contract)
     .then(([result]) => {
       res.location(`/contracts/${result.insertId}`).sendStatus(201);
