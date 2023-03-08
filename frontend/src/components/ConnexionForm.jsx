@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import SocialButton from "./SocialButton";
 import GitLogo from "../assets/Icons/mdi_github.svg";
@@ -26,7 +27,16 @@ function ConnexionForm() {
         })
         .catch((err) => console.error(err));
     } else {
-      alert("please specify email and password");
+      toast.error("Please specify email and password", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
     }
   };
 

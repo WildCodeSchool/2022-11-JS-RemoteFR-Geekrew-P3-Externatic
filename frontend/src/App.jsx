@@ -1,4 +1,7 @@
 import { Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
+
 import UserContextProvider from "./contexts/UserContext";
 import MainLayout from "./layouts/MainLayout";
 import Home from "./pages/Home";
@@ -18,6 +21,7 @@ function App() {
             <Route path="/Logout" element={<Logout />} />
           </Route>
         </Routes>
+        <ToastContainer />
       </div>
     </UserContextProvider>
   );
