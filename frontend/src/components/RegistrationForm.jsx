@@ -1,26 +1,52 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useCurrentUserContext } from "../contexts/CurrentUserContext";
 
 import GitLogo from "../assets/Icons/mdi_github.svg";
 import GoogleLogo from "../assets/Icons/Google.svg";
 import LinkedinLogo from "../assets/Icons/logos_linkedin-icon.svg";
 import SocialButton from "./SocialButton";
-import { useUserContext } from "../contexts/UserContext";
 
 function RegistrationForm() {
-  const { user } = useUserContext();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { userType, email, setEmail } = useCurrentUserContext();
+  const navigate = useNavigate();
 
   const handleEmailChange = (e) => setEmail(e.target.value);
-  const handlePasswordChange = (e) => setPassword(e.target.value);
+  const navigateToNextStep = () => {
+    localStorage.setItem("email", JSON.stringify(email));
+    if (userType === "Candidat") {
+      navigate("/Registration-candidate");
+    } else {
+      navigate("/Registration-company");
+    }
+  };
+
+  const handleForm = (e) => {
+    e.preventDefault();
+    if (userType === "" || email === "") {
+      toast.error("Veuillez renseigner votre email et votre statut", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    } else {
+      navigateToNextStep();
+    }
+  };
 
   return (
     <div className="font-jost flex flex-col items-center">
       <h1 className="text-xl font-semibold mt-6 mb-12 md:text-3xl">
         Je m'incrit comme{" "}
         <span className=" text-main italic ">
-          <span className="bg-underline bg-no-repeat bg-bottom">{user}</span>
+          <span className="bg-underline bg-no-repeat bg-bottom">
+            {userType}
+          </span>
         </span>
       </h1>
       <div className="w-[80%] md:max-w-[50%] lg:max-w-[30%]">
@@ -34,7 +60,10 @@ function RegistrationForm() {
             Me connecter
           </Link>
         </div>
-        <form className="flex flex-col text-left mt-5 mb-6">
+        <form
+          onSubmit={handleForm}
+          className="flex flex-col text-left mt-5 mb-6"
+        >
           <div className="mb-5 flex flex-col">
             <label htmlFor="email" className="text-grey1 font-semibold mb-1">
               Adresse mail
@@ -47,25 +76,14 @@ function RegistrationForm() {
               onChange={handleEmailChange}
             />
           </div>
-          <div className="flex flex-col">
-            <label htmlFor="password" className="text-grey1 font-semibold mb-1">
-              Mot de passe
-            </label>
-            <input
-              className="border border-grey3 h-10 rounded"
-              type="password"
-              id="password"
-              value={password}
-              onChange={handlePasswordChange}
-            />
-          </div>
+          <button
+            type="submit"
+            className="py-3 w-full rounded-full bg-main text-white font-semibold"
+          >
+            Continuer l'inscription
+          </button>
         </form>
-        <button
-          type="button"
-          className="py-3 w-full rounded-full bg-main text-white font-semibold"
-        >
-          Continuer l'inscription
-        </button>
+
         <div className="flex items-center my-10 font-bold text-grey1">
           <hr className="border border-grey3 grow" />
           <p className="grow-0 bg-white px-3">ou</p>
