@@ -1,6 +1,5 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { useCurrentUserContext } from "../contexts/CurrentUserContext";
 
 import GitLogo from "../assets/Icons/mdi_github.svg";
@@ -9,13 +8,35 @@ import LinkedinLogo from "../assets/Icons/logos_linkedin-icon.svg";
 import SocialButton from "./SocialButton";
 
 function RegistrationForm() {
-  const { userType } = useCurrentUserContext();
-  const [email, setEmail] = useState("");
+  const { userType, email, setEmail } = useCurrentUserContext();
+  const navigate = useNavigate();
 
   const handleEmailChange = (e) => setEmail(e.target.value);
+  const navigateToNextStep = () => {
+    localStorage.setItem("email", JSON.stringify(email));
+    if (userType === "Candidat") {
+      navigate("/Registration-candidate");
+    } else {
+      navigate("/Registration-company");
+    }
+  };
 
   const handleForm = (e) => {
-    e.preventDefautlt();
+    e.preventDefault();
+    if (userType === "" || email === undefined) {
+      toast.error("Veuillez renseigner votre email et votre statut", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    } else {
+      navigateToNextStep();
+    }
   };
 
   return (
@@ -56,7 +77,7 @@ function RegistrationForm() {
             />
           </div>
           <button
-            type="button"
+            type="submit"
             className="py-3 w-full rounded-full bg-main text-white font-semibold"
           >
             Continuer l'inscription

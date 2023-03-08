@@ -8,10 +8,11 @@ export const useCurrentUserContext = () => useContext(CurrentUserContext);
 function CurrentUserContextProvider({ children }) {
   const [user, setUser] = useState("");
   const [userType, setUserType] = useState("");
+  const [email, setEmail] = useState("");
 
   const userMemo = useMemo(
-    () => ({ user, setUser, userType, setUserType }),
-    [user, userType]
+    () => ({ user, setUser, userType, setUserType, email, setEmail }),
+    [user, userType, email]
   );
   return (
     <CurrentUserContext.Provider value={userMemo}>

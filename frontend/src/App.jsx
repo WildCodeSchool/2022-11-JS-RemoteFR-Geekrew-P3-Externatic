@@ -8,6 +8,8 @@ import Connexion from "./pages/Connexion";
 import Registration from "./pages/Registration";
 import Logout from "./pages/Logout";
 import Dashboard from "./pages/Dashboard";
+import RegistrationCandidate from "./pages/RegistrationCandidate";
+import RegistrationCompany from "./pages/RegistrationCompany";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 
 import { useCurrentUserContext } from "./contexts/CurrentUserContext";
@@ -22,6 +24,15 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/Registration" element={<Registration />} />
           <Route path="/Connexion" element={<Connexion />} />
+          <Route path="/Logout" element={<Logout />} />
+          <Route
+            path="/Registration-candidate"
+            element={<RegistrationCandidate />}
+          />
+          <Route
+            path="/Registration-company"
+            element={<RegistrationCompany />}
+          />
           <Route path="/Logout" element={<Logout />} />
           <Route element={<ProtectedRoutes user={user} />}>
             <Route path="/Dashboard" element={<Dashboard />} />

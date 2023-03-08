@@ -31,7 +31,7 @@ function ConnexionForm() {
         })
         .catch((err) => console.error(err));
     } else {
-      toast.error("Please specify email and password", {
+      toast.error("Veuillez renseigner un email et un mot de passe", {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
