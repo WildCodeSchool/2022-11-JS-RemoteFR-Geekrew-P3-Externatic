@@ -1,8 +1,17 @@
 import React from "react";
+import ShowData from "./ShowData";
+import { useCurrentUserContext } from "../contexts/CurrentUserContext";
 
 function InfoFormCandidate() {
-  const handleSubmit = (e) => e.preventDefault();
+  const { dispatch } = useCurrentUserContext();
 
+  const handleInput = (e) => {
+    dispatch({
+      type: "HANDLE_INPUT",
+      field: e.target.name,
+      payload: e.target.value,
+    });
+  };
   return (
     <div className="grid grid-rows-10 m-8 justify-items-start font-jost">
       <h2 className="mb-5">Mes informations</h2>
@@ -44,10 +53,7 @@ function InfoFormCandidate() {
           </div>
         </div>
       </div>
-      <form
-        className="flex flex-col justify-start w-full md:grid md:grid-cols-2"
-        onSubmit={handleSubmit}
-      >
+      <form className="flex flex-col justify-start w-full md:grid md:grid-cols-2">
         <div className="flex flex-col md:mr-2 ">
           <label className="mb-2 text-grey2" htmlFor="firstname">
             Prénom <span className="text-main-dark">*</span>
@@ -57,6 +63,7 @@ function InfoFormCandidate() {
             id="firstname"
             name="firstname"
             type="text"
+            onChange={(e) => handleInput(e)}
           />
         </div>
         <div className="flex flex-col">
@@ -68,6 +75,7 @@ function InfoFormCandidate() {
             id="lastname"
             name="lastname"
             type="text"
+            onChange={(e) => handleInput(e)}
           />
         </div>
         <div className="flex flex-col md:mr-2">
@@ -79,6 +87,7 @@ function InfoFormCandidate() {
             id="email"
             name="email"
             type="email"
+            onChange={(e) => handleInput(e)}
           />
         </div>
         <div className="flex flex-col">
@@ -90,6 +99,7 @@ function InfoFormCandidate() {
             id="phone"
             name="phone"
             type="text"
+            onChange={(e) => handleInput(e)}
           />
         </div>
         <div className="flex flex-col md:mr-2">
@@ -101,6 +111,7 @@ function InfoFormCandidate() {
             id="language"
             name="language"
             type="text"
+            onChange={(e) => handleInput(e)}
           />
         </div>
         <div className="flex flex-col">
@@ -112,6 +123,7 @@ function InfoFormCandidate() {
             id="birth_date"
             name="birth_date"
             type="date"
+            onChange={(e) => handleInput(e)}
           />
         </div>
       </form>
@@ -124,8 +136,30 @@ function InfoFormCandidate() {
           id="location"
           name="location"
           type="text"
+          onChange={(e) => handleInput(e)}
+        />
+        <label className="mb-2 text-grey2" htmlFor="location">
+          Mot de passe <span className="text-main-dark">*</span>
+        </label>
+        <input
+          className="bg-gray-50 border border-gray-300 text-grey1 rounded mb-5 leading-9"
+          id="location"
+          name="password"
+          type="password"
+          onChange={(e) => handleInput(e)}
+        />
+        <label className="mb-2 text-grey2" htmlFor="location">
+          Confirmer mot de passe <span className="text-main-dark">*</span>
+        </label>
+        <input
+          className="bg-gray-50 border border-gray-300 text-grey1 rounded mb-5 leading-9"
+          id="location"
+          name="confirm_password"
+          type="password"
+          onChange={(e) => handleInput(e)}
         />
       </div>
+      <ShowData />
     </div>
   );
 }
