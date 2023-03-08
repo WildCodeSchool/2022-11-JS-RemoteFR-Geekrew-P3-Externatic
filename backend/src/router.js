@@ -53,6 +53,7 @@ router.delete("/candidacies/:id", candidacyControllers.destroy);
 const jobOfferControllers = require("./controllers/jobOfferControllers");
 
 router.get("/job_offers", jobOfferControllers.browse);
+router.get("/job_offers/tech", jobOfferControllers.tech);
 router.get("/job_offers/:id", jobOfferControllers.read);
 router.put("/job_offers/:id", jobOfferControllers.edit);
 router.post("/job_offers", jobOfferControllers.add);

@@ -3,7 +3,19 @@ const validateJobOffer = require("../validator/jobOffer.validator");
 
 const browse = (req, res) => {
   models.jobOffer
-    .findAll()
+    .displayJob()
+    .then(([rows]) => {
+      res.send(rows);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+const tech = (req, res) => {
+  models.jobOffer
+    .displayTech()
     .then(([rows]) => {
       res.send(rows);
     })
@@ -95,6 +107,7 @@ const destroy = (req, res) => {
 
 module.exports = {
   browse,
+  tech,
   read,
   edit,
   add,

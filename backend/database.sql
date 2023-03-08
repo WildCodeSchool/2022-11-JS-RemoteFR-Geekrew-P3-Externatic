@@ -158,7 +158,7 @@ DROP TABLE IF EXISTS `p3`.`company` ;
 
 CREATE TABLE IF NOT EXISTS `p3`.`company` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `title` VARCHAR(150) NOT NULL,
+  `name` VARCHAR(150) NOT NULL,
   `number_of_employee` INT NOT NULL,
   `description` TEXT NOT NULL,
   `field` VARCHAR(150) NOT NULL,

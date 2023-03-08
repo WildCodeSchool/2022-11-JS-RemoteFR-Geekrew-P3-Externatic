@@ -25,6 +25,8 @@ function OffersContainer() {
             experience={jobOffer.experience}
             lowerSalary={jobOffer.lower_salary}
             higherSalary={jobOffer.higher_salary}
+            workHours={jobOffer.work_hours}
+            entreprise={jobOffer.compname}
           />
         ))}
       </div>
