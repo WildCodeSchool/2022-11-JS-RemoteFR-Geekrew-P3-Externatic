@@ -163,8 +163,6 @@ CREATE TABLE IF NOT EXISTS `p3`.`company` (
   `description` TEXT NOT NULL,
   `field` VARCHAR(150) NOT NULL,
   `siret` VARCHAR(14) NOT NULL,
-  `company_type` VARCHAR(150) NOT NULL,
-  `picture` VARCHAR(255) NOT NULL,
   `user_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_company_user_id` (`user_id` ASC) VISIBLE,
@@ -183,8 +181,6 @@ INSERT INTO `company` VALUES
 "Braka-C, c'est une sart up en plein essort spécialisée dans une nouvelle technologie de réduction de fracture et de plâtre ! Rejoignez-nous et cassez vous joyeusement le bras afin de constater notre expertise !",
 'Orthopédie',
 '01234567891011',
-'Start Up',
-'https//:urldelimageonverraplustard',
 2);
 
 UNLOCK TABLES;

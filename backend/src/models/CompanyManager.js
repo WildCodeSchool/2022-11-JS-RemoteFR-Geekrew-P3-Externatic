@@ -7,16 +7,19 @@ class CompanyManager extends AbstractManager {
 
   insert(company) {
     return this.database.query(
-      `insert into ${this.table} (title, number_of_employee, description, field, siret, company_type, picture, user_id) values (?, ?, ?, ?, ?, ?, ?, ?)`,
+      `INSERT INTO user (mail, linkedin, phone, location, picture) VALUES (?, ?, ?, ?, ?);
+      INSERT INTO ${this.table} (user_id, title, number_of_employee, description, field, siret) VALUES (LAST_INSERT_ID(), ?, ?, ?, ?, ?)`,
       [
+        company.mail,
+        company.linkedin,
+        company.phone,
+        company.location,
+        company.picture,
         company.title,
-        company.numberOfEmployee,
+        company.number_of_employee,
         company.description,
         company.field,
         company.siret,
-        company.companyType,
-        company.picture,
-        company.userId,
       ]
     );
   }

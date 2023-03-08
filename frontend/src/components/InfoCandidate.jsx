@@ -1,6 +1,6 @@
 import React from "react";
 
-function InfoFormCandidate() {
+function InfoCandidate() {
   const handleSubmit = (e) => e.preventDefault();
 
   return (
@@ -130,4 +130,4 @@ function InfoFormCandidate() {
   );
 }
 
-export default InfoFormCandidate;
+export default InfoCandidate;

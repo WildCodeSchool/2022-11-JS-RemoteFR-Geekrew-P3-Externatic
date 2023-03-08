@@ -50,20 +50,17 @@ const edit = (req, res) => {
     });
 };
 
-const add = (req, res) => {
-  const company = req.body;
+const add = async (req, res) => {
+  try {
+    const company = req.body;
 
-  // TODO validations (length, format...)
+    const [result] = await models.company.insert(company);
 
-  models.company
-    .insert(company)
-    .then(([result]) => {
-      res.location(`/companies/${result.insertId}`).sendStatus(201);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.sendStatus(500);
-    });
+    res.location(`/companies/${result.insertId}`).sendStatus(201);
+  } catch (err) {
+    console.error(err);
+    res.sendStatus(500);
+  }
 };
 
 const destroy = (req, res) => {

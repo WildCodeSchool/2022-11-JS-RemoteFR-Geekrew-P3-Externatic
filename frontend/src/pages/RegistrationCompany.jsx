@@ -1,8 +1,9 @@
 import React from "react";
 import ValidationCompany from "../components/ValidationCompany";
-import InfosCompany from "../components/InfoCompany";
+import InfoCompany from "../components/InfoCompany";
 import NetworksCompany from "../components/NetworksCompany";
 import ProfilePic from "../components/ProfilePic";
+import DisplayCompanyData from "../components/DisplayCompanyData";
 
 function RegistrationCandidate() {
   return (
@@ -25,9 +26,10 @@ function RegistrationCandidate() {
           <div className="mb-6 ml-8 mt-6">
             <ProfilePic />
           </div>
-          <InfosCompany />
+          <InfoCompany />
           <NetworksCompany />
           <ValidationCompany />
+          <DisplayCompanyData />
         </div>
       </div>
     </div>
