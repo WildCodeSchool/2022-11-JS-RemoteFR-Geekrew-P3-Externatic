@@ -23,7 +23,7 @@ function RegistrationForm() {
 
   const handleForm = (e) => {
     e.preventDefault();
-    if (userType === "" || email === undefined) {
+    if (userType === "" || email === "") {
       toast.error("Veuillez renseigner votre email et votre statut", {
         position: "top-center",
         autoClose: 5000,
