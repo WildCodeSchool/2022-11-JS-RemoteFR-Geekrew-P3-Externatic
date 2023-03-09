@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
-import axios from "axios";
+import expressAPI from "../services/expressAPI";
 import localisationIcon from "../assets/Icons/map-pin.svg";
 import FakePP from "../assets/images/Fake-PP.png";
 import favIcon from "../assets/Icons/heart.svg";
@@ -18,13 +18,11 @@ function OfferDash({
 }) {
   const [technos, setTechnos] = useState([]);
   useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/job_offers/tech`)
-      .then((res) => {
-        setTechnos(res.data);
-      });
+    expressAPI.get(`/job_offers/tech`).then((res) => {
+      setTechnos(res.data);
+    });
   }, []);
-
+  // console.log(technos);
   return (
     <div className="bg-background py-5 px-6 rounded font-jost">
       <div className="flex flex-row items-center">

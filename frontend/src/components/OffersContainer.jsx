@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import expressAPI from "../services/expressAPI";
 import OfferDash from "./OfferDash";
 
 function OffersContainer() {
   const [jobOffers, setJobOffers] = useState([]);
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_BACKEND_URL}/job_offers`).then((res) => {
+    expressAPI.get(`/job_offers`).then((res) => {
       setJobOffers(res.data);
     });
   }, []);
-
+  // console.log(jobOffers);
   return (
     <div className="mx-8">
       <h1 className="font-jost font-semibold text-xl mb-5">

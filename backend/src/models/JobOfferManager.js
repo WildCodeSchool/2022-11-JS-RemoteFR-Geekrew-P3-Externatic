@@ -7,13 +7,13 @@ class JobOfferManager extends AbstractManager {
 
   displayJob() {
     return this.database.query(
-      `select job_offer.*, company.name as compname from job_offer inner join company on job_offer.company_id = company.id`
+      `select ${this.table}.*, company.name as compname from ${this.table} inner join company on job_offer.company_id = company.id`
     );
   }
 
   displayTech() {
     return this.database.query(
-      `select technology.name as techname from job_offer inner join job_offer_has_technology on job_offer_has_technology.job_offer_id = job_offer.id inner join technology  on technology.id = job_offer_has_technology.technology_id where job_offer.id = 1;`
+      `select technology.name as techname from ${this.table} inner join job_offer_has_technology on job_offer_has_technology.job_offer_id = ${this.table}.id inner join technology  on technology.id = job_offer_has_technology.technology_id where ${this.table}.id = 2`
     );
   }
 
