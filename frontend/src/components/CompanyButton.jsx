@@ -1,15 +1,15 @@
 import { useNavigate } from "react-router-dom";
-import { useUserContext } from "../contexts/UserContext";
+import { useCurrentUserContext } from "../contexts/CurrentUserContext";
 
 import companyButton from "../assets/images/company-button.png";
 
 function CompanyButton() {
-  const { setUser } = useUserContext();
+  const { setUserType } = useCurrentUserContext();
   const navigate = useNavigate();
 
   const handleCompanyRegistration = () => {
     navigate("/Registration");
-    setUser("Entreprise");
+    setUserType("Entreprise");
   };
   return (
     <div className="relative mr-8">
