@@ -9,7 +9,7 @@ function OffersContainer() {
       setJobOffers(res.data);
     });
   }, []);
-  // console.log(jobOffers);
+
   return (
     <div className="mx-8">
       <h1 className="font-jost font-semibold text-xl mb-5">
@@ -27,6 +27,7 @@ function OffersContainer() {
             higherSalary={jobOffer.higher_salary}
             workHours={jobOffer.work_hours}
             entreprise={jobOffer.compname}
+            technologies={jobOffer.technologies}
           />
         ))}
       </div>

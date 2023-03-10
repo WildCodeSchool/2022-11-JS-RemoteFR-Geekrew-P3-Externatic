@@ -1,6 +1,4 @@
 import PropTypes from "prop-types";
-import { useState, useEffect } from "react";
-import expressAPI from "../services/expressAPI";
 import localisationIcon from "../assets/Icons/map-pin.svg";
 import FakePP from "../assets/images/Fake-PP.png";
 import favIcon from "../assets/Icons/heart.svg";
@@ -15,14 +13,8 @@ function OfferDash({
   higherSalary,
   workHours,
   entreprise,
+  technologies,
 }) {
-  const [technos, setTechnos] = useState([]);
-  useEffect(() => {
-    expressAPI.get(`/job_offers/tech`).then((res) => {
-      setTechnos(res.data);
-    });
-  }, []);
-  // console.log(technos);
   return (
     <div className="bg-background py-5 px-6 rounded font-jost">
       <div className="flex flex-row items-center">
@@ -55,8 +47,8 @@ function OfferDash({
         <p className="mt-5">{description}</p>
       </div>
       <div className="flex flex-row gap-2 flex-wrap mt-5">
-        {technos.map((techno) => (
-          <Tags key={techno.id} techname={techno.techname} />
+        {technologies.split(",").map((technologie) => (
+          <Tags name={technologie} />
         ))}
       </div>
     </div>
@@ -72,6 +64,7 @@ OfferDash.propTypes = {
   higherSalary: PropTypes.number.isRequired,
   workHours: PropTypes.number.isRequired,
   entreprise: PropTypes.string.isRequired,
+  technologies: PropTypes.shape().isRequired,
 };
 
 export default OfferDash;

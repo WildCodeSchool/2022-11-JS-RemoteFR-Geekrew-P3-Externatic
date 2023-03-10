@@ -1,16 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-function Tags({ techname }) {
+function Tags({ name }) {
   return (
     <div className="bg-main-light text-main-dark rounded-full inline-block px-4 py-[3px] font-medium text-sm">
-      {techname}
+      {name}
     </div>
   );
 }
 
 Tags.propTypes = {
-  techname: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
 };
 
 export default Tags;
