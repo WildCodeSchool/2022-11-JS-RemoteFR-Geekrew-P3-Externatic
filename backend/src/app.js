@@ -7,21 +7,24 @@ const path = require("node:path");
 
 const express = require("express");
 
+const cookieParser = require("cookie-parser");
+
 const app = express();
 
 // use some application-level middlewares
 
 app.use(express.json());
+app.use(cookieParser());
 
 const cors = require("cors");
 
 app.use(
   cors({
     origin: process.env.FRONTEND_URL ?? "http://localhost:3000",
+    credentials: true,
     optionsSuccessStatus: 200,
   })
 );
-
 // import and mount the API routes
 
 const router = require("./router");
