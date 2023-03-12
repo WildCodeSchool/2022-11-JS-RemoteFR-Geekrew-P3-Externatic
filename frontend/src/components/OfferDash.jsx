@@ -5,6 +5,8 @@ import favIcon from "../assets/Icons/heart.svg";
 import Tags from "./Tags";
 
 function OfferDash({
+  jobId,
+  compId,
   title,
   description,
   location,
@@ -12,7 +14,9 @@ function OfferDash({
   lowerSalary,
   higherSalary,
   workHours,
+  postDate,
   entreprise,
+  field,
   technologies,
 }) {
   return (
@@ -39,7 +43,7 @@ function OfferDash({
       </div>
       <div className="mt-5">
         <p className=" text-grey2 text-sm">
-          Depuis 1j - {workHours}h - {experience} - Aéronotique -{" "}
+          Depuis {postDate}j - {workHours}h - {experience} - {field} -{" "}
           <b>
             {lowerSalary} - {higherSalary}€
           </b>
@@ -48,7 +52,7 @@ function OfferDash({
       </div>
       <div className="flex flex-row gap-2 flex-wrap mt-5">
         {technologies.split(",").map((technologie) => (
-          <Tags name={technologie} />
+          <Tags key={{ jobId } + { compId }} name={technologie} />
         ))}
       </div>
     </div>
@@ -63,7 +67,9 @@ OfferDash.propTypes = {
   lowerSalary: PropTypes.number.isRequired,
   higherSalary: PropTypes.number.isRequired,
   workHours: PropTypes.number.isRequired,
+  postDate: PropTypes.number.isRequired,
   entreprise: PropTypes.string.isRequired,
+  field: PropTypes.string.isRequired,
   technologies: PropTypes.shape().isRequired,
 };
 
