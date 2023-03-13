@@ -443,7 +443,7 @@ INSERT INTO `job_offer` VALUES
 35,
 '2023-02-22',
 5,
-1),
+2),
 (2,
 4400,
 'Développeur Frontend React',
@@ -463,7 +463,7 @@ INSERT INTO `job_offer` VALUES
 '2023-02-27',
 10,
 1),
-(3,5000,'Développeur backend',58000,72000,'Entreprise de sevice numérique accompagnant nos clients du secteur banquaire, nous cherchons à faire évoluer les outils de nos clients vers une stack technique plus moderne.','5+ ans','Toulouse',3,'2023-04-16',"Vous serez amener à assurer la migration de l'infrastucture serveur de nos client vers le framework PhP Symfony.",'Développeur confirmé.','RDV CTO',0,'Bonbons',28,'2023-03-08',2,1);
+(3,5000,'Développeur backend',58000,72000,'Entreprise de sevice numérique accompagnant nos clients du secteur banquaire, nous cherchons à faire évoluer les outils de nos clients vers une stack technique plus moderne.','5+ ans','Toulouse',3,'2023-04-16',"Vous serez amener à assurer la migration de l'infrastucture serveur de nos client vers le framework PhP Symfony.",'Développeur confirmé.','RDV CTO',0,'Bonbons',28,'2023-03-08',8,3);
 
 /*!40000 ALTER TABLE `job_offer` ENABLE KEYS */;
 UNLOCK TABLES;

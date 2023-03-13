@@ -71,6 +71,8 @@ OfferDash.propTypes = {
   entreprise: PropTypes.string.isRequired,
   field: PropTypes.string.isRequired,
   technologies: PropTypes.shape().isRequired,
+  jobId: PropTypes.number.isRequired,
+  compId: PropTypes.number.isRequired,
 };
 
 export default OfferDash;

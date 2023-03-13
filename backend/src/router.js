@@ -14,7 +14,7 @@ router.post(
 router.post("/users", hashPassword, userControllers.add);
 
 // Protected routes
-// router.use(verifyToken);
+router.use(verifyToken);
 
 router.get("/users", userControllers.browse);
 router.get("/users/:id", userControllers.read);
