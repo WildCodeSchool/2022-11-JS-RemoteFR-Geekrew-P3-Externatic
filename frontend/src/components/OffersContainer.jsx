@@ -19,6 +19,7 @@ function OffersContainer() {
         {jobOffers.map((jobOffer) => (
           <OfferDash
             key={jobOffer.id}
+            jobId={jobOffer.id}
             title={jobOffer.title}
             description={jobOffer.description}
             location={jobOffer.location}
@@ -26,7 +27,9 @@ function OffersContainer() {
             lowerSalary={jobOffer.lower_salary}
             higherSalary={jobOffer.higher_salary}
             workHours={jobOffer.work_hours}
+            postDate={jobOffer.postDate}
             entreprise={jobOffer.compname}
+            field={jobOffer.field}
             technologies={jobOffer.technologies}
           />
         ))}

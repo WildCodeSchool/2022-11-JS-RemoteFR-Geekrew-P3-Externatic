@@ -7,13 +7,7 @@ class JobOfferManager extends AbstractManager {
 
   displayJob() {
     return this.database.query(
-      `SELECT job.id, job.title, job.description, job.location, job.experience, job.lower_salary, job.higher_salary, job.work_hours, company.name as compname, group_concat(technology.name SEPARATOR ', ') as technologies from job_offer job join company on job.company_id = company.id inner join job_offer_has_technology on job_offer_id = job.id inner join technology  on technology.id = technology_id group by job.id`
-    );
-  }
-
-  displayTech() {
-    return this.database.query(
-      `select technology.name as techname from ${this.table} inner join job_offer_has_technology on job_offer_has_technology.job_offer_id = ${this.table}.id inner join technology  on technology.id = job_offer_has_technology.technology_id`
+      `SELECT job.id, job.title, job.description, job.location, job.experience, job.lower_salary, job.higher_salary, job.work_hours, DATEDIFF(NOW(), job.date_of_creation) AS "postDate", company.name as compname, company.field, company.id compId, group_concat(technology.name SEPARATOR ', ') as technologies from job_offer job join company on job.company_id = company.id inner join job_offer_has_technology on job_offer_id = job.id inner join technology  on technology.id = technology_id group by job.id`
     );
   }
 
