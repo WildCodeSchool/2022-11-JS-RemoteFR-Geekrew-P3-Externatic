@@ -1,17 +1,19 @@
 import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import { useCurrentUserContext } from "../contexts/CurrentUserContext";
 
 import GitLogo from "../assets/Icons/mdi_github.svg";
 import GoogleLogo from "../assets/Icons/Google.svg";
 import LinkedinLogo from "../assets/Icons/logos_linkedin-icon.svg";
 import SocialButton from "./SocialButton";
+import toastError from "../services/toastService";
 
 function RegistrationForm() {
   const { userType, email, setEmail } = useCurrentUserContext();
   const navigate = useNavigate();
 
-  const handleEmailChange = (e) => setEmail(e.target.value);
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
   const navigateToNextStep = () => {
     localStorage.setItem("email", JSON.stringify(email));
     if (userType === "Candidat") {
@@ -23,17 +25,9 @@ function RegistrationForm() {
 
   const handleForm = (e) => {
     e.preventDefault();
+
     if (userType === "" || email === "") {
-      toast.error("Veuillez renseigner votre email et votre statut", {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
+      toastError("Veuillez renseigner votre email et votre statut");
     } else {
       navigateToNextStep();
     }

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import { useCurrentUserContext } from "../contexts/CurrentUserContext";
 
 import SocialButton from "./SocialButton";
@@ -9,6 +8,7 @@ import GoogleLogo from "../assets/Icons/Google.svg";
 import LinkedinLogo from "../assets/Icons/logos_linkedin-icon.svg";
 
 import expressAPI from "../services/expressAPI";
+import toastError from "../services/toastService";
 
 function ConnexionForm() {
   const { setUser } = useCurrentUserContext();
@@ -29,18 +29,9 @@ function ConnexionForm() {
           localStorage.setItem("user", JSON.stringify(res.data));
           navigate("/");
         })
-        .catch((err) => console.error(err));
+        .catch(() => toastError("Le mot de passe ou l'email est incorrect"));
     } else {
-      toast.error("Veuillez renseigner un email et un mot de passe", {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
+      toastError("Veuillez renseigner un email et un mot de passe");
     }
   };
 
