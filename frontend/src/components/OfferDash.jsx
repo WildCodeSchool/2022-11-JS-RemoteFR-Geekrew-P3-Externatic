@@ -6,7 +6,6 @@ import Tags from "./Tags";
 
 function OfferDash({
   jobId,
-  compId,
   title,
   description,
   location,
@@ -52,7 +51,7 @@ function OfferDash({
       </div>
       <div className="flex flex-row gap-2 flex-wrap mt-5">
         {technologies.split(",").map((technologie) => (
-          <Tags key={{ jobId } + { compId }} name={technologie} />
+          <Tags key={`${jobId}-${technologie}`} name={technologie} />
         ))}
       </div>
     </div>
@@ -70,9 +69,8 @@ OfferDash.propTypes = {
   postDate: PropTypes.number.isRequired,
   entreprise: PropTypes.string.isRequired,
   field: PropTypes.string.isRequired,
-  technologies: PropTypes.shape().isRequired,
+  technologies: PropTypes.string.isRequired,
   jobId: PropTypes.number.isRequired,
-  compId: PropTypes.number.isRequired,
 };
 
 export default OfferDash;

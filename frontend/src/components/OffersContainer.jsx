@@ -20,7 +20,6 @@ function OffersContainer() {
           <OfferDash
             key={jobOffer.id}
             jobId={jobOffer.id}
-            compId={jobOffer.compId}
             title={jobOffer.title}
             description={jobOffer.description}
             location={jobOffer.location}
