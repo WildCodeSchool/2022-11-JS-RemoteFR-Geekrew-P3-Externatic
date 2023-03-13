@@ -1,5 +1,5 @@
 import React from "react";
-import { useCurrentUserContext } from "../contexts/CurrentUserContext";
+import { useCurrentUserContext } from "../contexts/currentUserContext";
 
 function DisplayCompanyData() {
   const { companyFormState } = useCurrentUserContext();
@@ -15,6 +15,7 @@ function DisplayCompanyData() {
       <p>location: {companyFormState.location}</p>
       <p>description: {companyFormState.description}</p>
       <p>linkedin: {companyFormState.linkedin}</p>
+      <p>picture: {companyFormState.picture}</p>
       <p>password: {companyFormState.password}</p>
       <p>confirmed_password: {companyFormState.confirmed_password}</p>
     </>

@@ -1,5 +1,5 @@
 import React from "react";
-import { useCurrentUserContext } from "../contexts/CurrentUserContext";
+import { useCurrentUserContext } from "../contexts/currentUserContext";
 
 function InfoCompany() {
   const { dispatch } = useCurrentUserContext();

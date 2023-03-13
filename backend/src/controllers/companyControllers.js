@@ -1,3 +1,4 @@
+const argon2 = require("argon2");
 const models = require("../models");
 const validateCompany = require("../validator/companyValidator");
 
@@ -62,12 +63,30 @@ const add = async (req, res) => {
     const validationResult = validateCompany(company);
 
     if (validationResult.length) {
-      res.status(400).send(validationResult);
+      res.sendStatus(400);
     }
 
-    const [result] = await models.company.insert(company);
+    const hashingOptions = {
+      type: argon2.argon2id,
+      memoryCost: 2 ** 19,
+      timeCost: 5,
+      parallelism: 1,
+    };
 
-    res.location(`/companies/${result.insertId}`).sendStatus(201);
+    const hashedPassword = await argon2.hash(company.password, hashingOptions);
+
+    company.password = hashedPassword;
+
+    const [userResult] = await models.company.insertCompanyIntoUser(company);
+
+    const companyUserId = userResult.insertId;
+
+    const [companyResult] = await models.company.insertCompanyIntoCompany(
+      company,
+      companyUserId
+    );
+
+    res.location(`/companies/${companyResult.insertId}`).sendStatus(201);
   } catch (err) {
     console.error(err);
     res.sendStatus(500);

@@ -1,29 +1,19 @@
-// import React, { useState } from "react";
-// import axios from "axios";
+import React from "react";
+import { useCurrentUserContext } from "../contexts/currentUserContext";
+
 import circle from "../assets/images/circle.png";
 import plusIcon from "../assets/Icons/plus-circle.svg";
 
-// const backEndURL = import.meta.env.VITE_BACKEND_URL;
-
 function ProfilePic() {
-  // const [filesDisplay, setFilesDisplay] = useState([]);
-  // const [files, setFiles] = useState([]);
-  // const [name, setName] = useState("");
+  const { dispatch } = useCurrentUserContext();
 
-  // const handlePicture = (e) => {
-  //   e.preventDefault;
-
-  //   const formData = new FormData();
-
-  //   console.log(formData);
-
-  //   formData.append("file", files[0]);
-  //   formData.append("name", name);
-
-  //   axios.post(`${backEndURL}/companies`, formData, {
-  //     headers: { "Content-Type": "multipart/form-data" },
-  //   });
-  // };
+  const handleInput = (e) => {
+    dispatch({
+      type: "HANDLE_INPUT",
+      field: e.target.name,
+      payload: e.target.value,
+    });
+  };
 
   return (
     <>
@@ -32,22 +22,12 @@ function ProfilePic() {
         <img src={plusIcon} alt="" className="absolute h-6 invert" />
         <img src="" alt="" className="absolute" />
       </div>
-      {/* <div>
-        {files.length && (
-          <img className="h-28" src={URL.createObjectURL(files[0])} alt="" />
-        )}
-      </div>
       <input
-        onChange={(e) => setName(e.target.value)}
+        onChange={handleInput}
         className="border-2"
-        name="inputName"
+        name="picture"
         type="text"
       />
-      <input
-        onChange={(e) => setFiles(e.target.files)}
-        name="inputFile"
-        type="file"
-      /> */}
     </>
   );
 }

@@ -16,6 +16,7 @@ const initialCompanyFormState = {
   location: "",
   description: "",
   linkedin: "",
+  picture: "",
   password: "",
   confirmed_password: "",
 };

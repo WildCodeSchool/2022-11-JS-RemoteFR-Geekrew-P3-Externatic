@@ -3,7 +3,7 @@ import { createContext, useContext, useState, useMemo } from "react";
 
 const UserContext = createContext();
 
-export const useUserContext = () => useContext(UserContext);
+const useUserContext = () => useContext(UserContext);
 
 function UserContextProvider({ children }) {
   const [user, setUser] = useState("");
@@ -18,4 +18,4 @@ UserContextProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default UserContextProvider;
+export { UserContextProvider, useUserContext };

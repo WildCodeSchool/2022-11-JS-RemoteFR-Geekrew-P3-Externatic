@@ -159,7 +159,7 @@ DROP TABLE IF EXISTS `p3`.`company` ;
 CREATE TABLE IF NOT EXISTS `p3`.`company` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(150) NOT NULL,
-  `number_of_employee` INT NOT NULL,
+  `number_of_employee` VARCHAR(10) NOT NULL,
   `description` TEXT NOT NULL,
   `field` VARCHAR(150) NOT NULL,
   `siret` VARCHAR(14) NOT NULL,
@@ -517,14 +517,14 @@ DROP TABLE IF EXISTS `p3`.`user` ;
 
 CREATE TABLE IF NOT EXISTS `p3`.`user` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `firstname` VARCHAR(100) NOT NULL,
-  `lastname` VARCHAR(100) NOT NULL,
+  `firstname` VARCHAR(100),
+  `lastname` VARCHAR(100),
   `mail` VARCHAR(255) NOT NULL,
   `linkedin` VARCHAR(255) NOT NULL,
   `phone` VARCHAR(20) NOT NULL,
   `hashed_password` VARCHAR(255) NOT NULL,
   `location` VARCHAR(150) NOT NULL,
-  `picture` VARCHAR(255) NOT NULL,
+  `picture` VARCHAR(255),
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4

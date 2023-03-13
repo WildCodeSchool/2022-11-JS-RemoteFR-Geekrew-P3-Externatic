@@ -1,10 +1,9 @@
 import React from "react";
 import PasswordCompany from "@components/PasswordCompany";
-import ValidationCompany from "../components/ValidationCompany";
+import ProfilePic from "../components/ProfilePic";
 import InfoCompany from "../components/InfoCompany";
 import NetworksCompany from "../components/NetworksCompany";
-import ProfilePic from "../components/ProfilePic";
-import DisplayCompanyData from "../components/DisplayCompanyData";
+import ValidationCompany from "../components/ValidationCompany";
 
 function RegistrationCandidate() {
   return (
@@ -31,7 +30,6 @@ function RegistrationCandidate() {
           <NetworksCompany />
           <PasswordCompany />
           <ValidationCompany />
-          <DisplayCompanyData />
         </div>
       </div>
     </div>
