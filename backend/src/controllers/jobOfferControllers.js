@@ -3,7 +3,7 @@ const validateJobOffer = require("../validator/jobOfferValidator");
 
 const browse = (req, res) => {
   models.jobOffer
-    .findAll()
+    .displayJob()
     .then(([rows]) => {
       res.send(rows);
     })
