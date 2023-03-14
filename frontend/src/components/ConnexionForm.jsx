@@ -11,10 +11,9 @@ import expressAPI from "../services/expressAPI";
 import toastError from "../services/toastService";
 
 function ConnexionForm() {
-  const { setUser } = useCurrentUserContext();
+  const { setUser, email, setEmail } = useCurrentUserContext();
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleEmailChange = (e) => setEmail(e.target.value);

@@ -5,9 +5,16 @@ class CandidateManager extends AbstractManager {
     super({ table: "candidate" });
   }
 
-  displayCandidate() {
+  findAll() {
     return this.database.query(
       `SELECT user.id, user.firstname, user.lastname, user.mail, user.linkedin, user.phone, user.location, user.picture, candidate.*, GROUP_CONCAT(technology.name SEPARATOR ', ') AS techname from ${this.table} JOIN user ON user.id = candidate.user_id JOIN candidate_has_technology ct ON ct.candidate_id = candidate.id JOIN technology ON technology.id = ct.technology_id GROUP BY candidate.id;`
+    );
+  }
+
+  find(id) {
+    return this.database.query(
+      `SELECT user.id, user.firstname, user.lastname, user.mail, user.linkedin, user.phone, user.location, user.picture, candidate.*, GROUP_CONCAT(technology.name SEPARATOR ', ') AS techname from ${this.table} JOIN user ON user.id = candidate.user_id JOIN candidate_has_technology ct ON ct.candidate_id = candidate.id JOIN technology ON technology.id = ct.technology_id WHERE user.id = ? GROUP BY candidate.id;`,
+      [id]
     );
   }
 
