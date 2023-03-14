@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useCurrentUserContext } from "../contexts/CurrentUserContext";
 
-import SocialButton from "./SocialButton";
+import SocialButton from "./Buttons/SocialButton";
 import GitLogo from "../assets/Icons/mdi_github.svg";
 import GoogleLogo from "../assets/Icons/Google.svg";
 import LinkedinLogo from "../assets/Icons/logos_linkedin-icon.svg";
@@ -27,7 +27,7 @@ function ConnexionForm() {
         .then((res) => {
           setUser(res.data.user.mail);
           localStorage.setItem("user", JSON.stringify(res.data));
-          navigate("/");
+          navigate("/Dashboard");
         })
         .catch(() => toastError("Le mot de passe ou l'email est incorrect"));
     } else {
