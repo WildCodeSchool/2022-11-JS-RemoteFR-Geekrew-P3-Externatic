@@ -1,0 +1,78 @@
+import React from "react";
+import chevronDown from "../assets/Icons/chevron-down.svg";
+import chevronUp from "../assets/Icons/chevron-up.svg";
+
+function OfferDetails() {
+  return (
+    <div className="bg-background flex flex-col justify-center">
+      <div className="bg-white rounded m-4 p-4 flex flex-col justify-center items-center">
+        <h1 className="font-jost font-semibold text-xl">Titre de l'annonce</h1>
+      </div>
+      <div className="bg-white rounded m-4 p-4 flex flex-col justify-center items-center">
+        <button className="block self-end w-5 rounded" type="button">
+          <img src={chevronDown} alt="ouvrir" className="h-6 w-6" />
+        </button>
+        <h1 className="font-jost font-semibold text-xl">Entreprise</h1>
+      </div>
+      <div className="bg-white rounded m-4 p-8 flex flex-col gap-4">
+        <button className="block self-end w-5 rounded m-0" type="button">
+          <img src={chevronUp} alt="ouvrir" className="h-6 w-6" />
+        </button>
+        <p className=" text-grey2 text-sm">
+          Depuis 1j - Temps complet - Junior - BTP - 25 - 30 000€
+        </p>
+        <h2 className="font-jost font-semibold text-xl">
+          Description du poste
+        </h2>
+        <p className="text-justify">
+          Nous accompagnons un éditeur de logiciel SaaS qui compte 150
+          collaborateurs, la société évolue dans le domaine du BTP, et développe
+          depuis 2017 une solution SaaS pour faciliter le quotidien des acteurs
+          du milieu. La stratégie à long terme de la société est de s'étendre à
+          l'international, les premières agences étrangères commencent déjà à
+          voir le jour. Dans ce contexte novateur et dynamique, vous prenez part
+          à cette aventure unique au sein d'une équipe de 15 personnes à Nantes
+          ou en full remote !
+        </p>
+        <h2 className="font-jost font-semibold text-xl">Profil recherché</h2>
+        <p className="text-justify">
+          Développeur autonome sur la stack JS et plus particulièrement sur
+          node.js et react, vous : Avez de bonnes connaissances de Typescript,
+          GraphQL, CSS et de la maintenance de mono-repo; Êtes une personne
+          proactive, dynamique et communicante. Témoignez d'une expérience dans
+          une équipe de plus de 10 personnes, idéalement en environnement
+          start-up/scale-up !
+        </p>
+        <h2 className="font-jost font-semibold text-xl">Les missions</h2>
+        <p className="text-justify">
+          Au sein d'une équipe technique de 6 collaborateurs, vos missions
+          seront les suivantes : Migrer du code vers de nouveaux standards;
+          Implémenter des fonctionnalités sur de nouvelles applications;
+          Améliorer l’écosystème de nos outils de développement; Participer à la
+          montée en compétence de toute l’équipe; Répondre aux besoins et aux
+          questions de développeurs avec des problématiques back sous node et
+          front sous react; Apporter une expertise lors de décision technique ou
+          de chiffrages; Maintenir le code; Assurer une collaboration avec les
+          équipes designs et techniques; Optimiser des applications; Concevoir
+          et maintenir de la documentation; Participer à la résolution
+          d’éventuelles pannes ou erreurs de conception;
+        </p>
+        <h2 className="font-jost font-semibold text-xl">
+          Déroulement des entretiens
+        </h2>
+        <p className="text-justify">
+          RDV avec le responsable produit; Test technique (1h max); RDV avec le
+          CTO
+        </p>
+      </div>
+      <div className="bg-white rounded m-4 p-4 flex flex-col justify-center items-center">
+        <button className="block self-end w-5 rounded" type="button">
+          <img src={chevronDown} alt="ouvrir" className="h-6 w-6" />
+        </button>
+        <h1 className="font-jost font-semibold text-xl">Mon consultant</h1>
+      </div>
+    </div>
+  );
+}
+
+export default OfferDetails;

@@ -8,6 +8,7 @@ import Connexion from "./pages/Connexion";
 import Registration from "./pages/Registration";
 import Logout from "./pages/Logout";
 import Dashboard from "./pages/Dashboard";
+import OfferDetails from "./components/OfferDetails";
 import RegistrationCandidate from "./pages/RegistrationCandidate";
 import RegistrationCompany from "./pages/RegistrationCompany";
 import ProtectedRoutes from "./components/ProtectedRoutes";
@@ -33,6 +34,7 @@ function App() {
             path="/Registration-company"
             element={<RegistrationCompany />}
           />
+          <Route path="/OfferDetails" element={<OfferDetails />} />
           <Route path="/Logout" element={<Logout />} />
           <Route element={<ProtectedRoutes user={user} />}>
             <Route path="/Dashboard" element={<Dashboard />} />
