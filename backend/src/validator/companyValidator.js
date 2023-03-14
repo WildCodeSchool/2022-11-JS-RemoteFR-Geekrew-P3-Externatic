@@ -8,11 +8,11 @@ const passwordSchema = Joi.string()
   );
 
 const companySchema = Joi.object().keys({
-  title: Joi.string().min(1).max(150).required(),
+  name: Joi.string().min(1).max(150).required(),
   siret: Joi.string().min(14).max(14).required(),
   mail: Joi.string().email().required(),
   phone: Joi.string().min(9).max(11).required(),
-  number_of_employee: Joi.string().required(),
+  number_of_employee: Joi.string().min(1).required(),
   field: Joi.string().min(1).max(150).required(),
   location: Joi.string().min(3).max(100).required(),
   description: Joi.string().min(10).required(),

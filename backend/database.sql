@@ -186,7 +186,6 @@ INSERT INTO `company` VALUES
 "Braka-C, c'est une sart up en plein essort spécialisée dans une nouvelle technologie de réduction de fracture et de plâtre ! Rejoignez-nous et cassez vous joyeusement le bras afin de constater notre expertise !",
 'Santé',
 '01234567891011',
-'Start Up',
 2),
 (2,'Taupiqueur',250,'Editeur de logiciel SaaS spécialisé dans le domaine du BTP','BTP','04136785471356',3),
 (3,'DigiDollars',95,'Nous sommes une ESN spécialisée dans le secteur banquire. Nous proposons à nos clients une solution clé en mains, et sommes spécialisée dans la migration vers une stack moderne.','Banque','98567439621584',4);

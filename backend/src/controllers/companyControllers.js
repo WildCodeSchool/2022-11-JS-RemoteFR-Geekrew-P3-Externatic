@@ -63,7 +63,7 @@ const add = async (req, res) => {
     const validationResult = validateCompany(company);
 
     if (validationResult.length) {
-      res.sendStatus(400);
+      res.status(400).send(validationResult);
     }
 
     const hashingOptions = {

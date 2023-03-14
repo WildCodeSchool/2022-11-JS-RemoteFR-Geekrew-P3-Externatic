@@ -1,11 +1,11 @@
 import React from "react";
 import axios from "axios";
-import { useCurrentUserContext } from "../contexts/CurrentUserContext";
+import { useCompanyContext } from "../contexts/CompanyContext";
 
 const backEndURL = import.meta.env.VITE_BACKEND_URL;
 
 function ValidationCompany() {
-  const { companyFormState } = useCurrentUserContext();
+  const { companyFormState } = useCompanyContext();
 
   const { confirmedPassword, ...company } = companyFormState;
 
@@ -37,7 +37,7 @@ function ValidationCompany() {
           Annuler
         </button>
       </div>
-      <p>title: {companyFormState.title}</p>
+      <p>name: {companyFormState.name}</p>
       <p>siret: {companyFormState.siret}</p>
       <p>mail: {companyFormState.mail}</p>
       <p>phone: {companyFormState.phone}</p>
@@ -48,7 +48,7 @@ function ValidationCompany() {
       <p>linkedin: {companyFormState.linkedin}</p>
       <p>picture: {companyFormState.picture}</p>
       <p>password: {companyFormState.password}</p>
-      <p>confirmed_password: {companyFormState.confirmedPassword}</p>
+      <p>confirmePassword: {companyFormState.confirmedPassword}</p>
     </div>
   );
 }

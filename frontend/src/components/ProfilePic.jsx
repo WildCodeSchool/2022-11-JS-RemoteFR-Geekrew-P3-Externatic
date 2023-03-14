@@ -1,11 +1,11 @@
 import React from "react";
-import { useCurrentUserContext } from "../contexts/CurrentUserContext";
+import { useCompanyContext } from "../contexts/CompanyContext";
 
 import circle from "../assets/images/circle.png";
 import plusIcon from "../assets/Icons/plus-circle.svg";
 
 function ProfilePic() {
-  const { dispatch } = useCurrentUserContext();
+  const { dispatch } = useCompanyContext();
 
   const handleInput = (e) => {
     dispatch({

@@ -1,12 +1,12 @@
 import React from "react";
-import { useCurrentUserContext } from "../contexts/CurrentUserContext";
+import { useCompanyContext } from "../contexts/CompanyContext";
 
 function DisplayCompanyData() {
-  const { companyFormState } = useCurrentUserContext();
+  const { companyFormState } = useCompanyContext();
 
   return (
     <>
-      <p>title: {companyFormState.title}</p>
+      <p>name: {companyFormState.name}</p>
       <p>siret: {companyFormState.siret}</p>
       <p>mail: {companyFormState.mail}</p>
       <p>phone: {companyFormState.phone}</p>

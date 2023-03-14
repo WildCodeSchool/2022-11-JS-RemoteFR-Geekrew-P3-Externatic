@@ -1,8 +1,8 @@
 import React from "react";
-import { useCurrentUserContext } from "../contexts/CurrentUserContext";
+import { useCompanyContext } from "../contexts/CompanyContext";
 
 function InfoCompany() {
-  const { dispatch } = useCurrentUserContext();
+  const { dispatch } = useCompanyContext();
 
   const handleInput = (e) => {
     dispatch({
@@ -27,7 +27,7 @@ function InfoCompany() {
         <input
           type="text"
           id="base-input"
-          name="title"
+          name="name"
           onChange={(e) => handleInput(e)}
           className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />

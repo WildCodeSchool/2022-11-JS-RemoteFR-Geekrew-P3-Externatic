@@ -1,9 +1,9 @@
 import React from "react";
 
-import { useCurrentUserContext } from "../contexts/CurrentUserContext";
+import { useCompanyContext } from "../contexts/CompanyContext";
 
 function NetworksCompany() {
-  const { dispatch } = useCurrentUserContext();
+  const { dispatch } = useCompanyContext();
 
   const handleInput = (e) => {
     dispatch({
