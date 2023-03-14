@@ -3,7 +3,7 @@ const validateCandidate = require("../validator/candidateValidator");
 
 const browse = (req, res) => {
   models.candidate
-    .findAll()
+    .displayCandidate()
     .then(([rows]) => {
       res.send(rows);
     })
