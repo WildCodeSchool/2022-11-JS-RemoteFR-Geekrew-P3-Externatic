@@ -5,7 +5,7 @@ function Logout() {
     <div>
       <h1>Vous êtes bien déconnecté !</h1>
       <Link
-        to="/Home"
+        to="/"
         className="text-main font-semibold text-sm underline decoration-2 decoration-main"
       >
         Revenir à l'accueil

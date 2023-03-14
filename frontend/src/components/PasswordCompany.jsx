@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useCurrentUserContext } from "../contexts/currentUserContext";
+import { useCurrentUserContext } from "../contexts/CurrentUserContext";
 
 function PasswordCompany() {
   const { dispatch } = useCurrentUserContext();

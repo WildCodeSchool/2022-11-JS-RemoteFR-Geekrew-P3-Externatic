@@ -1,15 +1,15 @@
 import { useNavigate } from "react-router-dom";
-import { useUserContext } from "../contexts/UserContext";
+import { useCurrentUserContext } from "../contexts/CurrentUserContext";
 
 import candidateButton from "../assets/images/candidate-button.png";
 
 function CandidateButton() {
-  const { setUser } = useUserContext();
+  const { setUserType } = useCurrentUserContext();
   const navigate = useNavigate();
 
   const handleCandidateRegistration = () => {
     navigate("/Registration");
-    setUser("Candidat");
+    setUserType("Candidat");
   };
   return (
     <div className="relative ml-8">

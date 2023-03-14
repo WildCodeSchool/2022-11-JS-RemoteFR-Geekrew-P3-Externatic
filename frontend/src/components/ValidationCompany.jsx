@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { useCurrentUserContext } from "../contexts/currentUserContext";
+import { useCurrentUserContext } from "../contexts/CurrentUserContext";
 
 const backEndURL = import.meta.env.VITE_BACKEND_URL;
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { useCurrentUserContext } from "../contexts/currentUserContext";
+import { useCurrentUserContext } from "../contexts/CurrentUserContext";
 
 import circle from "../assets/images/circle.png";
 import plusIcon from "../assets/Icons/plus-circle.svg";
