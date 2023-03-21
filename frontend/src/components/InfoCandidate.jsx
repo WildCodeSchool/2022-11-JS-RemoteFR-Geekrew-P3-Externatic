@@ -1,9 +1,9 @@
 import React from "react";
-import ShowData from "./ShowData";
-import { useCurrentUserContext } from "../contexts/CurrentUserContext";
+import DisplayData from "./DisplayData";
+import { useCandidateContext } from "../contexts/CandidateContext";
 
-function InfoFormCandidate() {
-  const { dispatch } = useCurrentUserContext();
+function InfosCandidate() {
+  const { dispatch } = useCandidateContext();
 
   const handleInput = (e) => {
     dispatch({
@@ -12,6 +12,7 @@ function InfoFormCandidate() {
       payload: e.target.value,
     });
   };
+
   return (
     <div className="grid grid-rows-10 m-8 justify-items-start font-jost">
       <h2 className="mb-5">Mes informations</h2>
@@ -146,7 +147,6 @@ function InfoFormCandidate() {
           id="location"
           name="password"
           type="password"
-          onChange={(e) => handleInput(e)}
         />
         <label className="mb-2 text-grey2" htmlFor="location">
           Confirmer mot de passe <span className="text-main-dark">*</span>
@@ -156,12 +156,11 @@ function InfoFormCandidate() {
           id="location"
           name="confirm_password"
           type="password"
-          onChange={(e) => handleInput(e)}
         />
       </div>
-      <ShowData />
+      <DisplayData />
     </div>
   );
 }
 
-export default InfoFormCandidate;
+export default InfosCandidate;

@@ -5,8 +5,9 @@ import InfoCandidate from "../components/InfoCandidate";
 import ToggleCandidate from "../components/ToggleCandidate";
 import SkillsCandidate from "../components/SkillsCandidate";
 import NetworksCandidate from "../components/NetworksCandidate";
-import CvCandiadte from "../components/CvCandidate";
+import CvCandidate from "../components/CvCandidate";
 import ValidationCandidate from "../components/ValidationCandidate";
+import CandidateContextProvider from "../contexts/CandidateContext";
 
 function RegistrationCandidate() {
   return (
@@ -25,21 +26,23 @@ function RegistrationCandidate() {
             </span>
           </h1>
         </div>
-        <div className="md:bg-white rounded-[10px] p-5">
-          <ToggleCandidate />
-          <div className="flex flex-row justify-between items-center">
-            <div className="ml-8 mt-4">
-              <ProfilePic />
+        <CandidateContextProvider>
+          <div className="md:bg-white rounded-[10px] p-5">
+            <ToggleCandidate />
+            <div className="flex flex-row justify-between items-center">
+              <div className="ml-8 mt-4">
+                <ProfilePic />
+              </div>
             </div>
+            <InfoCandidate />
+            <SkillsCandidate />
+            <div className="flex flex-col justify-start w-full md:grid md:grid-cols-2">
+              <CvCandidate />
+              <NetworksCandidate />
+            </div>
+            <ValidationCandidate />
           </div>
-          <InfoCandidate />
-          <SkillsCandidate />
-          <div className="flex flex-col justify-start w-full md:grid md:grid-cols-2">
-            <CvCandiadte />
-            <NetworksCandidate />
-          </div>
-          <ValidationCandidate />
-        </div>
+        </CandidateContextProvider>
       </div>
     </div>
   );

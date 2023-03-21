@@ -4,7 +4,7 @@ import InfosCompany from "../components/InfoCompany";
 import NetworksCompany from "../components/NetworksCompany";
 import ProfilePic from "../components/ProfilePic";
 
-function RegistrationCandidate() {
+function RegistrationCompany() {
   return (
     <div className="md:bg-background">
       <div className="m-8 mx-auto w-11/12 md:w-2/3 lg:w-1/2">
@@ -34,4 +34,4 @@ function RegistrationCandidate() {
   );
 }
 
-export default RegistrationCandidate;
+export default RegistrationCompany;
