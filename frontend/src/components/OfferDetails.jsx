@@ -1,12 +1,22 @@
-import React, { useState } from "react";
 import PropTypes from "prop-types";
+import React, { useState, useEffect } from "react";
+import expressAPI from "../services/expressAPI";
 import chevronDown from "../assets/Icons/chevron-down.svg";
 import chevronUp from "../assets/Icons/chevron-up.svg";
 
-function OfferDetails({ description }) {
+function OfferDetails({ jobId }) {
   const [openEntreprise, setOpenEntreprise] = useState(false);
   const [openDetails, setOpenDetails] = useState(false);
   const [openConsultant, setOpenConsultant] = useState(false);
+
+  const [offerDetails, setOfferDetails] = useState([]);
+  useEffect(() => {
+    expressAPI.get(`/job_offers/:id`, { id: jobId }).then((res) => {
+      setOfferDetails(res.data);
+    });
+  }, []);
+
+  console.warn(offerDetails);
 
   return (
     <div className="bg-background flex flex-col justify-center">
@@ -55,7 +65,7 @@ function OfferDetails({ description }) {
             <p className=" text-grey2 text-sm">
               Depuis 1j - Temps complet - Junior - BTP - 25 - 30 000€
             </p>
-            <p className="text-justify">{description}</p>
+            <p className="text-justify">test</p>
             <h2 className="font-jost font-semibold text-xl">
               Profil recherché
             </h2>
@@ -115,7 +125,7 @@ function OfferDetails({ description }) {
 }
 
 OfferDetails.propTypes = {
-  description: PropTypes.string.isRequired,
+  jobId: PropTypes.number.isRequired,
 };
 
 export default OfferDetails;

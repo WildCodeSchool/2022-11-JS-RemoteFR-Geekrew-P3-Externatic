@@ -11,10 +11,10 @@ class JobOfferManager extends AbstractManager {
     );
   }
 
-  jobDetails(id) {
+  jobDetails(jobId) {
     return this.database.query(
       `select job.*, company.*, consultant.*, user.id, user.firstname, user.lastname, user.linkedin, user.mail, user.phone, user.location, user.picture from job_offer job join company on job.company_id = company.id join handled_offer ho on ho.job_offer_id = job.id join consultant on ho.consultant_id = consultant.id join user on user.id = consultant.user_id where job.id = ?`,
-      [id]
+      [jobId]
     );
   }
 
