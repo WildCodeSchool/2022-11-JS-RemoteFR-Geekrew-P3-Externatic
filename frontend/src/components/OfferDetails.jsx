@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
+import { useParams } from "react-router-dom";
 import chevronDown from "../assets/Icons/chevron-down.svg";
 import chevronUp from "../assets/Icons/chevron-up.svg";
 import MainButton from "./Buttons/MainButton";
@@ -8,6 +9,8 @@ import expressAPI from "../services/expressAPI";
 import toastError from "../services/toastService";
 
 function OfferDetails() {
+  const { jobId } = useParams();
+
   const [openEntreprise, setOpenEntreprise] = useState(false);
   const [openDetails, setOpenDetails] = useState(false);
   const [openConsultant, setOpenConsultant] = useState(false);
@@ -41,31 +44,58 @@ function OfferDetails() {
       .catch(() => toastError("Votre candidature n'a pas pu être envoyée"));
   };
 
+  const [offerDetails, setOfferDetails] = useState([]);
+  useEffect(() => {
+    expressAPI.get(`/job_offers/${jobId}`).then((res) => {
+      setOfferDetails(res.data);
+    });
+  }, []);
+
   return (
     <div className="bg-background flex flex-col justify-center">
       <div className="mx-8">
         <div className="bg-white rounded my-4 p-4 flex flex-col justify-center items-center">
           <h1 className="font-jost font-semibold text-xl">
-            Titre de l'annonce
+            {offerDetails.title}
           </h1>
         </div>
 
         {/* Menu déroulant entreprise */}
         <div className="bg-white rounded my-4 p-8 flex flex-col gap-4">
           <div className="flex justify-between">
-            <h1 className="font-jost font-semibold text-xl">Entreprise</h1>
+            <h1 className="font-jost font-semibold text-xl">
+              Entreprise : {offerDetails.name}{" "}
+              <span className="font-light text-l">
+                - {offerDetails.company_type}
+              </span>
+            </h1>
             <button
               className="block self-end w-5 rounded"
               type="button"
               onClick={() => setOpenEntreprise(!openEntreprise)}
             >
               {openEntreprise ? (
-                <img src={chevronUp} alt="ouvrir" className="h-6 w-6" />
+                <img src={chevronUp} alt="fermer" className="h-6 w-6" />
               ) : (
                 <img src={chevronDown} alt="ouvrir" className="h-6 w-6" />
               )}
             </button>
           </div>
+          {openEntreprise && (
+            <>
+              <p>{offerDetails.compdesc}</p>
+              <h2 className="font-jost font-semibold text-l">
+                Secteur d'activité :{" "}
+                <span className="font-medium">{offerDetails.field}</span>
+              </h2>
+              <h2 className="font-jost font-semibold text-l">
+                Nombre d'employés :{" "}
+                <span className="font-medium">
+                  {offerDetails.number_of_employee}
+                </span>
+              </h2>
+            </>
+          )}
         </div>
 
         {/* Menu déroulant details */}
@@ -80,7 +110,7 @@ function OfferDetails() {
               onClick={() => setOpenDetails(!openDetails)}
             >
               {openDetails ? (
-                <img src={chevronUp} alt="ouvrir" className="h-6 w-6" />
+                <img src={chevronUp} alt="fermer" className="h-6 w-6" />
               ) : (
                 <img src={chevronDown} alt="ouvrir" className="h-6 w-6" />
               )}
@@ -89,52 +119,21 @@ function OfferDetails() {
           {openDetails && (
             <>
               <p className=" text-grey2 text-sm">
-                Depuis 1j - Temps complet - Junior - BTP - 25 - 30 000€
+                Depuis {offerDetails.postDate}j - {offerDetails.work_hours}h -{" "}
+                {offerDetails.experience} - {offerDetails.field} -{" "}
+                {offerDetails.lower_salary}-{offerDetails.higher_salary}€
               </p>
-              <p className="text-justify">
-                Nous accompagnons un éditeur de logiciel SaaS qui compte 150
-                collaborateurs, la société évolue dans le domaine du BTP, et
-                développe depuis 2017 une solution SaaS pour faciliter le
-                quotidien des acteurs du milieu. La stratégie à long terme de la
-                société est de s'étendre à l'international, les premières
-                agences étrangères commencent déjà à voir le jour. Dans ce
-                contexte novateur et dynamique, vous prenez part à cette
-                aventure unique au sein d'une équipe de 15 personnes à Nantes ou
-                en full remote !
-              </p>
+              <p className="text-justify">{offerDetails.description}</p>
               <h2 className="font-jost font-semibold text-xl">
-                Profil recherché
+                Description du poste
               </h2>
-              <p className="text-justify">
-                Développeur autonome sur la stack JS et plus particulièrement
-                sur node.js et react, vous : Avez de bonnes connaissances de
-                Typescript, GraphQL, CSS et de la maintenance de mono-repo; Êtes
-                une personne proactive, dynamique et communicante. Témoignez
-                d'une expérience dans une équipe de plus de 10 personnes,
-                idéalement en environnement start-up/scale-up !
-              </p>
+              <p className="text-justify">{offerDetails.profile_needed}</p>
               <h2 className="font-jost font-semibold text-xl">Les missions</h2>
-              <p className="text-justify">
-                Au sein d'une équipe technique de 6 collaborateurs, vos missions
-                seront les suivantes : Migrer du code vers de nouveaux
-                standards; Implémenter des fonctionnalités sur de nouvelles
-                applications; Améliorer l’écosystème de nos outils de
-                développement; Participer à la montée en compétence de toute
-                l’équipe; Répondre aux besoins et aux questions de développeurs
-                avec des problématiques back sous node et front sous react;
-                Apporter une expertise lors de décision technique ou de
-                chiffrages; Maintenir le code; Assurer une collaboration avec
-                les équipes designs et techniques; Optimiser des applications;
-                Concevoir et maintenir de la documentation; Participer à la
-                résolution d’éventuelles pannes ou erreurs de conception;
-              </p>
+              <p className="text-justify">{offerDetails.mission}</p>
               <h2 className="font-jost font-semibold text-xl">
                 Déroulement des entretiens
               </h2>
-              <p className="text-justify">
-                RDV avec le responsable produit; Test technique (1h max); RDV
-                avec le CTO
-              </p>
+              <p className="text-justify">{offerDetails.interview_run}</p>
             </>
           )}
         </div>
@@ -149,15 +148,25 @@ function OfferDetails() {
               onClick={() => setOpenConsultant(!openConsultant)}
             >
               {openConsultant ? (
-                <img src={chevronUp} alt="ouvrir" className="h-6 w-6" />
+                <img src={chevronUp} alt="fermer" className="h-6 w-6" />
               ) : (
                 <img src={chevronDown} alt="ouvrir" className="h-6 w-6" />
               )}
             </button>
           </div>
+          {openConsultant && (
+            <>
+              <p>
+                Name : {offerDetails.firstname} {offerDetails.lastname}
+              </p>
+              <p>Mail : {offerDetails.mail}</p>
+              <p>Phone : {offerDetails.phone}</p>
+              <p>Linkedin : {offerDetails.linkedin}</p>
+            </>
+          )}
         </div>
-        <MainButton handleClick={handleSubmit}>Postuler à l'annonce</MainButton>
       </div>
+      <MainButton handleClick={handleSubmit}>Postuler à l'annonce</MainButton>
     </div>
   );
 }

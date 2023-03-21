@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import localisationIcon from "../assets/Icons/map-pin.svg";
 import FakePP from "../assets/images/Fake-PP.png";
 import favIcon from "../assets/Icons/heart.svg";
@@ -20,7 +21,7 @@ function OfferDash({
 }) {
   return (
     <div className="bg-background py-5 px-6 rounded font-jost">
-      <button type="button">
+      <Link to={`/OfferDetails/${jobId}`}>
         <div className="flex flex-row items-center">
           <div>
             <img src={FakePP} alt="CompanyImage" className="pr-2" />
@@ -55,7 +56,7 @@ function OfferDash({
             <Tags key={`${jobId}-${technologie}`} name={technologie} />
           ))}
         </div>
-      </button>
+      </Link>
     </div>
   );
 }

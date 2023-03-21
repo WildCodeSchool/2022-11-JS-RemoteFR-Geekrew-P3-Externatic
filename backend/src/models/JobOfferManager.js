@@ -11,6 +11,13 @@ class JobOfferManager extends AbstractManager {
     );
   }
 
+  jobDetails(jobId) {
+    return this.database.query(
+      `select job.*, DATEDIFF(NOW(), job.date_of_creation) AS "postDate", company.name, company.description as compdesc, company.company_type, company.number_of_employee, company.field, company.picture, consultant.*, user.id, user.firstname, user.lastname, user.linkedin, user.mail, user.phone, user.location, user.picture from job_offer job join company on job.company_id = company.id join handled_offer ho on ho.job_offer_id = job.id join consultant on ho.consultant_id = consultant.id join user on user.id = consultant.user_id where job.id = ?`,
+      [jobId]
+    );
+  }
+
   insert(jobOffer) {
     return this.database.query(
       `insert into ${this.table} (salary,title,lower_salary,higher_salary,description,experience,location,contract_id,debut_date,mission,profile_needed,interview_run,remote,bonuses,work_hours,date_of_creation,number_of_candidates,company_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
