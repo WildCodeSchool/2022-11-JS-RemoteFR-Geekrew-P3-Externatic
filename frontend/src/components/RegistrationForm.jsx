@@ -5,7 +5,7 @@ import GitLogo from "../assets/Icons/mdi_github.svg";
 import GoogleLogo from "../assets/Icons/Google.svg";
 import LinkedinLogo from "../assets/Icons/logos_linkedin-icon.svg";
 import SocialButton from "./Buttons/SocialButton";
-import toastError from "../services/toastService";
+import { toastError } from "../services/toastService";
 
 function RegistrationForm() {
   const { userType, email, setEmail } = useCurrentUserContext();
