@@ -4,7 +4,7 @@ import Logo from "../assets/Icons/map-pin.svg";
 
 function Container() {
   return (
-    <div className="flex flex-row overflow-x-auto md:no-scrollbar m-8 gap-4 md:flex-wrap">
+    <div className="flex flex-row overflow-x-auto md:no-scrollbar m-8 gap-16 md:flex-wrap">
       <section className="flex-shrink-0 max-w-sm mb-3 mx-auto w-full p-6 bg-white border border-gray-150 rounded-lg shadow-xl">
         <span>
           <h5 className="mb-2 text-1xl text-left font-bold tracking-tight text-gray-900">
