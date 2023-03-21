@@ -14,6 +14,7 @@ import RegistrationCompany from "./pages/RegistrationCompany";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 
 import { useCurrentUserContext } from "./contexts/CurrentUserContext";
+import CandidateProfile from "./pages/CandidateProfile";
 
 function App() {
   const { user } = useCurrentUserContext();
@@ -35,6 +36,7 @@ function App() {
             element={<RegistrationCompany />}
           />
           <Route path="/OfferDetails" element={<OfferDetails />} />
+          <Route path="/Candidate-Profile" element={<CandidateProfile />} />
           <Route path="/Logout" element={<Logout />} />
           <Route element={<ProtectedRoutes user={user} />}>
             <Route path="/Dashboard" element={<Dashboard />} />
