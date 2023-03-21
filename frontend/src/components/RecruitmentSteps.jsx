@@ -1,11 +1,11 @@
 import step1 from "../assets/images/step1.png";
-import Step1 from "../assets/images/Step1.png";
+import Step1 from "../assets/images/s1.png";
 import step2 from "../assets/images/step2.png";
-import Step2 from "../assets/images/Step2.png";
+import Step2 from "../assets/images/s2.png";
 import step3 from "../assets/images/step3.png";
-import Step3 from "../assets/images/Step3.png";
+import Step3 from "../assets/images/s3.png";
 import step4 from "../assets/images/step4.png";
-import Step4 from "../assets/images/Step4.png";
+import Step4 from "../assets/images/s4.png";
 
 function RecruitmentSteps() {
   return (
