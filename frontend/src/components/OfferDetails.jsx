@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import chevronDown from "../assets/Icons/chevron-down.svg";
 import chevronUp from "../assets/Icons/chevron-up.svg";
 
-function OfferDetails() {
+function OfferDetails({ description }) {
   const [openEntreprise, setOpenEntreprise] = useState(false);
   const [openDetails, setOpenDetails] = useState(false);
   const [openConsultant, setOpenConsultant] = useState(false);
@@ -23,7 +24,7 @@ function OfferDetails() {
             onClick={() => setOpenEntreprise(!openEntreprise)}
           >
             {openEntreprise ? (
-              <img src={chevronUp} alt="ouvrir" className="h-6 w-6" />
+              <img src={chevronUp} alt="fermer" className="h-6 w-6" />
             ) : (
               <img src={chevronDown} alt="ouvrir" className="h-6 w-6" />
             )}
@@ -43,7 +44,7 @@ function OfferDetails() {
             onClick={() => setOpenDetails(!openDetails)}
           >
             {openDetails ? (
-              <img src={chevronUp} alt="ouvrir" className="h-6 w-6" />
+              <img src={chevronUp} alt="fermer" className="h-6 w-6" />
             ) : (
               <img src={chevronDown} alt="ouvrir" className="h-6 w-6" />
             )}
@@ -54,16 +55,7 @@ function OfferDetails() {
             <p className=" text-grey2 text-sm">
               Depuis 1j - Temps complet - Junior - BTP - 25 - 30 000€
             </p>
-            <p className="text-justify">
-              Nous accompagnons un éditeur de logiciel SaaS qui compte 150
-              collaborateurs, la société évolue dans le domaine du BTP, et
-              développe depuis 2017 une solution SaaS pour faciliter le
-              quotidien des acteurs du milieu. La stratégie à long terme de la
-              société est de s'étendre à l'international, les premières agences
-              étrangères commencent déjà à voir le jour. Dans ce contexte
-              novateur et dynamique, vous prenez part à cette aventure unique au
-              sein d'une équipe de 15 personnes à Nantes ou en full remote !
-            </p>
+            <p className="text-justify">{description}</p>
             <h2 className="font-jost font-semibold text-xl">
               Profil recherché
             </h2>
@@ -111,7 +103,7 @@ function OfferDetails() {
             onClick={() => setOpenConsultant(!openConsultant)}
           >
             {openConsultant ? (
-              <img src={chevronUp} alt="ouvrir" className="h-6 w-6" />
+              <img src={chevronUp} alt="fermer" className="h-6 w-6" />
             ) : (
               <img src={chevronDown} alt="ouvrir" className="h-6 w-6" />
             )}
@@ -121,5 +113,9 @@ function OfferDetails() {
     </div>
   );
 }
+
+OfferDetails.propTypes = {
+  description: PropTypes.string.isRequired,
+};
 
 export default OfferDetails;

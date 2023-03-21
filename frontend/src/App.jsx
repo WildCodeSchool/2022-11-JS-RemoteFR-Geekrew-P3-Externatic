@@ -34,7 +34,7 @@ function App() {
             path="/Registration-company"
             element={<RegistrationCompany />}
           />
-          <Route path="/OfferDetails" element={<OfferDetails />} />
+          <Route path="/OfferDetails/:jobId" element={<OfferDetails />} />
           <Route path="/Logout" element={<Logout />} />
           <Route element={<ProtectedRoutes user={user} />}>
             <Route path="/Dashboard" element={<Dashboard />} />
