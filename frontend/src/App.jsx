@@ -1,14 +1,23 @@
 import { Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 
 import MainLayout from "./layouts/MainLayout";
 import Home from "./pages/Home";
 import Connexion from "./pages/Connexion";
 import Registration from "./pages/Registration";
 import Logout from "./pages/Logout";
+import Dashboard from "./pages/Dashboard";
 import RegistrationCandidate from "./pages/RegistrationCandidate";
 import RegistrationCompany from "./pages/RegistrationCompany";
+import ProtectedRoutes from "./components/ProtectedRoutes";
+
+import { useCurrentUserContext } from "./contexts/CurrentUserContext";
+import CandidateProfile from "./pages/CandidateProfile";
 
 function App() {
+  const { user } = useCurrentUserContext();
+
   return (
     <div className="App">
       <Routes>
@@ -18,15 +27,21 @@ function App() {
           <Route path="/Connexion" element={<Connexion />} />
           <Route path="/Logout" element={<Logout />} />
           <Route
-            path="/RegistrationCandidate"
+            path="/Registration-candidate"
             element={<RegistrationCandidate />}
           />
           <Route
-            path="/RegistrationCompany"
+            path="/Registration-company"
             element={<RegistrationCompany />}
           />
+          <Route path="/Candidate-Profile" element={<CandidateProfile />} />
+          <Route path="/Logout" element={<Logout />} />
+          <Route element={<ProtectedRoutes user={user} />}>
+            <Route path="/Dashboard" element={<Dashboard />} />
+          </Route>
         </Route>
       </Routes>
+      <ToastContainer />
     </div>
   );
 }

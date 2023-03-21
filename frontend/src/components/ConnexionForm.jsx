@@ -1,17 +1,38 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useCurrentUserContext } from "../contexts/CurrentUserContext";
 
-import SocialButton from "./SocialButton";
+import SocialButton from "./Buttons/SocialButton";
 import GitLogo from "../assets/Icons/mdi_github.svg";
 import GoogleLogo from "../assets/Icons/Google.svg";
 import LinkedinLogo from "../assets/Icons/logos_linkedin-icon.svg";
 
+import expressAPI from "../services/expressAPI";
+import { toastError } from "../services/toastService";
+
 function ConnexionForm() {
-  const [email, setEmail] = useState("");
+  const { setUser, email, setEmail } = useCurrentUserContext();
+  const navigate = useNavigate();
+
   const [password, setPassword] = useState("");
 
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (email && password) {
+      expressAPI
+        .post("/login", { mail: email, password })
+        .then((res) => {
+          setUser(res.data.user.mail);
+          localStorage.setItem("user", JSON.stringify(res.data));
+          navigate("/Dashboard");
+        })
+        .catch(() => toastError("Le mot de passe ou l'email est incorrect"));
+    } else {
+      toastError("Veuillez renseigner un email et un mot de passe");
+    }
+  };
 
   return (
     <div className="font-jost flex flex-col items-center">
@@ -33,7 +54,10 @@ function ConnexionForm() {
             M'inscrire
           </Link>
         </div>
-        <form className="flex flex-col text-left mt-5 mb-6">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col text-left mt-5 mb-6"
+        >
           <div className="mb-5 flex flex-col">
             <label htmlFor="email" className="text-grey1 font-semibold mb-1">
               Adresse mail
@@ -51,20 +75,20 @@ function ConnexionForm() {
               Mot de passe
             </label>
             <input
-              className="border border-grey3 h-10 rounded"
+              className="border border-grey3 h-10 rounded mb-10"
               type="password"
               id="password"
               value={password}
               onChange={handlePasswordChange}
             />
           </div>
+          <button
+            type="submit"
+            className="py-3 w-full rounded-full bg-main text-white font-semibold"
+          >
+            Me connecter
+          </button>
         </form>
-        <button
-          type="button"
-          className="py-3 w-full rounded-full bg-main text-white font-semibold"
-        >
-          Me connecter
-        </button>
         <div className="flex items-center my-10 font-bold text-grey1">
           <hr className="border border-grey3 grow" />
           <p className="grow-0 bg-white px-3">ou</p>

@@ -34,7 +34,9 @@ const verifyPassword = (req, res) => {
         });
 
         delete req.user.hashed_password;
-        res.send({ token, user: req.user });
+
+        res.cookie("auth_token", token, { httpOnly: true, secure: false });
+        res.status(200).json({ user: req.user });
       } else {
         res.sendStatus(401);
       }
@@ -47,19 +49,13 @@ const verifyPassword = (req, res) => {
 
 const verifyToken = (req, res, next) => {
   try {
-    const authorizationHeader = req.get("Authorization");
+    const authToken = req.cookies.auth_token;
 
-    if (authorizationHeader == null) {
+    if (authToken == null) {
       throw new Error("Authorization header is missing");
     }
 
-    const [type, token] = authorizationHeader.split(" ");
-
-    if (type !== "Bearer") {
-      throw new Error("Authorization header has not the 'Bearer' type");
-    }
-
-    req.payload = jwt.verify(token, process.env.JWT_SECRET);
+    req.payload = jwt.verify(authToken, process.env.JWT_SECRET);
 
     next();
   } catch (err) {
@@ -68,4 +64,8 @@ const verifyToken = (req, res, next) => {
   }
 };
 
-module.exports = { hashPassword, verifyPassword, verifyToken };
+const logout = (req, res) => {
+  res.clearCookie("auth_token").sendStatus(200);
+};
+
+module.exports = { hashPassword, verifyPassword, verifyToken, logout };

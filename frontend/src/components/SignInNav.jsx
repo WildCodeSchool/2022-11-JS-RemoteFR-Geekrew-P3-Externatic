@@ -1,14 +1,14 @@
-import { useUserContext } from "../contexts/UserContext";
+import { useCurrentUserContext } from "../contexts/CurrentUserContext";
 
 function SignInNav() {
-  const { user, setUser } = useUserContext();
+  const { userType, setUserType } = useCurrentUserContext();
   const activeClass = "underline decoration-2 decoration-main";
-  const isCandidate = user === "Candidat";
+  const isCandidate = userType === "Candidat";
 
   return (
     <div className="bg-grey4 h-20 font-jost font-semibold flex items-center justify-around md:text-xl">
       <button
-        onClick={() => setUser("Candidat")}
+        onClick={() => setUserType("Candidat")}
         type="button"
         className={`hover:underline hover:decoration-2 hover:decoration-main ${
           isCandidate ? activeClass : ""
@@ -17,7 +17,7 @@ function SignInNav() {
         Candidat
       </button>
       <button
-        onClick={() => setUser("Entreprise")}
+        onClick={() => setUserType("Entreprise")}
         type="button"
         className={`hover:underline hover:decoration-2 hover:decoration-main ${
           !isCandidate ? activeClass : ""

@@ -3,9 +3,7 @@ import React from "react";
 function CvCandidate() {
   return (
     <div className="m-8 ">
-      <h2 className="font-bold text-sm text-black  text-left font-medium mb-4">
-        Mon CV
-      </h2>
+      <h2 className="text-sm text-black  text-left font-medium mb-4">Mon CV</h2>
       <label
         htmlFor="base-input"
         className="block mb-2 text-sm text-left font-medium text-grey2 dark:text-white"

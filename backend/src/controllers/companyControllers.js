@@ -1,3 +1,4 @@
+const argon2 = require("argon2");
 const models = require("../models");
 const validateCompany = require("../validator/companyValidator");
 
@@ -55,24 +56,41 @@ const edit = (req, res) => {
     });
 };
 
-const add = (req, res) => {
-  const company = req.body;
+const add = async (req, res) => {
+  try {
+    const company = req.body;
 
-  const validationResult = validateCompany(company);
+    const validationResult = validateCompany(company);
 
-  if (validationResult.length) {
-    return res.status(400).send(validationResult);
+    if (validationResult.length) {
+      res.status(400).send(validationResult);
+    }
+
+    const hashingOptions = {
+      type: argon2.argon2id,
+      memoryCost: 2 ** 19,
+      timeCost: 5,
+      parallelism: 1,
+    };
+
+    const hashedPassword = await argon2.hash(company.password, hashingOptions);
+
+    company.password = hashedPassword;
+
+    const [userResult] = await models.company.insertCompanyIntoUser(company);
+
+    const companyUserId = userResult.insertId;
+
+    const [companyResult] = await models.company.insertCompanyIntoCompany(
+      company,
+      companyUserId
+    );
+
+    res.location(`/companies/${companyResult.insertId}`).sendStatus(201);
+  } catch (err) {
+    console.error(err);
+    res.sendStatus(500);
   }
-
-  return models.company
-    .insert(company)
-    .then(([result]) => {
-      res.location(`/companies/${result.insertId}`).sendStatus(201);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.sendStatus(500);
-    });
 };
 
 const destroy = (req, res) => {

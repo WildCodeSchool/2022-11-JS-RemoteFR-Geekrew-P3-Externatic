@@ -44,6 +44,8 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_general_ci;
 
+LOCK TABLES `candidacy` WRITE;
+/*!40000 ALTER TABLE `candidacy` DISABLE KEYS */;
 INSERT INTO `candidacy` VALUES
 (1, 1, 1, '2023-02-27', 1, 0, 0), (2, 2, 2, '2023-02-27', 0, 0, 0);
 
@@ -78,6 +80,8 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_general_ci;
 
+LOCK TABLES `candidate` WRITE;
+/*!40000 ALTER TABLE `candidate` DISABLE KEYS */;
 INSERT INTO `candidate` VALUES
 (1,
 "https://urlduCV",
@@ -150,6 +154,14 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_general_ci;
 
+INSERT INTO `p3`.`candidate_has_technology` (`candidate_id`, `technology_id`) VALUES ('1', '1');
+INSERT INTO `p3`.`candidate_has_technology` (`candidate_id`, `technology_id`) VALUES ('1', '2');
+INSERT INTO `p3`.`candidate_has_technology` (`candidate_id`, `technology_id`) VALUES ('1', '7');
+INSERT INTO `p3`.`candidate_has_technology` (`candidate_id`, `technology_id`) VALUES ('1', '8');
+INSERT INTO `p3`.`candidate_has_technology` (`candidate_id`, `technology_id`) VALUES ('2', '1');
+INSERT INTO `p3`.`candidate_has_technology` (`candidate_id`, `technology_id`) VALUES ('2', '5');
+INSERT INTO `p3`.`candidate_has_technology` (`candidate_id`, `technology_id`) VALUES ('2', '9');
+
 
 -- -----------------------------------------------------
 -- Table `p3`.`COMPANY`
@@ -158,13 +170,11 @@ DROP TABLE IF EXISTS `p3`.`company` ;
 
 CREATE TABLE IF NOT EXISTS `p3`.`company` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `title` VARCHAR(150) NOT NULL,
-  `number_of_employee` INT NOT NULL,
+  `name` VARCHAR(150) NOT NULL,
+  `number_of_employee` VARCHAR(10) NOT NULL,
   `description` TEXT NOT NULL,
   `field` VARCHAR(150) NOT NULL,
   `siret` VARCHAR(14) NOT NULL,
-  `company_type` VARCHAR(150) NOT NULL,
-  `picture` VARCHAR(255) NOT NULL,
   `user_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_company_user_id` (`user_id` ASC) VISIBLE,
@@ -175,17 +185,18 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_general_ci;
 
-
+LOCK TABLES `company` WRITE;
+/*!40000 ALTER TABLE `company` DISABLE KEYS */;
 INSERT INTO `company` VALUES 
 (1,
 'Braka-C',
 150,
 "Braka-C, c'est une sart up en plein essort spécialisée dans une nouvelle technologie de réduction de fracture et de plâtre ! Rejoignez-nous et cassez vous joyeusement le bras afin de constater notre expertise !",
-'Orthopédie',
+'Santé',
 '01234567891011',
-'Start Up',
-'https//:urldelimageonverraplustard',
-2);
+2),
+(2,'Taupiqueur',250,'Editeur de logiciel SaaS spécialisé dans le domaine du BTP','BTP','04136785471356',3),
+(3,'DigiDollars',95,'Nous sommes une ESN spécialisée dans le secteur banquire. Nous proposons à nos clients une solution clé en mains, et sommes spécialisée dans la migration vers une stack moderne.','Banque','98567439621584',4);
 
 UNLOCK TABLES;
 -- -----------------------------------------------------
@@ -213,7 +224,12 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_general_ci;
 
+LOCK TABLES `company_has_field` WRITE;
+/*!40000 ALTER TABLE `company_has_field` DISABLE KEYS */;
+INSERT INTO `company_has_field` VALUES
+(2,1),(1,2),(3,3);
 
+UNLOCK TABLES;
 -- -----------------------------------------------------
 -- Table `p3`.`COMPANY_has_NOTIFICATION`
 -- -----------------------------------------------------
@@ -258,10 +274,12 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_general_ci;
 
+LOCK TABLES `consultant` WRITE;
+/*!40000 ALTER TABLE `consultant` DISABLE KEYS */;
 INSERT INTO `consultant` VALUES 
 (1, 'Male', 1);
 
-
+UNLOCK TABLES;
 -- -----------------------------------------------------
 -- Table `p3`.`CONSULTANT_has_NOTIFICATION`
 -- -----------------------------------------------------
@@ -301,6 +319,8 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_general_ci;
 
+LOCK TABLES `contract` WRITE;
+/*!40000 ALTER TABLE `contract` DISABLE KEYS */;
 INSERT INTO `contract` VALUES
 (1, 'CDD'), (2, 'CDI'), (3, 'Freelance'), (4, 'Stage'), (5, 'Alternance');
 
@@ -342,7 +362,12 @@ CREATE TABLE IF NOT EXISTS `p3`.`field` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
+LOCK TABLES `field` WRITE;
+/*!40000 ALTER TABLE `field` DISABLE KEYS */;
+INSERT INTO `field` VALUES
+(1, 'BTP'), (2, 'Santé'), (3, 'Secteur banquaire');
 
+UNLOCK TABLES;
 -- -----------------------------------------------------
 -- Table `p3`.`HANDLED_OFFER`
 -- -----------------------------------------------------
@@ -422,7 +447,7 @@ INSERT INTO `job_offer` VALUES
 35,
 '2023-02-22',
 5,
-1),
+2),
 (2,
 4400,
 'Développeur Frontend React',
@@ -441,7 +466,8 @@ INSERT INTO `job_offer` VALUES
 35,
 '2023-02-27',
 10,
-1);
+1),
+(3,5000,'Développeur backend',58000,72000,'Entreprise de sevice numérique accompagnant nos clients du secteur banquaire, nous cherchons à faire évoluer les outils de nos clients vers une stack technique plus moderne.','5+ ans','Toulouse',3,'2023-04-16',"Vous serez amener à assurer la migration de l'infrastucture serveur de nos client vers le framework PhP Symfony.",'Développeur confirmé.','RDV CTO',0,'Bonbons',28,'2023-03-08',8,3);
 
 /*!40000 ALTER TABLE `job_offer` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -472,7 +498,12 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_general_ci;
 
+LOCK TABLES `job_offer_has_technology` WRITE;
+/*!40000 ALTER TABLE `job_offer_has_technology` DISABLE KEYS */;
+INSERT INTO `job_offer_has_technology` VALUES
+(2,1),(1,2),(2,2),(1,3),(3,3),(3,7),(1,8),(3,9);
 
+UNLOCK TABLES;
 -- -----------------------------------------------------
 -- Table `p3`.`NOTIFICATION`
 -- -----------------------------------------------------
@@ -521,14 +552,14 @@ DROP TABLE IF EXISTS `p3`.`user` ;
 
 CREATE TABLE IF NOT EXISTS `p3`.`user` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `firstname` VARCHAR(100) NOT NULL,
-  `lastname` VARCHAR(100) NOT NULL,
+  `firstname` VARCHAR(100),
+  `lastname` VARCHAR(100),
   `mail` VARCHAR(255) NOT NULL,
   `linkedin` VARCHAR(255) NOT NULL,
   `phone` VARCHAR(20) NOT NULL,
   `hashed_password` VARCHAR(255) NOT NULL,
   `location` VARCHAR(150) NOT NULL,
-  `picture` VARCHAR(255) NOT NULL,
+  `picture` VARCHAR(255),
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4

@@ -5,7 +5,7 @@ import InfoCandidate from "../components/InfoCandidate";
 import ToggleCandidate from "../components/ToggleCandidate";
 import SkillsCandidate from "../components/SkillsCandidate";
 import NetworksCandidate from "../components/NetworksCandidate";
-import CvCandiadte from "../components/CvCandidate";
+import CvCandidate from "../components/CvCandidate";
 import ValidationCandidate from "../components/ValidationCandidate";
 
 function RegistrationCandidate() {
@@ -35,7 +35,7 @@ function RegistrationCandidate() {
           <InfoCandidate />
           <SkillsCandidate />
           <div className="flex flex-col justify-start w-full md:grid md:grid-cols-2">
-            <CvCandiadte />
+            <CvCandidate />
             <NetworksCandidate />
           </div>
           <ValidationCandidate />
