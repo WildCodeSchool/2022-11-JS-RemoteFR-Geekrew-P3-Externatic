@@ -7,7 +7,14 @@ class JobOfferManager extends AbstractManager {
 
   displayJob() {
     return this.database.query(
-      `SELECT job.id, job.title, job.description, job.location, job.experience, job.lower_salary, job.higher_salary, job.work_hours, DATEDIFF(NOW(), job.date_of_creation) AS "postDate", company.name as compname, company.field, company.id compId, group_concat(technology.name SEPARATOR ', ') as technologies from job_offer job join company on job.company_id = company.id inner join job_offer_has_technology on job_offer_id = job.id inner join technology  on technology.id = technology_id group by job.id`
+      `SELECT job.id, job.title, job.description, job.location, job.experience, job.lower_salary, job.higher_salary, job.work_hours, DATEDIFF(NOW(), job.date_of_creation) AS "postDate", company.name as compname, company.field, group_concat(technology.name SEPARATOR ', ') as technologies from job_offer job join company on job.company_id = company.id inner join job_offer_has_technology on job_offer_id = job.id inner join technology  on technology.id = technology_id group by job.id`
+    );
+  }
+
+  jobDetails(jobId) {
+    return this.database.query(
+      `select job.*, DATEDIFF(NOW(), job.date_of_creation) AS "postDate", company.name, company.description as compdesc, company.company_type, company.number_of_employee, company.field, company.picture, consultant.*, user.id, user.firstname, user.lastname, user.linkedin, user.mail, user.phone, user.location, user.picture from job_offer job join company on job.company_id = company.id join handled_offer ho on ho.job_offer_id = job.id join consultant on ho.consultant_id = consultant.id join user on user.id = consultant.user_id where job.id = ?`,
+      [jobId]
     );
   }
 

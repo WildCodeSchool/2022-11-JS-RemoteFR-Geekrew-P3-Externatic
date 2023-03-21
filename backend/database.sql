@@ -395,7 +395,12 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_general_ci;
 
+LOCK TABLES `handled_offer` WRITE;
+/*!40000 ALTER TABLE `handled_offer` DISABLE KEYS */;
+INSERT INTO `handled_offer` VALUES
+(1, 1, 1, 5), (2, 2, 1, 10), (3, 3, 1, 4);
 
+UNLOCK TABLES;
 -- -----------------------------------------------------
 -- Table `p3`.`JOB_OFFER`
 -- -----------------------------------------------------
