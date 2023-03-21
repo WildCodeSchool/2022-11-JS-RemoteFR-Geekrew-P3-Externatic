@@ -4,7 +4,7 @@ import { useCompanyContext } from "../contexts/CompanyContext";
 import circle from "../assets/images/circle.png";
 import plusIcon from "../assets/Icons/plus-circle.svg";
 
-function ProfilePic() {
+function CompanyProfilePic() {
   const { dispatch } = useCompanyContext();
 
   const handleInput = (e) => {
@@ -32,4 +32,4 @@ function ProfilePic() {
   );
 }
 
-export default ProfilePic;
+export default CompanyProfilePic;

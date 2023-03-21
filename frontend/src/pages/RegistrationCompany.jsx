@@ -4,14 +4,14 @@ import PasswordCompany from "@components/PasswordCompany";
 import { toastError, toastValidation } from "../services/toastService";
 
 import { useCompanyContext } from "../contexts/CompanyContext";
-import ProfilePic from "../components/ProfilePic";
+import CompanyProfilePic from "../components/CompanyProfilePic";
 import InfoCompany from "../components/InfoCompany";
 import NetworksCompany from "../components/NetworksCompany";
 import ValidationCompany from "../components/ValidationCompany";
 
 const backEndURL = import.meta.env.VITE_BACKEND_URL;
 
-function RegistrationCandidate() {
+function RegistrationCompany() {
   const { companyFormState } = useCompanyContext();
 
   const { confirmedPassword, ...company } = companyFormState;
@@ -138,7 +138,7 @@ function RegistrationCandidate() {
         </div>
         <div className="md:bg-white p-5 rounded-[10px]">
           <div className="mb-6 ml-8 mt-6">
-            <ProfilePic />
+            <CompanyProfilePic />
           </div>
           <InfoCompany formErrors={formErrors} />
           <NetworksCompany formErrors={formErrors} />
@@ -162,4 +162,4 @@ function RegistrationCandidate() {
   );
 }
 
-export default RegistrationCandidate;
+export default RegistrationCompany;
