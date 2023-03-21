@@ -3,7 +3,7 @@ import React from "react";
 function NetworksCandidate() {
   return (
     <div className="m-8 ">
-      <h2 className="font-bold text-sm text-black  text-left font-medium mb-4">
+      <h2 className="text-sm text-black  text-left font-medium mb-4">
         Mes réseaux
       </h2>
       <label
