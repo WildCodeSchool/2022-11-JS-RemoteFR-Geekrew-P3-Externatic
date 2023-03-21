@@ -22,13 +22,13 @@ function CandidateProfile() {
   return (
     <div className="bg-background flex flex-col justify-center font-jost md:flex-row">
       {candidate && (
-        <div className="bg-white rounded py-5 px-6 flex flex-col mx-8 my-8">
+        <div className="bg-white rounded py-5 px-6 flex flex-col mx-8 my-8 md:w-[70%]">
           <Profile
             lastname={candidate.lastname}
             firstname={candidate.firstname}
             location={candidate.location}
           />
-          <div className="md:flex gap-10">
+          <div className="md:flex">
             <UploadCv url={candidate.cv} />
             <Contacts
               phone={candidate.phone}
@@ -37,9 +37,14 @@ function CandidateProfile() {
               linkedin={candidate.linkedin}
             />
           </div>
-          <Skills softSkills={candidate.soft_skills} />
-          <MainButton> Accepter la candidature </MainButton>
-          <SecondaryButton> Refuser la candidature </SecondaryButton>
+          <Skills
+            softSkills={candidate.soft_skills}
+            hardSkills={candidate.techname}
+          />
+          <div className="md:flex md:items-center md:flex-row-reverse md:gap-4">
+            <MainButton> Accepter la candidature </MainButton>
+            <SecondaryButton> Refuser la candidature </SecondaryButton>
+          </div>
         </div>
       )}
     </div>

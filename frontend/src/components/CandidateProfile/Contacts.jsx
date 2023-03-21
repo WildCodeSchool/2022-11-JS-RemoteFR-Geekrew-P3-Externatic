@@ -7,7 +7,7 @@ import linkedinLogo from "../../assets/Icons/linkedin_main.svg";
 
 function Contacts({ phone, github, mail, linkedin }) {
   return (
-    <div className="md:w-2/3">
+    <div className="md:w-1/2">
       <h2 className="mt-6 font-semibold">Contacts</h2>
       <div className="flex flex-col sm:flex-row sm:flex-wrap">
         <div className="flex flex-row items-center mt-3">
