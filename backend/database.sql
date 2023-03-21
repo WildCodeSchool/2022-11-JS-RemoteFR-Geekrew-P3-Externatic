@@ -154,6 +154,14 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_general_ci;
 
+INSERT INTO `p3`.`candidate_has_technology` (`candidate_id`, `technology_id`) VALUES ('1', '1');
+INSERT INTO `p3`.`candidate_has_technology` (`candidate_id`, `technology_id`) VALUES ('1', '2');
+INSERT INTO `p3`.`candidate_has_technology` (`candidate_id`, `technology_id`) VALUES ('1', '7');
+INSERT INTO `p3`.`candidate_has_technology` (`candidate_id`, `technology_id`) VALUES ('1', '8');
+INSERT INTO `p3`.`candidate_has_technology` (`candidate_id`, `technology_id`) VALUES ('2', '1');
+INSERT INTO `p3`.`candidate_has_technology` (`candidate_id`, `technology_id`) VALUES ('2', '5');
+INSERT INTO `p3`.`candidate_has_technology` (`candidate_id`, `technology_id`) VALUES ('2', '9');
+
 
 -- -----------------------------------------------------
 -- Table `p3`.`COMPANY`
