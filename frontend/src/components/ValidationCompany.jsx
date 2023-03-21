@@ -1,25 +1,7 @@
 import React from "react";
-import axios from "axios";
-import { useCompanyContext } from "../contexts/CompanyContext";
+import PropTypes from "prop-types";
 
-const backEndURL = import.meta.env.VITE_BACKEND_URL;
-
-function ValidationCompany() {
-  const { companyFormState } = useCompanyContext();
-
-  const { confirmedPassword, ...company } = companyFormState;
-
-  const handleSubmit = () => {
-    // e.preventDefault;
-
-    if (company) {
-      axios.post(`${backEndURL}/companies`, company).catch((err) => {
-        console.error(err);
-        // alert("Le formulaire n'a pas pu être envoyé");
-      });
-    }
-  };
-
+function ValidationCompany({ handleSubmit }) {
   return (
     <div>
       <div className="m-8 flex flex-col md:flex-row-reverse md:gap-x-10">
@@ -37,20 +19,12 @@ function ValidationCompany() {
           Annuler
         </button>
       </div>
-      <p>name: {companyFormState.name}</p>
-      <p>siret: {companyFormState.siret}</p>
-      <p>mail: {companyFormState.mail}</p>
-      <p>phone: {companyFormState.phone}</p>
-      <p>number_of_employee: {companyFormState.number_of_employee}</p>
-      <p>field: {companyFormState.field}</p>
-      <p>location: {companyFormState.location}</p>
-      <p>description: {companyFormState.description}</p>
-      <p>linkedin: {companyFormState.linkedin}</p>
-      <p>picture: {companyFormState.picture}</p>
-      <p>password: {companyFormState.password}</p>
-      <p>confirmePassword: {companyFormState.confirmedPassword}</p>
     </div>
   );
 }
+
+ValidationCompany.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+};
 
 export default ValidationCompany;

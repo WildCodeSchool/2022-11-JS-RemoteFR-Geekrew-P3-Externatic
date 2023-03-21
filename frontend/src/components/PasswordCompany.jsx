@@ -1,8 +1,9 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import { useCompanyContext } from "../contexts/CompanyContext";
 
-function PasswordCompany() {
+function PasswordCompany({ formErrors }) {
   const { dispatch } = useCompanyContext();
 
   const handleInput = (e) => {
@@ -15,7 +16,7 @@ function PasswordCompany() {
 
   return (
     <div className="m-8 mt-0 md:grid md:grid-cols-2 md:gap-x-4">
-      <h2 className="font-bold text-sm text-black  text-left font-medium mb-4 md:col-span-2">
+      <h2 className="text-sm text-black  text-left font-medium mb-4 md:col-span-2">
         Mot de Passe
       </h2>
       <div>
@@ -32,6 +33,13 @@ function PasswordCompany() {
           onChange={handleInput}
           className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
+        {formErrors.password && (
+          <p className="text-sm text-red mb-4 mx-2">{formErrors.password}</p>
+        )}
+        <p className="text-xxs text-grey2">
+          (Votre mot de passe doit contenir 8 caractères et au moins un chiffre,
+          une majuscule et une minuscule)
+        </p>
       </div>
       <div>
         <label
@@ -47,9 +55,18 @@ function PasswordCompany() {
           onChange={handleInput}
           className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
+        {formErrors.confirmedPassword && (
+          <p className="text-sm text-red mb-4 mx-2">
+            {formErrors.confirmedPassword}
+          </p>
+        )}
       </div>
     </div>
   );
 }
+
+PasswordCompany.propTypes = {
+  formErrors: PropTypes.shape().isRequired,
+};
 
 export default PasswordCompany;

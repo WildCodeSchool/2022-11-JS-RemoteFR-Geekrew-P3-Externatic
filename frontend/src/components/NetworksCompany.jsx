@@ -1,8 +1,9 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import { useCompanyContext } from "../contexts/CompanyContext";
 
-function NetworksCompany() {
+function NetworksCompany({ formErrors }) {
   const { dispatch } = useCompanyContext();
 
   const handleInput = (e) => {
@@ -15,7 +16,7 @@ function NetworksCompany() {
 
   return (
     <div className="m-8 md:grid md:grid-cols-2 md:gap-x-4">
-      <h2 className="font-bold text-sm text-black  text-left font-medium mb-4 md:col-span-2">
+      <h2 className="text-sm text-black  text-left font-medium mb-4 md:col-span-2">
         Nos réseaux
       </h2>
       <div>
@@ -32,9 +33,16 @@ function NetworksCompany() {
           onChange={handleInput}
           className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
+        {formErrors.linkedin && (
+          <p className="text-sm text-red mb-4 mx-2">{formErrors.linkedin}</p>
+        )}
       </div>
     </div>
   );
 }
+
+NetworksCompany.propTypes = {
+  formErrors: PropTypes.shape().isRequired,
+};
 
 export default NetworksCompany;
