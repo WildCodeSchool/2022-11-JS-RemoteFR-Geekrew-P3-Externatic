@@ -6,7 +6,7 @@ function SignInCandidate() {
   return (
     <div>
       <p>Inscrivez-vous comme candidat</p>
-      <button onClick={() => navigate("/Registration-candidate")} type="button">
+      <button onClick={() => navigate("/Registrationandidate")} type="button">
         Connexion
       </button>
     </div>

@@ -1,5 +1,6 @@
 import React from "react";
 
+import { useCandidateContext } from "../contexts/CandidateContext";
 import CandidateProfilePic from "../components/CandidateProfilePic";
 import InfoCandidate from "../components/InfoCandidate";
 import ToggleCandidate from "../components/ToggleCandidate";
@@ -7,9 +8,10 @@ import SkillsCandidate from "../components/SkillsCandidate";
 import NetworksCandidate from "../components/NetworksCandidate";
 import CvCandidate from "../components/CvCandidate";
 import ValidationCandidate from "../components/ValidationCandidate";
-import CandidateContextProvider from "../contexts/CandidateContext";
 
 function RegistrationCandidate() {
+  const { formState } = useCandidateContext();
+
   return (
     <div className="md:bg-background">
       <div className="m-8 mx-auto w-11/12 md:w-2/3 lg:w-1/2">
@@ -26,23 +28,39 @@ function RegistrationCandidate() {
             </span>
           </h1>
         </div>
-        <CandidateContextProvider>
-          <div className="md:bg-white rounded-[10px] p-5">
-            <ToggleCandidate />
-            <div className="flex flex-row justify-between items-center">
-              <div className="ml-8 mt-4">
-                <CandidateProfilePic />
-              </div>
+
+        <div className="md:bg-white rounded-[10px] p-5">
+          <ToggleCandidate />
+          <div className="flex flex-row justify-between items-center">
+            <div className="ml-8 mt-4">
+              <CandidateProfilePic />
             </div>
-            <InfoCandidate />
-            <SkillsCandidate />
-            <div className="flex flex-col justify-start w-full md:grid md:grid-cols-2">
-              <CvCandidate />
-              <NetworksCandidate />
-            </div>
-            <ValidationCandidate />
           </div>
-        </CandidateContextProvider>
+          <InfoCandidate />
+          <SkillsCandidate />
+          <div className="flex flex-col justify-start w-full md:grid md:grid-cols-2">
+            <CvCandidate />
+            <NetworksCandidate />
+          </div>
+          <ValidationCandidate />
+        </div>
+        <p>firstname : {formState.firstname}</p>
+        <p>lastname : {formState.lastname}</p>
+        <p>email : {formState.email}</p>
+        <p>phone : {formState.phone}</p>
+        <p>language : {formState.language}</p>
+        <p>birth_date : {formState.birth_date}</p>
+        <p>location : {formState.location}</p>
+        <p>password : {formState.password}</p>
+        <p>picture : {formState.picture}</p>
+        <p>cv : {formState.cv}</p>
+        <p>age : {formState.age}</p>
+        <p>gender : {formState.gender}</p>
+        <p>picture : {formState.firstname}</p>
+        <p>linkedin : {formState.linkedin}</p>
+        <p>github : {formState.github}</p>
+        <p>soft_skills : {formState.soft_skills}</p>
+        <p>hard_skills : {formState.hard_skills}</p>
       </div>
     </div>
   );

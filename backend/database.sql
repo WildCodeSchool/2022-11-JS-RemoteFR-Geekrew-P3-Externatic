@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `p3`.`candidate` (
   `age` INT NOT NULL,
   `gender` VARCHAR(25) NOT NULL,
   `github` VARCHAR(255) NOT NULL,
-  `active` TINYINT(1) NOT NULL,
+  `active` TINYINT(1),
   `soft_skills` TEXT NOT NULL,
   `consultant_id` INT NOT NULL,
   `user_id` INT NOT NULL,

@@ -1,5 +1,4 @@
 import React from "react";
-import DisplayData from "./DisplayData";
 import { useCandidateContext } from "../contexts/CandidateContext";
 
 function InfosCandidate() {
@@ -144,21 +143,22 @@ function InfosCandidate() {
         </label>
         <input
           className="bg-gray-50 border border-gray-300 text-grey1 rounded mb-5 leading-9"
-          id="location"
+          id="password"
           name="password"
           type="password"
+          onChange={(e) => handleInput(e)}
         />
         <label className="mb-2 text-grey2" htmlFor="location">
           Confirmer mot de passe <span className="text-main-dark">*</span>
         </label>
         <input
           className="bg-gray-50 border border-gray-300 text-grey1 rounded mb-5 leading-9"
-          id="location"
+          id="confirm_password"
           name="confirm_password"
           type="password"
+          onChange={(e) => handleInput(e)}
         />
       </div>
-      <DisplayData />
     </div>
   );
 }
