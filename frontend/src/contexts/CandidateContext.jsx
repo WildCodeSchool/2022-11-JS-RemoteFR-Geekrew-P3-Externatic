@@ -12,7 +12,6 @@ const initialFormState = {
   email: "",
   phone: "",
   language: "",
-  birth_date: "",
   location: "",
   password: "",
   confirm_password: "",
