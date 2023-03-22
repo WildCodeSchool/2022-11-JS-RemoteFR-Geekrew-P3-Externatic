@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import expressAPI from "../services/expressAPI";
 import chevronDown from "../assets/Icons/chevron-down.svg";
 import chevronUp from "../assets/Icons/chevron-up.svg";
+import map from "../assets/Icons/map-pin.svg";
 
 function OfferDetails() {
   const { jobId } = useParams();
@@ -60,6 +61,14 @@ function OfferDetails() {
                 {offerDetails.number_of_employee}
               </span>
             </h2>
+            <div>
+              <img
+                className="m4 w-100 h-4 inline-block bg-main-black fill-current"
+                src={map}
+                alt="locationLogo"
+              />
+              <p>{offerDetails.location}</p>
+            </div>
           </>
         )}
       </div>
