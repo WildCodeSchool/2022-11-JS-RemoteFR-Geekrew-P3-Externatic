@@ -5,10 +5,6 @@ class TechnologyManager extends AbstractManager {
     super({ table: "technology" });
   }
 
-  techName() {
-    return this.database.query(`select name from  ${this.table}`);
-  }
-
   insert(technology) {
     return this.database.query(`insert into ${this.table} (name) values (?)`, [
       technology.name,

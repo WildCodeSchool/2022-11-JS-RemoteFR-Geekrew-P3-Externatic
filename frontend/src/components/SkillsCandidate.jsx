@@ -18,13 +18,8 @@ function SkillsCandidate() {
         Mes compétences
       </h2>
       <div className="flex flex-col justify-start w-full md:grid md:grid-cols-2">
-        <div className="md:mr-2">
-          <label
-            htmlFor="hard skills"
-            className="block mb-2 text-sm text-left font-medium text-grey2 dark:text-white"
-          >
-            Hard Skills
-          </label>
+        <div className="flex justify-center items-center md:mr-2">
+          
 
           <button
             className="flex text-sm text-black text-left font-medium"
@@ -35,7 +30,7 @@ function SkillsCandidate() {
             {isOpen ? (
               <img src={chevronUp} alt="fermer" className="h-6 w-6 ml-6" />
             ) : (
-              <img src={chevronDown} alt="ouvrir" className="h-6 w-6" />
+              <img src={chevronDown} alt="ouvrir" className="h-6 w-6 ml-6" />
             )}
           </button>
 
