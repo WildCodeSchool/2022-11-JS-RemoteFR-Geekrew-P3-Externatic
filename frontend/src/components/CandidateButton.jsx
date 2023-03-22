@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useCurrentUserContext } from "../contexts/currentUserContext";
+import { useCurrentUserContext } from "../contexts/CurrentUserContext";
 
 import candidateButton from "../assets/images/candidate-button.png";
 

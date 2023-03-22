@@ -1,4 +1,4 @@
-import { useCurrentUserContext } from "../contexts/currentUserContext";
+import { useCurrentUserContext } from "../contexts/CurrentUserContext";
 
 function SignInNav() {
   const { userType, setUserType } = useCurrentUserContext();
