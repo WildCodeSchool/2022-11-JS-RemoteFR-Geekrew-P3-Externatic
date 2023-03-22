@@ -1,6 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import expressAPI from "../services/expressAPI";
 
 function SkillsCandidate() {
+  const [technologies, setTechnologies] = useState([]);
+  useEffect(() => {
+    expressAPI.get(`/technologies`).then((res) => {
+      setTechnologies(res.data);
+    });
+  }, []);
+
   return (
     <div className="m-8 ">
       <h2 className="text-sm text-black text-left font-medium mb-4">
@@ -20,10 +28,9 @@ function SkillsCandidate() {
             className="bg-gray-50 border border-gray-300 text-grey1 text-sm rounded focus:ring-black focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500  mb-5"
           >
             <option>{}</option>
-            <option>Javascript</option>
-            <option>Java</option>
-            <option>PHP</option>
-            <option>React</option>
+            {technologies.map((technology) => (
+              <option>{technology.name}</option>
+            ))}
           </select>
         </div>
         <div className="w-full">
