@@ -165,8 +165,8 @@ function OfferDetails() {
             </>
           )}
         </div>
+        <MainButton handleClick={handleSubmit}>Postuler à l'annonce</MainButton>
       </div>
-      <MainButton handleClick={handleSubmit}>Postuler à l'annonce</MainButton>
     </div>
   );
 }

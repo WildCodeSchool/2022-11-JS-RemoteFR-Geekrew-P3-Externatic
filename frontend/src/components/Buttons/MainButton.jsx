@@ -14,7 +14,11 @@ function MainButton({ children, handleClick }) {
 
 MainButton.propTypes = {
   children: PropTypes.node.isRequired,
-  handleClick: PropTypes.func.isRequired,
+  handleClick: PropTypes.func,
+};
+
+MainButton.defaultProps = {
+  handleClick: () => {},
 };
 
 export default MainButton;

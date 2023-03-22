@@ -69,11 +69,16 @@ OfferDash.propTypes = {
   lowerSalary: PropTypes.number.isRequired,
   higherSalary: PropTypes.number.isRequired,
   workHours: PropTypes.number.isRequired,
-  postDate: PropTypes.number.isRequired,
+  postDate: PropTypes.number,
   entreprise: PropTypes.string.isRequired,
-  field: PropTypes.string.isRequired,
+  field: PropTypes.string,
   technologies: PropTypes.string.isRequired,
   jobId: PropTypes.number.isRequired,
+};
+
+OfferDash.defaultProps = {
+  field: "",
+  postDate: 0,
 };
 
 export default OfferDash;
