@@ -13,7 +13,7 @@ import RegistrationCandidate from "./pages/RegistrationCandidate";
 import RegistrationCompany from "./pages/RegistrationCompany";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 
-import { useCurrentUserContext } from "./contexts/CurrentUserContext";
+import { useCurrentUserContext } from "./contexts/currentUserContext";
 import CandidateProfile from "./pages/CandidateProfile";
 
 function App() {

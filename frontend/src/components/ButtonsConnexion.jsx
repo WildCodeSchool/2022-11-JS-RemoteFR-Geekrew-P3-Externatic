@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useCurrentUserContext } from "../contexts/CurrentUserContext";
+import { useCurrentUserContext } from "../contexts/currentUserContext";
 
 import login from "../assets/Icons/log-in.svg";
 import logout from "../assets/Icons/log-out.svg";
