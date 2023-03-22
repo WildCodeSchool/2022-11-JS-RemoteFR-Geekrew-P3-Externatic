@@ -6,7 +6,7 @@ require("dotenv").config();
 
 // const path = require("path");
 
-const cors = require("cors");
+// const cors = require("cors");
 
 const {
   hashPassword,
@@ -27,21 +27,13 @@ router.post("/users", hashPassword, userControllers.add);
 
 // uploader - pictures
 router.use(express.json());
-router.use(cors());
+// router.use(cors());
 
 const fileUpload = require("./middleware/multer");
 
 const { addUserImage } = require("./controllers/pictureController");
 
-router.put("/users/:id/picture", fileUpload, addUserImage);
-
-// router.use("/", express.static(path.join(__dirname, "../public")));
-// router.use(
-//   "/uploads",
-//   express.static(path.join(__dirname, "../public/uploads"))
-// );
-
-// end
+router.post("/users/:id", fileUpload, addUserImage);
 
 // Protected routes
 // router.use(verifyToken);

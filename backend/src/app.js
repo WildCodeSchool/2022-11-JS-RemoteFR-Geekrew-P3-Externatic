@@ -33,7 +33,8 @@ app.use(router);
 
 // serve the `backend/public` folder for public resources
 
-app.use(express.static(path.join(__dirname, "../public")));
+app.use("/", express.static(path.join(__dirname, "../public")));
+app.use("/uploads", express.static(path.join(__dirname, "../public/uploads")));
 // router.use("/", express.static(path.join(__dirname, "../public")));
 // router.use(
 //   "/uploads",

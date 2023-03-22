@@ -15,7 +15,7 @@ function PictureDisplay() {
     formData.append("name", name);
 
     expressAPI
-      .put("/user/1/picture", formData, {
+      .post(`/users/1`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       })
       .then(() => {
