@@ -49,9 +49,9 @@ function RegistrationCandidate() {
         <p>email : {formState.email}</p>
         <p>phone : {formState.phone}</p>
         <p>language : {formState.language}</p>
-        <p>birth_date : {formState.birth_date}</p>
         <p>location : {formState.location}</p>
         <p>password : {formState.password}</p>
+        <p>confirm_password : {formState.confirm_password}</p>
         <p>picture : {formState.picture}</p>
         <p>cv : {formState.cv}</p>
         <p>age : {formState.age}</p>

@@ -6,6 +6,8 @@ require("dotenv").config();
 
 const path = require("path");
 
+// const cors = require("cors");
+
 const {
   hashPassword,
   verifyPassword,
@@ -24,7 +26,8 @@ router.get("/logout", logout);
 router.post("/users", hashPassword, userControllers.add);
 
 // uploader - pictures
-router.use(express.json());
+// router.use(express.json());
+// router.use(cors());
 
 const fileUpload = require("./middleware/multer");
 

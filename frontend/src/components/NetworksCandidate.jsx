@@ -1,6 +1,17 @@
 import React from "react";
+import { useCandidateContext } from "../contexts/CandidateContext";
 
 function NetworksCandidate() {
+  const { dispatch } = useCandidateContext();
+
+  const handleInput = (e) => {
+    dispatch({
+      type: "HANDLE_INPUT",
+      field: e.target.name,
+      payload: e.target.value,
+    });
+  };
+
   return (
     <div className="m-8 ">
       <h2 className="text-sm text-black  text-left font-medium mb-4">
@@ -16,6 +27,7 @@ function NetworksCandidate() {
         type="text"
         id="base-input"
         name="linkedin"
+        onChange={(e) => handleInput(e)}
         className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
       />
       <label
@@ -28,6 +40,7 @@ function NetworksCandidate() {
         type="text"
         id="base-input"
         name="github"
+        onChange={(e) => handleInput(e)}
         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
       />
     </div>
