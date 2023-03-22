@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import PasswordCompany from "@components/PasswordCompany";
+import PasswordCompany from "../components/PasswordCompany";
 import { toastError, toastValidation } from "../services/toastService";
 
 import { useCompanyContext } from "../contexts/CompanyContext";

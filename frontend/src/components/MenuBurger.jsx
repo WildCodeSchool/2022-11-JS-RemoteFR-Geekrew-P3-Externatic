@@ -24,13 +24,13 @@ function MenuBurger() {
             </a>
             <a
               className="block px-4 py-2 text-gray-900 hover:text-main focus:text-main "
-              href="/"
+              href="/Connexion"
             >
               Mes Candidatures
             </a>
             <a
               className="block px-4 py-2 text-gray-900 hover:text-main focus:text-main"
-              href="/"
+              href="/Connexion"
             >
               Notifications
             </a>

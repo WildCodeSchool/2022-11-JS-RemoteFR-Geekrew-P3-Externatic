@@ -43,6 +43,14 @@ router.use(
 
 // end
 
+const technologyControllers = require("./controllers/technologyControllers");
+
+router.get("/technologies", technologyControllers.browse);
+router.get("/technologies/:id", technologyControllers.read);
+router.put("/technologies/:id", technologyControllers.edit);
+router.post("/technologies", technologyControllers.add);
+router.delete("/technologies/:id", technologyControllers.destroy);
+
 // Protected routes
 // router.use(verifyToken);
 
