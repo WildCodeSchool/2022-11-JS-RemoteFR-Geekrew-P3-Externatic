@@ -2,7 +2,17 @@ const express = require("express");
 
 const router = express.Router();
 
-const { hashPassword, verifyPassword, verifyToken, logout } = require("./auth");
+require("dotenv").config();
+
+const path = require("path");
+
+// const cors = require("cors");
+
+const {
+  hashPassword,
+  verifyPassword,
+  /* verifyToken */ logout,
+} = require("./auth");
 
 const userControllers = require("./controllers/userControllers");
 
@@ -15,8 +25,26 @@ router.get("/logout", logout);
 
 router.post("/users", hashPassword, userControllers.add);
 
+// uploader - pictures
+// router.use(express.json());
+// router.use(cors());
+
+const fileUpload = require("./middleware/multer");
+
+const { createOne } = require("./controllers/imageController");
+
+router.post("/users", fileUpload, createOne);
+
+router.use("/", express.static(path.join(__dirname, "../public")));
+router.use(
+  "/uploads",
+  express.static(path.join(__dirname, "../public/uploads"))
+);
+
+// end
+
 // Protected routes
-router.use(verifyToken);
+// router.use(verifyToken);
 
 router.get("/users", userControllers.browse);
 router.get("/users/:id", userControllers.read);

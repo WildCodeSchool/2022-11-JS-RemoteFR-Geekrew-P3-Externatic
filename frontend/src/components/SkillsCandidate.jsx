@@ -16,6 +16,7 @@ function SkillsCandidate() {
           </label>
           <select
             id="hard skills"
+            name="hard_skills"
             className="bg-gray-50 border border-gray-300 text-grey1 text-sm rounded focus:ring-black focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500  mb-5"
           >
             <option>{}</option>
@@ -35,7 +36,8 @@ function SkillsCandidate() {
           <input
             type="text"
             id="base-input"
-            className="bg-gray-50 border border-grey3 text-sm rounded focus:ring-main focus:border-main block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-main dark:focus:border-main"
+            name="soft_skills"
+            className="bg-gray-50 border border-grey3 text-sm rounded focus:ring-main focus:border-main block w-full p-2.5 "
           />
         </div>
       </div>
