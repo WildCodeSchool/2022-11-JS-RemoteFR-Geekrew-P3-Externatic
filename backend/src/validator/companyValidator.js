@@ -1,14 +1,24 @@
 const Joi = require("joi");
 
+const passwordSchema = Joi.string()
+  .min(8)
+  .pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).*$/)
+  .message(
+    "Le mot de passe doit contenir au moins une minuscule, une majuscule et un chiffre."
+  );
+
 const companySchema = Joi.object().keys({
-  title: Joi.string().min(3).max(150).required(),
-  numberOfEmployee: Joi.number().required(),
-  description: Joi.string().min(20).required(),
-  field: Joi.string().min(3).max(150).required(),
+  name: Joi.string().min(1).max(150).required(),
   siret: Joi.string().min(14).max(14).required(),
-  companyType: Joi.string().min(3).max(150).required(),
-  picture: Joi.string().min(3).max(255),
-  userId: Joi.number().required(),
+  mail: Joi.string().email().required(),
+  phone: Joi.string().min(9).max(11).required(),
+  number_of_employee: Joi.string().min(1).required(),
+  field: Joi.string().min(1).max(150).required(),
+  location: Joi.string().min(3).max(100).required(),
+  description: Joi.string().min(10).required(),
+  linkedin: Joi.string().min(7).required(),
+  picture: Joi.string().min(3).max(100),
+  password: passwordSchema.required(),
 });
 
 const validateCompany = (user) => {
