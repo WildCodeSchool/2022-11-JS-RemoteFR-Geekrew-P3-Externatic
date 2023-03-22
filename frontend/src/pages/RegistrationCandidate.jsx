@@ -1,6 +1,6 @@
 import React from "react";
 
-import ProfilePic from "../components/ProfilePic";
+import CandidateProfilePic from "../components/CandidateProfilePic";
 import InfoCandidate from "../components/InfoCandidate";
 import ToggleCandidate from "../components/ToggleCandidate";
 import SkillsCandidate from "../components/SkillsCandidate";
@@ -31,7 +31,7 @@ function RegistrationCandidate() {
             <ToggleCandidate />
             <div className="flex flex-row justify-between items-center">
               <div className="ml-8 mt-4">
-                <ProfilePic />
+                <CandidateProfilePic />
               </div>
             </div>
             <InfoCandidate />

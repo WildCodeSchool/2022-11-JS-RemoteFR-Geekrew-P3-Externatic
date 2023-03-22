@@ -2,7 +2,7 @@ import React from "react";
 import ValidationCompany from "../components/ValidationCompany";
 import InfosCompany from "../components/InfoCompany";
 import NetworksCompany from "../components/NetworksCompany";
-import ProfilePic from "../components/ProfilePic";
+import ProfilePic from "../components/CandidateProfilePic";
 
 function RegistrationCompany() {
   return (

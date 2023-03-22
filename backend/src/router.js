@@ -4,7 +4,7 @@ const router = express.Router();
 
 require("dotenv").config();
 
-const path = require("path");
+// const path = require("path");
 
 const cors = require("cors");
 
@@ -31,15 +31,15 @@ router.use(cors());
 
 const fileUpload = require("./middleware/multer");
 
-const { createOne } = require("./controllers/imageController");
+const { addUserImage } = require("./controllers/pictureController");
 
-router.post("/users", fileUpload, createOne);
+router.put("/users/:id/picture", fileUpload, addUserImage);
 
-router.use("/", express.static(path.join(__dirname, "../public")));
-router.use(
-  "/uploads",
-  express.static(path.join(__dirname, "../public/uploads"))
-);
+// router.use("/", express.static(path.join(__dirname, "../public")));
+// router.use(
+//   "/uploads",
+//   express.static(path.join(__dirname, "../public/uploads"))
+// );
 
 // end
 

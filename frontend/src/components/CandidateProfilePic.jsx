@@ -5,7 +5,7 @@ import circle from "../assets/images/circle.png";
 import plusIcon from "../assets/Icons/plus-circle.svg";
 import PictureDisplay from "./PictureDisplay";
 
-function ProfilePic() {
+function CandidateProfilePic() {
   const { dispatch } = useCandidateContext();
   const [filesDisplay, setFilesDisplay] = useState([]);
 
@@ -37,4 +37,4 @@ function ProfilePic() {
   );
 }
 
-export default ProfilePic;
+export default CandidateProfilePic;

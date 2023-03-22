@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable import/no-extraneous-dependencies */
 const multer = require("multer");
 const path = require("path");
@@ -17,7 +18,7 @@ const storage = multer.diskStorage({
   filename: (req, file, callback) => {
     const name = file.originalname.split(" ").join("_");
     const extension = MIME_TYPES[file.mimetype];
-
+    console.log(file);
     callback(null, `${name}-${uuidv4()}.${extension}`);
   },
 });
