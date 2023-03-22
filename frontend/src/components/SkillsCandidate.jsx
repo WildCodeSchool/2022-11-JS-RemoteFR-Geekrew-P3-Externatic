@@ -1,6 +1,17 @@
 import React from "react";
+import { useCandidateContext } from "../contexts/CandidateContext";
 
 function SkillsCandidate() {
+  const { dispatch } = useCandidateContext();
+
+  const handleInput = (e) => {
+    dispatch({
+      type: "HANDLE_INPUT",
+      field: e.target.name,
+      payload: e.target.value,
+    });
+  };
+
   return (
     <div className="m-8 ">
       <h2 className="text-sm text-black text-left font-medium mb-4">
@@ -37,8 +48,12 @@ function SkillsCandidate() {
             type="text"
             id="base-input"
             name="soft_skills"
+            onChange={(e) => handleInput(e)}
             className="bg-gray-50 border border-grey3 text-sm rounded focus:ring-main focus:border-main block w-full p-2.5 "
           />
+          <p className="text-xxs text-grey2 mt-2">
+            (Vous pouvez donner jusqu'à 3 soft skills, séparées par une virgule)
+          </p>
         </div>
       </div>
     </div>
