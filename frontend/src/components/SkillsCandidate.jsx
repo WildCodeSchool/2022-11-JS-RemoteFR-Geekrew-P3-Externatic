@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import expressAPI from "../services/expressAPI";
+import chevronDown from "../assets/Icons/chevron-down.svg";
+import chevronUp from "../assets/Icons/chevron-up.svg";
 
 function SkillsCandidate() {
+  const [isOpen, setOpen] = useState(false);
   const [technologies, setTechnologies] = useState([]);
   useEffect(() => {
     expressAPI.get(`/technologies`).then((res) => {
@@ -22,16 +25,34 @@ function SkillsCandidate() {
           >
             Hard Skills
           </label>
-          <select
-            id="hard skills"
-            name="hard_skills"
-            className="bg-gray-50 border border-gray-300 text-grey1 text-sm rounded focus:ring-black focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500  mb-5"
+
+          <button
+            className="flex text-sm text-black text-left font-medium"
+            onClick={() => setOpen(!isOpen)}
+            type="button"
           >
-            <option>{}</option>
-            {technologies.map((technology) => (
-              <option>{technology.name}</option>
-            ))}
-          </select>
+            Hard Skills
+            {isOpen ? (
+              <img src={chevronUp} alt="fermer" className="h-6 w-6 ml-6" />
+            ) : (
+              <img src={chevronDown} alt="ouvrir" className="h-6 w-6" />
+            )}
+          </button>
+
+          {technologies.map(
+            (technology) =>
+              isOpen && (
+                <>
+                  <input
+                    id={technology.name}
+                    name={technology.name}
+                    type="checkbox"
+                  />
+                  <label htmlFor={technology.name}>{technology.name}</label>
+                  <br />
+                </>
+              )
+          )}
         </div>
         <div className="w-full">
           <label
