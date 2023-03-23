@@ -30,11 +30,13 @@ router.use(express.json());
 // router.use(cors());
 
 const fileUpload = require("./middleware/multer");
+const cvUpload = require("./middleware/multer");
 
 const { addUserImage } = require("./controllers/pictureController");
+const { addUserCv } = require("./controllers/cvControllers");
 
-router.post("/users/:id", fileUpload, addUserImage);
-
+router.put("/users/:id/picture", fileUpload, addUserImage);
+router.put("/candidates/:id/cv", cvUpload, addUserCv);
 // Protected routes
 // router.use(verifyToken);
 
@@ -57,6 +59,7 @@ router.post("/companies", companyControllers.add);
 router.delete("/companies/:id", companyControllers.destroy);
 
 const candidateControllers = require("./controllers/candidateControllers");
+// const cvControllers = require("./controllers/cvControllers");
 
 router.get("/candidates", candidateControllers.browse);
 router.get("/candidates/:id", candidateControllers.read);

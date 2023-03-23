@@ -1,27 +1,25 @@
+/* eslint-disable no-restricted-syntax */
 import React, { useState } from "react";
 import expressAPI from "../services/expressAPI";
 
 function CvCandidate() {
-  const [files, setFiles] = useState([]);
-  const [name, setName] = useState("");
-
-  const handleInputChange = (e) => {
-    setFiles(e.target.files);
-    setName(e.target.name);
-  };
+  const [files, setFile] = useState([]);
 
   const handleForm = (e) => {
     e.preventDefault();
 
     const formData = new FormData();
     formData.append("file", files[0]);
-    formData.append("name", name);
 
     expressAPI
-      .post(`/candidate`, formData, {
+      .put(`/candidates/1/cv`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       })
-      .then("Fichier envoyé avec succès");
+      .then("Fichier envoyé avec succès")
+
+      .catch((error) => {
+        console.error("Error uploading photo:", error);
+      });
   };
 
   return (
@@ -36,7 +34,7 @@ function CvCandidate() {
         >
           Télécharger
           <input
-            onChange={handleInputChange}
+            onChange={(e) => setFile(e.target.files)}
             type="file"
             name="cv"
             accept=".pdf"

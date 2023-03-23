@@ -6,11 +6,10 @@ class ImageManager extends AbstractManager {
     super({ table: "user" });
   }
 
-  update(user) {
-    const { name, filename } = user;
+  update(filename, idUser) {
     return this.database.query(
-      `update ${this.table} set picture = ?,  where id = ?`,
-      [name, filename]
+      `update ${this.table} set picture = ? where id = ?`,
+      [filename, idUser]
     );
   }
 }
