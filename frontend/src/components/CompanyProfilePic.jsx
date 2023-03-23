@@ -2,7 +2,7 @@
 import { useState } from "react";
 import expressAPI from "../services/expressAPI";
 
-function PictureDisplay() {
+function CompanyProfilePic() {
   const [files, setFiles] = useState([]);
   const [name, setName] = useState("");
 
@@ -15,7 +15,7 @@ function PictureDisplay() {
     formData.append("name", name);
 
     expressAPI
-      .put(`/users/5/picture`, formData, {
+      .put(`/companies/2/picture`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       })
       .then(() => {
@@ -25,7 +25,6 @@ function PictureDisplay() {
         console.error("Error uploading photo:", error);
       });
   };
-
   return (
     <div className="float-left w-full md:w-96 md:max-w-full mx-auto mb-5">
       <div className="p-6 border border-gray-300 sm:rounded-md">
@@ -76,4 +75,4 @@ function PictureDisplay() {
   );
 }
 
-export default PictureDisplay;
+export default CompanyProfilePic;

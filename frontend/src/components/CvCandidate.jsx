@@ -46,10 +46,10 @@ function CvCandidate() {
         </label>
         <button
           type="submit"
-          className="bg-main rounded-full p-1 px-2 w-fit text-white mt-2"
+          className="mr-2 mb-2 text-sm font-medium text-main underline hover:no-underline"
         >
           {" "}
-          Charger
+          Télécharger mon cv
         </button>
       </form>
     </div>

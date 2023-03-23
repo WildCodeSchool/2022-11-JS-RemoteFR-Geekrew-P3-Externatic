@@ -30,10 +30,13 @@ router.use(express.json());
 
 const fileUpload = require("./middleware/multer");
 const cvUpload = require("./middleware/multer");
+const candidatePicture = require("./middleware/multer");
 
 const { addUserImage } = require("./controllers/pictureController");
 const { addUserCv } = require("./controllers/cvControllers");
+const { addCompanyImage } = require("./controllers/companyPictureControllers");
 
+router.put("/companies/:id/picture", candidatePicture, addCompanyImage);
 router.put("/users/:id/picture", fileUpload, addUserImage);
 router.put("/candidates/:id/cv", cvUpload, addUserCv);
 // Protected routes

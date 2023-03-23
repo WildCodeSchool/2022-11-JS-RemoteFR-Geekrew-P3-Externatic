@@ -80,6 +80,11 @@ const CvManager = require("./CvManager");
 models.cv = new CvManager();
 models.cv.setDatabase(pool);
 
+const CompanyPictureManager = require("./CompanyPictureManager");
+
+models.picture = new CompanyPictureManager();
+models.picture.setDatabase(pool);
+
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model
 
