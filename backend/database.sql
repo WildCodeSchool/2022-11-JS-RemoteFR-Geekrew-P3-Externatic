@@ -171,12 +171,10 @@ DROP TABLE IF EXISTS `p3`.`company` ;
 CREATE TABLE IF NOT EXISTS `p3`.`company` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(150) NOT NULL,
-  `number_of_employee` INT NOT NULL,
+  `number_of_employee` VARCHAR(10) NOT NULL,
   `description` TEXT NOT NULL,
   `field` VARCHAR(150) NOT NULL,
   `siret` VARCHAR(14) NOT NULL,
-  `company_type` VARCHAR(150) NOT NULL,
-  `picture` VARCHAR(255) NOT NULL,
   `user_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_company_user_id` (`user_id` ASC) VISIBLE,
@@ -196,11 +194,9 @@ INSERT INTO `company` VALUES
 "Braka-C, c'est une sart up en plein essort spécialisée dans une nouvelle technologie de réduction de fracture et de plâtre ! Rejoignez-nous et cassez vous joyeusement le bras afin de constater notre expertise !",
 'Santé',
 '01234567891011',
-'Start Up',
-'https//:urldelimageonverraplustard',
 2),
-(2,'Taupiqueur',250,'Editeur de logiciel SaaS spécialisé dans le domaine du BTP','BTP','04136785471356','PME','https//:urldelimageonverraplustard',3),
-(3,'DigiDollars',95,'Nous sommes une ESN spécialisée dans le secteur banquire. Nous proposons à nos clients une solution clé en mains, et sommes spécialisée dans la migration vers une stack moderne.','Banque','98567439621584','ESN','https//:urldelimageonverraplustard',4);
+(2,'Taupiqueur',250,'Editeur de logiciel SaaS spécialisé dans le domaine du BTP','BTP','04136785471356',3),
+(3,'DigiDollars',95,'Nous sommes une ESN spécialisée dans le secteur banquire. Nous proposons à nos clients une solution clé en mains, et sommes spécialisée dans la migration vers une stack moderne.','Banque','98567439621584',4);
 
 UNLOCK TABLES;
 -- -----------------------------------------------------
@@ -556,14 +552,14 @@ DROP TABLE IF EXISTS `p3`.`user` ;
 
 CREATE TABLE IF NOT EXISTS `p3`.`user` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `firstname` VARCHAR(100) NOT NULL,
-  `lastname` VARCHAR(100) NOT NULL,
+  `firstname` VARCHAR(100),
+  `lastname` VARCHAR(100),
   `mail` VARCHAR(255) NOT NULL,
   `linkedin` VARCHAR(255) NOT NULL,
   `phone` VARCHAR(20) NOT NULL,
   `hashed_password` VARCHAR(255) NOT NULL,
   `location` VARCHAR(150) NOT NULL,
-  `picture` VARCHAR(255) NOT NULL,
+  `picture` VARCHAR(255),
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4

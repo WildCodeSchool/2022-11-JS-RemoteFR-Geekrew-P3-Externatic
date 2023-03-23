@@ -27,7 +27,6 @@ router.post("/users", hashPassword, userControllers.add);
 
 // uploader - pictures
 router.use(express.json());
-// router.use(cors());
 
 const fileUpload = require("./middleware/multer");
 const cvUpload = require("./middleware/multer");

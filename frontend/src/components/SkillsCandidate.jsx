@@ -3,7 +3,7 @@ import React from "react";
 function SkillsCandidate() {
   return (
     <div className="m-8 ">
-      <h2 className="font-bold text-sm text-black text-left font-medium mb-4">
+      <h2 className="text-sm text-black text-left font-medium mb-4">
         Mes compétences
       </h2>
       <div className="flex flex-col justify-start w-full md:grid md:grid-cols-2">

@@ -8,7 +8,7 @@ import GoogleLogo from "../assets/Icons/Google.svg";
 import LinkedinLogo from "../assets/Icons/logos_linkedin-icon.svg";
 
 import expressAPI from "../services/expressAPI";
-import toastError from "../services/toastService";
+import { toastError } from "../services/toastService";
 
 function ConnexionForm() {
   const { setUser, email, setEmail } = useCurrentUserContext();
