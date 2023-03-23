@@ -36,7 +36,7 @@ const verifyPassword = (req, res) => {
         delete req.user.hashed_password;
 
         res.cookie("auth_token", token, { httpOnly: true, secure: false });
-        res.status(200).json({ user: req.user });
+        res.status(200).json({ user: req.user, roles: req.user.roles });
       } else {
         res.sendStatus(401);
       }

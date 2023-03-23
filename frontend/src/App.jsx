@@ -16,9 +16,10 @@ import ProtectedRoutes from "./components/ProtectedRoutes";
 import { useCurrentUserContext } from "./contexts/CurrentUserContext";
 import CandidateProfile from "./pages/CandidateProfile";
 import Candidacies from "./pages/Candidacies";
+import TestAdmin from "./pages/TestAdmin";
 
 function App() {
-  const { user } = useCurrentUserContext();
+  const { user, roles } = useCurrentUserContext();
 
   return (
     <div className="App">
@@ -40,8 +41,18 @@ function App() {
           <Route path="/OfferDetails/:jobId" element={<OfferDetails />} />
           <Route path="/Candidacies/:candidateId" element={<Candidacies />} />
           <Route path="/Logout" element={<Logout />} />
-          <Route element={<ProtectedRoutes user={user} />}>
+          <Route element={<ProtectedRoutes isAllowed={user !== ""} />}>
             <Route path="/Dashboard" element={<Dashboard />} />
+            <Route
+              element={
+                <ProtectedRoutes
+                  isAllowed={roles.includes("admin")}
+                  redirectPath="/"
+                />
+              }
+            >
+              <Route path="/Test-admin" element={<TestAdmin />} />
+            </Route>
           </Route>
         </Route>
       </Routes>

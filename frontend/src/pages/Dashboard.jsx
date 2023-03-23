@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import SearchBar from "../components/SearchBar";
 import OffersContainer from "../components/OffersContainer";
 import AdvancedSearchButton from "../components/AdvancedSearchButton";
@@ -10,6 +12,7 @@ function Dashboard() {
       <AdvancedSearchButton />
       <OffersContainer />
       <FavoriteDash />
+      <Link to="/Test-admin">Test Admin</Link>
     </div>
   );
 }

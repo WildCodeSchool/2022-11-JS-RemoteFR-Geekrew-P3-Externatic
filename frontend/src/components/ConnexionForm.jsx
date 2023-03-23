@@ -11,7 +11,7 @@ import expressAPI from "../services/expressAPI";
 import toastError from "../services/toastService";
 
 function ConnexionForm() {
-  const { setUser, email, setEmail } = useCurrentUserContext();
+  const { setUser, email, setEmail, setRoles } = useCurrentUserContext();
   const navigate = useNavigate();
 
   const [password, setPassword] = useState("");
@@ -24,8 +24,15 @@ function ConnexionForm() {
       expressAPI
         .post("/login", { mail: email, password })
         .then((res) => {
-          setUser(res.data.user.mail);
-          localStorage.setItem("user", JSON.stringify(res.data));
+          const user = {
+            mail: res.data.user.mail,
+            roles: JSON.parse(res.data.user.roles),
+          };
+
+          setUser(user.mail);
+          setRoles(user.roles);
+
+          localStorage.setItem("user", JSON.stringify(user));
           navigate("/Dashboard");
         })
         .catch(() => toastError("Le mot de passe ou l'email est incorrect"));
