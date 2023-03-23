@@ -2,15 +2,36 @@ import React, { useState, useEffect } from "react";
 import expressAPI from "../services/expressAPI";
 import chevronDown from "../assets/Icons/chevron-down.svg";
 import chevronUp from "../assets/Icons/chevron-up.svg";
+import { useCandidateContext } from "../contexts/CandidateContext";
 
 function SkillsCandidate() {
+  const { dispatch } = useCandidateContext();
+
   const [isOpen, setOpen] = useState(false);
   const [technologies, setTechnologies] = useState([]);
+
   useEffect(() => {
     expressAPI.get(`/technologies`).then((res) => {
       setTechnologies(res.data);
     });
   }, []);
+
+  const [candidateHardSkills, setCandidateHardSkills] = useState([]);
+
+  const handleHardSkills = (e) => {
+    if (e.target.checked === true) {
+      setCandidateHardSkills([...candidateHardSkills, e.target.name]);
+    }
+  };
+
+  useEffect(() => {
+    const hardSkillsForm = candidateHardSkills.join(", ");
+
+    dispatch({
+      type: "HANDLE_HARDSKILLS",
+      payload: hardSkillsForm,
+    });
+  }, [candidateHardSkills]);
 
   return (
     <div className="m-8 ">
@@ -40,6 +61,7 @@ function SkillsCandidate() {
                       id={technology.name}
                       name={technology.name}
                       type="checkbox"
+                      onChange={handleHardSkills}
                     />
                     <label
                       className="ml-6 text-sm text-black text-left font-medium"
