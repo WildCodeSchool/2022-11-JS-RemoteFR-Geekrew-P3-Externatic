@@ -1,6 +1,6 @@
 const rolesCheck = (...rolesToCheck) => {
   return (req, res, next) => {
-    const userRoles = JSON.parse(req.user.roles);
+    const userRoles = JSON.parse(req.payload.roles);
 
     if (userRoles.some((userRole) => rolesToCheck.includes(userRole))) {
       next();
@@ -10,4 +10,4 @@ const rolesCheck = (...rolesToCheck) => {
   };
 };
 
-module.export = rolesCheck;
+module.exports = rolesCheck;
