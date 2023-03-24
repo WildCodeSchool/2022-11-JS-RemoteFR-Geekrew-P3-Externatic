@@ -583,6 +583,9 @@ UNLOCK TABLES;
 ALTER TABLE `p3`.`user` 
 ADD COLUMN `roles` VARCHAR(255) NOT NULL DEFAULT '["user"]' AFTER `picture`;
 UPDATE `p3`.`user` SET `roles` = '[\"user\", \"admin\"]' WHERE (`id` = '1');
+UPDATE `p3`.`user` SET `roles` = '[\"user\", \"admin\", \"consultant\"]' WHERE (`id` = '1');
+UPDATE `p3`.`user` SET `roles` = '[\"user\", \"candidate\"]' WHERE (`id` = '4');
+UPDATE `p3`.`user` SET `roles` = '[\"user\", \"company\"]' WHERE (`id` = '2');
 
 
 
