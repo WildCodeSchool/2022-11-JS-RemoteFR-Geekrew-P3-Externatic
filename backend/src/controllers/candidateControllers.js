@@ -64,45 +64,46 @@ const add = async (req, res) => {
 
     if (validationResult.length) {
       res.status(400).send(validationResult);
-    }
+    } else if (validationResult.length === 0) {
+      const hashingOptions = {
+        type: argon2.argon2id,
+        memoryCost: 2 ** 19,
+        timeCost: 5,
+        parallelism: 1,
+      };
 
-    const hashingOptions = {
-      type: argon2.argon2id,
-      memoryCost: 2 ** 19,
-      timeCost: 5,
-      parallelism: 1,
-    };
-
-    const hashedPassword = await argon2.hash(
-      candidate.password,
-      hashingOptions
-    );
-
-    candidate.password = hashedPassword;
-
-    const [userResult] = await models.candidate.insertCandidateIntoUser(
-      candidate
-    );
-
-    // console.log(userResult);
-
-    const candidateUserId = userResult.insertId;
-
-    const [candidateResult] =
-      await models.candidate.insertCandidateIntoCandidate(
-        candidate,
-        candidateUserId
+      const hashedPassword = await argon2.hash(
+        candidate.password,
+        hashingOptions
       );
 
-    // const candidateLastInsertId = candidateResult.insertId;
+      candidate.password = hashedPassword;
 
-    // const [candidateHasTechnologyResult] =
-    //   await models.candidate.insertCandIntoCandHasTechno(
-    //     candidate,
-    //     candidateLastInsertId
-    //   );
+      const [userResult] = await models.candidate.insertCandidateIntoUser(
+        candidate
+      );
 
-    res.location(`/candidates/${candidateResult.insertId}`).sendStatus(201);
+      const candidateUserId = userResult.insertId;
+
+      const [candidateResult] =
+        await models.candidate.insertCandidateIntoCandidate(
+          candidate,
+          candidateUserId
+        );
+
+      const candidateLastInsertId = candidateResult.insertId;
+
+      const hardSkillsArray = candidate.hard_skills.split(",");
+
+      hardSkillsArray.forEach((hardSkill) => {
+        models.candidate.insertCandIntoCandHasTechno(
+          hardSkill,
+          candidateLastInsertId
+        );
+      });
+
+      res.location(`/candidates/${candidateResult.insertId}`).sendStatus(201);
+    }
   } catch (err) {
     console.error(err);
     res.sendStatus(500);

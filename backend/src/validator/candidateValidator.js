@@ -15,11 +15,13 @@ const candidateSchema = Joi.object().keys({
   hard_skills: Joi.string().min(3).max(150).required(),
   firstname: Joi.string().min(3).max(100).required(),
   lastname: Joi.string().min(3).max(100).required(),
-  mail: Joi.string().email().required(),
+  email: Joi.string().email().required(),
   linkedin: Joi.string().min(3).max(100).required(),
   phone: Joi.string().min(9).max(11).required(),
   password: passwordSchema.required(),
   location: Joi.string().min(3).max(100).required(),
+  picture: Joi.string().allow("", null),
+  cv: Joi.string().allow("", null),
 });
 
 const validateCandidate = (user) => {

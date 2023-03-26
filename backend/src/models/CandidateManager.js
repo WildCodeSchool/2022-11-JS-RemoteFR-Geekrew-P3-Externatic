@@ -46,14 +46,11 @@ class CandidateManager extends AbstractManager {
     );
   }
 
-  insertCandIntoCandHasTechno(candidate, candidateLastInsertId) {
-    const hardSkillsArray = candidate.hard_skills.split(",");
-    return hardSkillsArray.forEach((hardSkill) => {
-      this.database.query(
-        `INSERT INTO candidate_has_technology (candidate_id, technology_id) VALUES (?, ?);`,
-        [candidateLastInsertId, hardSkill]
-      );
-    });
+  insertCandIntoCandHasTechno(hardSkill, candidateLastInsertId) {
+    return this.database.query(
+      `INSERT INTO candidate_has_technology (candidate_id, technology_id) VALUES (?, ?);`,
+      [candidateLastInsertId, hardSkill]
+    );
   }
 
   update(candidate) {

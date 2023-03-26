@@ -57,13 +57,13 @@ DROP TABLE IF EXISTS `p3`.`candidate` ;
 
 CREATE TABLE IF NOT EXISTS `p3`.`candidate` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `cv` VARCHAR(255) NOT NULL,
+  `cv` VARCHAR(255) DEFAULT "",
   `age` INT NOT NULL,
   `gender` VARCHAR(25) NOT NULL,
   `github` VARCHAR(255),
-  `active` TINYINT(1) DEFAULT "true",
+  `active` TINYINT(1) DEFAULT 1,
   `soft_skills` TEXT NOT NULL,
-  `consultant_id` INT NOT NULL,
+  `consultant_id` INT,
   `user_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_candidate_consultant_id` (`consultant_id` ASC) VISIBLE,

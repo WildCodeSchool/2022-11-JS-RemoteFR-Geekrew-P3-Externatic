@@ -128,6 +128,7 @@ function InfosCandidate({ formErrors, setFormErrors, validate, isSubmit }) {
             id="firstname"
             name="firstname"
             type="text"
+            autoComplete="on"
             onChange={(e) => handleInput(e)}
           />
           {isSubmit && formErrors.firstname && (
@@ -145,6 +146,7 @@ function InfosCandidate({ formErrors, setFormErrors, validate, isSubmit }) {
             id="lastname"
             name="lastname"
             type="text"
+            autoComplete="on"
             onChange={(e) => handleInput(e)}
           />
           {isSubmit && formErrors.lastname && (
@@ -162,6 +164,7 @@ function InfosCandidate({ formErrors, setFormErrors, validate, isSubmit }) {
             id="email"
             name="email"
             type="email"
+            autoComplete="on"
             onChange={(e) => handleInput(e)}
           />
           {isSubmit && formErrors.email && (
@@ -179,6 +182,7 @@ function InfosCandidate({ formErrors, setFormErrors, validate, isSubmit }) {
             id="phone"
             name="phone"
             type="text"
+            autoComplete="on"
             onChange={(e) => handleInput(e)}
           />
           {isSubmit && formErrors.phone && (
@@ -196,6 +200,7 @@ function InfosCandidate({ formErrors, setFormErrors, validate, isSubmit }) {
             id="location"
             name="location"
             type="text"
+            autoComplete="on"
             onChange={(e) => handleInput(e)}
           />
           {isSubmit && formErrors.location && (
@@ -213,6 +218,7 @@ function InfosCandidate({ formErrors, setFormErrors, validate, isSubmit }) {
             id="birth_date"
             name="age"
             type="date"
+            autoComplete="on"
             onChange={(e) => handleAge(e)}
           />
           {isSubmit && formErrors.age && (
@@ -231,6 +237,7 @@ function InfosCandidate({ formErrors, setFormErrors, validate, isSubmit }) {
           id="password"
           name="password"
           type="password"
+          autoComplete="on"
           onChange={(e) => handleInput(e)}
         />
         {isSubmit && formErrors.password && (
@@ -246,6 +253,7 @@ function InfosCandidate({ formErrors, setFormErrors, validate, isSubmit }) {
           id="confirmPassword"
           name="confirmPassword"
           type="password"
+          autoComplete="on"
           onChange={(e) => handleInput(e)}
         />
         {isSubmit && formErrors.confirmPassword && (

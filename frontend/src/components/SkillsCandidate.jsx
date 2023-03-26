@@ -101,6 +101,7 @@ function SkillsCandidate({ formErrors, setFormErrors, validate, isSubmit }) {
             type="text"
             id="base-input"
             name="soft_skills"
+            autoComplete="on"
             onChange={(e) => handleInput(e)}
             className="bg-gray-50 border border-grey3 text-sm rounded focus:ring-main focus:border-main block w-full p-2.5 "
           />
