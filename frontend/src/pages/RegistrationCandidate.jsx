@@ -16,6 +16,7 @@ function RegistrationCandidate() {
   const { confirmPassword, ...candidate } = formState;
 
   const [formErrors, setFormErrors] = useState({});
+  const [isSubmit, setIsSubmit] = useState(false);
 
   const validate = (values) => {
     const errors = {};
@@ -34,10 +35,10 @@ function RegistrationCandidate() {
     } else if (values.lastname.length < 3 || values.lastname.length > 100) {
       errors.lastname = "Il y a un problème avec votre nom de famille";
     }
-    if (!values.mail) {
-      errors.mail = "Mail is required";
-    } else if (!emailRegex.test(values.mail)) {
-      errors.mail = "Cette adresse mail n'est pas valide";
+    if (!values.email) {
+      errors.email = "Mail is required";
+    } else if (!emailRegex.test(values.email)) {
+      errors.email = "Cette adresse mail n'est pas valide";
     }
     if (!values.phone) {
       errors.phone = "Phone is required";
@@ -88,8 +89,7 @@ function RegistrationCandidate() {
   };
 
   const handleSubmit = () => {
-    setFormErrors(validate(formState));
-
+    setIsSubmit(true);
     if (Object.keys(formErrors).length > 0) {
       toastError("Vous n'avez pas correctement rempli les champs requis");
     } else if (candidate && Object.keys(formErrors).length === 0) {
@@ -121,11 +121,26 @@ function RegistrationCandidate() {
               <CandidateProfilePic />
             </div>
           </div>
-          <InfoCandidate formErrors={formErrors} />
-          <SkillsCandidate formErrors={formErrors} />
+          <InfoCandidate
+            formErrors={formErrors}
+            setFormErrors={setFormErrors}
+            isSubmit={isSubmit}
+            validate={validate}
+          />
+          <SkillsCandidate
+            formErrors={formErrors}
+            setFormErrors={setFormErrors}
+            isSubmit={isSubmit}
+            validate={validate}
+          />
           <div className="flex flex-col justify-start w-full md:grid md:grid-cols-2">
             <CvCandidate />
-            <NetworksCandidate formErrors={formErrors} />
+            <NetworksCandidate
+              formErrors={formErrors}
+              setFormErrors={setFormErrors}
+              isSubmit={isSubmit}
+              validate={validate}
+            />
           </div>
           <ValidationCandidate handleSubmit={handleSubmit} />
         </div>
@@ -133,7 +148,6 @@ function RegistrationCandidate() {
         <p>lastname : {formState.lastname}</p>
         <p>email : {formState.email}</p>
         <p>phone : {formState.phone}</p>
-        <p>language : {formState.language}</p>
         <p>location : {formState.location}</p>
         <p>password : {formState.password}</p>
         <p>confirmPassword : {formState.confirmPassword}</p>

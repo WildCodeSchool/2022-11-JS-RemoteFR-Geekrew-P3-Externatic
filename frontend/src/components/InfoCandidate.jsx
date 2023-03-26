@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useCandidateContext } from "../contexts/CandidateContext";
 
-function InfosCandidate({ formErrors }) {
-  const { dispatch } = useCandidateContext();
+function InfosCandidate({ formErrors, setFormErrors, validate, isSubmit }) {
+  const { dispatch, formState } = useCandidateContext();
 
   const initialCheckboxes = {
     man: false,
@@ -20,6 +20,10 @@ function InfosCandidate({ formErrors }) {
       payload: e.target.value,
     });
   };
+
+  useEffect(() => {
+    setFormErrors(validate(formState));
+  }, [formState]);
 
   const handleAge = (e) => {
     const birthDate = e.target.value;
@@ -108,6 +112,11 @@ function InfosCandidate({ formErrors }) {
             </label>
           </div>
         </div>
+        {isSubmit && formErrors.gender && (
+          <p className="text-sm text-red mb-6 mt-[-12px] mx-2">
+            {formErrors.gender}
+          </p>
+        )}
       </div>
       <form className="flex flex-col justify-start w-full md:grid md:grid-cols-2">
         <div className="flex flex-col md:mr-2 ">
@@ -121,7 +130,7 @@ function InfosCandidate({ formErrors }) {
             type="text"
             onChange={(e) => handleInput(e)}
           />
-          {formErrors.firstname && (
+          {isSubmit && formErrors.firstname && (
             <p className="text-red text-sm mb-6 mt-[-12px] mx-2">
               {formErrors.firstname}
             </p>
@@ -138,7 +147,7 @@ function InfosCandidate({ formErrors }) {
             type="text"
             onChange={(e) => handleInput(e)}
           />
-          {formErrors.lastname && (
+          {isSubmit && formErrors.lastname && (
             <p className="text-red text-sm mb-6 mt-[-12px] mx-2">
               {formErrors.lastname}
             </p>
@@ -155,9 +164,9 @@ function InfosCandidate({ formErrors }) {
             type="email"
             onChange={(e) => handleInput(e)}
           />
-          {formErrors.mail && (
+          {isSubmit && formErrors.email && (
             <p className="text-red text-sm mb-6 mt-[-12px] mx-2">
-              {formErrors.mail}
+              {formErrors.email}
             </p>
           )}
         </div>
@@ -172,7 +181,7 @@ function InfosCandidate({ formErrors }) {
             type="text"
             onChange={(e) => handleInput(e)}
           />
-          {formErrors.phone && (
+          {isSubmit && formErrors.phone && (
             <p className="text-red text-sm mb-6 mt-[-12px] mx-2">
               {formErrors.phone}
             </p>
@@ -189,7 +198,7 @@ function InfosCandidate({ formErrors }) {
             type="text"
             onChange={(e) => handleInput(e)}
           />
-          {formErrors.location && (
+          {isSubmit && formErrors.location && (
             <p className="text-red text-sm mb-6 mt-[-12px] mx-2">
               {formErrors.location}
             </p>
@@ -206,7 +215,7 @@ function InfosCandidate({ formErrors }) {
             type="date"
             onChange={(e) => handleAge(e)}
           />
-          {formErrors.age && (
+          {isSubmit && formErrors.age && (
             <p className="text-red text-sm mb-6 mt-[-12px] mx-2">
               {formErrors.age}
             </p>
@@ -224,7 +233,7 @@ function InfosCandidate({ formErrors }) {
           type="password"
           onChange={(e) => handleInput(e)}
         />
-        {formErrors.password && (
+        {isSubmit && formErrors.password && (
           <p className="text-red text-sm mb-6 mt-[-12px] mx-2">
             {formErrors.password}
           </p>
@@ -239,7 +248,7 @@ function InfosCandidate({ formErrors }) {
           type="password"
           onChange={(e) => handleInput(e)}
         />
-        {formErrors.confirmPassword && (
+        {isSubmit && formErrors.confirmPassword && (
           <p className="text-red text-sm mb-6 mt-[-12px] mx-2">
             {formErrors.confirmPassword}
           </p>
@@ -251,6 +260,9 @@ function InfosCandidate({ formErrors }) {
 
 InfosCandidate.propTypes = {
   formErrors: PropTypes.shape().isRequired,
+  setFormErrors: PropTypes.func.isRequired,
+  validate: PropTypes.func.isRequired,
+  isSubmit: PropTypes.bool.isRequired,
 };
 
 export default InfosCandidate;

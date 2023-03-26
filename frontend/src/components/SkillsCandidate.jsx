@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import expressAPI from "../services/expressAPI";
 import chevronDown from "../assets/Icons/chevron-down.svg";
 import chevronUp from "../assets/Icons/chevron-up.svg";
 import { useCandidateContext } from "../contexts/CandidateContext";
 
-function SkillsCandidate() {
-  const { dispatch } = useCandidateContext();
+function SkillsCandidate({ formErrors, setFormErrors, validate, isSubmit }) {
+  const { dispatch, formState } = useCandidateContext();
   const [isOpen, setOpen] = useState(false);
   const [technologies, setTechnologies] = useState([]);
 
@@ -22,6 +23,10 @@ function SkillsCandidate() {
       setTechnologies(res.data);
     });
   }, []);
+
+  useEffect(() => {
+    setFormErrors(validate(formState));
+  }, [formState]);
 
   return (
     <div className="m-8 font-jost">
@@ -55,6 +60,11 @@ function SkillsCandidate() {
                 </>
               )
           )}
+          {isSubmit && formErrors.hard_skills && (
+            <p className="text-sm text-red mb-6 mt-[-12px] mx-2">
+              {formErrors.hard_skills}
+            </p>
+          )}
         </div>
         <div className="w-full">
           <label
@@ -70,6 +80,11 @@ function SkillsCandidate() {
             onChange={(e) => handleInput(e)}
             className="bg-gray-50 border border-grey3 text-sm rounded focus:ring-main focus:border-main block w-full p-2.5 "
           />
+          {isSubmit && formErrors.soft_skills && (
+            <p className="text-sm text-red mb-6 mt-[-12px] mx-2">
+              {formErrors.soft_skills}
+            </p>
+          )}
           <p className="text-xs text-grey2 mt-2">
             (Vous pouvez donner jusqu'à 3 soft skills, séparées par une virgule)
           </p>
@@ -78,5 +93,12 @@ function SkillsCandidate() {
     </div>
   );
 }
+
+SkillsCandidate.propTypes = {
+  formErrors: PropTypes.shape().isRequired,
+  setFormErrors: PropTypes.func.isRequired,
+  validate: PropTypes.func.isRequired,
+  isSubmit: PropTypes.bool.isRequired,
+};
 
 export default SkillsCandidate;
