@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 import SearchBar from "../components/SearchBar";
 import OffersContainer from "../components/OffersContainer";
 import AdvancedSearchButton from "../components/AdvancedSearchButton";
@@ -12,7 +10,7 @@ function Dashboard() {
   const { roles } = useCurrentUserContext();
   return (
     <div className="bg-background flex flex-col justify-center">
-      {roles.includes("candidate") && (
+      {roles.includes("candidate" || "admin") && (
         <>
           <SearchBar />
           <AdvancedSearchButton />
@@ -21,7 +19,6 @@ function Dashboard() {
         </>
       )}
       {roles.includes("company") && <CompanyDash />}
-      <Link to="/Test-admin">Test Admin</Link>
     </div>
   );
 }

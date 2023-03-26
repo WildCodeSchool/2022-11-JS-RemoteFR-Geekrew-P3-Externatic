@@ -3,7 +3,7 @@ import linkedin from "../assets/Icons/linkedin.svg";
 
 function Footer() {
   return (
-    <footer className="font-jost grid grid-cols-3 bg-main-dark text-white">
+    <footer className="font-jost grid grid-cols-3 bg-main-dark text-white min-h-[312px] md:min-h-[100%]">
       <div className="p-4">
         <h2 className="mb-2 font-bold ">Externatic</h2>
         <p className="text-sm">
