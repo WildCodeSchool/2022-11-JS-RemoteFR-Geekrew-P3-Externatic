@@ -4,9 +4,7 @@ const router = express.Router();
 
 require("dotenv").config();
 
-const path = require("path");
-
-// const cors = require("cors");
+// const path = require("path");
 
 const {
   hashPassword,
@@ -25,23 +23,16 @@ router.get("/logout", logout);
 
 router.post("/users", hashPassword, userControllers.add);
 
-// uploader - pictures
-// router.use(express.json());
-// router.use(cors());
+// uploader - files
+router.use(express.json());
 
 const fileUpload = require("./middleware/multer");
+const cvUpload = require("./middleware/multer");
+const candidatePicture = require("./middleware/multer");
 
-const { createOne } = require("./controllers/imageController");
-
-router.post("/users", fileUpload, createOne);
-
-router.use("/", express.static(path.join(__dirname, "../public")));
-router.use(
-  "/uploads",
-  express.static(path.join(__dirname, "../public/uploads"))
-);
-
-// end
+const { addUserImage } = require("./controllers/pictureController");
+const { addUserCv } = require("./controllers/cvControllers");
+const { addCompanyImage } = require("./controllers/companyPictureControllers");
 
 const technologyControllers = require("./controllers/technologyControllers");
 
@@ -50,6 +41,10 @@ router.get("/technologies/:id", technologyControllers.read);
 router.put("/technologies/:id", technologyControllers.edit);
 router.post("/technologies", technologyControllers.add);
 router.delete("/technologies/:id", technologyControllers.destroy);
+
+router.put("/users/:id/picture", candidatePicture, addCompanyImage);
+router.put("/users/:id/picture", fileUpload, addUserImage);
+router.put("/candidates/:id/cv", cvUpload, addUserCv);
 
 // Protected routes
 // router.use(verifyToken);

@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-restricted-syntax */
 import { useState, useEffect } from "react";
 
 import { useCompanyContext } from "../contexts/CompanyContext";

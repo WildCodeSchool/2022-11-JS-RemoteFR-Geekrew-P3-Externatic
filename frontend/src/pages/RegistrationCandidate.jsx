@@ -4,6 +4,7 @@ import axios from "axios";
 import { useCandidateContext } from "../contexts/CandidateContext";
 import { toastError, toastValidation } from "../services/toastService";
 import CandidateProfilePic from "../components/CandidateProfilePic";
+// import ProfilePicture from "../components/ProfilePicture";
 import InfoCandidate from "../components/InfoCandidate";
 import ToggleCandidate from "../components/ToggleCandidate";
 import SkillsCandidate from "../components/SkillsCandidate";
