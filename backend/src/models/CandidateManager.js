@@ -18,20 +18,42 @@ class CandidateManager extends AbstractManager {
     );
   }
 
-  insert(candidate) {
+  insertCandidateIntoUser(candidate) {
     return this.database.query(
-      `insert into ${this.table} (cv, age, gender, github, active, soft_skills, consultant_id, user_id) values (?, ?, ?, ?, ?, ?, ?, ?)`,
+      `INSERT INTO user (firstname, lastname, mail, linkedin, phone, location, hashed_password) VALUES (?, ?, ?, ?, ?, ?, ?)`,
       [
-        candidate.cv,
+        candidate.firstname,
+        candidate.lastname,
+        candidate.email,
+        candidate.linkedin,
+        candidate.phone,
+        candidate.location,
+        candidate.password,
+      ]
+    );
+  }
+
+  insertCandidateIntoCandidate(candidate, candidateUserId) {
+    return this.database.query(
+      `INSERT INTO ${this.table} (user_id, age, gender, github, soft_skills) VALUES (?, ?, ?, ?, ?)`,
+      [
+        candidateUserId,
         candidate.age,
         candidate.gender,
         candidate.github,
-        candidate.active,
-        candidate.softSkills,
-        candidate.consultantId,
-        candidate.userId,
+        candidate.soft_skills,
       ]
     );
+  }
+
+  insertCandIntoCandHasTechno(candidate, candidateLastInsertId) {
+    const hardSkillsArray = candidate.hard_skills.split(",");
+    return hardSkillsArray.forEach((hardSkill) => {
+      this.database.query(
+        `INSERT INTO candidate_has_technology (candidate_id, technology_id) VALUES (?, ?);`,
+        [candidateLastInsertId, hardSkill]
+      );
+    });
   }
 
   update(candidate) {

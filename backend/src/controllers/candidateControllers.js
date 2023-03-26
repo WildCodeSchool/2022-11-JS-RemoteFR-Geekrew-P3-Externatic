@@ -1,3 +1,4 @@
+const argon2 = require("argon2");
 const models = require("../models");
 const validateCandidate = require("../validator/candidateValidator");
 
@@ -55,24 +56,57 @@ const edit = (req, res) => {
     });
 };
 
-const add = (req, res) => {
-  const candidate = req.body;
+const add = async (req, res) => {
+  try {
+    const candidate = req.body;
 
-  const validationResult = validateCandidate(candidate);
+    const validationResult = validateCandidate(candidate);
 
-  if (validationResult.length) {
-    return res.status(400).send(validationResult);
+    if (validationResult.length) {
+      res.status(400).send(validationResult);
+    }
+
+    const hashingOptions = {
+      type: argon2.argon2id,
+      memoryCost: 2 ** 19,
+      timeCost: 5,
+      parallelism: 1,
+    };
+
+    const hashedPassword = await argon2.hash(
+      candidate.password,
+      hashingOptions
+    );
+
+    candidate.password = hashedPassword;
+
+    const [userResult] = await models.candidate.insertCandidateIntoUser(
+      candidate
+    );
+
+    // console.log(userResult);
+
+    const candidateUserId = userResult.insertId;
+
+    const [candidateResult] =
+      await models.candidate.insertCandidateIntoCandidate(
+        candidate,
+        candidateUserId
+      );
+
+    // const candidateLastInsertId = candidateResult.insertId;
+
+    // const [candidateHasTechnologyResult] =
+    //   await models.candidate.insertCandIntoCandHasTechno(
+    //     candidate,
+    //     candidateLastInsertId
+    //   );
+
+    res.location(`/candidates/${candidateResult.insertId}`).sendStatus(201);
+  } catch (err) {
+    console.error(err);
+    res.sendStatus(500);
   }
-
-  return models.candidate
-    .insert(candidate)
-    .then(([result]) => {
-      res.location(`/candidates/${result.insertId}`).sendStatus(201);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.sendStatus(500);
-    });
 };
 
 const destroy = (req, res) => {

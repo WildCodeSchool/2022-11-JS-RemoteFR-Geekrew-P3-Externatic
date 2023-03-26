@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 import { useCandidateContext } from "../contexts/CandidateContext";
-import { toastError } from "../services/toastService";
+import { toastError, toastValidation } from "../services/toastService";
 import CandidateProfilePic from "../components/CandidateProfilePic";
 import InfoCandidate from "../components/InfoCandidate";
 import ToggleCandidate from "../components/ToggleCandidate";
@@ -9,6 +10,8 @@ import SkillsCandidate from "../components/SkillsCandidate";
 import NetworksCandidate from "../components/NetworksCandidate";
 import CvCandidate from "../components/CvCandidate";
 import ValidationCandidate from "../components/ValidationCandidate";
+
+const backEndURL = import.meta.env.VITE_BACKEND_URL;
 
 function RegistrationCandidate() {
   const { formState } = useCandidateContext();
@@ -93,7 +96,13 @@ function RegistrationCandidate() {
     if (Object.keys(formErrors).length > 0) {
       toastError("Vous n'avez pas correctement rempli les champs requis");
     } else if (candidate && Object.keys(formErrors).length === 0) {
-      console.warn(candidate);
+      axios
+        .post(`${backEndURL}/candidates`, candidate)
+        .then(() => toastValidation("Votre formulaire a bien été envoyé"))
+        .catch((err) => {
+          console.error(err);
+          toastError("Le formulaire n'a pas pu être envoyé");
+        });
     }
   };
 

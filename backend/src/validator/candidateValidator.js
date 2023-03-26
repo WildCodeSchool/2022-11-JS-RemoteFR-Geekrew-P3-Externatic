@@ -8,15 +8,15 @@ const passwordSchema = Joi.string()
   );
 
 const candidateSchema = Joi.object().keys({
-  age: Joi.number(),
+  age: Joi.number().required(),
   gender: Joi.string().valid("man", "woman", "other").required(),
-  github: Joi.string().min(3).max(100),
+  github: Joi.string().min(3).max(100).required(),
   soft_skills: Joi.string().min(3).max(100).required(),
   hard_skills: Joi.string().min(3).max(150).required(),
   firstname: Joi.string().min(3).max(100).required(),
   lastname: Joi.string().min(3).max(100).required(),
   mail: Joi.string().email().required(),
-  linkedin: Joi.string().min(3).max(100),
+  linkedin: Joi.string().min(3).max(100).required(),
   phone: Joi.string().min(9).max(11).required(),
   password: passwordSchema.required(),
   location: Joi.string().min(3).max(100).required(),
