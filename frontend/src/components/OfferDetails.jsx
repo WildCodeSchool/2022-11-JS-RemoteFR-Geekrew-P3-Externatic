@@ -15,14 +15,13 @@ function OfferDetails() {
   const [openDetails, setOpenDetails] = useState(false);
   const [openConsultant, setOpenConsultant] = useState(false);
 
-  const jobOfferId = 1;
-  const candidateId = 2;
+  const candidateId = JSON.parse(localStorage.getItem("candidate"));
 
   const handleSubmit = (e) => {
     e.preventDefault();
     expressAPI
       .post("/candidacies", {
-        jobOfferId,
+        jobOfferId: jobId,
         candidateId,
         candidacyDate: new Date().toISOString().substring(0, 10),
         receivedByCompany: false,

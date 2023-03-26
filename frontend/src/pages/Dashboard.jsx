@@ -10,7 +10,7 @@ function Dashboard() {
   const { roles } = useCurrentUserContext();
   return (
     <div className="bg-background flex flex-col justify-center">
-      {roles.includes("candidate" || "admin") && (
+      {(roles.includes("candidate") || roles.includes("admin")) && (
         <>
           <SearchBar />
           <AdvancedSearchButton />
