@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { useCandidateContext } from "../contexts/CandidateContext";
 
-function InfosCandidate() {
+function InfosCandidate({ formErrors }) {
   const { dispatch } = useCandidateContext();
 
   const initialCheckboxes = {
@@ -37,6 +38,7 @@ function InfosCandidate() {
   };
 
   const handleCheckbox = (e) => {
+    // console.log(e.target);
     const boxChecked = e.target.name;
     dispatch({
       type: "HANDLE_CHECKBOX",
@@ -46,7 +48,7 @@ function InfosCandidate() {
       const updatedCheckboxes = Object.keys(prevCheckboxes).reduce(
         (acc, key) => {
           if (key === boxChecked) {
-            acc[key] = true;
+            acc[key] = !prevCheckboxes[key];
           } else {
             acc[key] = false;
           }
@@ -62,7 +64,9 @@ function InfosCandidate() {
     <div className="grid grid-rows-10 m-8 justify-items-start font-jost">
       <h2 className="mb-5">Mes informations</h2>
       <div className="flex flex-row ">
-        <p className="mr-7 text-grey2">Genre</p>
+        <p className="mr-7 text-grey2">
+          Genre <span className="text-main-dark">*</span>
+        </p>
         <div className="flex flex-col md:flex-row mb-4">
           <div className="flex flex-row">
             <input
@@ -117,6 +121,11 @@ function InfosCandidate() {
             type="text"
             onChange={(e) => handleInput(e)}
           />
+          {formErrors.firstname && (
+            <p className="text-red text-sm mb-6 mt-[-12px] mx-2">
+              {formErrors.firstname}
+            </p>
+          )}
         </div>
         <div className="flex flex-col">
           <label className="mb-2 text-grey2" htmlFor="lastname">
@@ -129,6 +138,11 @@ function InfosCandidate() {
             type="text"
             onChange={(e) => handleInput(e)}
           />
+          {formErrors.lastname && (
+            <p className="text-red text-sm mb-6 mt-[-12px] mx-2">
+              {formErrors.lastname}
+            </p>
+          )}
         </div>
         <div className="flex flex-col md:mr-2">
           <label className="mb-2 text-grey2" htmlFor="email">
@@ -141,10 +155,15 @@ function InfosCandidate() {
             type="email"
             onChange={(e) => handleInput(e)}
           />
+          {formErrors.mail && (
+            <p className="text-red text-sm mb-6 mt-[-12px] mx-2">
+              {formErrors.mail}
+            </p>
+          )}
         </div>
         <div className="flex flex-col">
           <label className="mb-2 text-grey2" htmlFor="phone">
-            Téléphone
+            Téléphone <span className="text-main-dark">*</span>
           </label>
           <input
             className="bg-gray-50 border border-gray-300 text-grey1 rounded mb-5 leading-9"
@@ -153,18 +172,28 @@ function InfosCandidate() {
             type="text"
             onChange={(e) => handleInput(e)}
           />
+          {formErrors.phone && (
+            <p className="text-red text-sm mb-6 mt-[-12px] mx-2">
+              {formErrors.phone}
+            </p>
+          )}
         </div>
         <div className="flex flex-col md:mr-2">
-          <label className="mb-2 text-grey2" htmlFor="language">
-            Langue
+          <label className="mb-2 text-grey2" htmlFor="location">
+            Localisation <span className="text-main-dark">*</span>
           </label>
           <input
             className="bg-gray-50 border border-gray-300 text-grey1 rounded mb-5 leading-9"
-            id="language"
-            name="language"
+            id="location"
+            name="location"
             type="text"
             onChange={(e) => handleInput(e)}
           />
+          {formErrors.location && (
+            <p className="text-red text-sm mb-6 mt-[-12px] mx-2">
+              {formErrors.location}
+            </p>
+          )}
         </div>
         <div className="flex flex-col">
           <label className="mb-2 text-grey2" htmlFor="birth_date">
@@ -177,19 +206,14 @@ function InfosCandidate() {
             type="date"
             onChange={(e) => handleAge(e)}
           />
+          {formErrors.age && (
+            <p className="text-red text-sm mb-6 mt-[-12px] mx-2">
+              {formErrors.age}
+            </p>
+          )}
         </div>
       </form>
       <div className="flex flex-col justify-start w-full">
-        <label className="mb-2 text-grey2" htmlFor="location">
-          Localisation <span className="text-main-dark">*</span>
-        </label>
-        <input
-          className="bg-gray-50 border border-gray-300 text-grey1 rounded mb-5 leading-9"
-          id="location"
-          name="location"
-          type="text"
-          onChange={(e) => handleInput(e)}
-        />
         <label className="mb-2 text-grey2" htmlFor="location">
           Mot de passe <span className="text-main-dark">*</span>
         </label>
@@ -200,19 +224,33 @@ function InfosCandidate() {
           type="password"
           onChange={(e) => handleInput(e)}
         />
+        {formErrors.password && (
+          <p className="text-red text-sm mb-6 mt-[-12px] mx-2">
+            {formErrors.password}
+          </p>
+        )}
         <label className="mb-2 text-grey2" htmlFor="location">
           Confirmer mot de passe <span className="text-main-dark">*</span>
         </label>
         <input
           className="bg-gray-50 border border-gray-300 text-grey1 rounded mb-5 leading-9"
-          id="confirm_password"
-          name="confirm_password"
+          id="confirmPassword"
+          name="confirmPassword"
           type="password"
           onChange={(e) => handleInput(e)}
         />
+        {formErrors.confirmPassword && (
+          <p className="text-red text-sm mb-6 mt-[-12px] mx-2">
+            {formErrors.confirmPassword}
+          </p>
+        )}
       </div>
     </div>
   );
 }
+
+InfosCandidate.propTypes = {
+  formErrors: PropTypes.shape().isRequired,
+};
 
 export default InfosCandidate;

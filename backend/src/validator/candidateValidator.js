@@ -1,14 +1,25 @@
 const Joi = require("joi");
 
+const passwordSchema = Joi.string()
+  .min(8)
+  .pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).*$/)
+  .message(
+    "Le mot de passe doit contenir au moins une minuscule, une majuscule et un chiffre."
+  );
+
 const candidateSchema = Joi.object().keys({
-  cv: Joi.string().min(3).max(100).required(),
-  age: Joi.number().required(),
-  gender: Joi.string().valid("Male", "Female", "Other").required(),
-  github: Joi.string().min(3).max(100).required(),
-  active: Joi.boolean().required(),
-  softSkills: Joi.string().min(3).max(100).required(),
-  consultantId: Joi.number().required(),
-  userId: Joi.number().required(),
+  age: Joi.number(),
+  gender: Joi.string().valid("man", "woman", "other").required(),
+  github: Joi.string().min(3).max(100),
+  soft_skills: Joi.string().min(3).max(100).required(),
+  hard_skills: Joi.string().min(3).max(150).required(),
+  firstname: Joi.string().min(3).max(100).required(),
+  lastname: Joi.string().min(3).max(100).required(),
+  mail: Joi.string().email().required(),
+  linkedin: Joi.string().min(3).max(100),
+  phone: Joi.string().min(9).max(11).required(),
+  password: passwordSchema.required(),
+  location: Joi.string().min(3).max(100).required(),
 });
 
 const validateCandidate = (user) => {

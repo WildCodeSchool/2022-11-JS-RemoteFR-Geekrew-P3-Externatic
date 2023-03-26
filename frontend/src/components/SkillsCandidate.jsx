@@ -24,18 +24,16 @@ function SkillsCandidate() {
   }, []);
 
   return (
-    <div className="m-8 ">
-      <h2 className="text-sm text-black text-left font-medium mb-4">
-        Mes compétences
-      </h2>
+    <div className="m-8 font-jost">
+      <h2 className="text-black text-left mb-4">Mes compétences</h2>
       <div className="flex flex-col justify-start w-full md:grid md:grid-cols-2">
         <div className="flex justify-center items-center md:mr-2">
           <button
-            className="flex text-sm text-black text-left font-medium"
+            className="flex text-black text-left"
             onClick={() => setOpen(!isOpen)}
             type="button"
           >
-            Hard Skills
+            Hard Skills <span className="text-main-dark ml-2">*</span>
             {isOpen ? (
               <img src={chevronUp} alt="fermer" className="h-6 w-6 ml-6" />
             ) : (
@@ -61,9 +59,9 @@ function SkillsCandidate() {
         <div className="w-full">
           <label
             htmlFor="base-input"
-            className="block mb-2 text-sm text-left font-medium text-grey2 dark:text-white"
+            className="block mb-2 text-left text-grey2 dark:text-white"
           >
-            Soft Skills
+            Soft Skills <span className="text-main-dark">*</span>
           </label>
           <input
             type="text"
@@ -72,7 +70,7 @@ function SkillsCandidate() {
             onChange={(e) => handleInput(e)}
             className="bg-gray-50 border border-grey3 text-sm rounded focus:ring-main focus:border-main block w-full p-2.5 "
           />
-          <p className="text-xxs text-grey2 mt-2">
+          <p className="text-xs text-grey2 mt-2">
             (Vous pouvez donner jusqu'à 3 soft skills, séparées par une virgule)
           </p>
         </div>

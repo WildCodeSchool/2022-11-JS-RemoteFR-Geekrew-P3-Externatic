@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 
 import { useCompanyContext } from "../contexts/CompanyContext";
 
-function InfoCompany({ formErrors }) {
-  const { dispatch } = useCompanyContext();
+function InfoCompany({ formErrors, setFormErrors, validate, isSubmit }) {
+  const { dispatch, companyFormState } = useCompanyContext();
 
   const handleInput = (e) => {
     dispatch({
@@ -13,6 +13,10 @@ function InfoCompany({ formErrors }) {
       payload: e.target.value,
     });
   };
+
+  useEffect(() => {
+    setFormErrors(validate(companyFormState));
+  }, [companyFormState]);
 
   return (
     <form className="m-8 md:grid md:grid-cols-2 md:gap-x-4">
@@ -33,7 +37,7 @@ function InfoCompany({ formErrors }) {
           onChange={(e) => handleInput(e)}
           className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
-        {formErrors.name && (
+        {isSubmit && formErrors.name && (
           <p className="text-sm text-red mb-4 mx-2">{formErrors.name}</p>
         )}
       </div>
@@ -51,7 +55,7 @@ function InfoCompany({ formErrors }) {
           onChange={(e) => handleInput(e)}
           className="bg-gray-50 mb-4 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
-        {formErrors.siret && (
+        {isSubmit && formErrors.siret && (
           <p className="text-sm text-red mb-4 mx-2">{formErrors.siret}</p>
         )}
       </div>
@@ -69,7 +73,7 @@ function InfoCompany({ formErrors }) {
           onChange={(e) => handleInput(e)}
           className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
-        {formErrors.mail && (
+        {isSubmit && formErrors.mail && (
           <p className="text-sm text-red mb-4 mx-2">{formErrors.mail}</p>
         )}
       </div>
@@ -87,7 +91,7 @@ function InfoCompany({ formErrors }) {
           onChange={(e) => handleInput(e)}
           className="bg-gray-50 mb-4 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
-        {formErrors.phone && (
+        {isSubmit && formErrors.phone && (
           <p className="text-sm text-red mb-4 mx-2">{formErrors.phone}</p>
         )}
       </div>
@@ -105,7 +109,7 @@ function InfoCompany({ formErrors }) {
           onChange={(e) => handleInput(e)}
           className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
-        {formErrors.number_of_employee && (
+        {isSubmit && formErrors.number_of_employee && (
           <p className="text-sm text-red mb-4 mx-2">
             {formErrors.number_of_employee}
           </p>
@@ -125,7 +129,7 @@ function InfoCompany({ formErrors }) {
           onChange={(e) => handleInput(e)}
           className="bg-gray-50 mb-4 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
-        {formErrors.field && (
+        {isSubmit && formErrors.field && (
           <p className="text-sm text-red mb-4 mx-2">{formErrors.field}</p>
         )}
       </div>
@@ -142,7 +146,7 @@ function InfoCompany({ formErrors }) {
         onChange={(e) => handleInput(e)}
         className="bg-gray-50 mb-4 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 md:col-span-2"
       />
-      {formErrors.location && (
+      {isSubmit && formErrors.location && (
         <p className="text-sm text-red mb-4 mx-2">{formErrors.location}</p>
       )}
       <label
@@ -159,7 +163,7 @@ function InfoCompany({ formErrors }) {
         className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 md:col-span-2"
         placeholder="..."
       />
-      {formErrors.description && (
+      {isSubmit && formErrors.description && (
         <p className="text-sm text-red mb-4 mx-2">{formErrors.description}</p>
       )}
     </form>
@@ -168,6 +172,9 @@ function InfoCompany({ formErrors }) {
 
 InfoCompany.propTypes = {
   formErrors: PropTypes.shape().isRequired,
+  setFormErrors: PropTypes.func.isRequired,
+  validate: PropTypes.func.isRequired,
+  isSubmit: PropTypes.bool.isRequired,
 };
 
 export default InfoCompany;

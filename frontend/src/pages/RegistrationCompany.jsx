@@ -17,14 +17,7 @@ function RegistrationCompany() {
   const { confirmedPassword, ...company } = companyFormState;
 
   const [formErrors, setFormErrors] = useState({});
-  // const [isSubmit, setIsSubmit] = useState(false);
-
-  // useEffect(() => {
-  //   console.log(formErrors);
-  //   if (Object.keys(formErrors).length === 0 && isSubmit) {
-  //     console.log(company);
-  //   }
-  // }, [formErrors]);
+  const [isSubmit, setIsSubmit] = useState(false);
 
   const validate = (values) => {
     const errors = {};
@@ -104,9 +97,7 @@ function RegistrationCompany() {
   };
 
   const handleSubmit = () => {
-    setFormErrors(validate(companyFormState));
-    // setIsSubmit(true);
-
+    setIsSubmit(true);
     if (Object.keys(formErrors).length > 0) {
       toastError("Vous n'avez pas correctement rempli les champs requis");
     } else if (company && Object.keys(formErrors).length === 0) {
@@ -140,9 +131,24 @@ function RegistrationCompany() {
           <div className="mb-6 ml-8 mt-6">
             <CompanyProfilePic />
           </div>
-          <InfoCompany formErrors={formErrors} />
-          <NetworksCompany formErrors={formErrors} />
-          <PasswordCompany formErrors={formErrors} />
+          <InfoCompany
+            formErrors={formErrors}
+            setFormErrors={setFormErrors}
+            isSubmit={isSubmit}
+            validate={validate}
+          />
+          <NetworksCompany
+            formErrors={formErrors}
+            setFormErrors={setFormErrors}
+            isSubmit={isSubmit}
+            validate={validate}
+          />
+          <PasswordCompany
+            formErrors={formErrors}
+            setFormErrors={setFormErrors}
+            isSubmit={isSubmit}
+            validate={validate}
+          />
           <ValidationCompany handleSubmit={handleSubmit} />
         </div>
         <p>name: {companyFormState.name}</p>
