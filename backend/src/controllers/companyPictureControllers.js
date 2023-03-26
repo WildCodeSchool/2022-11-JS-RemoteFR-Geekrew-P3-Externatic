@@ -1,10 +1,10 @@
 const models = require("../models");
 
 const addCompanyImage = (req, res) => {
-  const companyId = req.params.id;
+  const userId = req.params.id;
 
   models.picture
-    .update(req.file.filename, companyId)
+    .update(req.file.filename, userId)
     .then((result) => {
       if (result[0] === 0) {
         res.sendStatus(404);

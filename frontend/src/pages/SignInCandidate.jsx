@@ -6,7 +6,11 @@ function SignInCandidate() {
   return (
     <div>
       <p>Inscrivez-vous comme candidat</p>
-      <button onClick={() => navigate("/RegistrationCandidate")} type="button">
+      <button
+        onClick={() => navigate("/RegistrationCandidate")}
+        type="button"
+        className="hover:scale-90"
+      >
         Connexion
       </button>
     </div>

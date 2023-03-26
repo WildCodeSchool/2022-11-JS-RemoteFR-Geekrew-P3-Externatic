@@ -4,7 +4,6 @@ import PasswordCompany from "../components/PasswordCompany";
 import { toastError, toastValidation } from "../services/toastService";
 
 import { useCompanyContext } from "../contexts/CompanyContext";
-// import ProfilePic from "../components/ProfilePic";
 import InfoCompany from "../components/InfoCompany";
 import NetworksCompany from "../components/NetworksCompany";
 import ValidationCompany from "../components/ValidationCompany";
@@ -138,7 +137,7 @@ function RegistrationCompany() {
           </h1>
         </div>
         <div className="md:bg-white p-5 rounded-[10px]">
-          <div className="mb-6 ml-8 mt-6">
+          <div className="mb-6 ml-8 mt-6 flex flex-row">
             <CompanyProfilePic />
           </div>
           <InfoCompany formErrors={formErrors} />

@@ -1,19 +1,5 @@
 const AbstractManager = require("./AbstractManager");
 
-// class FileManager extends AbstractManager {
-//   constructor() {
-//     super({ table: "candidate" });
-//   }
-
-//   insert(candidate) {
-//     const { name, filename, data } = candidate;
-//     return this.database.query(
-//       `insert into ${this.table} (name, filename) values (?, ?, ?)`,
-//       [name, filename, data]
-//     );
-//   }
-// }
-// module.exports = FileManager;
 class FileManager extends AbstractManager {
   constructor() {
     super({ table: "candidate" });

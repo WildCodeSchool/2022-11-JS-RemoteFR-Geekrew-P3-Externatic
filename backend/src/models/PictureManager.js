@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-syntax */
 const AbstractManager = require("./AbstractManager");
 
 class ImageManager extends AbstractManager {

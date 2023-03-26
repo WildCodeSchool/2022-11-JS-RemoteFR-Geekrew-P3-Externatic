@@ -1,15 +1,14 @@
-/* eslint-disable no-restricted-syntax */
 const AbstractManager = require("./AbstractManager");
 
 class ImageManager extends AbstractManager {
   constructor() {
-    super({ table: "company" });
+    super({ table: "user" });
   }
 
-  update(filename, idCompany) {
+  update(filename, idUser) {
     return this.database.query(
       `update ${this.table} set picture = ? where id = ?`,
-      [filename, idCompany]
+      [filename, idUser]
     );
   }
 }

@@ -1,6 +1,6 @@
 import React from "react";
 
-import CandidateProfilePic from "../components/CandidateProfilePic";
+// import ProfilePicture from "../components/ProfilePicture";
 import InfoCandidate from "../components/InfoCandidate";
 import ToggleCandidate from "../components/ToggleCandidate";
 import SkillsCandidate from "../components/SkillsCandidate";
@@ -8,6 +8,7 @@ import NetworksCandidate from "../components/NetworksCandidate";
 import CvCandidate from "../components/CvCandidate";
 import ValidationCandidate from "../components/ValidationCandidate";
 import CandidateContextProvider from "../contexts/CandidateContext";
+import CandidateProfilePic from "../components/CandidateProfilePic";
 
 function RegistrationCandidate() {
   return (
@@ -32,6 +33,7 @@ function RegistrationCandidate() {
             <div className="flex flex-row justify-between items-center">
               <div className="ml-8 mt-4">
                 <CandidateProfilePic />
+                {/* <ProfilePicture /> */}
               </div>
             </div>
             <InfoCandidate />

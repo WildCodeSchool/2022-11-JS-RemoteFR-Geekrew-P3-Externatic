@@ -4,10 +4,6 @@ const router = express.Router();
 
 require("dotenv").config();
 
-// const path = require("path");
-
-// const cors = require("cors");
-
 const {
   hashPassword,
   verifyPassword,
@@ -25,7 +21,7 @@ router.get("/logout", logout);
 
 router.post("/users", hashPassword, userControllers.add);
 
-// uploader - pictures
+// uploader - files
 router.use(express.json());
 
 const fileUpload = require("./middleware/multer");
@@ -36,7 +32,7 @@ const { addUserImage } = require("./controllers/pictureController");
 const { addUserCv } = require("./controllers/cvControllers");
 const { addCompanyImage } = require("./controllers/companyPictureControllers");
 
-router.put("/companies/:id/picture", candidatePicture, addCompanyImage);
+router.put("/users/:id/picture", candidatePicture, addCompanyImage);
 router.put("/users/:id/picture", fileUpload, addUserImage);
 router.put("/candidates/:id/cv", cvUpload, addUserCv);
 // Protected routes
@@ -61,7 +57,6 @@ router.post("/companies", companyControllers.add);
 router.delete("/companies/:id", companyControllers.destroy);
 
 const candidateControllers = require("./controllers/candidateControllers");
-// const cvControllers = require("./controllers/cvControllers");
 
 router.get("/candidates", candidateControllers.browse);
 router.get("/candidates/:id", candidateControllers.read);

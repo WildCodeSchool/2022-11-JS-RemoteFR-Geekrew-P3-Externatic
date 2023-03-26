@@ -1,5 +1,4 @@
 /* eslint-disable no-restricted-syntax */
-/* eslint-disable import/no-extraneous-dependencies */
 const multer = require("multer");
 const path = require("path");
 const { v4: uuidv4 } = require("uuid");

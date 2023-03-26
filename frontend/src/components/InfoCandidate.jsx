@@ -1,5 +1,4 @@
 import React from "react";
-import DisplayData from "./DisplayData";
 import { useCandidateContext } from "../contexts/CandidateContext";
 
 function InfosCandidate() {
@@ -158,7 +157,6 @@ function InfosCandidate() {
           type="password"
         />
       </div>
-      <DisplayData />
     </div>
   );
 }

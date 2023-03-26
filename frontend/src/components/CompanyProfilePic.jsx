@@ -15,7 +15,7 @@ function CompanyProfilePic() {
     formData.append("name", name);
 
     expressAPI
-      .put(`/companies/2/picture`, formData, {
+      .put(`/users/2/picture`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       })
       .then(() => {
@@ -27,10 +27,16 @@ function CompanyProfilePic() {
   };
   return (
     <div className="float-left w-full md:w-96 md:max-w-full mx-auto mb-5">
-      <div className="p-6 border border-gray-300 sm:rounded-md">
+      <div className="">
         <form onSubmit={handleForm}>
           <div className="float-left relative flex flex-row justify-center h-28 w-28 items-center  rounded-full cursor-pointer">
-            {files.length && <img src={URL.createObjectURL(files[0])} alt="" />}
+            {files.length && (
+              <img
+                src={URL.createObjectURL(files[0])}
+                alt=""
+                className="w-20 h-20 rounded-full"
+              />
+            )}
           </div>
           <label className="block mb-6">
             <input
