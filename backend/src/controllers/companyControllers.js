@@ -58,7 +58,7 @@ const edit = (req, res) => {
 
 const add = async (req, res) => {
   try {
-    const company = req.body;
+    const company = JSON.parse(req.body.company);
 
     const validationResult = validateCompany(company);
 
@@ -85,6 +85,8 @@ const add = async (req, res) => {
       company,
       companyUserId
     );
+
+    models.picture.update(req.file.filename, companyUserId);
 
     res.location(`/companies/${companyResult.insertId}`).sendStatus(201);
   } catch (err) {

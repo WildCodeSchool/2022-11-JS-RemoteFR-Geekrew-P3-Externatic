@@ -28,11 +28,12 @@ router.use(express.json());
 
 const fileUpload = require("./middleware/multer");
 const cvUpload = require("./middleware/multer");
-const candidatePicture = require("./middleware/multer");
 
 const { addUserImage } = require("./controllers/pictureController");
 const { addUserCv } = require("./controllers/cvControllers");
-const { addCompanyImage } = require("./controllers/companyPictureControllers");
+
+router.put("/users/:id/picture", fileUpload, addUserImage);
+router.put("/candidates/:id/cv", cvUpload, addUserCv);
 
 const technologyControllers = require("./controllers/technologyControllers");
 
@@ -41,10 +42,6 @@ router.get("/technologies/:id", technologyControllers.read);
 router.put("/technologies/:id", technologyControllers.edit);
 router.post("/technologies", technologyControllers.add);
 router.delete("/technologies/:id", technologyControllers.destroy);
-
-router.put("/users/:id/picture", candidatePicture, addCompanyImage);
-router.put("/users/:id/picture", fileUpload, addUserImage);
-router.put("/candidates/:id/cv", cvUpload, addUserCv);
 
 // Protected routes
 // router.use(verifyToken);
@@ -60,11 +57,12 @@ router.delete(
 );
 
 const companyControllers = require("./controllers/companyControllers");
+const companyPicture = require("./middleware/multer");
 
 router.get("/companies", companyControllers.browse);
 router.get("/companies/:id", companyControllers.read);
 router.put("/companies/:id", companyControllers.edit);
-router.post("/companies", companyControllers.add);
+router.post("/companies", companyPicture, companyControllers.add);
 router.delete("/companies/:id", companyControllers.destroy);
 
 const candidateControllers = require("./controllers/candidateControllers");

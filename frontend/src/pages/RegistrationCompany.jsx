@@ -19,6 +19,8 @@ function RegistrationCompany() {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
 
+  const [files, setFiles] = useState([]);
+
   const validate = (values) => {
     const errors = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
@@ -72,9 +74,6 @@ function RegistrationCompany() {
     } else if (!linkedinRegex.test(values.linkedin)) {
       errors.linkedin = "Cette adresse linkedin n'est pas valide";
     }
-    if (!values.picture) {
-      errors.picture = "Picture is required";
-    }
     if (!values.password) {
       errors.password = "Password is required";
     } else if (values.password.length < 8) {
@@ -97,12 +96,19 @@ function RegistrationCompany() {
   };
 
   const handleSubmit = () => {
+    const formData = new FormData();
+
+    formData.append("file", files[0]);
+    formData.append("company", JSON.stringify(company));
+
     setIsSubmit(true);
     if (Object.keys(formErrors).length > 0) {
       toastError("Vous n'avez pas correctement rempli les champs requis");
     } else if (company && Object.keys(formErrors).length === 0) {
       axios
-        .post(`${backEndURL}/companies`, company)
+        .post(`${backEndURL}/companies`, formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        })
         .then(() => toastValidation("Votre formulaire a bien été envoyé"))
         .catch((err) => {
           console.error(err);
@@ -129,7 +135,7 @@ function RegistrationCompany() {
         </div>
         <div className="md:bg-white p-5 rounded-[10px]">
           <div className="mb-6 ml-8 mt-6 flex flex-row">
-            <CompanyProfilePic />
+            <CompanyProfilePic files={files} setFiles={setFiles} />
           </div>
           <InfoCompany
             formErrors={formErrors}
@@ -160,7 +166,6 @@ function RegistrationCompany() {
         <p>location: {companyFormState.location}</p>
         <p>description: {companyFormState.description}</p>
         <p>linkedin: {companyFormState.linkedin}</p>
-        <p>picture: {companyFormState.picture}</p>
         <p>password: {companyFormState.password}</p>
         <p>confirmedPassword: {companyFormState.confirmedPassword}</p>
       </div>
