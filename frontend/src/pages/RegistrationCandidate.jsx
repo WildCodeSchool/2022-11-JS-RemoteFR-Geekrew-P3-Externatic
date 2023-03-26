@@ -22,6 +22,8 @@ function RegistrationCandidate() {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
 
+  const [files, setFiles] = useState([]);
+
   const validate = (values) => {
     const errors = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
@@ -93,12 +95,19 @@ function RegistrationCandidate() {
   };
 
   const handleSubmit = () => {
+    const formData = new FormData();
+
+    formData.append("file", files[0]);
+    formData.append("candidate", JSON.stringify(candidate));
+
     setIsSubmit(true);
     if (Object.keys(formErrors).length > 0) {
       toastError("Vous n'avez pas correctement rempli les champs requis");
     } else if (candidate && Object.keys(formErrors).length === 0) {
       axios
-        .post(`${backEndURL}/candidates`, candidate)
+        .post(`${backEndURL}/candidates`, formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        })
         .then(() => toastValidation("Votre formulaire a bien été envoyé"))
         .catch((err) => {
           console.error(err);
@@ -128,7 +137,7 @@ function RegistrationCandidate() {
           <ToggleCandidate />
           <div className="flex flex-row justify-between items-center">
             <div className="ml-8 mt-4">
-              <CandidateProfilePic />
+              <CandidateProfilePic files={files} setFiles={setFiles} />
             </div>
           </div>
           <InfoCandidate

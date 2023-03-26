@@ -26,15 +26,6 @@ router.post("/users", hashPassword, userControllers.add);
 // uploader - files
 router.use(express.json());
 
-const fileUpload = require("./middleware/multer");
-const cvUpload = require("./middleware/multer");
-
-const { addUserImage } = require("./controllers/pictureController");
-const { addUserCv } = require("./controllers/cvControllers");
-
-router.put("/users/:id/picture", fileUpload, addUserImage);
-router.put("/candidates/:id/cv", cvUpload, addUserCv);
-
 const technologyControllers = require("./controllers/technologyControllers");
 
 router.get("/technologies", technologyControllers.browse);
@@ -66,11 +57,16 @@ router.post("/companies", companyPicture, companyControllers.add);
 router.delete("/companies/:id", companyControllers.destroy);
 
 const candidateControllers = require("./controllers/candidateControllers");
+const { addUserCv } = require("./controllers/cvControllers");
 
+const candidatePicture = require("./middleware/multer");
+const cvUpload = require("./middleware/multer");
+
+router.put("/candidates/:id/cv", cvUpload, addUserCv);
 router.get("/candidates", candidateControllers.browse);
 router.get("/candidates/:id", candidateControllers.read);
 router.put("/candidates/:id", candidateControllers.edit);
-router.post("/candidates", candidateControllers.add);
+router.post("/candidates", candidatePicture, candidateControllers.add);
 router.delete("/candidates/:id", candidateControllers.destroy);
 
 const candidacyControllers = require("./controllers/candidacyControllers");

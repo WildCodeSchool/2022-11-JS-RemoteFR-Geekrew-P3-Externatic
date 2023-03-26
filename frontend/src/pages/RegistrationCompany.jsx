@@ -157,17 +157,6 @@ function RegistrationCompany() {
           />
           <ValidationCompany handleSubmit={handleSubmit} />
         </div>
-        <p>name: {companyFormState.name}</p>
-        <p>siret: {companyFormState.siret}</p>
-        <p>mail: {companyFormState.mail}</p>
-        <p>phone: {companyFormState.phone}</p>
-        <p>number_of_employee: {companyFormState.number_of_employee}</p>
-        <p>field: {companyFormState.field}</p>
-        <p>location: {companyFormState.location}</p>
-        <p>description: {companyFormState.description}</p>
-        <p>linkedin: {companyFormState.linkedin}</p>
-        <p>password: {companyFormState.password}</p>
-        <p>confirmedPassword: {companyFormState.confirmedPassword}</p>
       </div>
     </div>
   );

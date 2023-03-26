@@ -75,11 +75,6 @@ const FavoriteManager = require("./FavoriteManager");
 models.favorite = new FavoriteManager();
 models.favorite.setDatabase(pool);
 
-const PictureManager = require("./PictureManager");
-
-models.picture = new PictureManager();
-models.picture.setDatabase(pool);
-
 const CvManager = require("./CvManager");
 
 models.cv = new CvManager();

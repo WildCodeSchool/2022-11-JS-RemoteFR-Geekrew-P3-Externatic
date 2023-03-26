@@ -58,7 +58,7 @@ const edit = (req, res) => {
 
 const add = async (req, res) => {
   try {
-    const candidate = req.body;
+    const candidate = JSON.parse(req.body.candidate);
 
     const validationResult = validateCandidate(candidate);
 
@@ -101,6 +101,8 @@ const add = async (req, res) => {
           candidateLastInsertId
         );
       });
+
+      models.candidate.updatePicture(req.file.filename, candidateUserId);
 
       res.location(`/candidates/${candidateResult.insertId}`).sendStatus(201);
     }
