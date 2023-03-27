@@ -10,9 +10,23 @@ function CurrentUserContextProvider({ children }) {
   const [userType, setUserType] = useState("");
   const [email, setEmail] = useState("");
 
+  const [roles, setRoles] = useState([]);
+  const [userId, setUserId] = useState();
+
   const userMemo = useMemo(
-    () => ({ user, setUser, userType, setUserType, email, setEmail }),
-    [user, userType, email]
+    () => ({
+      user,
+      setUser,
+      userType,
+      setUserType,
+      email,
+      setEmail,
+      roles,
+      setRoles,
+      userId,
+      setUserId,
+    }),
+    [user, userType, email, roles, userId]
   );
   return (
     <CurrentUserContext.Provider value={userMemo}>
