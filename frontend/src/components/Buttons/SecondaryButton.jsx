@@ -4,7 +4,7 @@ function SecondaryButton({ children }) {
   return (
     <button
       type="button"
-      className="flex justify-center w-full font-semibold text-main underline text-sm mb-6 md:w-1/5"
+      className="flex font-jost justify-center w-full font-semibold text-main underline decoration-2 text-sm mb-6 md:w-1/5"
     >
       {children}
     </button>

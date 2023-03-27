@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useCurrentUserContext } from "../contexts/CurrentUserContext";
+
 import expressAPI from "../services/expressAPI";
 
 import OfferDash from "./OfferDash";
@@ -7,13 +8,14 @@ import OfferDash from "./OfferDash";
 function CandidaciesContainer() {
   const [candidacies, setCandidacies] = useState([]);
 
-  const { candidateId } = useParams();
+  const { userId, setCandidateId } = useCurrentUserContext();
 
   useEffect(() => {
     expressAPI
-      .get(`/candidacies/${candidateId}`)
+      .get(`/candidacies/${userId}`)
       .then((res) => {
         setCandidacies(res.data);
+        setCandidateId(res.data[0].candidate_id);
       })
       .catch((err) => console.error(err));
   }, []);

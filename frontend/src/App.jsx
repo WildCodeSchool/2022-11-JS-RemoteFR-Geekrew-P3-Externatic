@@ -37,7 +37,10 @@ function App() {
             path="/Registration-company"
             element={<RegistrationCompany />}
           />
-          <Route path="/Candidate-Profile" element={<CandidateProfile />} />
+          <Route
+            path="/Candidate-Profile/:candidateId"
+            element={<CandidateProfile />}
+          />
           <Route path="/OfferDetails/:jobId" element={<OfferDetails />} />
           <Route path="/Candidacies/:candidateId" element={<Candidacies />} />
           <Route path="/Logout" element={<Logout />} />
