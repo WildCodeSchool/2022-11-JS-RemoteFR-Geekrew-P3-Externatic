@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 
 const { hashPassword, verifyPassword, verifyToken, logout } = require("./auth");
+// eslint-disable-next-line import/no-unresolved, import/extensions
 const rolesCheck = require("./rolesCheck");
 
 const userControllers = require("./controllers/userControllers");
