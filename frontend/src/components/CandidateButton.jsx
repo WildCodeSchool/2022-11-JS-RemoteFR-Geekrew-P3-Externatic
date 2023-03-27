@@ -12,7 +12,7 @@ function CandidateButton() {
     setUserType("Candidat");
   };
   return (
-    <div className="relative ml-8">
+    <div className="relative ml-1">
       <img src={candidateButton} alt="candidate button" className="w-full" />
       <button
         onClick={() => handleCandidateRegistration()}
