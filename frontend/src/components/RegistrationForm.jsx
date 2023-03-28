@@ -1,10 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useCurrentUserContext } from "../contexts/CurrentUserContext";
 
-import GitLogo from "../assets/Icons/mdi_github.svg";
-import GoogleLogo from "../assets/Icons/Google.svg";
-import LinkedinLogo from "../assets/Icons/logos_linkedin-icon.svg";
-import SocialButton from "./Buttons/SocialButton";
 import { toastError } from "../services/toastService";
 
 function RegistrationForm() {
@@ -77,23 +73,6 @@ function RegistrationForm() {
             Continuer l'inscription
           </button>
         </form>
-
-        <div className="flex items-center my-10 font-bold text-grey1">
-          <hr className="border border-grey3 grow" />
-          <p className="grow-0 bg-white px-3">ou</p>
-          <hr className="border border-grey3 grow" />
-        </div>
-        <div className="mb-10">
-          <SocialButton src={LinkedinLogo} alt="logoLinkedin">
-            S'inscrire avec Linkedin
-          </SocialButton>
-          <SocialButton src={GoogleLogo} alt="logoGoogle">
-            S'inscrire avec Google
-          </SocialButton>
-          <SocialButton src={GitLogo} alt="logoGithub">
-            S'inscrire avec GitHub
-          </SocialButton>
-        </div>
       </div>
     </div>
   );

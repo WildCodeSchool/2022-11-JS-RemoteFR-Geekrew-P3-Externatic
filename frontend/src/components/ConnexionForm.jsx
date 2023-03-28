@@ -2,16 +2,13 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useCurrentUserContext } from "../contexts/CurrentUserContext";
 
-import SocialButton from "./Buttons/SocialButton";
-import GitLogo from "../assets/Icons/mdi_github.svg";
-import GoogleLogo from "../assets/Icons/Google.svg";
-import LinkedinLogo from "../assets/Icons/logos_linkedin-icon.svg";
-
 import expressAPI from "../services/expressAPI";
 import { toastError } from "../services/toastService";
 
 function ConnexionForm() {
-  const { setUser, email, setEmail } = useCurrentUserContext();
+  const { setUser, email, setEmail, setRoles, setUserId } =
+    useCurrentUserContext();
+
   const navigate = useNavigate();
 
   const [password, setPassword] = useState("");
@@ -24,8 +21,17 @@ function ConnexionForm() {
       expressAPI
         .post("/login", { mail: email, password })
         .then((res) => {
-          setUser(res.data.user.mail);
-          localStorage.setItem("user", JSON.stringify(res.data));
+          const user = {
+            mail: res.data.user.mail,
+            roles: JSON.parse(res.data.user.roles),
+            id: res.data.user.id,
+          };
+
+          setUser(user.mail);
+          setRoles(user.roles);
+          setUserId(user.id);
+
+          localStorage.setItem("user", JSON.stringify(user));
           navigate("/Dashboard");
         })
         .catch(() => toastError("Le mot de passe ou l'email est incorrect"));
@@ -89,22 +95,6 @@ function ConnexionForm() {
             Me connecter
           </button>
         </form>
-        <div className="flex items-center my-10 font-bold text-grey1">
-          <hr className="border border-grey3 grow" />
-          <p className="grow-0 bg-white px-3">ou</p>
-          <hr className="border border-grey3 grow" />
-        </div>
-        <div className="mb-10">
-          <SocialButton src={LinkedinLogo} alt="logoLinkedin">
-            Me connecter avec Linkedin
-          </SocialButton>
-          <SocialButton src={GoogleLogo} alt="logoGoogle">
-            Me connecter avec Google
-          </SocialButton>
-          <SocialButton src={GitLogo} alt="logoGithub">
-            Me connecter avec GitHub
-          </SocialButton>
-        </div>
       </div>
     </div>
   );

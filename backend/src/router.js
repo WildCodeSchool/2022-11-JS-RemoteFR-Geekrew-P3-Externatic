@@ -2,15 +2,8 @@ const express = require("express");
 
 const router = express.Router();
 
-require("dotenv").config();
-
-// const path = require("path");
-
-const {
-  hashPassword,
-  verifyPassword,
-  /* verifyToken */ logout,
-} = require("./auth");
+const { hashPassword, verifyPassword, verifyToken, logout } = require("./auth");
+const rolesCheck = require("./rolesCheck");
 
 const userControllers = require("./controllers/userControllers");
 
@@ -35,9 +28,9 @@ router.post("/technologies", technologyControllers.add);
 router.delete("/technologies/:id", technologyControllers.destroy);
 
 // Protected routes
-// router.use(verifyToken);
+router.use(verifyToken);
 
-router.get("/users", userControllers.browse);
+router.get("/users", rolesCheck("admin"), userControllers.browse);
 router.get("/users/:id", userControllers.read);
 router.put("/users/:id", hashPassword, verifyPassword, userControllers.edit);
 router.delete(
