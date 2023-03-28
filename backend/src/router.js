@@ -57,6 +57,7 @@ const jobOfferControllers = require("./controllers/jobOfferControllers");
 
 router.get("/job_offers", jobOfferControllers.browse);
 router.get("/job_offers/:id", jobOfferControllers.read);
+router.get("/job_offers/find/:userId", jobOfferControllers.findBy);
 router.put("/job_offers/:id", jobOfferControllers.edit);
 router.post("/job_offers", jobOfferControllers.add);
 router.delete("/job_offers/:id", jobOfferControllers.destroy);

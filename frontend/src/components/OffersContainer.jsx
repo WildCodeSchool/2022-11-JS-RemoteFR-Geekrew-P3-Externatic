@@ -5,12 +5,21 @@ import OfferDash from "./OfferDash";
 import { useCurrentUserContext } from "../contexts/CurrentUserContext";
 
 function OffersContainer() {
-  const { roles } = useCurrentUserContext();
+  const { userId, roles } = useCurrentUserContext();
   const [jobOffers, setJobOffers] = useState([]);
   useEffect(() => {
-    expressAPI.get(`/job_offers`).then((res) => {
-      setJobOffers(res.data);
-    });
+    if (roles.includes("candidate")) {
+      expressAPI.get(`/job_offers`).then((res) => {
+        setJobOffers(res.data);
+      });
+    } else {
+      expressAPI
+        .get(`/job_offers/find/${userId}`)
+        .then((res) => {
+          setJobOffers(res.data);
+        })
+        .catch((err) => console.error(err));
+    }
   }, []);
 
   return (
