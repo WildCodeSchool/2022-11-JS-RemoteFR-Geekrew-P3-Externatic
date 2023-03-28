@@ -33,6 +33,13 @@ class CompanyManager extends AbstractManager {
     );
   }
 
+  updateCompanyPicture(filename, idUser) {
+    return this.database.query(`update user set picture = ? where id = ?`, [
+      filename,
+      idUser,
+    ]);
+  }
+
   update(company) {
     return this.database.query(
       `update ${this.table} set name = ?, number_of_employee = ?, description = ?, field = ?, siret = ?, company_type = ?, picture = ?, user_id = ? where id = ?`,

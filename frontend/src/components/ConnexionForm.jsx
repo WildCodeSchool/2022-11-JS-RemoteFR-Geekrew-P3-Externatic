@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useCurrentUserContext } from "../contexts/currentUserContext";
+import { useCurrentUserContext } from "../contexts/CurrentUserContext";
 
 import SocialButton from "./Buttons/SocialButton";
 import GitLogo from "../assets/Icons/mdi_github.svg";

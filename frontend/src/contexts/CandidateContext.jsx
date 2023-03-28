@@ -1,6 +1,6 @@
-import { createContext, useContext, useReducer, useMemo } from "react";
 import PropTypes from "prop-types";
-import candidateReducer from "../reducers/candidateReducer";
+import { createContext, useContext, useReducer, useMemo } from "react";
+import { candidateReducer } from "../reducers/candidateReducer";
 
 const CandidateContext = createContext();
 
@@ -11,9 +11,17 @@ const initialFormState = {
   lastname: "",
   email: "",
   phone: "",
-  language: "",
-  birth_date: "",
   location: "",
+  password: "",
+  confirmPassword: "",
+  picture: "",
+  cv: "",
+  age: "",
+  gender: "",
+  linkedin: "",
+  github: "",
+  soft_skills: "",
+  hard_skills: "",
 };
 
 function CandidateContextProvider({ children }) {

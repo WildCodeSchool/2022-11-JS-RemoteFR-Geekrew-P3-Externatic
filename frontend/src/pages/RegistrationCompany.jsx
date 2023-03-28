@@ -17,14 +17,9 @@ function RegistrationCompany() {
   const { confirmedPassword, ...company } = companyFormState;
 
   const [formErrors, setFormErrors] = useState({});
-  // const [isSubmit, setIsSubmit] = useState(false);
+  const [isSubmit, setIsSubmit] = useState(false);
 
-  // useEffect(() => {
-  //   console.log(formErrors);
-  //   if (Object.keys(formErrors).length === 0 && isSubmit) {
-  //     console.log(company);
-  //   }
-  // }, [formErrors]);
+  const [files, setFiles] = useState([]);
 
   const validate = (values) => {
     const errors = {};
@@ -79,9 +74,6 @@ function RegistrationCompany() {
     } else if (!linkedinRegex.test(values.linkedin)) {
       errors.linkedin = "Cette adresse linkedin n'est pas valide";
     }
-    if (!values.picture) {
-      errors.picture = "Picture is required";
-    }
     if (!values.password) {
       errors.password = "Password is required";
     } else if (values.password.length < 8) {
@@ -104,14 +96,19 @@ function RegistrationCompany() {
   };
 
   const handleSubmit = () => {
-    setFormErrors(validate(companyFormState));
-    // setIsSubmit(true);
+    const formData = new FormData();
 
+    formData.append("file", files[0]);
+    formData.append("company", JSON.stringify(company));
+
+    setIsSubmit(true);
     if (Object.keys(formErrors).length > 0) {
       toastError("Vous n'avez pas correctement rempli les champs requis");
     } else if (company && Object.keys(formErrors).length === 0) {
       axios
-        .post(`${backEndURL}/companies`, company)
+        .post(`${backEndURL}/companies`, formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        })
         .then(() => toastValidation("Votre formulaire a bien été envoyé"))
         .catch((err) => {
           console.error(err);
@@ -138,25 +135,28 @@ function RegistrationCompany() {
         </div>
         <div className="md:bg-white p-5 rounded-[10px]">
           <div className="mb-6 ml-8 mt-6 flex flex-row">
-            <CompanyProfilePic />
+            <CompanyProfilePic files={files} setFiles={setFiles} />
           </div>
-          <InfoCompany formErrors={formErrors} />
-          <NetworksCompany formErrors={formErrors} />
-          <PasswordCompany formErrors={formErrors} />
+          <InfoCompany
+            formErrors={formErrors}
+            setFormErrors={setFormErrors}
+            isSubmit={isSubmit}
+            validate={validate}
+          />
+          <NetworksCompany
+            formErrors={formErrors}
+            setFormErrors={setFormErrors}
+            isSubmit={isSubmit}
+            validate={validate}
+          />
+          <PasswordCompany
+            formErrors={formErrors}
+            setFormErrors={setFormErrors}
+            isSubmit={isSubmit}
+            validate={validate}
+          />
           <ValidationCompany handleSubmit={handleSubmit} />
         </div>
-        <p>name: {companyFormState.name}</p>
-        <p>siret: {companyFormState.siret}</p>
-        <p>mail: {companyFormState.mail}</p>
-        <p>phone: {companyFormState.phone}</p>
-        <p>number_of_employee: {companyFormState.number_of_employee}</p>
-        <p>field: {companyFormState.field}</p>
-        <p>location: {companyFormState.location}</p>
-        <p>description: {companyFormState.description}</p>
-        <p>linkedin: {companyFormState.linkedin}</p>
-        <p>picture: {companyFormState.picture}</p>
-        <p>password: {companyFormState.password}</p>
-        <p>confirmedPassword: {companyFormState.confirmedPassword}</p>
       </div>
     </div>
   );

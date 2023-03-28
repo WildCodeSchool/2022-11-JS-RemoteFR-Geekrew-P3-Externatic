@@ -9,13 +9,14 @@ import Connexion from "./pages/Connexion";
 import Registration from "./pages/Registration";
 import Logout from "./pages/Logout";
 import Dashboard from "./pages/Dashboard";
+import OfferDetails from "./components/OfferDetails";
 import RegistrationCandidate from "./pages/RegistrationCandidate";
 import RegistrationCompany from "./pages/RegistrationCompany";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 
 import { useCurrentUserContext } from "./contexts/CurrentUserContext";
 import CandidateProfile from "./pages/CandidateProfile";
-import CreationOffre from "./pages/CreationOffer";
+import CreationOffer from "./pages/CreationOffer";
 
 function App() {
   const { user } = useCurrentUserContext();
@@ -37,7 +38,8 @@ function App() {
             element={<RegistrationCompany />}
           />
           <Route path="/Candidate-Profile" element={<CandidateProfile />} />
-          <Route path="/Creation-Offre" element={<CreationOffre />} />
+          <Route path="/Creation-Offer" element={<CreationOffer />} />
+          <Route path="/OfferDetails/:jobId" element={<OfferDetails />} />
           <Route path="/Logout" element={<Logout />} />
           <Route element={<ProtectedRoutes user={user} />}>
             <Route path="/Dashboard" element={<Dashboard />} />

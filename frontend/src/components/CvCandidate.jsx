@@ -1,40 +1,22 @@
-/* eslint-disable no-restricted-syntax */
-import React, { useState } from "react";
-import expressAPI from "../services/expressAPI";
+import React from "react";
+import PropTypes from "prop-types";
 
-function CvCandidate() {
-  const [files, setFile] = useState([]);
-
-  const handleForm = (e) => {
-    e.preventDefault();
-
-    const formData = new FormData();
-    formData.append("file", files[0]);
-
-    expressAPI
-      .put(`/candidates/1/cv`, formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      })
-      .then("Fichier envoyé avec succès")
-
-      .catch((error) => {
-        console.error("Error uploading photo:", error);
-      });
+function CvCandidate({ setCvFile }) {
+  const onChange = (e) => {
+    setCvFile([e.target.files[0]]);
   };
 
   return (
     <div className="m-8 ">
-      <h2 className="font-bold text-sm text-black  text-left font-medium mb-4">
-        Mon CV
-      </h2>
-      <form onSubmit={handleForm}>
+      <h2 className="text-sm text-black  text-left font-medium mb-4">Mon CV</h2>
+      <form>
         <label
           htmlFor="base-input"
           className="block mb-2 text-sm text-left font-medium text-grey2 dark:text-white"
         >
           Télécharger
           <input
-            onChange={(e) => setFile(e.target.files)}
+            onChange={onChange}
             type="file"
             name="cv"
             accept=".pdf"
@@ -44,16 +26,13 @@ function CvCandidate() {
             required
           />
         </label>
-        <button
-          type="submit"
-          className="mr-2 mb-2 text-sm font-medium text-main underline hover:no-underline"
-        >
-          {" "}
-          Télécharger mon cv
-        </button>
       </form>
     </div>
   );
 }
+
+CvCandidate.propTypes = {
+  setCvFile: PropTypes.func.isRequired,
+};
 
 export default CvCandidate;
