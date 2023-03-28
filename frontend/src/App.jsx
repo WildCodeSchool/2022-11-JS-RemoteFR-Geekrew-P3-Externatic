@@ -40,6 +40,7 @@ function App() {
           <Route path="/OfferDetails/:jobId" element={<OfferDetails />} />
           <Route path="/Candidacies/:candidateId" element={<Candidacies />} />
           <Route path="/Logout" element={<Logout />} />
+          <Route path="/Dashboard" element={<Dashboard />} />
           <Route element={<ProtectedRoutes user={user} />}>
             <Route path="/Dashboard" element={<Dashboard />} />
           </Route>

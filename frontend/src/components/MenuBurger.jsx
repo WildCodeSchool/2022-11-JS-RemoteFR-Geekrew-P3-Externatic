@@ -18,7 +18,7 @@ function MenuBurger() {
           <nav className="text-base font-jost">
             <a
               className="block px-4 py-2 text-gray-900 hover:text-main focus:text-main"
-              href="/"
+              href="/Dashboard"
             >
               Offres d'emploi
             </a>
