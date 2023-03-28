@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
@@ -14,6 +15,7 @@ import ProtectedRoutes from "./components/ProtectedRoutes";
 
 import { useCurrentUserContext } from "./contexts/CurrentUserContext";
 import CandidateProfile from "./pages/CandidateProfile";
+import CreationOffre from "./pages/CreationOffer";
 
 function App() {
   const { user } = useCurrentUserContext();
@@ -35,6 +37,7 @@ function App() {
             element={<RegistrationCompany />}
           />
           <Route path="/Candidate-Profile" element={<CandidateProfile />} />
+          <Route path="/Creation-Offre" element={<CreationOffre />} />
           <Route path="/Logout" element={<Logout />} />
           <Route element={<ProtectedRoutes user={user} />}>
             <Route path="/Dashboard" element={<Dashboard />} />
