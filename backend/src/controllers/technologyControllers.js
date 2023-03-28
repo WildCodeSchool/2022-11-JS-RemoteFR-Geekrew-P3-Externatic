@@ -1,9 +1,8 @@
 const models = require("../models");
-const validateJobOffer = require("../validator/jobOfferValidator");
 
 const browse = (req, res) => {
-  models.jobOffer
-    .displayJob()
+  models.technology
+    .findAll()
     .then(([rows]) => {
       res.send(rows);
     })
@@ -14,8 +13,8 @@ const browse = (req, res) => {
 };
 
 const read = (req, res) => {
-  models.jobOffer
-    .jobDetails(req.params.id)
+  models.technology
+    .find(req.params.id)
     .then(([rows]) => {
       if (rows[0] == null) {
         res.sendStatus(404);
@@ -30,20 +29,12 @@ const read = (req, res) => {
 };
 
 const edit = (req, res) => {
-  const jobOffer = req.body;
+  const technology = req.body;
 
-  // Validation de l'offre d'emploi
+  technology.id = parseInt(req.params.id, 10);
 
-  const validationResult = validateJobOffer(jobOffer);
-
-  if (validationResult) {
-    return res.status(400).send(validationResult);
-  }
-
-  jobOffer.id = parseInt(req.params.id, 10);
-
-  return models.jobOffer
-    .update(jobOffer)
+  return models.user
+    .update(technology)
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);
@@ -58,18 +49,12 @@ const edit = (req, res) => {
 };
 
 const add = (req, res) => {
-  const jobOffer = req.body;
+  const technology = req.body;
 
-  const validationResult = validateJobOffer(jobOffer);
-
-  if (validationResult) {
-    return res.status(400).send(validationResult);
-  }
-
-  return models.jobOffer
-    .insert(jobOffer)
+  return models.technology
+    .insert(technology)
     .then(([result]) => {
-      res.location(`/job_offers/${result.insertId}`).sendStatus(201);
+      res.location(`/technologies/${result.insertId}`).sendStatus(201);
     })
     .catch((err) => {
       console.error(err);
@@ -78,7 +63,7 @@ const add = (req, res) => {
 };
 
 const destroy = (req, res) => {
-  models.jobOffer
+  models.technology
     .delete(req.params.id)
     .then(([result]) => {
       if (result.affectedRows === 0) {

@@ -1,7 +1,14 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
 function ValidationCompany({ handleSubmit }) {
+  const navigate = useNavigate();
+
+  const handleAbort = () => {
+    navigate("/Registration");
+  };
+
   return (
     <div>
       <div className="m-8 flex flex-col md:flex-row-reverse md:gap-x-10">
@@ -14,6 +21,7 @@ function ValidationCompany({ handleSubmit }) {
         </button>
         <button
           type="button"
+          onClick={handleAbort}
           className="mr-2 mb-2 text-sm font-medium text-main underline hover:no-underline hover:scale-110"
         >
           Annuler

@@ -58,7 +58,7 @@ const edit = (req, res) => {
 
 const add = async (req, res) => {
   try {
-    const company = req.body;
+    const company = JSON.parse(req.body.company);
 
     const validationResult = validateCompany(company);
 
@@ -83,6 +83,11 @@ const add = async (req, res) => {
 
     const [companyResult] = await models.company.insertCompanyIntoCompany(
       company,
+      companyUserId
+    );
+
+    models.company.updateCompanyPicture(
+      req.files.file[0].filename,
       companyUserId
     );
 

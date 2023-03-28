@@ -57,13 +57,13 @@ DROP TABLE IF EXISTS `p3`.`candidate` ;
 
 CREATE TABLE IF NOT EXISTS `p3`.`candidate` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `cv` VARCHAR(255) NOT NULL,
+  `cv` VARCHAR(255) DEFAULT "",
   `age` INT NOT NULL,
   `gender` VARCHAR(25) NOT NULL,
-  `github` VARCHAR(255) NOT NULL,
-  `active` TINYINT(1) NOT NULL,
+  `github` VARCHAR(255),
+  `active` TINYINT(1) DEFAULT 1,
   `soft_skills` TEXT NOT NULL,
-  `consultant_id` INT NOT NULL,
+  `consultant_id` INT,
   `user_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_candidate_consultant_id` (`consultant_id` ASC) VISIBLE,
@@ -391,7 +391,12 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_general_ci;
 
+LOCK TABLES `handled_offer` WRITE;
+/*!40000 ALTER TABLE `handled_offer` DISABLE KEYS */;
+INSERT INTO `handled_offer` VALUES
+(1, 1, 1, 5), (2, 2, 1, 10), (3, 3, 1, 4);
 
+UNLOCK TABLES;
 -- -----------------------------------------------------
 -- Table `p3`.`JOB_OFFER`
 -- -----------------------------------------------------
@@ -555,7 +560,7 @@ CREATE TABLE IF NOT EXISTS `p3`.`user` (
   `firstname` VARCHAR(100),
   `lastname` VARCHAR(100),
   `mail` VARCHAR(255) NOT NULL,
-  `linkedin` VARCHAR(255) NOT NULL,
+  `linkedin` VARCHAR(255),
   `phone` VARCHAR(20) NOT NULL,
   `hashed_password` VARCHAR(255) NOT NULL,
   `location` VARCHAR(150) NOT NULL,
