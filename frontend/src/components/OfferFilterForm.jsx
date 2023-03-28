@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+/* eslint-disable react/prop-types */
+import React, { useState, useEffect } from "react";
+import expressAPI from "../services/expressAPI";
 
-function OfferFilterForm() {
+function OfferFilterForm({ setJobOffers }) {
   const [isModalOpen, setIsModalOpen] = useState(false); // Définir l'état pour le popup
 
   const [formData, setFormData] = useState({
@@ -12,14 +14,34 @@ function OfferFilterForm() {
 
   const handleChange = (e) => {
     e.preventDefault();
-    const { name, value, checked, type } = e.target;
-    const val = type === "checkbox" ? checked : value;
-    setFormData({ ...formData, [name]: val });
+    const { name, value, checked } = e.target;
+
+    if (checked === true) {
+      setFormData((prev) => ({ ...prev, [name]: [...prev[name], value] }));
+    } else {
+      const newSelection = formData[name].filter((select) => select !== value);
+
+      setFormData((prev) => ({ ...prev, [name]: newSelection }));
+    }
   };
 
   const handlePopup = () => {
     setIsModalOpen(!isModalOpen);
   }; // Gérer l'état du popup
+
+  useEffect(() => {
+    if (formData.technologies.length) {
+      expressAPI.get(`/job_offers`).then((res) => {
+        setJobOffers(
+          res.data.filter((offer) =>
+            formData.technologies.some((techno) =>
+              offer.technologies.includes(techno)
+            )
+          )
+        );
+      });
+    }
+  }, [formData]);
 
   return (
     <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
@@ -61,7 +83,7 @@ function OfferFilterForm() {
             <span className="text-sm text-gray-700">
               {formData.salary} €/an
             </span>
-            <h3 className="text-lg font-medium mb-2">Contrat</h3>
+            {/* <h3 className="text-lg font-medium mb-2">Contrat</h3>
             <div className="flex flex-col">
               <label className="inline-flex items-center mt-2">
                 <input
@@ -118,7 +140,7 @@ function OfferFilterForm() {
                 />
                 <span className="ml-2 text-gray-700">Freelance</span>
               </label>
-            </div>
+            </div> */}
             <br />
             <h3 className="text-lg font-medium mb-2">Technologies</h3>
             <div className="flex flex-col">
@@ -126,8 +148,8 @@ function OfferFilterForm() {
                 <input
                   type="checkbox"
                   name="technologies"
-                  value="Javascript"
-                  checked={formData.technologies.includes("Javascript")}
+                  value="JavaScript"
+                  checked={formData.technologies.includes("JavaScript")}
                   onChange={handleChange}
                   className="form-checkbox h-5 w-5 text-blue-600"
                 />
@@ -148,8 +170,8 @@ function OfferFilterForm() {
                 <input
                   type="checkbox"
                   name="technologies"
-                  value="ReactJS"
-                  checked={formData.technologies.includes("ReactJS")}
+                  value="React"
+                  checked={formData.technologies.includes("React")}
                   onChange={handleChange}
                   className="form-checkbox h-5 w-5 text-blue-600"
                 />
@@ -179,7 +201,7 @@ function OfferFilterForm() {
               </label>
             </div>
             <br />
-            <h3 className="text-lg font-medium mb-2">Secteurs</h3>
+            {/* <h3 className="text-lg font-medium mb-2">Secteurs</h3>
             <div className="flex flex-col">
               <label className="inline-flex items-center mt-2">
                 <input
@@ -236,7 +258,7 @@ function OfferFilterForm() {
                 />
                 <span className="ml-2 text-gray-700">Banque/Assurance</span>
               </label>
-            </div>
+            </div> */}
           </div>
           <div className="flex items-center justify-end p-6 border-t border-solid border-gray-300 rounded-b">
             <button

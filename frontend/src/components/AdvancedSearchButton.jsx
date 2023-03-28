@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from "react";
-import OfferFilterForm from "./OfferFilter";
+import OfferFilterForm from "./OfferFilterForm";
 
-function AdvancedSearchButton() {
+function AdvancedSearchButton({ setJobOffers }) {
   const [showOfferFilter, setShowOfferFilter] = useState(false);
 
   const handleClick = () => {
@@ -17,7 +18,7 @@ function AdvancedSearchButton() {
       >
         Recherche avancée
       </button>
-      {showOfferFilter && <OfferFilterForm />}
+      {showOfferFilter && <OfferFilterForm setJobOffers={setJobOffers} />}
     </div>
   );
 }

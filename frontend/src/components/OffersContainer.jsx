@@ -1,15 +1,7 @@
-import React, { useEffect, useState } from "react";
-import expressAPI from "../services/expressAPI";
+/* eslint-disable react/prop-types */
 import OfferDash from "./OfferDash";
 
-function OffersContainer() {
-  const [jobOffers, setJobOffers] = useState([]);
-  useEffect(() => {
-    expressAPI.get(`/job_offers`).then((res) => {
-      setJobOffers(res.data);
-    });
-  }, []);
-
+function OffersContainer({ jobOffers }) {
   return (
     <div className="mx-8">
       <h1 className="font-jost font-semibold text-xl mb-5">
