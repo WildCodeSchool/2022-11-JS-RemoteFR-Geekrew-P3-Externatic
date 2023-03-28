@@ -1,8 +1,11 @@
-/* eslint-disable no-restricted-syntax */
 import PropTypes from "prop-types";
 import plus from "../assets/Icons/plus-circle.svg";
 
-function CandidateProfilePic({ files, setFiles }) {
+function CandidateProfilePic({ pictureFile, setPictureFile }) {
+  const onChange = (e) => {
+    setPictureFile([e.target.files[0]]);
+  };
+
   return (
     <div className="float-left w-full md:w-96 md:max-w-full mx-auto mb-5">
       <div className="">
@@ -10,15 +13,16 @@ function CandidateProfilePic({ files, setFiles }) {
           <div className="border-main rounded-lg">
             <label className="block mb-6 relative ">
               <input
-                onChange={(e) => setFiles(e.target.files)}
+                onChange={onChange}
                 required
                 name="photo"
                 type="file"
+                multiple
                 className="opacity-0 absolute z-10 w-full h-full cursor-pointer"
               />
-              {files.length && (
+              {pictureFile.length && (
                 <img
-                  src={URL.createObjectURL(files[0])}
+                  src={URL.createObjectURL(pictureFile[0])}
                   alt=""
                   className="w-20 h-20 rounded-full"
                 />
@@ -35,8 +39,8 @@ function CandidateProfilePic({ files, setFiles }) {
 }
 
 CandidateProfilePic.propTypes = {
-  files: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  setFiles: PropTypes.func.isRequired,
+  pictureFile: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  setPictureFile: PropTypes.func.isRequired,
 };
 
 export default CandidateProfilePic;

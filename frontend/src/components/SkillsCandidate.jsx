@@ -9,6 +9,7 @@ function SkillsCandidate({ formErrors, setFormErrors, validate, isSubmit }) {
   const { dispatch, formState } = useCandidateContext();
   const [isOpen, setOpen] = useState(false);
   const [technologies, setTechnologies] = useState([]);
+  const [candidateHardSkills, setCandidateHardSkills] = useState([]);
 
   const handleInput = (e) => {
     dispatch({
@@ -19,16 +20,42 @@ function SkillsCandidate({ formErrors, setFormErrors, validate, isSubmit }) {
   };
 
   useEffect(() => {
-    expressAPI.get(`/technologies`).then((res) => {
-      setTechnologies(res.data);
-    });
+    expressAPI
+      .get(`/technologies`)
+      .then((res) => {
+        return res.data.map((obj) => {
+          return { ...obj, status: false };
+        });
+      })
+      .then((rawTechno) => setTechnologies(rawTechno));
   }, []);
 
-  const [candidateHardSkills, setCandidateHardSkills] = useState([]);
+  const handleCheck = (e) => {
+    const technoChecked = parseInt(e.target.id, 10);
 
-  const handleHardSkills = (e) => {
-    if (e.target.checked === true) {
+    const newTechnologiesStatus = technologies.map((techno) => {
+      if (techno.id === technoChecked) {
+        return { ...techno, status: !techno.status };
+      }
+      return techno;
+    });
+
+    setTechnologies(newTechnologiesStatus);
+
+    if (
+      e.target.checked === true &&
+      !candidateHardSkills.includes(e.target.id)
+    ) {
       setCandidateHardSkills([...candidateHardSkills, e.target.id]);
+    }
+    if (
+      e.target.checked === false &&
+      candidateHardSkills.includes(e.target.id)
+    ) {
+      const updatedHardSkills = candidateHardSkills.filter(
+        (id) => id !== e.target.id
+      );
+      setCandidateHardSkills(updatedHardSkills);
     }
   };
 
@@ -71,7 +98,8 @@ function SkillsCandidate({ formErrors, setFormErrors, validate, isSubmit }) {
                       id={technology.id}
                       name={technology.name}
                       type="checkbox"
-                      onChange={handleHardSkills}
+                      checked={technology.status}
+                      onChange={handleCheck}
                     />
                     <label
                       className="ml-6 text-sm text-black text-left font-medium"

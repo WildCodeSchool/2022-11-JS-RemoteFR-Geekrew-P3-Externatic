@@ -75,11 +75,6 @@ const FavoriteManager = require("./FavoriteManager");
 models.favorite = new FavoriteManager();
 models.favorite.setDatabase(pool);
 
-const CvManager = require("./CvManager");
-
-models.cv = new CvManager();
-models.cv.setDatabase(pool);
-
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model
 

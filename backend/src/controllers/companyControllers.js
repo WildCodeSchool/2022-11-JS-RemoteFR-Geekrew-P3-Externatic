@@ -86,7 +86,10 @@ const add = async (req, res) => {
       companyUserId
     );
 
-    models.company.updateCompanyPicture(req.file.filename, companyUserId);
+    models.company.updateCompanyPicture(
+      req.files.file[0].filename,
+      companyUserId
+    );
 
     res.location(`/companies/${companyResult.insertId}`).sendStatus(201);
   } catch (err) {

@@ -102,7 +102,15 @@ const add = async (req, res) => {
         );
       });
 
-      models.candidate.updatePicture(req.file.filename, candidateUserId);
+      models.candidate.updatePicture(
+        req.files.picture[0].filename,
+        candidateUserId
+      );
+
+      models.candidate.updateCV(
+        req.files.cv[0].filename,
+        candidateLastInsertId
+      );
 
       res.location(`/candidates/${candidateResult.insertId}`).sendStatus(201);
     }

@@ -4,7 +4,6 @@ import axios from "axios";
 import { useCandidateContext } from "../contexts/CandidateContext";
 import { toastError, toastValidation } from "../services/toastService";
 import CandidateProfilePic from "../components/CandidateProfilePic";
-// import ProfilePicture from "../components/ProfilePicture";
 import InfoCandidate from "../components/InfoCandidate";
 import ToggleCandidate from "../components/ToggleCandidate";
 import SkillsCandidate from "../components/SkillsCandidate";
@@ -21,8 +20,6 @@ function RegistrationCandidate() {
 
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
-
-  const [files, setFiles] = useState([]);
 
   const validate = (values) => {
     const errors = {};
@@ -94,10 +91,14 @@ function RegistrationCandidate() {
     return errors;
   };
 
+  const [cvFile, setCvFile] = useState([]);
+  const [pictureFile, setPictureFile] = useState([]);
+
   const handleSubmit = () => {
     const formData = new FormData();
 
-    formData.append("file", files[0]);
+    formData.append("cv", cvFile[0]);
+    formData.append("picture", pictureFile[0]);
     formData.append("candidate", JSON.stringify(candidate));
 
     setIsSubmit(true);
@@ -137,7 +138,10 @@ function RegistrationCandidate() {
           <ToggleCandidate />
           <div className="flex flex-row justify-between items-center">
             <div className="ml-8 mt-4">
-              <CandidateProfilePic files={files} setFiles={setFiles} />
+              <CandidateProfilePic
+                pictureFile={pictureFile}
+                setPictureFile={setPictureFile}
+              />
             </div>
           </div>
           <InfoCandidate
@@ -153,7 +157,7 @@ function RegistrationCandidate() {
             validate={validate}
           />
           <div className="flex flex-col justify-start w-full md:grid md:grid-cols-2">
-            <CvCandidate />
+            <CvCandidate cvFile={cvFile} setCvFile={setCvFile} />
             <NetworksCandidate
               formErrors={formErrors}
               setFormErrors={setFormErrors}
@@ -163,21 +167,6 @@ function RegistrationCandidate() {
           </div>
           <ValidationCandidate handleSubmit={handleSubmit} />
         </div>
-        <p>firstname : {formState.firstname}</p>
-        <p>lastname : {formState.lastname}</p>
-        <p>email : {formState.email}</p>
-        <p>phone : {formState.phone}</p>
-        <p>location : {formState.location}</p>
-        <p>password : {formState.password}</p>
-        <p>confirmPassword : {formState.confirmPassword}</p>
-        <p>picture : {formState.picture}</p>
-        <p>cv : {formState.cv}</p>
-        <p>age : {formState.age}</p>
-        <p>gender : {formState.gender}</p>
-        <p>linkedin : {formState.linkedin}</p>
-        <p>github : {formState.github}</p>
-        <p>soft_skills : {formState.soft_skills}</p>
-        <p>hard_skills : {formState.hard_skills}</p>
       </div>
     </div>
   );

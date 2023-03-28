@@ -18,9 +18,12 @@ const storage = multer.diskStorage({
   filename: (req, file, callback) => {
     const name = file.originalname.split(" ").join("_");
     const extension = MIME_TYPES[file.mimetype];
-    console.log(file);
     callback(null, `${name}-${uuidv4()}.${extension}`);
   },
 });
 
-module.exports = multer({ storage }).single("file");
+module.exports = multer({ storage }).fields([
+  { name: "file", maxCount: 1 },
+  { name: "cv", maxCount: 1 },
+  { name: "picture", maxCount: 1 },
+]);

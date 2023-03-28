@@ -57,16 +57,13 @@ router.post("/companies", companyPicture, companyControllers.add);
 router.delete("/companies/:id", companyControllers.destroy);
 
 const candidateControllers = require("./controllers/candidateControllers");
-const { addUserCv } = require("./controllers/cvControllers");
 
-const candidatePicture = require("./middleware/multer");
-const cvUpload = require("./middleware/multer");
+const multerFiles = require("./middleware/multer");
 
-router.put("/candidates/:id/cv", cvUpload, addUserCv);
 router.get("/candidates", candidateControllers.browse);
 router.get("/candidates/:id", candidateControllers.read);
 router.put("/candidates/:id", candidateControllers.edit);
-router.post("/candidates", candidatePicture, candidateControllers.add);
+router.post("/candidates", multerFiles, candidateControllers.add);
 router.delete("/candidates/:id", candidateControllers.destroy);
 
 const candidacyControllers = require("./controllers/candidacyControllers");
