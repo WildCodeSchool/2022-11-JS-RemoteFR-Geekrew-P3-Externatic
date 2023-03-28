@@ -5,7 +5,7 @@ function MainButton({ children, handleClick }) {
     <button
       onClick={handleClick}
       type="button"
-      className="flex justify-center py-3 w-full rounded-full bg-main font-semibold text-white text-sm mb-6 md:w-1/4"
+      className="flex justify-center py-3 w-full rounded-full bg-main font-semibold text-white text-sm mb-6 md:w-1/4 hover:bg-main-dark"
     >
       {children}
     </button>

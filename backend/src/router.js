@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 
 const { hashPassword, verifyPassword, verifyToken, logout } = require("./auth");
+const rolesCheck = require("./rolesCheck");
 
 const userControllers = require("./controllers/userControllers");
 
@@ -18,7 +19,7 @@ router.post("/users", hashPassword, userControllers.add);
 // Protected routes
 router.use(verifyToken);
 
-router.get("/users", userControllers.browse);
+router.get("/users", rolesCheck("admin"), userControllers.browse);
 router.get("/users/:id", userControllers.read);
 router.put("/users/:id", hashPassword, verifyPassword, userControllers.edit);
 router.delete(

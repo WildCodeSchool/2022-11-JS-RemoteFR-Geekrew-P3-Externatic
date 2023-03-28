@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useCurrentUserContext } from "../contexts/CurrentUserContext";
+
 import expressAPI from "../services/expressAPI";
 
 import OfferDash from "./OfferDash";
@@ -7,16 +8,20 @@ import OfferDash from "./OfferDash";
 function CandidaciesContainer() {
   const [candidacies, setCandidacies] = useState([]);
 
-  const { candidateId } = useParams();
+  const { userId, setCandidateId } = useCurrentUserContext();
 
   useEffect(() => {
     expressAPI
-      .get(`/candidacies/${candidateId}`)
+      .get(`/candidacies/${userId}`)
       .then((res) => {
         setCandidacies(res.data);
+        setCandidateId(res.data[0].candidate_id);
       })
       .catch((err) => console.error(err));
   }, []);
+
+  const isDuplicate = (jobOffer, i) =>
+    candidacies.map((c) => c.id).indexOf(jobOffer.id) === i;
 
   return (
     <div className="mx-8">
@@ -24,7 +29,7 @@ function CandidaciesContainer() {
         <h1 className="font-jost font-semibold text-xl">Mes candidatures</h1>
       </div>
       <div className="bg-white rounded p-4 flex flex-col gap-4">
-        {candidacies.map((jobOffer) => (
+        {candidacies.filter(isDuplicate).map((jobOffer) => (
           <OfferDash
             key={jobOffer.id}
             jobId={jobOffer.id}

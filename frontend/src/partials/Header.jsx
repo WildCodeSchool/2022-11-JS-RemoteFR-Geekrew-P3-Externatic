@@ -1,5 +1,5 @@
 import React from "react";
-import Sidenav from "../components/MenuBurger";
+import Sidenav from "../components/Menus/MenuBurger";
 import Logo from "../components/Logo";
 import ButtonsConnexion from "../components/ButtonsConnexion";
 

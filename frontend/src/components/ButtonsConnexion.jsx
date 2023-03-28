@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useCurrentUserContext } from "../contexts/CurrentUserContext";
 
 import login from "../assets/Icons/log-in.svg";
-import logout from "../assets/Icons/log-out.svg";
+import logout from "../assets/Icons/power.svg";
 
 import expressAPI from "../services/expressAPI";
 
@@ -22,17 +22,21 @@ function ButtonsConnexion() {
   };
 
   return (
-    <div className="flex w-32">
+    <div className="flex mx-2">
       {user ? (
-        <div className="mx-2 bg-main rounded-full">
-          <button type="button" onClick={handleDisconnection}>
-            <img src={logout} alt="log-out" className="w-12 h-12 p-2" />
+        <div className=" bg-main rounded-full">
+          <button
+            type="button"
+            onClick={handleDisconnection}
+            className="w-fit rounded-full p-3"
+          >
+            <img src={logout} alt="log-out" className="w-8 md:w-6" />
           </button>
         </div>
       ) : (
-        <div className="mx-2 bg-main rounded-full">
+        <div className=" bg-main rounded-full p-2">
           <Link to="/Connexion">
-            <img src={login} alt="log-in" className="w-12 h-12 p-2" />
+            <img src={login} alt="log-in" className="w-7 md:w-6" />
           </Link>
         </div>
       )}

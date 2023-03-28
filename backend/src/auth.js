@@ -27,7 +27,7 @@ const verifyPassword = (req, res) => {
     .verify(req.user.hashed_password, req.body.password)
     .then((isVerified) => {
       if (isVerified) {
-        const payload = { sub: req.user.id };
+        const payload = { sub: req.user.id, roles: req.user.roles };
 
         const token = jwt.sign(payload, process.env.JWT_SECRET, {
           expiresIn: "1h",
@@ -36,7 +36,7 @@ const verifyPassword = (req, res) => {
         delete req.user.hashed_password;
 
         res.cookie("auth_token", token, { httpOnly: true, secure: false });
-        res.status(200).json({ user: req.user });
+        res.status(200).json({ user: req.user, roles: req.user.roles });
       } else {
         res.sendStatus(401);
       }
