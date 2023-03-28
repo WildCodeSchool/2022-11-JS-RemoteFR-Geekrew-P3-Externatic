@@ -6,7 +6,7 @@ import chevronUp from "../assets/Icons/chevron-up.svg";
 import MainButton from "./Buttons/MainButton";
 
 import expressAPI from "../services/expressAPI";
-import toastError from "../services/toastService";
+import { toastError } from "../services/toastService";
 
 import { useCurrentUserContext } from "../contexts/CurrentUserContext";
 
