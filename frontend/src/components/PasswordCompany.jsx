@@ -1,10 +1,17 @@
-import React, { useEffect } from "react";
+/* eslint-disable react/button-has-type */
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import eye from "../assets/Icons/eye.svg";
+import eyeOff from "../assets/Icons/eye-off.svg";
 
 import { useCompanyContext } from "../contexts/CompanyContext";
 
 function PasswordCompany({ formErrors, setFormErrors, validate, isSubmit }) {
   const { dispatch, companyFormState } = useCompanyContext();
+
+  const [passwordIsVisible, setPasswordIsVisible] = useState(false);
+  const [confirmPasswordIsVisible, setConfirmPasswordIsVisible] =
+    useState(false);
 
   const handleInput = (e) => {
     dispatch({
@@ -30,13 +37,25 @@ function PasswordCompany({ formErrors, setFormErrors, validate, isSubmit }) {
         >
           Mot de passe
         </label>
-        <input
-          type="password"
-          id="base-input"
-          name="password"
-          onChange={handleInput}
-          className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-        />
+        <div className="flex flex-row justify-center items-center align-middle relative mb-4 w-full">
+          <input
+            type={passwordIsVisible ? "text" : "password"}
+            id="base-input"
+            name="password"
+            onChange={handleInput}
+            className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+          />
+          <button
+            onClick={() => setPasswordIsVisible(!passwordIsVisible)}
+            className="absolute right-1 text-grey2"
+          >
+            {passwordIsVisible ? (
+              <img src={eye} alt="visible" />
+            ) : (
+              <img src={eyeOff} alt="invisible" />
+            )}
+          </button>
+        </div>
         {isSubmit && formErrors.password && (
           <p className="text-sm text-red mb-4 mx-2">{formErrors.password}</p>
         )}
@@ -52,13 +71,27 @@ function PasswordCompany({ formErrors, setFormErrors, validate, isSubmit }) {
         >
           Confirmer le mot de passe
         </label>
-        <input
-          type="password"
-          id="base-input"
-          name="confirmedPassword"
-          onChange={handleInput}
-          className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        />
+        <div className="flex flex-row justify-center items-center align-middle relative mb-4 w-full">
+          <input
+            type={confirmPasswordIsVisible ? "text" : "password"}
+            id="base-input"
+            name="confirmedPassword"
+            onChange={handleInput}
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+          />
+          <button
+            onClick={() =>
+              setConfirmPasswordIsVisible(!confirmPasswordIsVisible)
+            }
+            className="absolute right-1 text-grey2"
+          >
+            {confirmPasswordIsVisible ? (
+              <img src={eye} alt="visible" />
+            ) : (
+              <img src={eyeOff} alt="invisible" />
+            )}
+          </button>
+        </div>
         {isSubmit && formErrors.confirmedPassword && (
           <p className="text-sm text-red mb-4 mx-2">
             {formErrors.confirmedPassword}
