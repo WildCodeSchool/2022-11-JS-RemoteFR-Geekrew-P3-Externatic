@@ -1,12 +1,18 @@
 /* eslint-disable react/prop-types */
 import OfferDash from "./OfferDash";
 
+import { useCurrentUserContext } from "../contexts/CurrentUserContext";
+
 function OffersContainer({ jobOffers }) {
+  const { roles } = useCurrentUserContext();
+
   return (
     <div className="mx-8 md:ml-96">
-      <h1 className="font-jost font-semibold text-xl mb-5">
-        Les offres qui vous correspondent
-      </h1>
+      {roles.includes("candidate") && (
+        <h1 className="font-jost font-semibold text-xl mb-5">
+          Les offres qui vous correspondent
+        </h1>
+      )}
       <div className="bg-white rounded p-4 flex flex-col gap-4">
         {jobOffers.map((jobOffer) => (
           <OfferDash
