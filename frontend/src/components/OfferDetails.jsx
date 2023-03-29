@@ -193,6 +193,11 @@ function OfferDetails() {
                 </span>
               </h1>
             </div>
+            {candidates.length === 0 && (
+              <p className="my-8 text-center">
+                Aucun candidat n'a postulé pour le moment.
+              </p>
+            )}
             {candidates.map((candidate) => (
               <CandidateCard
                 lastname={candidate.lastname}
