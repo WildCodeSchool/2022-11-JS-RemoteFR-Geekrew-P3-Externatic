@@ -15,7 +15,7 @@ function OfferDetails() {
   const { jobId } = useParams();
   const navigate = useNavigate();
 
-  const { candidateId, roles } = useCurrentUserContext();
+  const { roles, candidateId } = useCurrentUserContext();
 
   const [openEntreprise, setOpenEntreprise] = useState(false);
   const [openDetails, setOpenDetails] = useState(false);
@@ -43,7 +43,7 @@ function OfferDetails() {
           progress: undefined,
           theme: "colored",
         });
-        navigate("/Candidacies/:candidateId");
+        navigate(`/Candidacies/${candidateId}`);
       })
       .catch(() => toastError("Votre candidature n'a pas pu être envoyée"));
   };

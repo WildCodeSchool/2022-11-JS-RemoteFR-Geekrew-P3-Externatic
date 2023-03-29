@@ -55,7 +55,7 @@ router.get(
 );
 router.put("/candidacies/:id", candidacyControllers.edit);
 router.post("/candidacies", candidacyControllers.add);
-router.delete("/candidacies/:id", candidacyControllers.destroy);
+router.delete("/candidacies/:candidacyId", candidacyControllers.destroy);
 
 const jobOfferControllers = require("./controllers/jobOfferControllers");
 

@@ -61,6 +61,13 @@ class CandidacyManager extends AbstractManager {
       ]
     );
   }
+
+  delete(candidacyId) {
+    return this.database.query(
+      `delete from ${this.table} where candidate_id = ?`,
+      [candidacyId]
+    );
+  }
 }
 
 module.exports = CandidacyManager;

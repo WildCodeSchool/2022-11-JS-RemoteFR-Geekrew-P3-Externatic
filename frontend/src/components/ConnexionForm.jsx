@@ -6,7 +6,7 @@ import expressAPI from "../services/expressAPI";
 import toastError from "../services/toastService";
 
 function ConnexionForm() {
-  const { setUser, email, setEmail, setRoles, setUserId } =
+  const { setUser, email, setEmail, setRoles, setUserId, setCandidateId } =
     useCurrentUserContext();
 
   const navigate = useNavigate();
@@ -30,6 +30,12 @@ function ConnexionForm() {
           setUser(user.mail);
           setRoles(user.roles);
           setUserId(user.id);
+
+          if (user.roles.includes("candidate")) {
+            expressAPI.get(`/candidates/${user.id}`).then((res2) => {
+              setCandidateId(res2.data.id);
+            });
+          }
 
           localStorage.setItem("user", JSON.stringify(user));
           navigate("/Dashboard");

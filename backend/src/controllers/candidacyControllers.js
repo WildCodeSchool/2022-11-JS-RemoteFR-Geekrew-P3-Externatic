@@ -93,7 +93,7 @@ const add = (req, res) => {
 
 const destroy = (req, res) => {
   models.candidacy
-    .delete(req.params.id)
+    .delete(req.params.candidacyId)
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);
