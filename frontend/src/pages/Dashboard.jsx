@@ -27,7 +27,7 @@ function Dashboard() {
           <FavoriteDash />
         </>
       )}
-      {roles.includes("company") && <CompanyDash />}
+      {roles.includes("company") && <CompanyDash jobOffers={jobOffers} />}
     </div>
   );
 }
