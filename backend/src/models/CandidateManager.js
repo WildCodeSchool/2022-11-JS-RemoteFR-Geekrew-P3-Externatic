@@ -20,7 +20,7 @@ class CandidateManager extends AbstractManager {
 
   insertCandidateIntoUser(candidate) {
     return this.database.query(
-      `INSERT INTO user (firstname, lastname, mail, linkedin, phone, location, hashed_password) VALUES (?, ?, ?, ?, ?, ?, ?)`,
+      `INSERT INTO user (firstname, lastname, mail, linkedin, phone, location, hashed_password, roles) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         candidate.firstname,
         candidate.lastname,
@@ -29,6 +29,7 @@ class CandidateManager extends AbstractManager {
         candidate.phone,
         candidate.location,
         candidate.password,
+        candidate.roles,
       ]
     );
   }

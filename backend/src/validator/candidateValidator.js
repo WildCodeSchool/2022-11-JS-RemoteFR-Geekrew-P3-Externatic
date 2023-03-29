@@ -22,6 +22,7 @@ const candidateSchema = Joi.object().keys({
   location: Joi.string().min(3).max(100).required(),
   picture: Joi.string().allow("", null),
   cv: Joi.string().allow("", null),
+  roles: Joi.string().min(9).required(),
 });
 
 const validateCandidate = (user) => {

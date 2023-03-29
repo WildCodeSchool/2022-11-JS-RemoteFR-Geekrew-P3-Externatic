@@ -22,6 +22,7 @@ const initialFormState = {
   github: "",
   soft_skills: "",
   hard_skills: "",
+  roles: '["user", "candidate"]',
 };
 
 function CandidateContextProvider({ children }) {

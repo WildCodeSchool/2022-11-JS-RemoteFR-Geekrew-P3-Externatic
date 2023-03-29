@@ -18,6 +18,7 @@ const initialCompanyFormState = {
   linkedin: "",
   password: "",
   confirmedPassword: "",
+  roles: '["user", "company"]',
 };
 
 function CompanyContextProvider({ children }) {
