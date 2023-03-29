@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import chevronDown from "../assets/Icons/chevron-down.svg";
 import chevronUp from "../assets/Icons/chevron-up.svg";
 import MainButton from "./Buttons/MainButton";
+import CandidateCard from "./CandidateProfile/CandidateCard";
 
 import expressAPI from "../services/expressAPI";
 import toastError from "../services/toastService";
@@ -169,6 +170,7 @@ function OfferDetails() {
           )}
         </div>
         <MainButton handleClick={handleSubmit}>Postuler à l'annonce</MainButton>
+        <CandidateCard />
       </div>
     </div>
   );

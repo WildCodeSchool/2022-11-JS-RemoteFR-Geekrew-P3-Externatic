@@ -69,14 +69,18 @@ function OfferDash({
           </p>
           <p className="mt-5">{description}</p>
         </div>
-        <div className="flex flex-row gap-2 flex-wrap mt-5">
-          {technologies.split(",").map((technologie) => (
-            <Tags key={`${jobId}-${technologie}`} name={technologie} />
-          ))}
+        <div className="flex flex-row gap-2 flex-wrap mt-5 justify-between items-center w-full ">
+          <div>
+            {technologies.split(",").map((technologie) => (
+              <Tags key={`${jobId}-${technologie}`} name={technologie} />
+            ))}
+          </div>
+          <div>
+            {roles.includes("company") && (
+              <CandidacyInfos nbCandidacies={candidacies.length} />
+            )}
+          </div>
         </div>
-        {roles.includes("company") && (
-          <CandidacyInfos nbCandidacies={candidacies.length} />
-        )}
       </Link>
     </div>
   );

@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 function CandidacyInfos({ nbCandidacies }) {
   return (
-    <div>
+    <div className="underline decoration-2 decoration-main text-main font-semibold">
       {nbCandidacies > 0 && (
         <div>
           {nbCandidacies === 1 && <div>{nbCandidacies} candidat a postulé</div>}
