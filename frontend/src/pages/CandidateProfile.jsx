@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+import { useCurrentUserContext } from "../contexts/CurrentUserContext";
+
 import expressAPI from "../services/expressAPI";
 
 import UploadCv from "../components/CandidateProfile/UploadCv";
@@ -11,10 +13,10 @@ import Profile from "../components/CandidateProfile/Profile";
 
 function CandidateProfile() {
   const [candidate, setCandidate] = useState(undefined);
-  const id = 4;
+  const { userId } = useCurrentUserContext();
 
   useEffect(() => {
-    expressAPI.get(`/candidates/${id}`).then((res) => {
+    expressAPI.get(`/candidates/${userId}`).then((res) => {
       setCandidate(res.data);
     });
   }, []);

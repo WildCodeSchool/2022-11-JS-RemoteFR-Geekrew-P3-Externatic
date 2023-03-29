@@ -19,7 +19,7 @@ function InfoCompany({ formErrors, setFormErrors, validate, isSubmit }) {
   }, [companyFormState]);
 
   return (
-    <form className="m-8 md:grid md:grid-cols-2 md:gap-x-4">
+    <form className="m-8 mt-0 md:grid md:grid-cols-2 md:gap-x-4">
       <h2 className="text-sm text-black text-left font-medium mb-4 md:col-span-2">
         Mes informations
       </h2>

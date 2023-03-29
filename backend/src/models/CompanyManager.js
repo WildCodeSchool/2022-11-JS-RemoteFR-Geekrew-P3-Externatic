@@ -7,7 +7,7 @@ class CompanyManager extends AbstractManager {
 
   insertCompanyIntoUser(company) {
     return this.database.query(
-      `INSERT INTO user (mail, linkedin, phone, location, picture, hashed_password) VALUES (?, ?, ?, ?, ?, ?)`,
+      `INSERT INTO user (mail, linkedin, phone, location, picture, hashed_password, roles) VALUES (?, ?, ?, ?, ?, ?, ?)`,
       [
         company.mail,
         company.linkedin,
@@ -15,6 +15,7 @@ class CompanyManager extends AbstractManager {
         company.location,
         company.picture,
         company.password,
+        company.roles,
       ]
     );
   }

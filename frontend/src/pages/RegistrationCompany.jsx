@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import PasswordCompany from "../components/PasswordCompany";
 import { toastError, toastValidation } from "../services/toastService";
 
@@ -12,6 +13,8 @@ import CompanyProfilePic from "../components/CompanyProfilePic";
 const backEndURL = import.meta.env.VITE_BACKEND_URL;
 
 function RegistrationCompany() {
+  const navigate = useNavigate();
+
   const { companyFormState } = useCompanyContext();
 
   const { confirmedPassword, ...company } = companyFormState;
@@ -109,10 +112,17 @@ function RegistrationCompany() {
         .post(`${backEndURL}/companies`, formData, {
           headers: { "Content-Type": "multipart/form-data" },
         })
-        .then(() => toastValidation("Votre formulaire a bien été envoyé"))
+        .then(() =>
+          toastValidation(
+            "Bienvenu.e dans l'aventure Externatic ! Vous pouvez maintenant vous connecter avec vos identifiants."
+          )
+        )
+        .then(() => navigate("/Connexion"))
         .catch((err) => {
           console.error(err);
-          toastError("Le formulaire n'a pas pu être envoyé");
+          toastError(
+            "Oups ! Il semblerait que quelque chose ne tourne pas rond..."
+          );
         });
     }
   };
@@ -134,7 +144,7 @@ function RegistrationCompany() {
           </h1>
         </div>
         <div className="md:bg-white p-5 rounded-[10px]">
-          <div className="mb-6 ml-8 mt-6 flex flex-row">
+          <div className="mb-4 ml-8 mt-14 flex flex-row items-center justify-start">
             <CompanyProfilePic files={files} setFiles={setFiles} />
           </div>
           <InfoCompany

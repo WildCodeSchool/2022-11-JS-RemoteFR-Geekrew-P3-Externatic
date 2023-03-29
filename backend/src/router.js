@@ -2,15 +2,8 @@ const express = require("express");
 
 const router = express.Router();
 
-require("dotenv").config();
-
-// const path = require("path");
-
-const {
-  hashPassword,
-  verifyPassword,
-  /* verifyToken */ logout,
-} = require("./auth");
+const { hashPassword, verifyPassword, verifyToken, logout } = require("./auth");
+const rolesCheck = require("./rolesCheck");
 
 const userControllers = require("./controllers/userControllers");
 
@@ -34,10 +27,21 @@ router.put("/technologies/:id", technologyControllers.edit);
 router.post("/technologies", technologyControllers.add);
 router.delete("/technologies/:id", technologyControllers.destroy);
 
-// Protected routes
-// router.use(verifyToken);
+const companyControllers = require("./controllers/companyControllers");
+const companyPicture = require("./middleware/multer");
 
-router.get("/users", userControllers.browse);
+router.post("/companies", companyPicture, companyControllers.add);
+
+const candidateControllers = require("./controllers/candidateControllers");
+
+const multerFiles = require("./middleware/multer");
+
+router.post("/candidates", multerFiles, candidateControllers.add);
+
+// Protected routes
+router.use(verifyToken);
+
+router.get("/users", rolesCheck("admin"), userControllers.browse);
 router.get("/users/:id", userControllers.read);
 router.put("/users/:id", hashPassword, verifyPassword, userControllers.edit);
 router.delete(
@@ -47,23 +51,14 @@ router.delete(
   userControllers.destroy
 );
 
-const companyControllers = require("./controllers/companyControllers");
-const companyPicture = require("./middleware/multer");
-
 router.get("/companies", companyControllers.browse);
 router.get("/companies/:id", companyControllers.read);
 router.put("/companies/:id", companyControllers.edit);
-router.post("/companies", companyPicture, companyControllers.add);
 router.delete("/companies/:id", companyControllers.destroy);
-
-const candidateControllers = require("./controllers/candidateControllers");
-
-const multerFiles = require("./middleware/multer");
 
 router.get("/candidates", candidateControllers.browse);
 router.get("/candidates/:id", candidateControllers.read);
 router.put("/candidates/:id", candidateControllers.edit);
-router.post("/candidates", multerFiles, candidateControllers.add);
 router.delete("/candidates/:id", candidateControllers.destroy);
 
 const candidacyControllers = require("./controllers/candidacyControllers");
