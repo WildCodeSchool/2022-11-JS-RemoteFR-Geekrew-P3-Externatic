@@ -27,6 +27,17 @@ router.put("/technologies/:id", technologyControllers.edit);
 router.post("/technologies", technologyControllers.add);
 router.delete("/technologies/:id", technologyControllers.destroy);
 
+const companyControllers = require("./controllers/companyControllers");
+const companyPicture = require("./middleware/multer");
+
+router.post("/companies", companyPicture, companyControllers.add);
+
+const candidateControllers = require("./controllers/candidateControllers");
+
+const multerFiles = require("./middleware/multer");
+
+router.post("/candidates", multerFiles, candidateControllers.add);
+
 // Protected routes
 router.use(verifyToken);
 
@@ -40,23 +51,14 @@ router.delete(
   userControllers.destroy
 );
 
-const companyControllers = require("./controllers/companyControllers");
-const companyPicture = require("./middleware/multer");
-
 router.get("/companies", companyControllers.browse);
 router.get("/companies/:id", companyControllers.read);
 router.put("/companies/:id", companyControllers.edit);
-router.post("/companies", companyPicture, companyControllers.add);
 router.delete("/companies/:id", companyControllers.destroy);
-
-const candidateControllers = require("./controllers/candidateControllers");
-
-const multerFiles = require("./middleware/multer");
 
 router.get("/candidates", candidateControllers.browse);
 router.get("/candidates/:id", candidateControllers.read);
 router.put("/candidates/:id", candidateControllers.edit);
-router.post("/candidates", multerFiles, candidateControllers.add);
 router.delete("/candidates/:id", candidateControllers.destroy);
 
 const candidacyControllers = require("./controllers/candidacyControllers");

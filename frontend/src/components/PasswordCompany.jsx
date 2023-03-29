@@ -43,11 +43,11 @@ function PasswordCompany({ formErrors, setFormErrors, validate, isSubmit }) {
             id="base-input"
             name="password"
             onChange={handleInput}
-            className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+            className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block p-2.5 w-full"
           />
           <button
             onClick={() => setPasswordIsVisible(!passwordIsVisible)}
-            className="absolute right-1 text-grey2"
+            className="absolute right-3 text-grey2"
           >
             {passwordIsVisible ? (
               <img src={eye} alt="visible" />
@@ -77,13 +77,13 @@ function PasswordCompany({ formErrors, setFormErrors, validate, isSubmit }) {
             id="base-input"
             name="confirmedPassword"
             onChange={handleInput}
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block p-2.5 w-full"
           />
           <button
             onClick={() =>
               setConfirmPasswordIsVisible(!confirmPasswordIsVisible)
             }
-            className="absolute right-1 text-grey2"
+            className="absolute right-3 text-grey2"
           >
             {confirmPasswordIsVisible ? (
               <img src={eye} alt="visible" />

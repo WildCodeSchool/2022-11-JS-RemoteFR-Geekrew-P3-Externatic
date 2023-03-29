@@ -134,7 +134,7 @@ function RegistrationCompany() {
           </h1>
         </div>
         <div className="md:bg-white p-5 rounded-[10px]">
-          <div className="mb-6 ml-8 mt-6 flex flex-row">
+          <div className="mb-4 ml-8 mt-14 flex flex-row items-center justify-start">
             <CompanyProfilePic files={files} setFiles={setFiles} />
           </div>
           <InfoCompany

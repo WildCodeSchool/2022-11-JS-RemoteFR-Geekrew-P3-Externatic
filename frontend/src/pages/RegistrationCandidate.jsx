@@ -135,14 +135,12 @@ function RegistrationCandidate() {
         </div>
 
         <div className="md:bg-white rounded-[10px] p-5">
-          <ToggleCandidate />
-          <div className="flex flex-row justify-between items-center">
-            <div className="ml-8 mt-4">
-              <CandidateProfilePic
-                pictureFile={pictureFile}
-                setPictureFile={setPictureFile}
-              />
-            </div>
+          <div className="flex flex-row justify-between items-center ml-8 mt-8">
+            <CandidateProfilePic
+              pictureFile={pictureFile}
+              setPictureFile={setPictureFile}
+            />
+            <ToggleCandidate />
           </div>
           <InfoCandidate
             formErrors={formErrors}
