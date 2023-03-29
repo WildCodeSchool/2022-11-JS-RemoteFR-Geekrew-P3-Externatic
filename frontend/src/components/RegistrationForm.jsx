@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useCurrentUserContext } from "../contexts/CurrentUserContext";
 
-import toastError from "../services/toastService";
+import { toastError } from "../services/toastService";
 
 function RegistrationForm() {
   const { userType, email, setEmail } = useCurrentUserContext();

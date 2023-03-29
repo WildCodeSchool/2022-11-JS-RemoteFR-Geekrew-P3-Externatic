@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useCurrentUserContext } from "../contexts/CurrentUserContext";
 
 import expressAPI from "../services/expressAPI";
-import toastError from "../services/toastService";
+import { toastError } from "../services/toastService";
 
 function ConnexionForm() {
   const { setUser, email, setEmail, setRoles, setUserId } =

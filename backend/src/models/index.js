@@ -12,6 +12,7 @@ const pool = mysql.createPool({
   user: DB_USER,
   password: DB_PASSWORD,
   database: DB_NAME,
+  multipleStatements: true,
 });
 
 // try a connection
@@ -63,6 +64,11 @@ const ConsultantManager = require("./ConsultantManager");
 
 models.consultant = new ConsultantManager();
 models.consultant.setDatabase(pool);
+
+const TechnologyManager = require("./TechnologyManager");
+
+models.technology = new TechnologyManager();
+models.technology.setDatabase(pool);
 
 const FavoriteManager = require("./FavoriteManager");
 
