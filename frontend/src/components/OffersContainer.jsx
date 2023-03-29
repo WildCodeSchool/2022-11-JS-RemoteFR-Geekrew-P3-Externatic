@@ -3,7 +3,7 @@ import OfferDash from "./OfferDash";
 
 function OffersContainer({ jobOffers }) {
   return (
-    <div className="mx-8">
+    <div className="mx-8 md:ml-96">
       <h1 className="font-jost font-semibold text-xl mb-5">
         Les offres qui vous correspondent
       </h1>

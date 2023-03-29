@@ -3,7 +3,8 @@ import React, { useState, useEffect } from "react";
 import expressAPI from "../services/expressAPI";
 
 function OfferFilterForm({ setJobOffers }) {
-  const [isModalOpen, setIsModalOpen] = useState(false); // Définir l'état pour le popup
+  const [isModalOpen, setIsModalOpen] = useState(true); // Définir l'état pour le popup
+  const [isActive, setIsActive] = useState(false);
 
   const [formData, setFormData] = useState({
     salary: [],
@@ -15,12 +16,11 @@ function OfferFilterForm({ setJobOffers }) {
   const handleChange = (e) => {
     e.preventDefault();
     const { name, value, checked } = e.target;
-
+    setIsActive(true);
     if (checked === true) {
       setFormData((prev) => ({ ...prev, [name]: [...prev[name], value] }));
     } else {
       const newSelection = formData[name].filter((select) => select !== value);
-
       setFormData((prev) => ({ ...prev, [name]: newSelection }));
     }
   };
@@ -40,12 +40,16 @@ function OfferFilterForm({ setJobOffers }) {
           )
         );
       });
+    } else if (formData.technologies.length === 0 && isActive) {
+      expressAPI.get(`/job_offers`).then((res) => {
+        setJobOffers(res.data);
+      });
     }
   }, [formData]);
 
   return (
-    <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-      <div className="absolute top-0 right-0 w-auto my-6 mx-auto max-w-sm">
+    <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none md:justify-self-start md:items-start md:absolute md:overflow-y-hidden">
+      <div className="absolute top-0 right-0 w-auto my-6 mx-auto max-w-sm md:left-0 md:my-0 md:mx-0 md:top-72 md:max-w-xs md:ml-8">
         <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
           <div className="flex items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t">
             <h3 className="text-2xl text-black font-semibold">Filtres</h3>
@@ -83,7 +87,7 @@ function OfferFilterForm({ setJobOffers }) {
             <span className="text-sm text-gray-700">
               {formData.salary} €/an
             </span>
-            {/* <h3 className="text-lg font-medium mb-2">Contrat</h3>
+            <h3 className="text-lg font-medium mb-2">Contrat</h3>
             <div className="flex flex-col">
               <label className="inline-flex items-center mt-2">
                 <input
@@ -140,7 +144,7 @@ function OfferFilterForm({ setJobOffers }) {
                 />
                 <span className="ml-2 text-gray-700">Freelance</span>
               </label>
-            </div> */}
+            </div>
             <br />
             <h3 className="text-lg font-medium mb-2">Technologies</h3>
             <div className="flex flex-col">
@@ -201,7 +205,7 @@ function OfferFilterForm({ setJobOffers }) {
               </label>
             </div>
             <br />
-            {/* <h3 className="text-lg font-medium mb-2">Secteurs</h3>
+            <h3 className="text-lg font-medium mb-2">Secteurs</h3>
             <div className="flex flex-col">
               <label className="inline-flex items-center mt-2">
                 <input
@@ -258,7 +262,7 @@ function OfferFilterForm({ setJobOffers }) {
                 />
                 <span className="ml-2 text-gray-700">Banque/Assurance</span>
               </label>
-            </div> */}
+            </div>
           </div>
           <div className="flex items-center justify-end p-6 border-t border-solid border-gray-300 rounded-b">
             <button
@@ -273,7 +277,6 @@ function OfferFilterForm({ setJobOffers }) {
               className="bg-green-500 text-black active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
               type="button"
               style={{ transition: "all .15s ease" }}
-              onClick={handleChange}
             >
               Filtrer
             </button>
