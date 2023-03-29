@@ -1,16 +1,17 @@
+import PropTypes from "prop-types";
 import save from "../assets/Icons/save.svg";
 
-function ButtonSaveOffer() {
+function ButtonSaveOffer({ handleSubmit }) {
   return (
-    <div className="w-full md:w-1/2 flex flex-col lg:w-1/2">
+    <div className="flex flex-col justify-center items-center">
       <button
         type="button"
-        // onChange={handleInput}
-        className="py-2 px-20 text-sm font-medium text-white  bg-main rounded-full border hover:scale-110"
+        onClick={handleSubmit}
+        className="py-3 w-full rounded-full bg-main font-semibold text-white text-sm mb-6 md:w-1/4 hover:scale-110"
       >
-        <div className="flex items-center w-full">
+        <div className="flex items-center w-full ml-5">
           Enregistrer l'annonce
-          <img src={save} alt="logo save" className="text-white ml-2" />
+          <img src={save} alt="logo save" className="ml-2" />
         </div>
       </button>
       <button
@@ -22,5 +23,7 @@ function ButtonSaveOffer() {
     </div>
   );
 }
-
+ButtonSaveOffer.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+};
 export default ButtonSaveOffer;
