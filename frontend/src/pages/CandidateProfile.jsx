@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+import { useParams } from "react-router-dom";
+
 import { useCurrentUserContext } from "../contexts/CurrentUserContext";
 
 import expressAPI from "../services/expressAPI";
@@ -7,13 +9,13 @@ import expressAPI from "../services/expressAPI";
 import UploadCv from "../components/CandidateProfile/UploadCv";
 import Contacts from "../components/CandidateProfile/Contacts";
 import Skills from "../components/CandidateProfile/Skills";
-import MainButton from "../components/Buttons/MainButton";
 import SecondaryButton from "../components/Buttons/SecondaryButton";
 import Profile from "../components/CandidateProfile/Profile";
 
 function CandidateProfile() {
+  const { roles } = useCurrentUserContext();
   const [candidate, setCandidate] = useState(undefined);
-  const { userId } = useCurrentUserContext();
+  const { userId } = useParams();
 
   useEffect(() => {
     expressAPI.get(`/candidates/${userId}`).then((res) => {
@@ -29,6 +31,7 @@ function CandidateProfile() {
             lastname={candidate.lastname}
             firstname={candidate.firstname}
             location={candidate.location}
+            picture={candidate.picture}
           />
           <div className="md:flex">
             <UploadCv url={candidate.cv} />
@@ -43,10 +46,11 @@ function CandidateProfile() {
             softSkills={candidate.soft_skills}
             hardSkills={candidate.techname}
           />
-          <div className="md:flex md:items-center md:flex-row-reverse md:gap-4">
-            <MainButton> Accepter la candidature </MainButton>
-            <SecondaryButton> Refuser la candidature </SecondaryButton>
-          </div>
+          {roles.includes("company") && (
+            <div className="md:flex md:items-center md:flex-row-reverse md:gap-4">
+              <SecondaryButton> Refuser la candidature </SecondaryButton>
+            </div>
+          )}
         </div>
       )}
     </div>

@@ -15,7 +15,7 @@ function OfferDetails() {
   const { jobId } = useParams();
   const navigate = useNavigate();
 
-  const { candidateId } = useCurrentUserContext();
+  const { candidateId, roles } = useCurrentUserContext();
 
   const [openEntreprise, setOpenEntreprise] = useState(false);
   const [openDetails, setOpenDetails] = useState(false);
@@ -49,10 +49,19 @@ function OfferDetails() {
   };
 
   const [offerDetails, setOfferDetails] = useState([]);
+  const [candidates, setCandidates] = useState([]);
   useEffect(() => {
     expressAPI.get(`/job_offers/${jobId}`).then((res) => {
       setOfferDetails(res.data);
     });
+    if (roles.includes("company")) {
+      expressAPI
+        .get(`/candidacies/job_offers/${jobId}`)
+        .then((res) => {
+          setCandidates(res.data);
+        })
+        .catch((err) => console.error(err));
+    }
   }, []);
 
   return (
@@ -169,8 +178,32 @@ function OfferDetails() {
             </>
           )}
         </div>
-        <MainButton handleClick={handleSubmit}>Postuler à l'annonce</MainButton>
-        <CandidateCard />
+        {roles.includes("candidate") && (
+          <MainButton handleClick={handleSubmit}>
+            Postuler à l'annonce
+          </MainButton>
+        )}
+        {roles.includes("company") && (
+          <div>
+            <div className="bg-white rounded my-4 p-4 flex flex-col justify-center items-center">
+              <h1 className="font-jost font-semibold text-xl">
+                Mes can
+                <span className="underline decoration-8 decoration-main-light">
+                  didats
+                </span>
+              </h1>
+            </div>
+            {candidates.map((candidate) => (
+              <CandidateCard
+                lastname={candidate.lastname}
+                firstname={candidate.firstname}
+                location={candidate.location}
+                userId={candidate.userId}
+                picture={candidate.picture}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

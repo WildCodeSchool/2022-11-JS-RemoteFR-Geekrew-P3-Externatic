@@ -7,8 +7,10 @@ class CandidacyManager extends AbstractManager {
 
   findByJobOffer(jobId) {
     return this.database.query(
-      `SELECT candidacy.*, job_offer.id 
+      `SELECT candidacy.*, job_offer.id, user.id as userId, user.firstname, user.lastname, user.location, user.picture
       FROM candidacy
+      INNER JOIN candidate ON candidate.id = candidacy.candidate_id
+      INNER JOIN user ON user.id = candidate.user_id
       INNER JOIN job_offer ON job_offer.id = candidacy.job_offer_id
       WHERE job_offer_id = ?;`,
       [jobId]

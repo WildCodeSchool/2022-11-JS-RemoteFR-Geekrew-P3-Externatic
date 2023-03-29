@@ -38,7 +38,7 @@ function App() {
             element={<RegistrationCompany />}
           />
           <Route
-            path="/Candidate-Profile/:candidateId"
+            path="/Candidate-Profile/:userId"
             element={<CandidateProfile />}
           />
           <Route path="/OfferDetails/:jobId" element={<OfferDetails />} />
