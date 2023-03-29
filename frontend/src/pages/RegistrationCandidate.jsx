@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 import { useCandidateContext } from "../contexts/CandidateContext";
 import { toastError, toastValidation } from "../services/toastService";
@@ -14,6 +15,8 @@ import ValidationCandidate from "../components/ValidationCandidate";
 const backEndURL = import.meta.env.VITE_BACKEND_URL;
 
 function RegistrationCandidate() {
+  const navigate = useNavigate();
+
   const { formState } = useCandidateContext();
 
   const { confirmPassword, ...candidate } = formState;
@@ -109,10 +112,17 @@ function RegistrationCandidate() {
         .post(`${backEndURL}/candidates`, formData, {
           headers: { "Content-Type": "multipart/form-data" },
         })
-        .then(() => toastValidation("Votre formulaire a bien été envoyé"))
+        .then(() =>
+          toastValidation(
+            "Bienvenu.e dans l'aventure Externatic ! Vous pouvez maintenant vous connecter avec vos identifiants."
+          )
+        )
+        .then(() => navigate("/Connexion"))
         .catch((err) => {
           console.error(err);
-          toastError("Le formulaire n'a pas pu être envoyé");
+          toastError(
+            "Oups ! Il semblerait que quelque chose ne tourne pas rond..."
+          );
         });
     }
   };
