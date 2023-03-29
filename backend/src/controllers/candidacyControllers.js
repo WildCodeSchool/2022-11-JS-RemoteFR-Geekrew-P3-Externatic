@@ -29,6 +29,22 @@ const read = (req, res) => {
     });
 };
 
+const findByJobOffer = (req, res) => {
+  models.candidacy
+    .findByJobOffer(req.params.jobId)
+    .then(([rows]) => {
+      if (rows[0] == null) {
+        res.sendStatus(404);
+      } else {
+        res.send(rows);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 const edit = (req, res) => {
   const candidacy = req.body;
 
@@ -97,4 +113,5 @@ module.exports = {
   edit,
   add,
   destroy,
+  findByJobOffer,
 };

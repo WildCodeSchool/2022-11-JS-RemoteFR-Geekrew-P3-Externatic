@@ -9,9 +9,12 @@ function OffersContainer() {
   const [jobOffers, setJobOffers] = useState([]);
   useEffect(() => {
     if (roles.includes("candidate")) {
-      expressAPI.get(`/job_offers`).then((res) => {
-        setJobOffers(res.data);
-      });
+      expressAPI
+        .get(`/job_offers`)
+        .then((res) => {
+          setJobOffers(res.data);
+        })
+        .catch((err) => console.error(err));
     } else {
       expressAPI
         .get(`/job_offers/find/${userId}`)

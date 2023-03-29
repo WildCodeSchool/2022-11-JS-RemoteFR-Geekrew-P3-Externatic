@@ -49,6 +49,10 @@ const candidacyControllers = require("./controllers/candidacyControllers");
 
 router.get("/candidacies", candidacyControllers.browse);
 router.get("/candidacies/:id", candidacyControllers.read);
+router.get(
+  "/candidacies/job_offers/:jobId",
+  candidacyControllers.findByJobOffer
+);
 router.put("/candidacies/:id", candidacyControllers.edit);
 router.post("/candidacies", candidacyControllers.add);
 router.delete("/candidacies/:id", candidacyControllers.destroy);

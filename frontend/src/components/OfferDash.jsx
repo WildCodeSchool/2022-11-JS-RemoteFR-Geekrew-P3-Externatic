@@ -1,9 +1,14 @@
 import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import expressAPI from "../services/expressAPI";
 import localisationIcon from "../assets/Icons/map-pin.svg";
 import FakePP from "../assets/images/Fake-PP.png";
 import favIcon from "../assets/Icons/heart.svg";
 import Tags from "./Tags";
+import CandidacyInfos from "./CandidacyInfos";
+
+import { useCurrentUserContext } from "../contexts/CurrentUserContext";
 
 function OfferDash({
   jobId,
@@ -19,6 +24,19 @@ function OfferDash({
   field,
   technologies,
 }) {
+  const { roles } = useCurrentUserContext();
+  const [candidacies, setCandidacies] = useState([]);
+  useEffect(() => {
+    if (roles.includes("company")) {
+      expressAPI
+        .get(`/candidacies/job_offers/${jobId}`)
+        .then((res) => {
+          setCandidacies(res.data);
+        })
+        .catch((err) => console.error(err));
+    }
+  }, []);
+
   return (
     <div className="bg-background py-5 px-6 rounded font-jost">
       <Link to={`/OfferDetails/${jobId}`}>
@@ -56,6 +74,9 @@ function OfferDash({
             <Tags key={`${jobId}-${technologie}`} name={technologie} />
           ))}
         </div>
+        {roles.includes("company") && (
+          <CandidacyInfos nbCandidacies={candidacies.length} />
+        )}
       </Link>
     </div>
   );
