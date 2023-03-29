@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import { useCurrentUserContext } from "../contexts/CurrentUserContext";
@@ -18,6 +18,7 @@ function CandidateProfile() {
   const { roles, candidateId, setCandidateId } = useCurrentUserContext();
   const [candidate, setCandidate] = useState(undefined);
   const { userId } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     expressAPI.get(`/candidates/${userId}`).then((res) => {
@@ -40,6 +41,7 @@ function CandidateProfile() {
           progress: undefined,
           theme: "colored",
         });
+        navigate(`/Dashboard`);
       })
       .catch(() => toastError("La candidature n'a pas pu être refusée"));
   };
