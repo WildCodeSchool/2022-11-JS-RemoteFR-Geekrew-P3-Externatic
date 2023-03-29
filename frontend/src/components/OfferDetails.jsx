@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import chevronDown from "../assets/Icons/chevron-down.svg";
 import chevronUp from "../assets/Icons/chevron-up.svg";
 import MainButton from "./Buttons/MainButton";
@@ -8,21 +8,23 @@ import MainButton from "./Buttons/MainButton";
 import expressAPI from "../services/expressAPI";
 import toastError from "../services/toastService";
 
+import { useCurrentUserContext } from "../contexts/CurrentUserContext";
+
 function OfferDetails() {
   const { jobId } = useParams();
+  const navigate = useNavigate();
+
+  const { candidateId } = useCurrentUserContext();
 
   const [openEntreprise, setOpenEntreprise] = useState(false);
   const [openDetails, setOpenDetails] = useState(false);
   const [openConsultant, setOpenConsultant] = useState(false);
 
-  const jobOfferId = 1;
-  const candidateId = 2;
-
   const handleSubmit = (e) => {
     e.preventDefault();
     expressAPI
       .post("/candidacies", {
-        jobOfferId,
+        jobOfferId: jobId,
         candidateId,
         candidacyDate: new Date().toISOString().substring(0, 10),
         receivedByCompany: false,
@@ -40,6 +42,7 @@ function OfferDetails() {
           progress: undefined,
           theme: "colored",
         });
+        navigate("/Candidacies/:candidateId");
       })
       .catch(() => toastError("Votre candidature n'a pas pu être envoyée"));
   };

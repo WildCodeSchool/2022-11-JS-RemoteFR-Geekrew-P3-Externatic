@@ -580,6 +580,14 @@ LOCK TABLES `user` WRITE;
 INSERT INTO `user` VALUES (1,'Gusty','Amethist','Gusty.Amethist@yopmail.com','https://www.linkedin.com/in/Gusty-Amethist/','xx.xx.xx.xx.xx','$argon2id$v=19$m=524288,t=5,p=1$L6jZcFQDpynOFGgpGF+EwA$y9GMxbL0/31Tk6R4yOhY8wBYQSGSLfiNk52PNOlbBd0','Chengdu','urldelimage'),(2,'Courtnay','Rona','Courtnay.Rona@yopmail.com','https://www.linkedin.com/in/Courtnay-Rona/','xx.xx.xx.xx.xx','$argon2id$v=19$m=524288,t=5,p=1$L6jZcFQDpynOFGgpGF+EwA$y9GMxbL0/31Tk6R4yOhY8wBYQSGSLfiNk52PNOlbBd0','Mashhad','urldelimage'),(3,'Adore','Maribeth','Adore.Maribeth@yopmail.com','https://www.linkedin.com/in/Adore-Maribeth/','xx.xx.xx.xx.xx','$argon2id$v=19$m=524288,t=5,p=1$L6jZcFQDpynOFGgpGF+EwA$y9GMxbL0/31Tk6R4yOhY8wBYQSGSLfiNk52PNOlbBd0','Semarang','urldelimage'),(4,'Tracey','Middleton','Tracey.Middleton@yopmail.com','https://www.linkedin.com/in/Tracey-Middleton/','xx.xx.xx.xx.xx','$argon2id$v=19$m=524288,t=5,p=1$L6jZcFQDpynOFGgpGF+EwA$y9GMxbL0/31Tk6R4yOhY8wBYQSGSLfiNk52PNOlbBd0','Kigali','urldelimage'),(5,'Kate','Rheingold','Kate.Rheingold@yopmail.com','https://www.linkedin.com/in/Kate-Rheingold/','xx.xx.xx.xx.xx','$argon2id$v=19$m=524288,t=5,p=1$L6jZcFQDpynOFGgpGF+EwA$y9GMxbL0/31Tk6R4yOhY8wBYQSGSLfiNk52PNOlbBd0','Dammam','urldelimage');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
+ALTER TABLE `p3`.`user` 
+ADD COLUMN `roles` VARCHAR(255) NOT NULL DEFAULT '["user"]' AFTER `picture`;
+UPDATE `p3`.`user` SET `roles` = '[\"user\", \"admin\"]' WHERE (`id` = '1');
+UPDATE `p3`.`user` SET `roles` = '[\"user\", \"admin\", \"consultant\"]' WHERE (`id` = '1');
+UPDATE `p3`.`user` SET `roles` = '[\"user\", \"candidate\"]' WHERE (`id` = '4');
+UPDATE `p3`.`user` SET `roles` = '[\"user\", \"company\"]' WHERE (`id` = '2');
+UPDATE `p3`.`user` SET `roles` = '[\"user\", \"candidate\"]' WHERE (`id` = '3');
+
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

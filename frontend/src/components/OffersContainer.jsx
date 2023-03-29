@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 import OfferDash from "./OfferDash";
 
+import { useCurrentUserContext } from "../contexts/CurrentUserContext";
+
 function OffersContainer({ jobOffers }) {
   return (
     <div className="mx-8 md:ml-96">

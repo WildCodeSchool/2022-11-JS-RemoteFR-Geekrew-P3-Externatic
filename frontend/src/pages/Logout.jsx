@@ -1,15 +1,22 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+import SecondaryButton from "../components/Buttons/SecondaryButton";
+
+import thank from "../assets/images/thank.svg";
 
 function Logout() {
+  const navigate = useNavigate();
+  const handleHome = (e) => {
+    e.preventDefault();
+    navigate("/");
+  };
   return (
-    <div>
-      <h1>Vous êtes bien déconnecté !</h1>
-      <Link
-        to="/"
-        className="text-main font-semibold text-sm underline decoration-2 decoration-main"
-      >
+    <div className="flex flex-col items-center mt-5">
+      <h1 className="font-jost text-2xl p-5">Vous êtes bien déconnecté !</h1>
+      <SecondaryButton handleClick={handleHome}>
         Revenir à l'accueil
-      </Link>
+      </SecondaryButton>
+      <img src={thank} alt="thank you" className="w-60 h-60 mt-16" />
     </div>
   );
 }
