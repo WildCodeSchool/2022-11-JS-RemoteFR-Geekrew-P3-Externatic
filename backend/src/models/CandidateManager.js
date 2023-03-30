@@ -18,20 +18,54 @@ class CandidateManager extends AbstractManager {
     );
   }
 
-  insert(candidate) {
+  insertCandidateIntoUser(candidate) {
     return this.database.query(
-      `insert into ${this.table} (cv, age, gender, github, active, soft_skills, consultant_id, user_id) values (?, ?, ?, ?, ?, ?, ?, ?)`,
+      `INSERT INTO user (firstname, lastname, mail, linkedin, phone, location, hashed_password, roles) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
       [
-        candidate.cv,
+        candidate.firstname,
+        candidate.lastname,
+        candidate.email,
+        candidate.linkedin,
+        candidate.phone,
+        candidate.location,
+        candidate.password,
+        candidate.roles,
+      ]
+    );
+  }
+
+  insertCandidateIntoCandidate(candidate, candidateUserId) {
+    return this.database.query(
+      `INSERT INTO ${this.table} (user_id, age, gender, github, soft_skills) VALUES (?, ?, ?, ?, ?)`,
+      [
+        candidateUserId,
         candidate.age,
         candidate.gender,
         candidate.github,
-        candidate.active,
-        candidate.softSkills,
-        candidate.consultantId,
-        candidate.userId,
+        candidate.soft_skills,
       ]
     );
+  }
+
+  insertCandIntoCandHasTechno(hardSkill, candidateLastInsertId) {
+    return this.database.query(
+      `INSERT INTO candidate_has_technology (candidate_id, technology_id) VALUES (?, ?);`,
+      [candidateLastInsertId, hardSkill]
+    );
+  }
+
+  updatePicture(filename, idUser) {
+    return this.database.query(`update user set picture = ? where id = ?`, [
+      filename,
+      idUser,
+    ]);
+  }
+
+  updateCV(filename, idUser) {
+    return this.database.query(`update ${this.table} set cv = ? where id = ?`, [
+      filename,
+      idUser,
+    ]);
   }
 
   update(candidate) {

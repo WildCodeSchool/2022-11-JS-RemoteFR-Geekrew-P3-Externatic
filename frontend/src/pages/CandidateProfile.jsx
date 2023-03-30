@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { useCurrentUserContext } from "../contexts/CurrentUserContext";
 
 import expressAPI from "../services/expressAPI";
-import toastError from "../services/toastService";
+import { toastError } from "../services/toastService";
 
 import UploadCv from "../components/CandidateProfile/UploadCv";
 import Contacts from "../components/CandidateProfile/Contacts";

@@ -7,7 +7,7 @@ import MainButton from "./Buttons/MainButton";
 import CandidateCard from "./CandidateProfile/CandidateCard";
 
 import expressAPI from "../services/expressAPI";
-import toastError from "../services/toastService";
+import { toastError } from "../services/toastService";
 
 import { useCurrentUserContext } from "../contexts/CurrentUserContext";
 
