@@ -11,13 +11,13 @@ const initialOfferFormState = {
   experience: "",
   mission: "",
   title: "",
-  company_name: "",
-  localisation: "",
-  lower_salary: "",
-  higher_salary: "",
+  companyId: "",
+  location: "",
+  lowerSalary: "",
+  higherSalary: "",
   contract: "",
   technologies: "",
-  interview_run: "",
+  interviewRun: "",
 };
 
 function OfferContextProvider({ children }) {

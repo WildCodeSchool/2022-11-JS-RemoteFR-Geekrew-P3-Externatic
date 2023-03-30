@@ -7,6 +7,8 @@ const offerReducer = (state, action) => {
       return { ...state, contract: action.payload };
     case "HANDLE_TECHNOLOGY":
       return { ...state, technologies: action.payload };
+    case "HANDLE_COMPANYID":
+      return { ...state, companyId: action.payload };
     default:
       return state;
   }

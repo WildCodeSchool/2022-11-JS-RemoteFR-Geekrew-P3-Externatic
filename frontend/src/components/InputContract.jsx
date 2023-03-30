@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import { useOfferContext } from "../contexts/CreationOfferContext";
 import expressAPI from "../services/expressAPI";
 import chevronDown from "../assets/Icons/chevron-down.svg";
 import chevronUp from "../assets/Icons/chevron-up.svg";
 
-function InputContract({ isSubmit }) {
+function InputContract() {
   const { dispatch } = useOfferContext();
   const [contracts, setContract] = useState([]);
   const [isOpen, setOpen] = useState(false);
@@ -32,6 +31,7 @@ function InputContract({ isSubmit }) {
     });
 
     setContract(newContractStatus);
+
     if (e.target.checked === true && !typeContract.includes(e.target.id)) {
       setTypeContract([...typeContract, e.target.id]);
     }
@@ -84,13 +84,8 @@ function InputContract({ isSubmit }) {
               </div>
             )
         )}
-        {isSubmit}
       </div>
     </div>
   );
 }
-InputContract.propTypes = {
-  isSubmit: PropTypes.bool.isRequired,
-};
-
 export default InputContract;

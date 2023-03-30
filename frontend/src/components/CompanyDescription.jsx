@@ -1,13 +1,12 @@
 /* eslint-disable react/button-has-type */
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import { useOfferContext } from "../contexts/CreationOfferContext";
 import expressAPI from "../services/expressAPI";
 import chevronDown from "../assets/Icons/chevron-down.svg";
 import chevronUp from "../assets/Icons/chevron-up.svg";
 import InputContract from "./InputContract";
 
-function CompanyDescription({ isSubmit }) {
+function CompanyDescription() {
   const { dispatch } = useOfferContext();
   const [isOpen, setOpen] = useState(false);
   const [technologies, setTechnologies] = useState([]);
@@ -59,6 +58,14 @@ function CompanyDescription({ isSubmit }) {
       setTechnologiesStatus(updatedTechnologies);
     }
   };
+  useEffect(() => {
+    const technologiesOffer = newTechnologiesStatus.join(",");
+
+    dispatch({
+      type: "HANDLE_TECHNOLOGY",
+      payload: technologiesOffer,
+    });
+  }, [newTechnologiesStatus]);
 
   return (
     <div className="w-full mt-5">
@@ -79,7 +86,6 @@ function CompanyDescription({ isSubmit }) {
               placeholder=" Entrez le titre de l’annonce... "
               className="bg-gray-50 mb-4 border text-gray-900 text-sm rounded  block w-full p-2.5 "
             />
-            {isSubmit}
           </div>
           <details className="mb-4">
             <summary className="font-semibold  bg-white rounded-md py-2 px-4">
@@ -87,23 +93,6 @@ function CompanyDescription({ isSubmit }) {
             </summary>
             <div className="bg-white mt-5 ">
               <div className="m-6 pb-10 pt-6">
-                <div className="">
-                  <label
-                    htmlFor="base-input"
-                    className="block mb-2 text-sm text-left font-medium text-grey2 md:bg-background"
-                  >
-                    {" "}
-                  </label>
-                  <input
-                    type="text"
-                    id="base-input"
-                    name="company_name"
-                    onChange={(e) => handleInput(e)}
-                    placeholder="Nom de l'entreprise"
-                    className="bg-gray-50 mb-4 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                  />
-                  {isSubmit}
-                </div>
                 <div>
                   <label
                     htmlFor="base-input"
@@ -114,12 +103,11 @@ function CompanyDescription({ isSubmit }) {
                   <input
                     type="text"
                     id="base-input"
-                    name="localisation"
+                    name="location"
                     placeholder="Localisation du poste"
                     onChange={(e) => handleInput(e)}
                     className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   />
-                  {isSubmit}
                 </div>
                 <div>
                   <label
@@ -135,7 +123,6 @@ function CompanyDescription({ isSubmit }) {
                     onChange={(e) => handleInput(e)}
                     className="bg-gray-50 mb-4 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   />
-                  {isSubmit}
                 </div>
                 <div>
                   <label
@@ -147,22 +134,21 @@ function CompanyDescription({ isSubmit }) {
                   <input
                     type="text"
                     id="base-input"
-                    name="lower_salary"
+                    name="lowerSalary"
                     placeholder="Salaire Min"
                     onChange={(e) => handleInput(e)}
                     className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   />
-                  {isSubmit}
+
                   <label htmlFor="higher_salary"> </label>
                   <input
                     type="text"
                     id="base-input"
-                    name="higher_salary"
+                    name="higherSalary"
                     placeholder="Salaire Max"
                     onChange={(e) => handleInput(e)}
                     className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   />
-                  {isSubmit}
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-1">
                   <InputContract />
@@ -217,7 +203,5 @@ function CompanyDescription({ isSubmit }) {
     </div>
   );
 }
-CompanyDescription.propTypes = {
-  isSubmit: PropTypes.bool.isRequired,
-};
+
 export default CompanyDescription;
