@@ -365,7 +365,7 @@ ENGINE = InnoDB;
 LOCK TABLES `field` WRITE;
 /*!40000 ALTER TABLE `field` DISABLE KEYS */;
 INSERT INTO `field` VALUES
-(1, 'BTP'), (2, 'Santé'), (3, 'Secteur banquaire');
+(1, 'BTP'), (2, 'Santé'), (3, 'Banque');
 
 UNLOCK TABLES;
 -- -----------------------------------------------------
