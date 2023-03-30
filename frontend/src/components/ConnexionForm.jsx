@@ -47,7 +47,7 @@ function ConnexionForm() {
   };
 
   return (
-    <div className="font-jost flex flex-col items-center">
+    <div className="font-jost flex flex-col items-center mt-8">
       <h1 className="text-xl text-center font-semibold mx-7 mt-6 mb-12 md:text-3xl">
         Connectez vous sur votre expace{" "}
         <span className=" text-main italic ">
@@ -75,7 +75,7 @@ function ConnexionForm() {
               Adresse mail
             </label>
             <input
-              className="border border-grey3 h-10 rounded"
+              className="border border-grey3 h-10 rounded p-3"
               type="email"
               id="email"
               value={email}
@@ -87,7 +87,7 @@ function ConnexionForm() {
               Mot de passe
             </label>
             <input
-              className="border border-grey3 h-10 rounded mb-10"
+              className="border border-grey3 h-10 rounded mb-10 p-3"
               type="password"
               id="password"
               value={password}

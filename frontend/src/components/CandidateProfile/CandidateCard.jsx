@@ -36,7 +36,7 @@ function CandidateCard({ firstname, lastname, location, userId, picture }) {
           </div>
         </div>
       </div>
-      <div className="mx-4 mt-5">
+      <div className="mx-4 mt-5 md:flex md:justify-center">
         <MainButton handleClick={navigateToCandidate}>
           Consulter le profil
         </MainButton>

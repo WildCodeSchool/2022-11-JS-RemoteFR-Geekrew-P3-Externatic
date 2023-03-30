@@ -7,7 +7,7 @@ function MainLayout() {
   return (
     <div>
       <Header />
-      <div className="grow flex flex-col min-h-[calc(100vh_-_72px_-_312px)] md:min-h-[calc(100vh_-_72px_-_172px)]">
+      <div className="bg-background grow flex flex-col min-h-[calc(100vh_-_72px_-_312px)] md:min-h-[calc(100vh_-_72px_-_172px)]">
         <Outlet />
       </div>
       <Footer />
