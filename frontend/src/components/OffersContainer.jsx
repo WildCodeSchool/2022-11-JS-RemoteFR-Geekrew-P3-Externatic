@@ -26,7 +26,7 @@ function OffersContainer() {
   }, []);
 
   return (
-    <div className="mx-8 md:ml-96">
+    <div className="mx-8">
       {roles.includes("candidate") && (
         <h1 className="font-jost font-semibold text-xl mb-5">
           Les offres qui vous correspondent

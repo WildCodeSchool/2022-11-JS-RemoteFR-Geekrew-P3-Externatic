@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useCurrentUserContext } from "../contexts/CurrentUserContext";
+import eye from "../assets/Icons/eye.svg";
+import eyeOff from "../assets/Icons/eye-off.svg";
 
 import expressAPI from "../services/expressAPI";
 import { toastError } from "../services/toastService";
@@ -12,9 +14,11 @@ function ConnexionForm() {
   const navigate = useNavigate();
 
   const [password, setPassword] = useState("");
+  const [passwordIsVisible, setPasswordIsVisible] = useState(false);
 
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
+  const handleVisibility = () => setPasswordIsVisible(!passwordIsVisible);
   const handleSubmit = (e) => {
     e.preventDefault();
     if (email && password) {
@@ -66,10 +70,7 @@ function ConnexionForm() {
             M'inscrire
           </Link>
         </div>
-        <form
-          onSubmit={handleSubmit}
-          className="flex flex-col text-left mt-5 mb-6"
-        >
+        <div className="flex flex-col text-left mt-5 mb-6">
           <div className="mb-5 flex flex-col">
             <label htmlFor="email" className="text-grey1 font-semibold mb-1">
               Adresse mail
@@ -86,21 +87,35 @@ function ConnexionForm() {
             <label htmlFor="password" className="text-grey1 font-semibold mb-1">
               Mot de passe
             </label>
-            <input
-              className="border border-grey3 h-10 rounded mb-10 p-3"
-              type="password"
-              id="password"
-              value={password}
-              onChange={handlePasswordChange}
-            />
+            <div className="flex flex-row justify-center items-center align-middle relative mb-10">
+              <input
+                className="border border-grey3 h-10 rounded w-full"
+                type={passwordIsVisible ? "text" : "password"}
+                id="password"
+                value={password}
+                onChange={handlePasswordChange}
+              />
+              <button
+                type="button"
+                onClick={handleVisibility}
+                className="absolute right-3 text-grey2"
+              >
+                {passwordIsVisible ? (
+                  <img src={eye} alt="visible" />
+                ) : (
+                  <img src={eyeOff} alt="invisible" />
+                )}
+              </button>
+            </div>
           </div>
           <button
-            type="submit"
+            type="button"
+            onClick={handleSubmit}
             className="py-3 w-full rounded-full bg-main text-white font-semibold"
           >
             Me connecter
           </button>
-        </form>
+        </div>
       </div>
     </div>
   );

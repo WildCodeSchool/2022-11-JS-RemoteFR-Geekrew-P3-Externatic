@@ -19,6 +19,10 @@ router.post("/users", hashPassword, userControllers.add);
 // uploader - files
 router.use(express.json());
 
+const fieldControllers = require("./controllers/fieldControllers");
+
+router.get("/fields", fieldControllers.browse);
+
 const technologyControllers = require("./controllers/technologyControllers");
 
 router.get("/technologies", technologyControllers.browse);
