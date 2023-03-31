@@ -46,13 +46,13 @@ function Dashboard() {
               Recherche avancée
             </button>
           </div>
-          <div className="grid grid-rows-1 grid-cols-3">
+          <div className="grid grid-rows-1 grid-cols-4">
             <div
-              className={`${visibility} col-span-3 mr-8 mb-8 md:mr-0 md:col-span-1 md:visible`}
+              className={`${visibility} col-span-4 mr-8 mb-8 md:mr-0 md:col-span-1 md:visible`}
             >
               <OfferFilterForm setJobOffers={setJobOffers} />
             </div>
-            <div className="col-span-3 md:col-span-2">
+            <div className="col-span-4 md:col-span-3">
               <OffersContainer jobOffers={jobOffers} />
             </div>
           </div>

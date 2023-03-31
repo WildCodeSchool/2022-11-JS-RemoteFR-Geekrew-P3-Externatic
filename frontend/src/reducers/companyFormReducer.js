@@ -7,4 +7,4 @@ const companyFormReducer = (state, action) => {
   }
 };
 
-export { companyFormReducer };
+export default companyFormReducer;

@@ -30,7 +30,7 @@ function RegistrationForm() {
   };
 
   return (
-    <div className="font-jost flex flex-col items-center">
+    <div className="font-jost flex flex-col items-center mt-5">
       <h1 className="text-xl font-semibold mt-6 mb-12 md:text-3xl">
         Je m'incrit comme{" "}
         <span className=" text-main italic ">
@@ -59,7 +59,7 @@ function RegistrationForm() {
               Adresse mail
             </label>
             <input
-              className="border border-grey3 h-10 rounded"
+              className="border border-grey3 h-10 rounded p-3"
               type="email"
               id="email"
               value={email}

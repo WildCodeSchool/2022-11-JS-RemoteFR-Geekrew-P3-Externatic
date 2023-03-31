@@ -10,10 +10,10 @@ function Menu() {
         <NavLink path="Dashboard">Offres d'emploi</NavLink>
         {roles.includes("candidate") && (
           <>
-            <NavLink path="Candidacies" params={`${userId}`}>
+            <NavLink path="Candidacies" params={`${candidateId}`}>
               Mes Candidatures
             </NavLink>
-            <NavLink path="candidate-profile" params={`${candidateId}`}>
+            <NavLink path="candidate-profile" params={`${userId}`}>
               Mon profil
             </NavLink>
           </>

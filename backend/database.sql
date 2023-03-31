@@ -101,6 +101,10 @@ INSERT INTO `candidate` VALUES
 "Sens de l'initiative, Capacité à travailler en équipe, Envie d'apprendre",
 1,
 4);
+UPDATE `p3`.`candidate` SET `cv` = 'https://smallpdf.com/fr/file#s=7867df49-aa3a-4505-b9ed-fba7b45d5a15' WHERE (`id` = '1');
+UPDATE `p3`.`candidate` SET `cv` = 'https://smallpdf.com/fr/file#s=722ae66b-b984-4641-be30-28587ae262d3' WHERE (`id` = '2');
+
+
 
 UNLOCK TABLES;
 -- -----------------------------------------------------
@@ -583,6 +587,10 @@ UPDATE `p3`.`user` SET `roles` = '[\"user\", \"admin\", \"consultant\"]' WHERE (
 UPDATE `p3`.`user` SET `roles` = '[\"user\", \"candidate\"]' WHERE (`id` = '4');
 UPDATE `p3`.`user` SET `roles` = '[\"user\", \"company\"]' WHERE (`id` = '2');
 UPDATE `p3`.`user` SET `roles` = '[\"user\", \"candidate\"]' WHERE (`id` = '3');
+UPDATE `p3`.`user` SET `picture` = 'https://image.lexica.art/full_jpg/5b720589-69a1-4dac-8c93-36a7971a0fa2' WHERE (`id` = '4');
+UPDATE `p3`.`user` SET `picture` = 'https://image.lexica.art/full_jpg/2814b2cc-ede0-4e25-9248-59bc5c84d6e1' WHERE (`id` = '3');
+
+
 
 
 

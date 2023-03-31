@@ -1,10 +1,29 @@
-/* eslint-disable react/prop-types */
+import React, { useEffect, useState } from "react";
+import expressAPI from "../services/expressAPI";
 import OfferDash from "./OfferDash";
 
 import { useCurrentUserContext } from "../contexts/CurrentUserContext";
 
-function OffersContainer({ jobOffers }) {
-  const { roles } = useCurrentUserContext();
+function OffersContainer() {
+  const { userId, roles } = useCurrentUserContext();
+  const [jobOffers, setJobOffers] = useState([]);
+  useEffect(() => {
+    if (roles.includes("candidate")) {
+      expressAPI
+        .get(`/job_offers`)
+        .then((res) => {
+          setJobOffers(res.data);
+        })
+        .catch((err) => console.error(err));
+    } else {
+      expressAPI
+        .get(`/job_offers/find/${userId}`)
+        .then((res) => {
+          setJobOffers(res.data);
+        })
+        .catch((err) => console.error(err));
+    }
+  }, []);
 
   return (
     <div className="mx-8">

@@ -8,7 +8,7 @@ import expressAPI from "../services/expressAPI";
 import { toastError } from "../services/toastService";
 
 function ConnexionForm() {
-  const { setUser, email, setEmail, setRoles, setUserId } =
+  const { setUser, email, setEmail, setRoles, setUserId, setCandidateId } =
     useCurrentUserContext();
 
   const navigate = useNavigate();
@@ -35,6 +35,12 @@ function ConnexionForm() {
           setRoles(user.roles);
           setUserId(user.id);
 
+          if (user.roles.includes("candidate")) {
+            expressAPI.get(`/candidates/${user.id}`).then((res2) => {
+              setCandidateId(res2.data.id);
+            });
+          }
+
           localStorage.setItem("user", JSON.stringify(user));
           navigate("/Dashboard");
         })
@@ -45,7 +51,7 @@ function ConnexionForm() {
   };
 
   return (
-    <div className="font-jost flex flex-col items-center">
+    <div className="font-jost flex flex-col items-center mt-8">
       <h1 className="text-xl text-center font-semibold mx-7 mt-6 mb-12 md:text-3xl">
         Connectez vous sur votre expace{" "}
         <span className=" text-main italic ">
@@ -70,7 +76,7 @@ function ConnexionForm() {
               Adresse mail
             </label>
             <input
-              className="border border-grey3 h-10 rounded"
+              className="border border-grey3 h-10 rounded p-3"
               type="email"
               id="email"
               value={email}

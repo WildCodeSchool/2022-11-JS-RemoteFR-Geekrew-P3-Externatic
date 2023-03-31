@@ -11,4 +11,4 @@ const candidateReducer = (state, action) => {
   }
 };
 
-export { candidateReducer };
+export default candidateReducer;

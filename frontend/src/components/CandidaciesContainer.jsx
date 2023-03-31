@@ -24,7 +24,7 @@ function CandidaciesContainer() {
     candidacies.map((c) => c.id).indexOf(jobOffer.id) === i;
 
   return (
-    <div className="mx-8">
+    <div className="mx-8 mb-8">
       <div className="bg-white rounded my-4 p-4 flex flex-col justify-center items-center">
         <h1 className="font-jost font-semibold text-xl">Mes candidatures</h1>
       </div>
