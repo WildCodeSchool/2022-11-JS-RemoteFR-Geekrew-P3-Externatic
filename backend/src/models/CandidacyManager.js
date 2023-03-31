@@ -19,7 +19,7 @@ class CandidacyManager extends AbstractManager {
 
   find(userId) {
     return this.database.query(
-      `SELECT candidate_id, candidacy_date, job_offer.title, job_offer.salary, job_offer.lower_salary, job_offer.work_hours, job_offer.higher_salary, job_offer.id, job_offer.description, job_offer.location, job_offer.experience, DATEDIFF(NOW(), job_offer.date_of_creation) as postDate, company.name as compname, company.field, company.picture, group_concat(technology.name SEPARATOR ', ') as technologies
+      `SELECT candidate_id, candidacy_date, job_offer.title, job_offer.salary, job_offer.lower_salary, job_offer.work_hours, job_offer.higher_salary, job_offer.id, job_offer.description, job_offer.location, job_offer.experience, DATEDIFF(NOW(), job_offer.date_of_creation) as postDate, company.name as compname, company.field, group_concat(technology.name SEPARATOR ', ') as technologies
       FROM candidacy 
       JOIN job_offer ON job_offer.id = candidacy.job_offer_id
       JOIN company ON company.id = job_offer.company_id

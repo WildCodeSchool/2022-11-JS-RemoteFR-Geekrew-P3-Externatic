@@ -38,15 +38,16 @@ function App() {
             path="/Registration-company"
             element={<RegistrationCompany />}
           />
-          <Route path="/Creation-Offer" element={<CreationOffer />} />
           <Route
             path="/Candidate-Profile/:userId"
             element={<CandidateProfile />}
           />
+
           <Route path="/OfferDetails/:jobId" element={<OfferDetails />} />
           <Route path="/Candidacies/:candidateId" element={<Candidacies />} />
           <Route path="/Logout" element={<Logout />} />
           <Route element={<ProtectedRoutes isAllowed={user !== ""} />}>
+            <Route path="/Creation-Offer" element={<CreationOffer />} />
             <Route path="/Dashboard" element={<Dashboard />} />
             <Route
               element={
