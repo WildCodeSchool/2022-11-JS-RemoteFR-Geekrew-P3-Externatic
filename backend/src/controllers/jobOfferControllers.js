@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 const models = require("../models");
 const validateJobOffer = require("../validator/jobOfferValidator");
 
@@ -73,24 +74,30 @@ const edit = (req, res) => {
     });
 };
 
-const add = (req, res) => {
-  const jobOffer = req.body;
+const add = async (req, res) => {
+  try {
+    const jobOffer = req.body;
 
-  const validationResult = validateJobOffer(jobOffer);
+    console.log(jobOffer);
 
-  if (validationResult) {
-    return res.status(400).send(validationResult);
-  }
+    const [jobOfferResult] = await models.jobOffer.insert(jobOffer);
 
-  return models.jobOffer
-    .insert(jobOffer)
-    .then(([result]) => {
-      res.location(`/job_offers/${result.insertId}`).sendStatus(201);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.sendStatus(500);
+    const jobOfferInsertId = jobOfferResult.insertId;
+
+    const technoArray = jobOffer.technologies.split(",");
+
+    technoArray.forEach((techno) => {
+      models.jobOffer.insertTechnoIntoJobOfferHasTechno(
+        techno,
+        jobOfferInsertId
+      );
     });
+
+    res.location(`/job_offers/${jobOfferResult.insertId}`).sendStatus(201);
+  } catch (err) {
+    console.error(err);
+    res.sendStatus(500);
+  }
 };
 
 const destroy = (req, res) => {

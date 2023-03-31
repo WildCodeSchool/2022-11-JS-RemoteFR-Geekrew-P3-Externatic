@@ -9,7 +9,6 @@ function CurrentUserContextProvider({ children }) {
   const [user, setUser] = useState("");
   const [userType, setUserType] = useState("");
   const [email, setEmail] = useState("");
-
   const [roles, setRoles] = useState([]);
   const [userId, setUserId] = useState();
   const [candidateId, setCandidateId] = useState();

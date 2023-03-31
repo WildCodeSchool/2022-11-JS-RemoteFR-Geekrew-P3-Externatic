@@ -1,4 +1,3 @@
-/* eslint-disable react/button-has-type */
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import eye from "../assets/Icons/eye.svg";
@@ -46,6 +45,7 @@ function PasswordCompany({ formErrors, setFormErrors, validate, isSubmit }) {
             className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block p-2.5 w-full"
           />
           <button
+            type="button"
             onClick={() => setPasswordIsVisible(!passwordIsVisible)}
             className="absolute right-3 text-grey2"
           >
@@ -80,6 +80,7 @@ function PasswordCompany({ formErrors, setFormErrors, validate, isSubmit }) {
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block p-2.5 w-full"
           />
           <button
+            type="button"
             onClick={() =>
               setConfirmPasswordIsVisible(!confirmPasswordIsVisible)
             }

@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from "react";
+import PropTypes from "prop-types";
 import OfferFilterForm from "./OfferFilterForm";
 
 function AdvancedSearchButton({ setJobOffers, showOfferFilter }) {
@@ -9,5 +9,8 @@ function AdvancedSearchButton({ setJobOffers, showOfferFilter }) {
     </div>
   );
 }
-
+AdvancedSearchButton.propTypes = {
+  setJobOffers: PropTypes.func.isRequired,
+  showOfferFilter: PropTypes.bool.isRequired,
+};
 export default AdvancedSearchButton;

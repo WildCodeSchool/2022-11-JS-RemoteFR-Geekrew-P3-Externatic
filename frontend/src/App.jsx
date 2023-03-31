@@ -15,6 +15,7 @@ import ProtectedRoutes from "./components/ProtectedRoutes";
 
 import { useCurrentUserContext } from "./contexts/CurrentUserContext";
 import CandidateProfile from "./pages/CandidateProfile";
+import CreationOffer from "./pages/CreationOffer";
 import Candidacies from "./pages/Candidacies";
 import TestAdmin from "./pages/TestAdmin";
 
@@ -41,10 +42,12 @@ function App() {
             path="/Candidate-Profile/:userId"
             element={<CandidateProfile />}
           />
+
           <Route path="/OfferDetails/:jobId" element={<OfferDetails />} />
           <Route path="/Candidacies/:candidateId" element={<Candidacies />} />
           <Route path="/Logout" element={<Logout />} />
           <Route element={<ProtectedRoutes isAllowed={user !== ""} />}>
+            <Route path="/Creation-Offer" element={<CreationOffer />} />
             <Route path="/Dashboard" element={<Dashboard />} />
             <Route
               element={

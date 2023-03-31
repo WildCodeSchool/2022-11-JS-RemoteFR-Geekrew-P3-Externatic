@@ -1,4 +1,3 @@
-/* eslint-disable react/button-has-type */
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useCandidateContext } from "../contexts/CandidateContext";
@@ -49,7 +48,6 @@ function InfosCandidate({ formErrors, setFormErrors, validate, isSubmit }) {
   };
 
   const handleCheckbox = (e) => {
-    // console.log(e.target);
     const boxChecked = e.target.name;
     dispatch({
       type: "HANDLE_CHECKBOX",
@@ -249,6 +247,7 @@ function InfosCandidate({ formErrors, setFormErrors, validate, isSubmit }) {
             onChange={(e) => handleInput(e)}
           />
           <button
+            type="button"
             onClick={() => setPasswordIsVisible(!passwordIsVisible)}
             className="absolute right-4 text-grey2"
           >
@@ -277,6 +276,7 @@ function InfosCandidate({ formErrors, setFormErrors, validate, isSubmit }) {
             onChange={(e) => handleInput(e)}
           />
           <button
+            type="button"
             onClick={() =>
               setConfirmPasswordIsVisible(!confirmPasswordIsVisible)
             }
