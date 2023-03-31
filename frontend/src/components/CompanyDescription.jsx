@@ -70,7 +70,7 @@ function CompanyDescription() {
     <div className="w-full mt-5">
       <div className="">
         <div className="w-full ">
-          <div className="border border mb-5 w-full">
+          <div className="border mb-5 w-full">
             <label
               htmlFor="base-input"
               className="text-sm font-medium text-grey2 bg-background  w-1/2"
