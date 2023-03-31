@@ -43,10 +43,12 @@ const multerFiles = require("./middleware/multer");
 const jobOfferControllers = require("./controllers/jobOfferControllers");
 
 router.post("/candidates", multerFiles, candidateControllers.add);
-router.get("/companies", companyControllers.browse);
-router.post("/job_offers", jobOfferControllers.add);
+
 // Protected routes
 router.use(verifyToken);
+
+router.get("/companies", companyControllers.browse);
+router.post("/job_offers", jobOfferControllers.add);
 
 router.get("/users", rolesCheck("admin"), userControllers.browse);
 router.get("/users/:id", userControllers.read);
