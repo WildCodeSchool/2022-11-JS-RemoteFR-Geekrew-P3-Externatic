@@ -62,7 +62,22 @@ const add = async (req, res) => {
   try {
     const jobOffer = req.body;
 
-    models.jobOffer.insert(jobOffer);
+    console.log(jobOffer);
+
+    const [jobOfferResult] = await models.jobOffer.insert(jobOffer);
+
+    const jobOfferInsertId = jobOfferResult.insertId;
+
+    const technoArray = jobOffer.technologies.split(",");
+
+    technoArray.forEach((techno) => {
+      models.jobOffer.insertTechnoIntoJobOfferHasTechno(
+        techno,
+        jobOfferInsertId
+      );
+    });
+
+    res.location(`/job_offers/${jobOfferResult.insertId}`).sendStatus(201);
   } catch (err) {
     console.error(err);
     res.sendStatus(500);

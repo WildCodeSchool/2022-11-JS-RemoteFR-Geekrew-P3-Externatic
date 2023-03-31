@@ -16,8 +16,8 @@ function CompanyJobDescription() {
       <section className="text-gray-700">
         <div className="">
           <div className="w-full">
-            <details className="mb-4">
-              <summary className="font-semibold  bg-white rounded-md py-2 px-4">
+            <details className="mb-4 ">
+              <summary className="font-semibold text-gray-900  bg-white rounded-md py-2 px-4">
                 Description du poste
               </summary>
               <div className="bg-white mt-5 ">

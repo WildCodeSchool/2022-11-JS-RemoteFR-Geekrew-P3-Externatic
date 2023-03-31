@@ -36,6 +36,13 @@ class JobOfferManager extends AbstractManager {
     );
   }
 
+  insertTechnoIntoJobOfferHasTechno(techno, jobOfferInsertId) {
+    return this.database.query(
+      `INSERT INTO job_offer_has_technology (job_offer_id, technology_id) VALUES (?, ?);`,
+      [jobOfferInsertId, techno]
+    );
+  }
+
   update(jobOffer) {
     return this.database.query(
       `update ${this.table} set salary = ?, title = ?, lower_salary = ?, higher_salary = ?, description = ?, experience = ?, location = ?, contract_id = ?, debut_date = ?,

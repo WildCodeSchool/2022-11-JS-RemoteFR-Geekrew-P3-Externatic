@@ -16,11 +16,12 @@ function CreationOffre() {
   const { ...offer } = OfferFormState;
 
   useEffect(() => {
-    axios
-      .get(`${backEndURL}/companies`)
-      .then((res) =>
-        setCompany(res.data.filter((compa) => compa.user_id === userId))
-      );
+    axios.get(`${backEndURL}/companies`).then((res) => {
+      console.log(userId);
+      console.log(res.data);
+      console.log(res.data.filter((compa) => compa.user_id === userId));
+      setCompany(res.data.filter((compa) => compa.user_id === userId));
+    });
   }, []);
 
   useEffect(() => {
@@ -45,17 +46,17 @@ function CreationOffre() {
         <CompanyDescription />
         <CompanyJobDescription />
         <ButtonSaveOffer handleSubmit={handleSubmit} />
-        <p>description:{offer.description}</p>
+        {/* <p>description:{offer.description}</p>
         <p>experience:{offer.experience}</p>
         <p>mission:{offer.mission}</p>
         <p>title:{offer.title}</p>
         <p>company_name:{offer.title}</p>
         <p>localisation:{offer.location}</p>
         <p>lower_salary:{offer.lowerSalary}</p>
-        <p>higher_salary:{offer.higherSalary}</p>
+        <p>higher_salary:{offer.higherSalary}</p> */}
         <p>contract:{offer.contract}</p>
-        <p>technologies:{offer.technologies}</p>
-        <p>interview_run:{offer.interviewRun}</p>
+        {/* <p>technologies:{offer.technologies}</p>
+        <p>interview_run:{offer.interviewRun}</p> */}
       </div>
     </div>
   );

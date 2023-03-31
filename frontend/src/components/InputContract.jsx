@@ -27,17 +27,16 @@ function InputContract() {
       if (contr.id === contractChecked) {
         return { ...contr, status: !contr.status };
       }
-      return contr;
+      return { ...contr, status: false };
     });
 
     setContract(newContractStatus);
 
     if (e.target.checked === true && !typeContract.includes(e.target.id)) {
-      setTypeContract([...typeContract, e.target.id]);
+      setTypeContract([e.target.id]);
     }
     if (e.target.checked === false && typeContract.includes(e.target.id)) {
-      const updatedContract = typeContract.filter((id) => id !== e.target.id);
-      setTypeContract(updatedContract);
+      setTypeContract([]);
     }
   };
   useEffect(() => {
@@ -49,20 +48,20 @@ function InputContract() {
     });
   }, [typeContract]);
   return (
-    <div className="flex flex-col justify-center md:mr-2 relative border border-gray-300 text-gray-900 text-sm rounded w-1/2 mt-5 mb-5">
+    <div className="flex flex-col justify-center md:mr-2 relative  text-gray-900 text-sm rounded w-1/2 mt-5 mb-14">
       <button
-        className="flex text-sm text-black text-left font-medium mb-2 ml-2 mt-2"
+        className="flex text-sm text-black text-left font-medium mb-2 md:ml-8 mt-2 5 underline hover:no-underline"
         onClick={() => setOpen(!isOpen)}
         type="button"
       >
-        Contract <span className="text-main-dark ml-20" />
+        Contract <span className="text-main-dark ml-20 " />
         {isOpen ? (
           <img src={chevronUp} alt="fermer" className="h-6 w-6" />
         ) : (
           <img src={chevronDown} alt="ouvrir" className="h-6 w-6" />
         )}
       </button>
-      <div className="absolute z-10 top-11 bg-white p-3 ">
+      <div className="absolute z-10 top-11 bg-white p-3 mt-5">
         {contracts.map(
           (contract) =>
             isOpen && (

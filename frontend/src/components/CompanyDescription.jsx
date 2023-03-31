@@ -1,4 +1,3 @@
-/* eslint-disable react/button-has-type */
 import React, { useState, useEffect } from "react";
 import { useOfferContext } from "../contexts/CreationOfferContext";
 import expressAPI from "../services/expressAPI";
@@ -71,10 +70,10 @@ function CompanyDescription() {
     <div className="w-full mt-5">
       <div className="">
         <div className="w-full ">
-          <div className="">
+          <div className="border border mb-5 w-full">
             <label
               htmlFor="base-input"
-              className="block mb-3 text-sm text-left font-medium text-grey2 md:bg-background"
+              className="text-sm font-medium text-grey2 bg-background  w-1/2"
             >
               {" "}
             </label>
@@ -84,7 +83,7 @@ function CompanyDescription() {
               name="title"
               onChange={(e) => handleInput(e)}
               placeholder=" Entrez le titre de l’annonce... "
-              className="bg-gray-50 mb-4 border text-gray-900 text-sm rounded  block w-full p-2.5 "
+              className="bg-gray-50 border text-gray-900 text-sm rounded  block w-full p-2.5"
             />
           </div>
           <details className="mb-4">
@@ -152,14 +151,14 @@ function CompanyDescription() {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-1">
                   <InputContract />
-                  <div className="flex flex-col justify-center md:mr-2 relative border border-gray-300 text-gray-900 text-sm rounded w-1/2 mt-12 mb-12">
+                  <div className="flex flex-col justify-center md:mr-2 relative text-gray-900 text-sm rounded w-1/2 mt-12 mb-20">
                     <button
-                      className="flex text-sm text-black text-left font-medium mb-2 ml-2 mt-2"
+                      className="flex text-sm text-black text-left font-medium mb-2 md:ml-2 mt-2 underline hover:no-underline"
                       onClick={() => setOpen(!isOpen)}
                       type="button"
                     >
                       Choisir Technologies{" "}
-                      <span className="text-main-dark ml-20" />
+                      <span className="text-main-dark ml-10 " />
                       {isOpen ? (
                         <img src={chevronUp} alt="fermer" className="h-6 w-6" />
                       ) : (
@@ -170,7 +169,7 @@ function CompanyDescription() {
                         />
                       )}
                     </button>
-                    <div className="absolute z-10 top-11 bg-white p-3 ">
+                    <div className="absolute z-10 top-11 bg-white p-3">
                       {technologies.map(
                         (technology) =>
                           isOpen && (
