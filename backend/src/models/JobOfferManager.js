@@ -28,7 +28,7 @@ class JobOfferManager extends AbstractManager {
 
   jobDetails(jobId) {
     return this.database.query(
-      `select job.*, DATEDIFF(NOW(), job.date_of_creation) AS "postDate", company.name, company.description as compdesc, company.company_type, company.number_of_employee, company.field, company.picture, consultant.*, user.id, user.firstname, user.lastname, user.linkedin, user.mail, user.phone, user.location as userLoc, user.picture from job_offer job join company on job.company_id = company.id join handled_offer ho on ho.job_offer_id = job.id join consultant on ho.consultant_id = consultant.id join user on user.id = consultant.user_id where job.id = ?`,
+      `select job.*, DATEDIFF(NOW(), job.date_of_creation) AS "postDate", company.name, company.description as compdesc, company.company_type, company.number_of_employee, company.field, consultant.*, user.id, user.firstname, user.lastname, user.linkedin, user.mail, user.phone, user.location as userLoc, user.picture from job_offer job join company on job.company_id = company.id join handled_offer ho on ho.job_offer_id = job.id join consultant on ho.consultant_id = consultant.id join user on user.id = consultant.user_id where job.id = ?`,
       [jobId]
     );
   }

@@ -179,6 +179,7 @@ CREATE TABLE IF NOT EXISTS `p3`.`company` (
   `description` TEXT NOT NULL,
   `field` VARCHAR(150) NOT NULL,
   `siret` VARCHAR(14) NOT NULL,
+  `company_type` VARCHAR(150),
   `user_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_company_user_id` (`user_id` ASC) VISIBLE,
@@ -197,10 +198,10 @@ INSERT INTO `company` VALUES
 150,
 "Braka-C, c'est une sart up en plein essort spécialisée dans une nouvelle technologie de réduction de fracture et de plâtre ! Rejoignez-nous et cassez vous joyeusement le bras afin de constater notre expertise !",
 'Santé',
-'01234567891011',
+'01234567891011', NULL,
 2),
-(2,'Taupiqueur',250,'Editeur de logiciel SaaS spécialisé dans le domaine du BTP','BTP','04136785471356',3),
-(3,'DigiDollars',95,'Nous sommes une ESN spécialisée dans le secteur banquire. Nous proposons à nos clients une solution clé en mains, et sommes spécialisée dans la migration vers une stack moderne.','Banque','98567439621584',4);
+(2,'Taupiqueur',250,'Editeur de logiciel SaaS spécialisé dans le domaine du BTP','BTP','04136785471356',NULL,3),
+(3,'DigiDollars',95,'Nous sommes une ESN spécialisée dans le secteur banquire. Nous proposons à nos clients une solution clé en mains, et sommes spécialisée dans la migration vers une stack moderne.','Banque','98567439621584',NULL,4);
 
 UNLOCK TABLES;
 -- -----------------------------------------------------
