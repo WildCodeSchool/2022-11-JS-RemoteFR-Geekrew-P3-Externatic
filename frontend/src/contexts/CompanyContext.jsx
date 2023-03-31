@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { createContext, useContext, useMemo, useReducer } from "react";
-import { companyFormReducer } from "../reducers/companyFormReducer";
+import companyFormReducer from "../reducers/companyFormReducer";
 
 const CompanyContext = createContext();
 
@@ -18,6 +18,7 @@ const initialCompanyFormState = {
   linkedin: "",
   password: "",
   confirmedPassword: "",
+  roles: '["user", "company"]',
 };
 
 function CompanyContextProvider({ children }) {

@@ -101,6 +101,10 @@ INSERT INTO `candidate` VALUES
 "Sens de l'initiative, Capacité à travailler en équipe, Envie d'apprendre",
 1,
 4);
+UPDATE `p3`.`candidate` SET `cv` = 'https://smallpdf.com/fr/file#s=7867df49-aa3a-4505-b9ed-fba7b45d5a15' WHERE (`id` = '1');
+UPDATE `p3`.`candidate` SET `cv` = 'https://smallpdf.com/fr/file#s=722ae66b-b984-4641-be30-28587ae262d3' WHERE (`id` = '2');
+
+
 
 UNLOCK TABLES;
 -- -----------------------------------------------------
@@ -365,7 +369,7 @@ ENGINE = InnoDB;
 LOCK TABLES `field` WRITE;
 /*!40000 ALTER TABLE `field` DISABLE KEYS */;
 INSERT INTO `field` VALUES
-(1, 'BTP'), (2, 'Santé'), (3, 'Secteur banquaire');
+(1, 'BTP'), (2, 'Santé'), (3, 'Banque');
 
 UNLOCK TABLES;
 -- -----------------------------------------------------
@@ -576,6 +580,18 @@ LOCK TABLES `user` WRITE;
 INSERT INTO `user` VALUES (1,'Gusty','Amethist','Gusty.Amethist@yopmail.com','https://www.linkedin.com/in/Gusty-Amethist/','xx.xx.xx.xx.xx','$argon2id$v=19$m=524288,t=5,p=1$L6jZcFQDpynOFGgpGF+EwA$y9GMxbL0/31Tk6R4yOhY8wBYQSGSLfiNk52PNOlbBd0','Chengdu','urldelimage'),(2,'Courtnay','Rona','Courtnay.Rona@yopmail.com','https://www.linkedin.com/in/Courtnay-Rona/','xx.xx.xx.xx.xx','$argon2id$v=19$m=524288,t=5,p=1$L6jZcFQDpynOFGgpGF+EwA$y9GMxbL0/31Tk6R4yOhY8wBYQSGSLfiNk52PNOlbBd0','Mashhad','urldelimage'),(3,'Adore','Maribeth','Adore.Maribeth@yopmail.com','https://www.linkedin.com/in/Adore-Maribeth/','xx.xx.xx.xx.xx','$argon2id$v=19$m=524288,t=5,p=1$L6jZcFQDpynOFGgpGF+EwA$y9GMxbL0/31Tk6R4yOhY8wBYQSGSLfiNk52PNOlbBd0','Semarang','urldelimage'),(4,'Tracey','Middleton','Tracey.Middleton@yopmail.com','https://www.linkedin.com/in/Tracey-Middleton/','xx.xx.xx.xx.xx','$argon2id$v=19$m=524288,t=5,p=1$L6jZcFQDpynOFGgpGF+EwA$y9GMxbL0/31Tk6R4yOhY8wBYQSGSLfiNk52PNOlbBd0','Kigali','urldelimage'),(5,'Kate','Rheingold','Kate.Rheingold@yopmail.com','https://www.linkedin.com/in/Kate-Rheingold/','xx.xx.xx.xx.xx','$argon2id$v=19$m=524288,t=5,p=1$L6jZcFQDpynOFGgpGF+EwA$y9GMxbL0/31Tk6R4yOhY8wBYQSGSLfiNk52PNOlbBd0','Dammam','urldelimage');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
+ALTER TABLE `p3`.`user` 
+ADD COLUMN `roles` VARCHAR(255) NOT NULL DEFAULT '["user"]' AFTER `picture`;
+UPDATE `p3`.`user` SET `roles` = '[\"user\", \"admin\"]' WHERE (`id` = '1');
+UPDATE `p3`.`user` SET `roles` = '[\"user\", \"admin\", \"consultant\"]' WHERE (`id` = '1');
+UPDATE `p3`.`user` SET `roles` = '[\"user\", \"candidate\"]' WHERE (`id` = '4');
+UPDATE `p3`.`user` SET `roles` = '[\"user\", \"company\"]' WHERE (`id` = '2');
+UPDATE `p3`.`user` SET `roles` = '[\"user\", \"candidate\"]' WHERE (`id` = '3');
+UPDATE `p3`.`user` SET `picture` = 'https://image.lexica.art/full_jpg/5b720589-69a1-4dac-8c93-36a7971a0fa2' WHERE (`id` = '4');
+UPDATE `p3`.`user` SET `picture` = 'https://image.lexica.art/full_jpg/2814b2cc-ede0-4e25-9248-59bc5c84d6e1' WHERE (`id` = '3');
+
+
+
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

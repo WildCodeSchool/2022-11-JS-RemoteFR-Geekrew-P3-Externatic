@@ -64,34 +64,37 @@ const add = async (req, res) => {
 
     if (validationResult.length) {
       res.status(400).send(validationResult);
+    } else {
+      const hashingOptions = {
+        type: argon2.argon2id,
+        memoryCost: 2 ** 19,
+        timeCost: 5,
+        parallelism: 1,
+      };
+
+      const hashedPassword = await argon2.hash(
+        company.password,
+        hashingOptions
+      );
+
+      company.password = hashedPassword;
+
+      const [userResult] = await models.company.insertCompanyIntoUser(company);
+
+      const companyUserId = userResult.insertId;
+
+      const [companyResult] = await models.company.insertCompanyIntoCompany(
+        company,
+        companyUserId
+      );
+
+      models.company.updateCompanyPicture(
+        req.files.file[0].filename,
+        companyUserId
+      );
+
+      res.location(`/companies/${companyResult.insertId}`).sendStatus(201);
     }
-
-    const hashingOptions = {
-      type: argon2.argon2id,
-      memoryCost: 2 ** 19,
-      timeCost: 5,
-      parallelism: 1,
-    };
-
-    const hashedPassword = await argon2.hash(company.password, hashingOptions);
-
-    company.password = hashedPassword;
-
-    const [userResult] = await models.company.insertCompanyIntoUser(company);
-
-    const companyUserId = userResult.insertId;
-
-    const [companyResult] = await models.company.insertCompanyIntoCompany(
-      company,
-      companyUserId
-    );
-
-    models.company.updateCompanyPicture(
-      req.files.file[0].filename,
-      companyUserId
-    );
-
-    res.location(`/companies/${companyResult.insertId}`).sendStatus(201);
   } catch (err) {
     console.error(err);
     res.sendStatus(500);

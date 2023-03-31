@@ -1,14 +1,16 @@
 import React from "react";
+import PropTypes from "prop-types";
+import OfferFilterForm from "./OfferFilterForm";
 
-function AdvancedSearchButton() {
+function AdvancedSearchButton({ setJobOffers, showOfferFilter }) {
   return (
-    <button
-      type="button"
-      className="font-jost mx-auto underline underline-offset-4 decoration-2 decoration-main mb-10 max-w-fit"
-    >
-      Recherche avancée
-    </button>
+    <div className="text-center">
+      {showOfferFilter && <OfferFilterForm setJobOffers={setJobOffers} />}
+    </div>
   );
 }
-
+AdvancedSearchButton.propTypes = {
+  setJobOffers: PropTypes.func.isRequired,
+  showOfferFilter: PropTypes.bool.isRequired,
+};
 export default AdvancedSearchButton;

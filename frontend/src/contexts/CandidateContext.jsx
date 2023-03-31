@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { createContext, useContext, useReducer, useMemo } from "react";
-import { candidateReducer } from "../reducers/candidateReducer";
+import candidateReducer from "../reducers/candidateReducer";
 
 const CandidateContext = createContext();
 
@@ -22,6 +22,7 @@ const initialFormState = {
   github: "",
   soft_skills: "",
   hard_skills: "",
+  roles: '["user", "candidate"]',
 };
 
 function CandidateContextProvider({ children }) {

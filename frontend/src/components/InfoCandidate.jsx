@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useCandidateContext } from "../contexts/CandidateContext";
+import eye from "../assets/Icons/eye.svg";
+import eyeOff from "../assets/Icons/eye-off.svg";
 
 function InfosCandidate({ formErrors, setFormErrors, validate, isSubmit }) {
   const { dispatch, formState } = useCandidateContext();
@@ -12,6 +14,10 @@ function InfosCandidate({ formErrors, setFormErrors, validate, isSubmit }) {
   };
 
   const [checkboxes, setCheckboxes] = useState(initialCheckboxes);
+
+  const [passwordIsVisible, setPasswordIsVisible] = useState(false);
+  const [confirmPasswordIsVisible, setConfirmPasswordIsVisible] =
+    useState(false);
 
   const handleInput = (e) => {
     dispatch({
@@ -42,7 +48,6 @@ function InfosCandidate({ formErrors, setFormErrors, validate, isSubmit }) {
   };
 
   const handleCheckbox = (e) => {
-    // console.log(e.target);
     const boxChecked = e.target.name;
     dispatch({
       type: "HANDLE_CHECKBOX",
@@ -65,7 +70,7 @@ function InfosCandidate({ formErrors, setFormErrors, validate, isSubmit }) {
   };
 
   return (
-    <div className="grid grid-rows-10 m-8 justify-items-start font-jost">
+    <div className="grid grid-rows-10 m-8 mt-0 justify-items-start font-jost">
       <h2 className="mb-5">Mes informations</h2>
       <div className="flex flex-row ">
         <p className="mr-7 text-grey2">
@@ -232,14 +237,27 @@ function InfosCandidate({ formErrors, setFormErrors, validate, isSubmit }) {
         <label className="mb-2 text-grey2" htmlFor="location">
           Mot de passe <span className="text-main-dark">*</span>
         </label>
-        <input
-          className="bg-gray-50 border border-gray-300 text-grey1 rounded mb-5 leading-9"
-          id="password"
-          name="password"
-          type="password"
-          autoComplete="on"
-          onChange={(e) => handleInput(e)}
-        />
+        <div className="flex flex-row justify-center items-center align-middle relative mb-5 w-full">
+          <input
+            className="bg-gray-50 border border-gray-300 text-grey1 rounded leading-9 w-full"
+            id="password"
+            name="password"
+            type={passwordIsVisible ? "text" : "password"}
+            autoComplete="on"
+            onChange={(e) => handleInput(e)}
+          />
+          <button
+            type="button"
+            onClick={() => setPasswordIsVisible(!passwordIsVisible)}
+            className="absolute right-4 text-grey2"
+          >
+            {passwordIsVisible ? (
+              <img src={eye} alt="visible" />
+            ) : (
+              <img src={eyeOff} alt="invisible" />
+            )}
+          </button>
+        </div>
         {isSubmit && formErrors.password && (
           <p className="text-red text-sm mb-6 mt-[-12px] mx-2">
             {formErrors.password}
@@ -248,14 +266,29 @@ function InfosCandidate({ formErrors, setFormErrors, validate, isSubmit }) {
         <label className="mb-2 text-grey2" htmlFor="location">
           Confirmer mot de passe <span className="text-main-dark">*</span>
         </label>
-        <input
-          className="bg-gray-50 border border-gray-300 text-grey1 rounded mb-5 leading-9"
-          id="confirmPassword"
-          name="confirmPassword"
-          type="password"
-          autoComplete="on"
-          onChange={(e) => handleInput(e)}
-        />
+        <div className="flex flex-row justify-center items-center align-middle relative mb-5 w-full">
+          <input
+            className="bg-gray-50 border border-gray-300 text-grey1 rounded leading-9 w-full"
+            id="confirmPassword"
+            name="confirmPassword"
+            type={confirmPasswordIsVisible ? "text" : "password"}
+            autoComplete="on"
+            onChange={(e) => handleInput(e)}
+          />
+          <button
+            type="button"
+            onClick={() =>
+              setConfirmPasswordIsVisible(!confirmPasswordIsVisible)
+            }
+            className="absolute right-4 text-grey2"
+          >
+            {confirmPasswordIsVisible ? (
+              <img src={eye} alt="visible" />
+            ) : (
+              <img src={eyeOff} alt="invisible" />
+            )}
+          </button>
+        </div>
         {isSubmit && formErrors.confirmPassword && (
           <p className="text-red text-sm mb-6 mt-[-12px] mx-2">
             {formErrors.confirmPassword}

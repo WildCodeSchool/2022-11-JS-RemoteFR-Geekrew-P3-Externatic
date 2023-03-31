@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 const candidateReducer = (state, action) => {
   switch (action.type) {
     case "HANDLE_INPUT":
@@ -12,4 +11,4 @@ const candidateReducer = (state, action) => {
   }
 };
 
-export { candidateReducer };
+export default candidateReducer;

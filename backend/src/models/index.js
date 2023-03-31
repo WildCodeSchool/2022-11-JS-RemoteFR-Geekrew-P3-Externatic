@@ -75,6 +75,11 @@ const FavoriteManager = require("./FavoriteManager");
 models.favorite = new FavoriteManager();
 models.favorite.setDatabase(pool);
 
+const FieldManager = require("./FieldManager");
+
+models.field = new FieldManager();
+models.field.setDatabase(pool);
+
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model
 

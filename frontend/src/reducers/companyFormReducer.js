@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 const companyFormReducer = (state, action) => {
   switch (action.type) {
     case "HANDLE_INPUT":
@@ -8,4 +7,4 @@ const companyFormReducer = (state, action) => {
   }
 };
 
-export { companyFormReducer };
+export default companyFormReducer;

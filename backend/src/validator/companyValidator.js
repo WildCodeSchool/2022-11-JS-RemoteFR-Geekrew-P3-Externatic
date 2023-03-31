@@ -17,6 +17,7 @@ const companySchema = Joi.object().keys({
   location: Joi.string().min(3).max(100).required(),
   description: Joi.string().min(10).required(),
   linkedin: Joi.string().min(7).required(),
+  roles: Joi.string().min(9).required(),
   password: passwordSchema.required(),
 });
 

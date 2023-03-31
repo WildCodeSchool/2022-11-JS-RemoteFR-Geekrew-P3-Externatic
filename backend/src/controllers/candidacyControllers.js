@@ -20,8 +20,20 @@ const read = (req, res) => {
       if (rows[0] == null) {
         res.sendStatus(404);
       } else {
-        res.send(rows[0]);
+        res.send(rows);
       }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+const findByJobOffer = (req, res) => {
+  models.candidacy
+    .findByJobOffer(req.params.jobId)
+    .then(([rows]) => {
+      res.send(rows);
     })
     .catch((err) => {
       console.error(err);
@@ -77,7 +89,7 @@ const add = (req, res) => {
 
 const destroy = (req, res) => {
   models.candidacy
-    .delete(req.params.id)
+    .delete(req.params.candidacyId)
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);
@@ -97,4 +109,5 @@ module.exports = {
   edit,
   add,
   destroy,
+  findByJobOffer,
 };

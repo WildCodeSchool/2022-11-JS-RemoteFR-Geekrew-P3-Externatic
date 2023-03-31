@@ -30,6 +30,22 @@ const read = (req, res) => {
     });
 };
 
+const findBy = (req, res) => {
+  models.jobOffer
+    .find(req.params.userId)
+    .then(([rows]) => {
+      if (rows[0] == null) {
+        res.sendStatus(404);
+      } else {
+        res.send(rows);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 const edit = (req, res) => {
   const jobOffer = req.body;
 
@@ -106,4 +122,5 @@ module.exports = {
   edit,
   add,
   destroy,
+  findBy,
 };

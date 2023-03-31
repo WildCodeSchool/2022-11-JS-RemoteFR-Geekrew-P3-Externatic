@@ -1,38 +1,34 @@
 import PropTypes from "prop-types";
+import plus from "../assets/Icons/plus-circle.svg";
 
 function CompanyProfilePic({ files, setFiles }) {
   return (
-    <div className="float-left w-full md:w-96 md:max-w-full mx-auto mb-5">
-      <div className="">
-        <form>
-          <div className="float-left relative flex flex-row justify-center h-28 w-28 items-center  rounded-full cursor-pointer">
-            {files.length && (
-              <img
-                src={URL.createObjectURL(files[0])}
-                alt=""
-                className="w-20 h-20 rounded-full"
-              />
-            )}
-          </div>
-          <label className="block mb-6">
-            <input
-              onChange={(e) => setFiles(e.target.files)}
-              required
-              name="photo"
-              type="file"
-              className="
-            block
-            w-full
-            mt-1
-            focus:border-indigo-300
-            focus:ring
-            focus:ring-indigo-200
-            focus:ring-opacity-50
-          "
+    <div className="float-left w-full h-fit md:w-96 md:max-w-full">
+      <form>
+        <label className="block mb-6 relative ">
+          <input
+            onChange={(e) => setFiles(e.target.files)}
+            required
+            name="photo"
+            type="file"
+            className="opacity-0 absolute z-10 w-full h-full cursor-pointer"
+          />
+          {files.length > 0 && (
+            <img
+              src={URL.createObjectURL(files[0])}
+              alt=""
+              className="w-[88px] h-[88px] rounded-full"
             />
-          </label>
-        </form>
-      </div>
+          )}
+          {files.length === 0 && (
+            <div>
+              <div className="bg-blue-500 text-white px-4 py-2 rounded-lg cursor-pointer absolute bottom-5 left-4 z-5 align">
+                <img src={plus} alt="" className="pointer-events-none" />
+              </div>
+            </div>
+          )}
+        </label>
+      </form>
     </div>
   );
 }

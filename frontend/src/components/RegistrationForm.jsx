@@ -1,10 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useCurrentUserContext } from "../contexts/CurrentUserContext";
 
-import GitLogo from "../assets/Icons/mdi_github.svg";
-import GoogleLogo from "../assets/Icons/Google.svg";
-import LinkedinLogo from "../assets/Icons/logos_linkedin-icon.svg";
-import SocialButton from "./Buttons/SocialButton";
 import { toastError } from "../services/toastService";
 
 function RegistrationForm() {
@@ -34,7 +30,7 @@ function RegistrationForm() {
   };
 
   return (
-    <div className="font-jost flex flex-col items-center">
+    <div className="font-jost flex flex-col items-center mt-5">
       <h1 className="text-xl font-semibold mt-6 mb-12 md:text-3xl">
         Je m'incrit comme{" "}
         <span className=" text-main italic ">
@@ -63,7 +59,7 @@ function RegistrationForm() {
               Adresse mail
             </label>
             <input
-              className="border border-grey3 h-10 rounded"
+              className="border border-grey3 h-10 rounded p-3"
               type="email"
               id="email"
               value={email}
@@ -77,23 +73,6 @@ function RegistrationForm() {
             Continuer l'inscription
           </button>
         </form>
-
-        <div className="flex items-center my-10 font-bold text-grey1">
-          <hr className="border border-grey3 grow" />
-          <p className="grow-0 bg-white px-3">ou</p>
-          <hr className="border border-grey3 grow" />
-        </div>
-        <div className="mb-10">
-          <SocialButton src={LinkedinLogo} alt="logoLinkedin">
-            S'inscrire avec Linkedin
-          </SocialButton>
-          <SocialButton src={GoogleLogo} alt="logoGoogle">
-            S'inscrire avec Google
-          </SocialButton>
-          <SocialButton src={GitLogo} alt="logoGithub">
-            S'inscrire avec GitHub
-          </SocialButton>
-        </div>
       </div>
     </div>
   );

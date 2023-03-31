@@ -78,11 +78,11 @@ function SkillsCandidate({ formErrors, setFormErrors, validate, isSubmit }) {
       <div className="flex flex-col justify-start w-full md:grid md:grid-cols-2">
         <div className="flex flex-col justify-center md:mr-2 relative">
           <button
-            className="flex text-sm text-black text-left font-medium mb-6"
+            className="flex items-center text-sm text-grey2 text-left font-medium mb-5"
             onClick={() => setOpen(!isOpen)}
             type="button"
           >
-            Hard Skills <span className="text-main-dark ml-2">*</span>
+            Hard Skills <span className="text-main-dark ml-[5px]">*</span>
             {isOpen ? (
               <img src={chevronUp} alt="fermer" className="h-6 w-6 ml-6" />
             ) : (
