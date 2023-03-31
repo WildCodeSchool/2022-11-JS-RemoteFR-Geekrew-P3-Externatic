@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -7,8 +8,9 @@ import FakePP from "../assets/images/Fake-PP.png";
 import favIcon from "../assets/Icons/heart.svg";
 import Tags from "./Tags";
 import CandidacyInfos from "./CandidacyInfos";
-
+import trash from "../assets/Icons/trash-2.svg";
 import { useCurrentUserContext } from "../contexts/CurrentUserContext";
+import { toastError, toastValidation } from "../services/toastService";
 
 function OfferDash({
   jobId,
@@ -26,6 +28,15 @@ function OfferDash({
 }) {
   const { roles } = useCurrentUserContext();
   const [candidacies, setCandidacies] = useState([]);
+  const handleDeleteOffer = () => {
+    expressAPI
+      .delete(`/job_offers/${jobId}`)
+      .then(() => toastValidation("Votre offre a bien été eliminée"))
+      .catch((err) => {
+        console.error(err);
+        toastError("L'offre n'a pas pu être eliminée");
+      });
+  };
   useEffect(() => {
     if (roles.includes("company")) {
       expressAPI
@@ -57,7 +68,14 @@ function OfferDash({
             </div>
           </div>
           <div className="h-20">
-            <img src={favIcon} alt="heartIcon" />
+            {roles.includes("candidate") && (
+              <img src={favIcon} alt="heartIcon" />
+            )}
+            {roles.includes("company") && (
+              <button onClick={handleDeleteOffer} type="button">
+                <img src={trash} alt="trashIcon" />
+              </button>
+            )}
           </div>
         </div>
         <div className="mt-5">
