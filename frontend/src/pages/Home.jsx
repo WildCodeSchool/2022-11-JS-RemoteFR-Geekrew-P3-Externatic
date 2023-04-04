@@ -1,36 +1,39 @@
-import Counter from "../components/Counter";
-import logo from "../assets/logo.svg";
+import ExternaticAchievement from "../components/ExternaticAchievement";
+import RecruitmentSteps from "../components/RecruitmentSteps";
+import CandidateButton from "../components/CandidateButton";
+import CompanyButton from "../components/CompanyButton";
+import ContainerSlider from "../components/ContainerSlider";
 
-export default function Home() {
+function Home() {
   return (
-    <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <p>Hello Vite + React !</p>
-
-      <Counter />
-
-      <p>
-        Edit <code>App.jsx</code> and save to test HMR updates.
-      </p>
-      <p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        {" | "}
-        <a
-          className="App-link"
-          href="https://vitejs.dev/guide/features.html"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Vite Docs
-        </a>
-      </p>
-    </header>
+    <div className="flex flex-col">
+      <div className="flex justify-center items-center h-32 md:h-32">
+        <h1 className="font-jost font-extrabold text-2xl text-left mx-8 my-5 md:text-5xl">
+          Nous cassons les codes du recrutement
+          <span className="italic text-main">
+            {" "}
+            infor
+            <span className="bg-underline bg-no-repeat bg-bottom">
+              matique{" "}
+            </span>
+          </span>
+        </h1>
+      </div>
+      <div className="flex justify-between md:flex md:justify-center md: items-center font-extrabold mb-20">
+        <CandidateButton />
+        <CompanyButton />
+      </div>
+      <div className="md:flex md:items-center md:w-full">
+        <ContainerSlider />
+      </div>
+      <div className="md:w-full">
+        <RecruitmentSteps />
+      </div>
+      <div className="flex justify-start">
+        <ExternaticAchievement />
+      </div>
+    </div>
   );
 }
+
+export default Home;
