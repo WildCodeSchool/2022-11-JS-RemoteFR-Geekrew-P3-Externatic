@@ -32,8 +32,6 @@ CREATE TABLE IF NOT EXISTS `p3`.`candidacy` (
   `read_by_company` TINYINT(1) NOT NULL,
   `company_responded` TINYINT(1) NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_candidacy_candidate_id` (`candidate_id` ASC) VISIBLE,
-  INDEX `fk_candidacy_job_offer_id` (`job_offer_id` ASC) VISIBLE,
   CONSTRAINT `fk_candidacy_candidate_id`
     FOREIGN KEY (`candidate_id`)
     REFERENCES `p3`.`candidate` (`id`),
@@ -66,8 +64,6 @@ CREATE TABLE IF NOT EXISTS `p3`.`candidate` (
   `consultant_id` INT,
   `user_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_candidate_consultant_id` (`consultant_id` ASC) VISIBLE,
-  INDEX `fk_candidate_user_id` (`user_id` ASC) VISIBLE,
   CONSTRAINT `fk_candidate_consultant_id`
     FOREIGN KEY (`consultant_id`)
     REFERENCES `p3`.`consultant` (`id`)
@@ -116,8 +112,6 @@ CREATE TABLE IF NOT EXISTS `p3`.`candidate_has_notification` (
   `candidate_id` INT NOT NULL,
   `notification_id` INT NOT NULL,
   PRIMARY KEY (`candidate_id`, `notification_id`),
-  INDEX `fk_candidate_has_notification_notification1_idx` (`notification_id` ASC) VISIBLE,
-  INDEX `fk_candidate_has_notification_candidate1_idx` (`candidate_id` ASC) VISIBLE,
   CONSTRAINT `fk_candidate_has_notification_candidate1`
     FOREIGN KEY (`candidate_id`)
     REFERENCES `p3`.`candidate` (`id`)
@@ -142,8 +136,6 @@ CREATE TABLE IF NOT EXISTS `p3`.`candidate_has_technology` (
   `candidate_id` INT NOT NULL,
   `technology_id` INT NOT NULL,
   PRIMARY KEY (`candidate_id`, `technology_id`),
-  INDEX `fk_candidate_has_technology_technology1_idx` (`technology_id` ASC) VISIBLE,
-  INDEX `fk_candidate_has_technology_candidate1_idx` (`candidate_id` ASC) VISIBLE,
   CONSTRAINT `fk_candidate_has_technology_candidate1`
     FOREIGN KEY (`candidate_id`)
     REFERENCES `p3`.`candidate` (`id`)
@@ -182,7 +174,6 @@ CREATE TABLE IF NOT EXISTS `p3`.`company` (
   `company_type` VARCHAR(150),
   `user_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_company_user_id` (`user_id` ASC) VISIBLE,
   CONSTRAINT `fk_company_user_id`
     FOREIGN KEY (`user_id`)
     REFERENCES `p3`.`user` (`id`))
@@ -213,8 +204,6 @@ CREATE TABLE IF NOT EXISTS `p3`.`company_has_field` (
   `company_id` INT NOT NULL,
   `field_id` INT NOT NULL,
   PRIMARY KEY (`company_id`, `field_id`),
-  INDEX `fk_company_has_field_field1_idx` (`field_id` ASC) VISIBLE,
-  INDEX `fk_company_has_field_company1_idx` (`company_id` ASC) VISIBLE,
   CONSTRAINT `fk_company_has_field_company1`
     FOREIGN KEY (`company_id`)
     REFERENCES `p3`.`company` (`id`)
@@ -244,8 +233,6 @@ CREATE TABLE IF NOT EXISTS `p3`.`company_has_notification` (
   `company_id` INT NOT NULL,
   `notification_id` INT NOT NULL,
   PRIMARY KEY (`company_id`, `notification_id`),
-  INDEX `fk_company_has_notification_notification1_idx` (`notification_id` ASC) VISIBLE,
-  INDEX `fk_company_has_notification_company1_idx` (`company_id` ASC) VISIBLE,
   CONSTRAINT `fk_company_has_notification_company1`
     FOREIGN KEY (`company_id`)
     REFERENCES `p3`.`company` (`id`)
@@ -271,7 +258,6 @@ CREATE TABLE IF NOT EXISTS `p3`.`consultant` (
   `gender` VARCHAR(25) NOT NULL,
   `user_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_consultant_user_id` (`user_id` ASC) VISIBLE,
   CONSTRAINT `fk_consultant_user_id`
     FOREIGN KEY (`user_id`)
     REFERENCES `p3`.`user` (`id`))
@@ -294,8 +280,6 @@ CREATE TABLE IF NOT EXISTS `p3`.`consultant_has_notification` (
   `consultant_id` INT NOT NULL,
   `notification_id` INT NOT NULL,
   PRIMARY KEY (`consultant_id`, `notification_id`),
-  INDEX `fk_consultant_has_notification_notification1_idx` (`notification_id` ASC) VISIBLE,
-  INDEX `fk_consultant_has_notification_consultant1_idx` (`consultant_id` ASC) VISIBLE,
   CONSTRAINT `fk_consultant_has_notification_consultant1`
     FOREIGN KEY (`consultant_id`)
     REFERENCES `p3`.`consultant` (`id`)
@@ -339,8 +323,6 @@ CREATE TABLE IF NOT EXISTS `p3`.`favorite` (
   `candidate_id` INT NOT NULL,
   `job_offer_id` INT NOT NULL,
   PRIMARY KEY (`candidate_id`, `job_offer_id`),
-  INDEX `fk_candidate_has_job_offer_job_offer1_idx` (`job_offer_id` ASC) VISIBLE,
-  INDEX `fk_candidate_has_job_offer_candidate1_idx` (`candidate_id` ASC) VISIBLE,
   CONSTRAINT `fk_candidate_has_job_offer_candidate1`
     FOREIGN KEY (`candidate_id`)
     REFERENCES `p3`.`candidate` (`id`)
@@ -384,8 +366,6 @@ CREATE TABLE IF NOT EXISTS `p3`.`handled_offer` (
   `consultant_id` INT NOT NULL,
   `number_of_candidates` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_handled_offer_job_offer_id` (`job_offer_id` ASC) VISIBLE,
-  INDEX `fk_handled_offer_consultant_id` (`consultant_id` ASC) VISIBLE,
   CONSTRAINT `fk_handled_offer_consultant_id`
     FOREIGN KEY (`consultant_id`)
     REFERENCES `p3`.`CONSULTANT` (`id`),
@@ -492,8 +472,6 @@ CREATE TABLE IF NOT EXISTS `p3`.`job_offer_has_technology` (
   `job_offer_id` INT NOT NULL,
   `technology_id` INT NOT NULL,
   PRIMARY KEY (`job_offer_id`, `technology_id`),
-  INDEX `fk_job_offer_has_technology_technology1_idx` (`technology_id` ASC) VISIBLE,
-  INDEX `fk_job_offer_has_technology_job_offer1_idx` (`job_offer_id` ASC) VISIBLE,
   CONSTRAINT `fk_job_offer_has_technology_job_offer1`
     FOREIGN KEY (`job_offer_id`)
     REFERENCES `p3`.`job_offer` (`id`)
@@ -525,7 +503,6 @@ CREATE TABLE IF NOT EXISTS `p3`.`notification` (
   `date` DATETIME NOT NULL,
   `message` VARCHAR(150) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci' NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_notification_job_offer_id` (`job_offer_id` ASC) VISIBLE,
   CONSTRAINT `fk_notification_job_offer_id`
     FOREIGN KEY (`job_offer_id`)
     REFERENCES `p3`.`job_offer` (`id`)
