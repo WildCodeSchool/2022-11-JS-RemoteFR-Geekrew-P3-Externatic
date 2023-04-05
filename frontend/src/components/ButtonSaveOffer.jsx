@@ -10,7 +10,7 @@ function ButtonSaveOffer({ handleSubmit }) {
         onClick={handleSubmit}
         className="py-3 rounded-full bg-main font-semibold text-white text-md md:w-1/4 hover:scale-110"
       >
-        <div className="flex items-center  md:ml-6  ml-3 mr-3">
+        <div className="flex items-center justify-center  md:ml-6  ml-3 mr-3">
           <img src={save} alt="logo save" className="mr-2" />
           Enregistrer l'annonce
         </div>

@@ -26,7 +26,7 @@ function InfoCompany({ formErrors, setFormErrors, validate, isSubmit }) {
       <div>
         <label
           htmlFor="base-input"
-          className="block mb-2 text-sm text-left font-medium text-grey2 dark:text-white"
+          className="block mb-2 text-sm text-left font-medium text-grey2"
         >
           Nom de l'entreprise
         </label>
@@ -36,7 +36,7 @@ function InfoCompany({ formErrors, setFormErrors, validate, isSubmit }) {
           name="name"
           autoComplete="on"
           onChange={(e) => handleInput(e)}
-          className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         />
         {isSubmit && formErrors.name && (
           <p className="text-sm text-red mb-4 mx-2">{formErrors.name}</p>
@@ -45,7 +45,7 @@ function InfoCompany({ formErrors, setFormErrors, validate, isSubmit }) {
       <div>
         <label
           htmlFor="base-input"
-          className="block mb-2 text-sm text-left font-medium text-grey2 dark:text-white"
+          className="block mb-2 text-sm text-left font-medium text-grey2"
         >
           Numéro de SIRET
         </label>
@@ -55,7 +55,7 @@ function InfoCompany({ formErrors, setFormErrors, validate, isSubmit }) {
           name="siret"
           autoComplete="on"
           onChange={(e) => handleInput(e)}
-          className="bg-gray-50 mb-4 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="bg-gray-50 mb-4 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         />
         {isSubmit && formErrors.siret && (
           <p className="text-sm text-red mb-4 mx-2">{formErrors.siret}</p>
@@ -64,7 +64,7 @@ function InfoCompany({ formErrors, setFormErrors, validate, isSubmit }) {
       <div>
         <label
           htmlFor="base-input"
-          className="block mb-2 text-sm text-left font-medium text-grey2 dark:text-white"
+          className="block mb-2 text-sm text-left font-medium text-grey2"
         >
           E-mail
         </label>
@@ -74,7 +74,7 @@ function InfoCompany({ formErrors, setFormErrors, validate, isSubmit }) {
           name="mail"
           autoComplete="on"
           onChange={(e) => handleInput(e)}
-          className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         />
         {isSubmit && formErrors.mail && (
           <p className="text-sm text-red mb-4 mx-2">{formErrors.mail}</p>
@@ -83,7 +83,7 @@ function InfoCompany({ formErrors, setFormErrors, validate, isSubmit }) {
       <div>
         <label
           htmlFor="base-input"
-          className="block mb-2 text-sm text-left font-medium text-grey2 dark:text-white"
+          className="block mb-2 text-sm text-left font-medium text-grey2 "
         >
           Téléphone
         </label>
@@ -93,7 +93,7 @@ function InfoCompany({ formErrors, setFormErrors, validate, isSubmit }) {
           name="phone"
           autoComplete="on"
           onChange={(e) => handleInput(e)}
-          className="bg-gray-50 mb-4 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="bg-gray-50 mb-4 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         />
         {isSubmit && formErrors.phone && (
           <p className="text-sm text-red mb-4 mx-2">{formErrors.phone}</p>
@@ -102,7 +102,7 @@ function InfoCompany({ formErrors, setFormErrors, validate, isSubmit }) {
       <div>
         <label
           htmlFor="base-input"
-          className="block mb-2 text-sm text-left font-medium text-grey2 dark:text-white"
+          className="block mb-2 text-sm text-left font-medium text-grey2 "
         >
           Nombre d'employés
         </label>
@@ -112,7 +112,7 @@ function InfoCompany({ formErrors, setFormErrors, validate, isSubmit }) {
           name="number_of_employee"
           autoComplete="on"
           onChange={(e) => handleInput(e)}
-          className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
         />
         {isSubmit && formErrors.number_of_employee && (
           <p className="text-sm text-red mb-4 mx-2">
@@ -123,7 +123,7 @@ function InfoCompany({ formErrors, setFormErrors, validate, isSubmit }) {
       <div>
         <label
           htmlFor="base-input"
-          className="block mb-2 text-sm text-left font-medium text-grey2 dark:text-white"
+          className="block mb-2 text-sm text-left font-medium text-grey2 "
         >
           Secteur
         </label>
@@ -133,7 +133,7 @@ function InfoCompany({ formErrors, setFormErrors, validate, isSubmit }) {
           name="field"
           autoComplete="on"
           onChange={(e) => handleInput(e)}
-          className="bg-gray-50 mb-4 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="bg-gray-50 mb-4 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         />
         {isSubmit && formErrors.field && (
           <p className="text-sm text-red mb-4 mx-2">{formErrors.field}</p>
@@ -141,7 +141,7 @@ function InfoCompany({ formErrors, setFormErrors, validate, isSubmit }) {
       </div>
       <label
         htmlFor="base-input"
-        className="block mb-2 text-sm text-left font-medium text-grey2 dark:text-white"
+        className="block mb-2 text-sm text-left font-medium text-grey2"
       >
         Localisation
       </label>
@@ -151,14 +151,14 @@ function InfoCompany({ formErrors, setFormErrors, validate, isSubmit }) {
         name="location"
         autoComplete="on"
         onChange={(e) => handleInput(e)}
-        className="bg-gray-50 mb-4 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 md:col-span-2"
+        className="bg-gray-50 mb-4 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full px-3 md:col-span-2 leading-9"
       />
       {isSubmit && formErrors.location && (
         <p className="text-sm text-red mb-4 mx-2">{formErrors.location}</p>
       )}
       <label
         htmlFor="message"
-        className="block mb-2 text-sm text-left font-medium text-grey2 dark:text-white"
+        className="block mb-2 text-sm text-left font-medium text-grey2 "
       >
         Description
       </label>
@@ -168,7 +168,7 @@ function InfoCompany({ formErrors, setFormErrors, validate, isSubmit }) {
         name="description"
         autoComplete="on"
         onChange={(e) => handleInput(e)}
-        className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 md:col-span-2"
+        className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded border border-gray-300 focus:ring-blue-500 focus:border-blue-500 md:col-span-2"
         placeholder="..."
       />
       {isSubmit && formErrors.description && (

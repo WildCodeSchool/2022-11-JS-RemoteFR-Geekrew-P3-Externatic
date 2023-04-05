@@ -26,7 +26,7 @@ function NetworksCompany({ formErrors, setFormErrors, validate, isSubmit }) {
       <div>
         <label
           htmlFor="base-input"
-          className="block mb-2 text-sm text-left font-medium text-grey2 dark:text-white"
+          className="block mb-2 text-sm text-left font-medium text-grey2"
         >
           LinkedIn
         </label>
@@ -36,7 +36,7 @@ function NetworksCompany({ formErrors, setFormErrors, validate, isSubmit }) {
           name="linkedin"
           onChange={handleInput}
           autoComplete="on"
-          className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         />
         {isSubmit && formErrors.linkedin && (
           <p className="text-sm text-red mb-4 mx-2">{formErrors.linkedin}</p>

@@ -33,7 +33,7 @@ function Container() {
         </span>
         <div className="border-b border-grey3 border-1 mt-3 mb-3" />
         <Link
-          to="/users/"
+          to="/Connexion"
           className="inline-flex text-main font-bold hover:underline"
         >
           Voir plus
@@ -68,7 +68,7 @@ function Container() {
         </span>
         <div className="border-b border-grey3 border-1 mt-3 mb-3" />
         <Link
-          to="/users/"
+          to="/Connexion"
           className="inline-flex text-main font-bold hover:underline"
         >
           Voir plus
@@ -102,7 +102,7 @@ function Container() {
         </span>
         <div className="border-b border-grey3 border-1 mt-3 mb-3" />
         <Link
-          to="/users/"
+          to="/Connexion"
           className="inline-flex text-main font-bold hover:underline"
         >
           Voir plus
@@ -137,7 +137,7 @@ function Container() {
         </span>
         <div className="border-b border-grey3 border-1 mt-3 mb-3" />
         <Link
-          to="/users/"
+          to="/Connexion"
           className="inline-flex text-main font-bold hover:underline"
         >
           Voir plus
