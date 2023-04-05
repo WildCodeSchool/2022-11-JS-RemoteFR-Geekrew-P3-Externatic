@@ -1,12 +1,13 @@
+import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
 import expressAPI from "../services/expressAPI";
 import OfferDash from "./OfferDash";
 
 import { useCurrentUserContext } from "../contexts/CurrentUserContext";
 
-function OffersContainer() {
+function OffersContainer({ jobOffers, setJobOffers }) {
   const { userId, roles } = useCurrentUserContext();
-  const [jobOffers, setJobOffers] = useState([]);
+  const [jobOffersCompany, setJobOffersCompany] = useState([]);
   useEffect(() => {
     if (roles.includes("candidate")) {
       expressAPI
@@ -19,7 +20,7 @@ function OffersContainer() {
       expressAPI
         .get(`/job_offers/find/${userId}`)
         .then((res) => {
-          setJobOffers(res.data);
+          setJobOffersCompany(res.data);
         })
         .catch((err) => console.error(err));
     }
@@ -33,26 +34,50 @@ function OffersContainer() {
         </h1>
       )}
       <div className="bg-white rounded p-4 flex flex-col gap-4">
-        {jobOffers.map((jobOffer) => (
-          <OfferDash
-            key={jobOffer.id}
-            jobId={jobOffer.id}
-            title={jobOffer.title}
-            description={jobOffer.description}
-            location={jobOffer.location}
-            experience={jobOffer.experience}
-            lowerSalary={jobOffer.lower_salary}
-            higherSalary={jobOffer.higher_salary}
-            workHours={jobOffer.work_hours}
-            postDate={jobOffer.postDate}
-            entreprise={jobOffer.compname}
-            field={jobOffer.field}
-            technologies={jobOffer.technologies}
-          />
-        ))}
+        {roles.includes("candidate") &&
+          jobOffers.map((jobOffer) => (
+            <OfferDash
+              key={jobOffer.id}
+              jobId={jobOffer.id}
+              title={jobOffer.title}
+              description={jobOffer.description}
+              location={jobOffer.location}
+              experience={jobOffer.experience}
+              lowerSalary={jobOffer.lower_salary}
+              higherSalary={jobOffer.higher_salary}
+              workHours={jobOffer.work_hours}
+              postDate={jobOffer.postDate}
+              entreprise={jobOffer.compname}
+              field={jobOffer.field}
+              technologies={jobOffer.technologies}
+            />
+          ))}
+        {roles.includes("company") &&
+          jobOffersCompany.map((jobOffer) => (
+            <OfferDash
+              key={jobOffer.id}
+              jobId={jobOffer.id}
+              title={jobOffer.title}
+              description={jobOffer.description}
+              location={jobOffer.location}
+              experience={jobOffer.experience}
+              lowerSalary={jobOffer.lower_salary}
+              higherSalary={jobOffer.higher_salary}
+              workHours={jobOffer.work_hours}
+              postDate={jobOffer.postDate}
+              entreprise={jobOffer.compname}
+              field={jobOffer.field}
+              technologies={jobOffer.technologies}
+            />
+          ))}
       </div>
     </div>
   );
 }
+
+OffersContainer.propTypes = {
+  jobOffers: PropTypes.shape().isRequired,
+  setJobOffers: PropTypes.func.isRequired,
+};
 
 export default OffersContainer;

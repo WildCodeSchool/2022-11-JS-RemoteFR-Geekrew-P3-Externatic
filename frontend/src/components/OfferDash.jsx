@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import expressAPI from "../services/expressAPI";
 import localisationIcon from "../assets/Icons/map-pin.svg";
 import FakePP from "../assets/images/Fake-PP.png";
-import favIcon from "../assets/Icons/heart.svg";
 import Tags from "./Tags";
 import CandidacyInfos from "./CandidacyInfos";
 
@@ -55,9 +54,6 @@ function OfferDash({
               />
               <p>{location}</p>
             </div>
-          </div>
-          <div className="h-20">
-            <img src={favIcon} alt="heartIcon" />
           </div>
         </div>
         <div className="mt-5">

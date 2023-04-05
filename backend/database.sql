@@ -590,6 +590,12 @@ UPDATE `p3`.`user` SET `roles` = '[\"user\", \"company\"]' WHERE (`id` = '2');
 UPDATE `p3`.`user` SET `roles` = '[\"user\", \"candidate\"]' WHERE (`id` = '3');
 UPDATE `p3`.`user` SET `picture` = 'https://image.lexica.art/full_jpg/5b720589-69a1-4dac-8c93-36a7971a0fa2' WHERE (`id` = '4');
 UPDATE `p3`.`user` SET `picture` = 'https://image.lexica.art/full_jpg/2814b2cc-ede0-4e25-9248-59bc5c84d6e1' WHERE (`id` = '3');
+UPDATE `p3`.`user` SET `phone` = '0658947522' WHERE (`id` = '4');
+UPDATE `p3`.`user` SET `phone` = '0795844663', `picture` = 'https://faces-img.xcdn.link/image-lorem-face-4875.jpg' WHERE (`id` = '1');
+UPDATE `p3`.`user` SET `phone` = '0635877552', `picture` = 'https://faces-img.xcdn.link/image-lorem-face-5291.jpg' WHERE (`id` = '2');
+UPDATE `p3`.`user` SET `phone` = '0715586619' WHERE (`id` = '3');
+UPDATE `p3`.`user` SET `phone` = '0615588775', `picture` = 'https://faces-img.xcdn.link/image-lorem-face-6364.jpg' WHERE (`id` = '5');
+
 
 
 

@@ -129,7 +129,7 @@ function InfosCandidate({ formErrors, setFormErrors, validate, isSubmit }) {
             Prénom <span className="text-main-dark">*</span>
           </label>
           <input
-            className="bg-gray-50 border border-gray-300 text-grey1 rounded mb-5 leading-9 focus:ring-main"
+            className="bg-gray-50 border border-gray-300 text-grey1 rounded mb-5 leading-9 focus:ring-main px-3"
             id="firstname"
             name="firstname"
             type="text"
@@ -147,7 +147,7 @@ function InfosCandidate({ formErrors, setFormErrors, validate, isSubmit }) {
             Nom <span className="text-main-dark">*</span>
           </label>
           <input
-            className="bg-gray-50 border border-gray-300 text-grey1 rounded mb-5 leading-9"
+            className="bg-gray-50 border border-gray-300 text-grey1 rounded mb-5 leading-9 px-3"
             id="lastname"
             name="lastname"
             type="text"
@@ -165,7 +165,7 @@ function InfosCandidate({ formErrors, setFormErrors, validate, isSubmit }) {
             E-mail <span className="text-main-dark">*</span>
           </label>
           <input
-            className="bg-gray-50 border border-gray-300 text-grey1 rounded mb-5 leading-9"
+            className="bg-gray-50 border border-gray-300 text-grey1 rounded mb-5 leading-9 px-3"
             id="email"
             name="email"
             type="email"
@@ -183,7 +183,7 @@ function InfosCandidate({ formErrors, setFormErrors, validate, isSubmit }) {
             Téléphone <span className="text-main-dark">*</span>
           </label>
           <input
-            className="bg-gray-50 border border-gray-300 text-grey1 rounded mb-5 leading-9"
+            className="bg-gray-50 border border-gray-300 text-grey1 rounded mb-5 leading-9 px-3"
             id="phone"
             name="phone"
             type="text"
@@ -201,7 +201,7 @@ function InfosCandidate({ formErrors, setFormErrors, validate, isSubmit }) {
             Localisation <span className="text-main-dark">*</span>
           </label>
           <input
-            className="bg-gray-50 border border-gray-300 text-grey1 rounded mb-5 leading-9"
+            className="bg-gray-50 border border-gray-300 text-grey1 rounded mb-5 leading-9 px-3"
             id="location"
             name="location"
             type="text"
@@ -219,7 +219,7 @@ function InfosCandidate({ formErrors, setFormErrors, validate, isSubmit }) {
             Date de Naissance
           </label>
           <input
-            className="bg-gray-50 border border-gray-300 text-grey1 rounded mb-5 leading-9"
+            className="bg-gray-50 border border-gray-300 text-grey1 rounded mb-5 leading-9 px-3"
             id="birth_date"
             name="age"
             type="date"
@@ -239,7 +239,7 @@ function InfosCandidate({ formErrors, setFormErrors, validate, isSubmit }) {
         </label>
         <div className="flex flex-row justify-center items-center align-middle relative mb-5 w-full">
           <input
-            className="bg-gray-50 border border-gray-300 text-grey1 rounded leading-9 w-full"
+            className="bg-gray-50 border border-gray-300 text-grey1 rounded leading-9 w-full px-3"
             id="password"
             name="password"
             type={passwordIsVisible ? "text" : "password"}
@@ -268,7 +268,7 @@ function InfosCandidate({ formErrors, setFormErrors, validate, isSubmit }) {
         </label>
         <div className="flex flex-row justify-center items-center align-middle relative mb-5 w-full">
           <input
-            className="bg-gray-50 border border-gray-300 text-grey1 rounded leading-9 w-full"
+            className="bg-gray-50 border border-gray-300 text-grey1 rounded leading-9 w-full px-3"
             id="confirmPassword"
             name="confirmPassword"
             type={confirmPasswordIsVisible ? "text" : "password"}

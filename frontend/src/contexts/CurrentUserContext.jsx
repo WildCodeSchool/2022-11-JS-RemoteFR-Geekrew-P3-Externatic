@@ -6,7 +6,7 @@ const CurrentUserContext = createContext();
 export const useCurrentUserContext = () => useContext(CurrentUserContext);
 
 function CurrentUserContextProvider({ children }) {
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
   const [userType, setUserType] = useState("");
   const [email, setEmail] = useState("");
   const [roles, setRoles] = useState([]);

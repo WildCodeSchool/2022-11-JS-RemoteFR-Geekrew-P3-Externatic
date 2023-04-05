@@ -42,6 +42,7 @@ function ConnexionForm() {
           }
 
           localStorage.setItem("user", JSON.stringify(user));
+
           navigate("/Dashboard");
         })
         .catch(() => toastError("Le mot de passe ou l'email est incorrect"));
@@ -89,7 +90,7 @@ function ConnexionForm() {
             </label>
             <div className="flex flex-row justify-center items-center align-middle relative mb-10">
               <input
-                className="border border-grey3 h-10 rounded w-full"
+                className="border border-grey3 h-10 rounded w-full p-3"
                 type={passwordIsVisible ? "text" : "password"}
                 id="password"
                 value={password}

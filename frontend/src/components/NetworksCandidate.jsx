@@ -25,7 +25,7 @@ function NetworksCandidate({ formErrors, setFormErrors, validate, isSubmit }) {
       </h2>
       <label
         htmlFor="base-input"
-        className="block mb-2 text-sm text-left font-medium text-grey2 dark:text-white"
+        className="block mb-2 text-sm text-left font-medium text-grey2"
       >
         LinkedIn
       </label>
@@ -35,7 +35,7 @@ function NetworksCandidate({ formErrors, setFormErrors, validate, isSubmit }) {
         name="linkedin"
         autoComplete="on"
         onChange={(e) => handleInput(e)}
-        className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full px-3 leading-9"
       />
       {isSubmit && formErrors.linkedin && (
         <p className="text-sm text-red mb-6 mt-[-12px] mx-2">
@@ -44,7 +44,7 @@ function NetworksCandidate({ formErrors, setFormErrors, validate, isSubmit }) {
       )}
       <label
         htmlFor="base-input"
-        className="block mb-2 text-sm text-left font-medium text-grey2 dark:text-white"
+        className="block mb-2 text-sm text-left font-medium text-grey2"
       >
         GitHub
       </label>
@@ -54,7 +54,7 @@ function NetworksCandidate({ formErrors, setFormErrors, validate, isSubmit }) {
         name="github"
         autoComplete="on"
         onChange={(e) => handleInput(e)}
-        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full px-3 leading-9"
       />
       {isSubmit && formErrors.github && (
         <p className="text-sm text-red mb-6 mt-[-12px] mx-2">

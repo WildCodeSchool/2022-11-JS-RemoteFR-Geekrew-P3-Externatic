@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import SearchBar from "../components/SearchBar";
 import OffersContainer from "../components/OffersContainer";
-import FavoriteDash from "../components/FavoriteDash";
 import expressAPI from "../services/expressAPI";
 import CompanyDash from "../components/CompanyDash";
 import OfferFilterForm from "../components/OfferFilterForm";
@@ -33,10 +31,9 @@ function Dashboard() {
   }, [showOfferFilter]);
 
   return (
-    <div className="bg-background flex flex-col justify-center">
+    <div className="bg-background flex flex-col justify-center my-8">
       {(roles.includes("candidate") || roles.includes("admin")) && (
         <div>
-          <SearchBar />
           <div className="text-center md:invisible md:h-0">
             <button
               type="button"
@@ -53,13 +50,15 @@ function Dashboard() {
               <OfferFilterForm setJobOffers={setJobOffers} />
             </div>
             <div className="col-span-4 md:col-span-3">
-              <OffersContainer jobOffers={jobOffers} />
+              <OffersContainer
+                jobOffers={jobOffers}
+                setJobOffers={setJobOffers}
+              />
             </div>
           </div>
-          <FavoriteDash />
         </div>
       )}
-      {roles.includes("company") && <CompanyDash jobOffers={jobOffers} />}
+      {roles.includes("company") && <CompanyDash />}
     </div>
   );
 }
